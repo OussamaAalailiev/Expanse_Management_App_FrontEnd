@@ -1,0 +1,14 @@
+
+
+<h4>List of Expanses: </h4>
+
+<table class="table">
+  <thead >
+  <th>Id</th><th>Title</th><th>Amount</th><th>Creation Date</th>
+  </thead>
+  <tbody >
+  <tr *ngFor="let expanse of expansesList | async">
+    <td>{{expanse.id}}</td><td>{{expanse.title}}</td><td>{{expanse.amount}}</td><td>{{expanse.createdDate}}</td>
+  </tr>
+  </tbody>
+</table>

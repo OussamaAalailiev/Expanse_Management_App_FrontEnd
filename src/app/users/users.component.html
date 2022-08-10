@@ -1,0 +1,14 @@
+
+<h4>List of Users: </h4>
+
+<table class="table">
+  <thead >
+  <th>Name</th><th>Email</th><th>Active</th><th>Total Sold</th><th>Currency</th><th>Creation Date</th>
+  </thead>
+  <tbody *ngIf="users.length > 0">
+  <tr *ngFor="let user of users">
+    <td>{{user.name}}</td><td>{{user.email}}</td><td>{{user.active}}</td><td>{{user.totalSold}}</td>
+    <td>{{user.currency}}</td><td>{{user.dateCreation}}</td>
+  </tr>
+  </tbody>
+</table>

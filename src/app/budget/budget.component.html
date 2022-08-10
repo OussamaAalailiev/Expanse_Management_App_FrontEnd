@@ -1,0 +1,22 @@
+<h4>List of Budgets: </h4>
+
+<table class="table">
+  <thead >
+  <th>Title</th><th>Description</th><th>Amount</th>
+  <th>Debut Date</th><th>End Date</th>
+  <th>Amount Spent</th><th>Amount Remains</th>
+  <th>Category of Budget</th>
+  </thead>
+  <tbody >
+  <tr *ngFor="let budget of budgetList | async">
+    <td>{{budget.title}}</td>
+    <td>{{budget.description}}</td>
+    <td>{{budget.amount}}</td>
+    <td>{{budget.dateDebut}}</td>
+    <td>{{budget.endDate}}</td>
+    <td>{{budget.amountSpent}}</td>
+    <td>{{budget.amountRemains}}</td>
+    <td>{{budget.categoryExpanse.valueOf()}}</td>
+  </tr>
+  </tbody>
+</table>
