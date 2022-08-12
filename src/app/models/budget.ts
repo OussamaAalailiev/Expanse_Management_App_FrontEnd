@@ -1,3 +1,6 @@
+import {CategoryExpanse} from "./CategoryExpanse";
+import {User} from "./user";
+
 export interface Budget{
   id: number;
   title: string;
@@ -7,5 +10,6 @@ export interface Budget{
   amount: number;
   amountSpent: number;
   amountRemains: number;
-  categoryExpanse: string;
+  categoryExpanse: CategoryExpanse;
+  user: User;
 }

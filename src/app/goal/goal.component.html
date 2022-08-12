@@ -1,0 +1,22 @@
+<h4>List of Goals: </h4>
+
+<table class="table">
+  <thead >
+  <th>Title</th><th>Description</th><th>Amount</th>
+  <th>Debut Date</th><th>End Date</th>
+  <th>Category of Goal</th>
+  <th>User Id</th><th>User Name</th>
+  </thead>
+  <tbody >
+  <tr *ngFor="let goal of goalList | async">
+    <td>{{goal.title}}</td>
+    <td>{{goal.description}}</td>
+    <td>{{goal.amount}}</td>
+    <td>{{goal.dateDebut}}</td>
+    <td>{{goal.endDate}}</td>
+    <td>{{goal.categoryIncome.categoryIncomeType}}</td>
+    <td *ngIf="goal.user!==null">{{goal.user.id}}</td>
+    <td *ngIf="goal.user!==null">{{goal.user.name}}</td>
+  </tr>
+  </tbody>
+</table>

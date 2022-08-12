@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {ExpanseService} from "../expanse.service";
+import {ExpanseService} from "../services/expanse.service";
 import {Observable} from "rxjs";
-import {Expanse} from "../expanse";
+import {Expanse} from "../models/expanse";
 
 @Component({
   selector: 'app-expanse',
@@ -16,6 +16,7 @@ export class ExpanseComponent implements OnInit {
 
   ngOnInit(): void {
     this.expansesList = this.expanseService.getExpansesService();
+    this.expansesList.subscribe(date => console.log(date));
   }
 
 }

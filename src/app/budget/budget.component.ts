@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {BudgetService} from "../budget.service";
+import {BudgetService} from "../services/budget.service";
 import {Observable} from "rxjs";
-import {Budget} from "../budget";
+import {Budget} from "../models/budget";
 
 @Component({
   selector: 'app-budget',
@@ -16,7 +16,7 @@ export class BudgetComponent implements OnInit {
 
   ngOnInit(): void {
     this.budgetList = this.budgetService.getBudgetsService();
-    console.log(this.budgetList)
+    this.budgetList.subscribe(data => console.log(data));
 
 
     // this.budgetService.getBudgetsService()

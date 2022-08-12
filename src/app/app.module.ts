@@ -9,6 +9,8 @@ import {HttpClientModule} from "@angular/common/http";
 import { HomeComponent } from './home/home.component';
 import { ExpanseComponent } from './expanse/expanse.component';
 import { BudgetComponent } from './budget/budget.component';
+import { IncomeComponent } from './income/income.component';
+import { GoalComponent } from './goal/goal.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { BudgetComponent } from './budget/budget.component';
     UsersComponent,
     HomeComponent,
     ExpanseComponent,
-    BudgetComponent
+    BudgetComponent,
+    IncomeComponent,
+    GoalComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +30,9 @@ import { BudgetComponent } from './budget/budget.component';
       { path: 'users', component: UsersComponent},
       { path: 'home', component: HomeComponent},
       { path: 'expanse', component: ExpanseComponent },
-      { path: 'budget', component: BudgetComponent }
+      { path: 'budget', component: BudgetComponent },
+      { path: 'income', component: IncomeComponent },
+      { path: 'goal', component: GoalComponent }
     ])
   ],
   providers: [],

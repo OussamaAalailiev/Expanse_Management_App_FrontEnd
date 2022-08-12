@@ -1,0 +1,19 @@
+<h4>List of Incomes: </h4>
+
+<table class="table">
+  <thead >
+  <th>Id</th><th>Title</th><th>Amount</th><th>Created Date</th>
+  <th>Category of Income</th> <th>User Id</th><th>User Name</th>
+  </thead>
+  <tbody >
+  <tr *ngFor="let income of incomeList | async">
+    <td>{{income.id}}</td>
+    <td>{{income.title}}</td>
+    <td>{{income.amount}}</td>
+    <td>{{income.createdDate}}</td>
+    <td>{{income.categoryIncome.categoryIncomeType}}</td>
+    <td *ngIf="income.user!==null">{{income.user.id}}</td>
+    <td *ngIf="income.user!==null">{{income.user.name}}</td>
+  </tr>
+  </tbody>
+</table>

@@ -6,6 +6,7 @@
   <th>Debut Date</th><th>End Date</th>
   <th>Amount Spent</th><th>Amount Remains</th>
   <th>Category of Budget</th>
+  <th>User Id</th><th>User Name</th>
   </thead>
   <tbody >
   <tr *ngFor="let budget of budgetList | async">
@@ -16,7 +17,9 @@
     <td>{{budget.endDate}}</td>
     <td>{{budget.amountSpent}}</td>
     <td>{{budget.amountRemains}}</td>
-    <td>{{budget.categoryExpanse.valueOf()}}</td>
+    <td>{{budget.categoryExpanse.categoryExpanseType}}</td>
+    <td *ngIf="budget.user!==null">{{budget.user.id}}</td>
+    <td *ngIf="budget.user!==null">{{budget.user.name}}</td>
   </tr>
   </tbody>
 </table>

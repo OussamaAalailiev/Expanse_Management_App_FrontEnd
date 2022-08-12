@@ -4,11 +4,15 @@
 
 <table class="table">
   <thead >
-  <th>Id</th><th>Title</th><th>Amount</th><th>Creation Date</th>
+  <th>Id</th><th>Title</th><th>Amount</th><th>Creation Date</th><th>Category of Expanse</th>
+  <th>User Id</th><th>User Name</th>
   </thead>
   <tbody >
   <tr *ngFor="let expanse of expansesList | async">
-    <td>{{expanse.id}}</td><td>{{expanse.title}}</td><td>{{expanse.amount}}</td><td>{{expanse.createdDate}}</td>
+    <td>{{expanse.id}}</td><td>{{expanse.title}}</td><td>{{expanse.amount}}</td>
+    <td>{{expanse.createdDate}}</td><td>{{expanse.categoryExpanse.categoryExpanseType}}</td>
+    <td>{{expanse.user.id}}</td>
+    <td>{{expanse.user.name}}</td>
   </tr>
   </tbody>
 </table>
