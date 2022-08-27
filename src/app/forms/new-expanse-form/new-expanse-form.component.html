@@ -1,0 +1,74 @@
+<div class="p-5">
+  <div class="card card-header text-center">
+    Expanse Form
+  </div>
+  <div class="card card-body">
+    <div class="container offset-md-3 col-md-6 p-5">
+      <form [formGroup]="expanseFormGroup" (ngSubmit)="handleAddNewExpanse()">
+        <div class="mb-3">
+          <label for="amount">Amount:</label>
+          <input id="amount" type="number" formControlName="amount" class="form-control">
+          <small *ngIf="expanseFormGroup.controls['amount'].errors && expanseFormGroup.controls['amount'].touched "
+                 class="text-danger">
+            {{getAmountErrorMessage('Amount', expanseFormGroup.controls['amount'].errors)}}
+          </small>
+        </div>
+        <div class="mb-3">
+          <label for="title">Title:</label>
+          <input id="title" type="text" formControlName="title" class="form-control">
+          <small *ngIf="expanseFormGroup.controls['title'].errors && expanseFormGroup.controls['title'].touched "
+                 class="text-danger">
+            {{getTitleErrorMessage('Title', expanseFormGroup.controls['title'].errors)}}
+          </small>
+<!--          <span class="text-danger" *ngIf="-->
+<!--                                       expanseFormGroup.controls['title'].dirty &&-->
+<!--                                       expanseFormGroup.controls['title'].invalid ">-->
+<!--                        Title must have between 3 & 55 Characters! </span>-->
+<!--          <span class="text-danger" *ngIf="expanseFormGroup.controls['title'].touched &&-->
+<!--                                       expanseFormGroup.controls['title'].hasError('required')">-->
+<!--                        Title is required! </span>-->
+
+          <!--      <div *ngIf="expanseFormGroup.controls['title'].invalid &&-->
+          <!--                  (expanseFormGroup.controls['title'].dirty || expanseFormGroup.controls['title'].touched)">-->
+          <!--        <div *ngIf="expanseFormGroup.controls['title']?.errors.required"></div>-->
+          <!--        <div *ngIf="expanseFormGroup.controls['title']?.errors.required">-->
+          <!--          Title is required-->
+          <!--        </div>-->
+          <!--        <div *ngIf="expanseFormGroup.controls['title']?.errors.minlength">-->
+          <!--          Title must be at least 3 Characters.-->
+          <!--        </div>-->
+          <!--        <div *ngIf="expanseFormGroup.controls['title']?.errors.minlength">-->
+          <!--          Title must be at most 55 Characters.-->
+          <!--        </div>-->
+          <!--      </div>-->
+
+        </div>
+        <div class="mb-3">
+          <label for="createdDate">Created Date:</label>
+          <input id="createdDate" type="date" formControlName="createdDate" class="form-control">
+        </div>
+        <div class="mb-3">Select a Category
+          <select formControlName="categoryExpanse">
+            <option value="select" hidden=""> Select Category of expanse </option>
+            <option *ngFor="let categoryExpanseType of categoryExpanseList" [value]="categoryExpanseType"
+            >
+              {{categoryExpanseType.id}}
+              {{categoryExpanseType.categoryExpanseType}}
+            </option>
+          </select>
+          <span class="text-danger" *ngIf="expanseFormGroup.controls['categoryExpanse'].touched &&
+                                       expanseFormGroup.controls['categoryExpanse'].hasError('required')">
+                        Category of Expanse is required! </span>
+        </div>
+
+        <button [disabled]="expanseFormGroup.invalid" class="btn btn-success" type="submit">Submit New Expanse</button>
+        <!--
+          <button [disabled]="expanseFormGroup.invalid" class="btn btn-success" type="submit"
+                (click)="getCategoryExpByNameFromInput(categoryExpanseType)">Submit New Expanse</button>
+          -->
+      </form>
+    </div>
+  </div>
+</div>
+
+

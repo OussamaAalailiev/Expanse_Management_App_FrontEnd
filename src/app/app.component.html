@@ -15,8 +15,17 @@
         <li class="nav-item">
           <a href="#" routerLink="/users" class="nav-link" >Users</a>
         </li>
-        <li class="nav-item">
-          <a href="#" routerLink="/expanse" class="nav-link">Expanse</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Expanse Dropdown
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a href="#" routerLink="/expanse" class="dropdown-item">Get Expanses</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item"
+                 (click)="handleNewExpanseForm()"
+                 >Add new Expanse</a></li>
+          </ul>
         </li>
         <li class="nav-item">
           <a href="#" routerLink="/budget" class="nav-link">Budget</a>

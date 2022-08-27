@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {BudgetService} from "../services/budget.service";
+import {BudgetService} from "../../services/budget.service";
 import {Observable} from "rxjs";
-import {Budget} from "../models/budget";
+import {Budget} from "../../models/budget";
 
 @Component({
   selector: 'app-budget',

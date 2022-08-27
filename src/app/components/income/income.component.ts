@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {IncomeService} from "../services/income.service";
-import {Income} from "../models/income";
+import {IncomeService} from "../../services/income.service";
+import {Income} from "../../models/income";
 import {Observable} from "rxjs";
 
 @Component({
