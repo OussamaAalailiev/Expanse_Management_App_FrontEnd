@@ -51,7 +51,12 @@ export class NewExpanseFormComponent implements OnInit {
 
     /** Category Group for > 'Communication & PC': */
     {id: 56, categoryExpanseType: "Internet"}, {id: 57, categoryExpanseType: "Phone"}, {id: 58, categoryExpanseType: "Cell_Phone"},
-    {id: 59, categoryExpanseType: "Apps"}, {id: 60, categoryExpanseType: "Games"} ];
+    {id: 59, categoryExpanseType: "Apps"}, {id: 60, categoryExpanseType: "Games"}, {id: 61, categoryExpanseType: "Drinks"},
+    {id: 62, categoryExpanseType: "Homemade Food"}];
+
+    userList: User [] = [{id: '3a300bc8-8954-4e93-9136-2b11ad2461b1', name: "Oussama"} ,
+                           {id: 'dfa735ec-328b-43c3-ad70-f5dba33eb585', name: "Zakaria"},
+                           {id: '653eb6f2-a817-4184-af31-4cff631692f8', name: "Safwane"}];
 
   constructor(private fb: FormBuilder) { }
 
@@ -65,8 +70,9 @@ export class NewExpanseFormComponent implements OnInit {
         Validators.min(1.0), Validators.max(9000000000000000000.00)]),
       title: this.fb.control(null, [Validators.required,
         Validators.minLength(3), Validators.maxLength(55)]),
-      createdDate: this.fb.control(new Date(), Validators.required),
-       categoryExpanse: this.fb.control(null, Validators.required),
+      createdDate: this.fb.control(null, Validators.required),
+      categoryExpanse: this.fb.control(null, Validators.required),
+      userId: this.fb.control(null, Validators.required)
       // categoryExpanse: this.fb.control(CategoryExpanse.arguments.categoryExpanseType),
 
       // user: User
@@ -95,17 +101,22 @@ export class NewExpanseFormComponent implements OnInit {
   //   return this.expanseFormGroup.controls;
   // }
 
+  /*
   getCategoryExpByNameFromInput(categoryExpanseType: string){
     for (let i=0; i< this.categoryExpanseList.length; i++){
       if (categoryExpanseType==this.categoryExpanseList[i].categoryExpanseType){
+        console.log(this.categoryExpanseList[i])
         return this.categoryExpanseList[i];
       }else if (categoryExpanseType!==this.categoryExpanseList[i].categoryExpanseType && i<this.categoryExpanseList.length){
+        console.log("Continue Keyword");
         continue;
       }else {
+        console.log("Object()..."  + Object());
         return Object();
       }
     }
   }
+   */
 
   getTitleErrorMessage(title: string, errors: ValidationErrors) {
     if (errors['required']){

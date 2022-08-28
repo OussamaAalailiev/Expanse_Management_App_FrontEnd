@@ -43,22 +43,39 @@
           <!--      </div>-->
 
         </div>
+
         <div class="mb-3">
           <label for="createdDate">Created Date:</label>
           <input id="createdDate" type="date" formControlName="createdDate" class="form-control">
+          <span class="text-danger" *ngIf="expanseFormGroup.controls['createdDate'].touched &&
+                                       expanseFormGroup.controls['createdDate'].hasError('required')">
+                        Date is required! </span>
         </div>
-        <div class="mb-3">Select a Category
+
+        <div class="mb-3">Select a Category of Expanse
           <select formControlName="categoryExpanse">
-            <option value="select" hidden=""> Select Category of expanse </option>
-            <option *ngFor="let categoryExpanseType of categoryExpanseList" [value]="categoryExpanseType"
-            >
-              {{categoryExpanseType.id}}
+            <option value="select" hidden=""> ... </option>
+            <option *ngFor="let categoryExpanseType of categoryExpanseList" [value]="categoryExpanseType.id"
+              >
               {{categoryExpanseType.categoryExpanseType}}
             </option>
           </select>
           <span class="text-danger" *ngIf="expanseFormGroup.controls['categoryExpanse'].touched &&
                                        expanseFormGroup.controls['categoryExpanse'].hasError('required')">
                         Category of Expanse is required! </span>
+        </div>
+
+        <div class="mb-3">Select a User
+          <select formControlName="userId">
+            <option value="select" hidden=""> Select a User </option>
+            <option *ngFor="let user of userList" [value]="user.id"
+            >
+              {{user.name}}
+            </option>
+          </select>
+          <span class="text-danger" *ngIf="expanseFormGroup.controls['userId'].touched &&
+                                       expanseFormGroup.controls['userId'].hasError('required')">
+                        User is required! </span>
         </div>
 
         <button [disabled]="expanseFormGroup.invalid" class="btn btn-success" type="submit">Submit New Expanse</button>
