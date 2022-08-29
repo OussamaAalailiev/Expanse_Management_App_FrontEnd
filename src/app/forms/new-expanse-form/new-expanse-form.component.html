@@ -4,7 +4,7 @@
   </div>
   <div class="card card-body">
     <div class="container offset-md-3 col-md-6 p-5">
-      <form [formGroup]="expanseFormGroup" (ngSubmit)="handleAddNewExpanse()">
+      <form [formGroup]="expanseFormGroup" (ngSubmit)="handleAddNewExpanseSubmission(this.expanseFormGroup.value)">
         <div class="mb-3">
           <label for="amount">Amount:</label>
           <input id="amount" type="number" formControlName="amount" class="form-control">

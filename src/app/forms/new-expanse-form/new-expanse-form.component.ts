@@ -2,6 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators} from "@angular/forms";
 import {CategoryExpanse} from "../../models/CategoryExpanse";
 import {User} from "../../models/user";
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
+import {environment} from "../../../environments/environment";
+import {Expanse} from "../../models/expanse";
+import {ExpanseService} from "../../services/expanse.service";
+import {catchError, throwError} from "rxjs";
+import {ExpanseFormSubmission} from "../../formModels/ExpanseFormSubmission";
+import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app-new-expanse-form',
@@ -54,11 +61,13 @@ export class NewExpanseFormComponent implements OnInit {
     {id: 59, categoryExpanseType: "Apps"}, {id: 60, categoryExpanseType: "Games"}, {id: 61, categoryExpanseType: "Drinks"},
     {id: 62, categoryExpanseType: "Homemade Food"}];
 
-    userList: User [] = [{id: '3a300bc8-8954-4e93-9136-2b11ad2461b1', name: "Oussama"} ,
-                           {id: 'dfa735ec-328b-43c3-ad70-f5dba33eb585', name: "Zakaria"},
-                           {id: '653eb6f2-a817-4184-af31-4cff631692f8', name: "Safwane"}];
+    userList: User [] = [ {id: '3a300bc8-8954-4e93-9136-2b11ad2461b1', name: "Oussama"},
+                          {id: 'dfa735ec-328b-43c3-ad70-f5dba33eb585', name: "Zakaria"},
+                          {id: '653eb6f2-a817-4184-af31-4cff631692f8', name: "Safwane"} ];
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,
+              private expanseService: ExpanseService,
+              private datePipe: DatePipe) { }
 
   ngOnInit(): void {
     this.initializeForm();
@@ -79,8 +88,26 @@ export class NewExpanseFormComponent implements OnInit {
     })
   }
 
-  handleAddNewExpanse() {
-    console.log(this.expanseFormGroup.value);
+  transformDateFormat(){
+    let createdDateFormated = this.datePipe.transform(this.expanseFormGroup.controls['createdDate'].value, 'yyyy-MM-dd');
+    //this.expanseFormGroup.controls['createdDate'];
+  }
+
+  handleAddNewExpanseSubmission(expanseFormData: ExpanseFormSubmission) {
+    if (this.expanseFormGroup.valid){
+      //this.http.post<Expanse>(environment.backendHost+"/expanse/admin", this.expanseFormGroup.value)
+      this.transformDateFormat();
+      this.expanseService.postNewExpanseService(expanseFormData).pipe(
+        catchError((err) => {
+          console.error(err);
+          window.alert("Failed");
+          throw err
+        })
+      ).toPromise();
+      console.log(this.expanseFormGroup.value);
+      this.expanseFormGroup.reset();
+    }
+    // this.expanseFormGroup.value.reset;
   }
 
   getAmountErrorMessage(amountField: string, errors: ValidationErrors): string {
