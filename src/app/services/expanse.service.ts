@@ -13,10 +13,14 @@ export class ExpanseService {
   constructor(private http: HttpClient) { }
 
   getExpansesService(): Observable<Expanse []>{
-    return this.http.get<Expanse[]>(environment.backendHost + "/api/expanses");
+    // let randomNumber = Math.random();
+    // if (randomNumber < 0.5) return throwError(
+    //   ()=> new Error("Internet Connexion or Server Error, please try again later."))
+    // else
+      return this.http.get<Expanse[]>(environment.backendHost + "/api/expanses");
   }
 
-  private handleError(errorResponse: HttpErrorResponse){
+   handleError(errorResponse: HttpErrorResponse){
     if (errorResponse.status===0){
       // A client-side or network error occurred. Handle it accordingly.
       console.error(errorResponse.error);
@@ -34,6 +38,9 @@ export class ExpanseService {
     console.log("Service -> Post: "+expanseFormData);
     return this.http.post(environment.backendHost+"/api/expanses/admin", expanseFormData);
       // .pipe(catchError(this.handleError()));
+  }
+  deleteExpanseService(expanseId: number){
+    return this.http.delete<Expanse>(environment.backendHost+`/api/expanses/admin/delete/${expanseId}`);
   }
 
 

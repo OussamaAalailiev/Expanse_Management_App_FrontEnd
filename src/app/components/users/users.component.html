@@ -9,7 +9,8 @@
     </thead>
     <tbody *ngIf="users.length > 0">
     <tr *ngFor="let user of users">
-      <td>{{user.name}}</td><td>{{user.email}}</td><td>{{user.active}}</td><td>{{user.totalSold}}</td>
+      <td>{{user.name}}</td><td>{{user.email}}</td>
+      <td><i *ngIf="user.active==true" class="bi bi-activity text-danger"></i></td><td>{{user.totalSold}}</td>
       <td>{{user.currency}}</td><td>{{user.dateCreation}}</td>
     </tr>
     </tbody>

@@ -14,6 +14,7 @@ import { GoalComponent } from './components/goal/goal.component';
 import { NewExpanseFormComponent } from './forms/new-expanse-form/new-expanse-form.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {DatePipe} from "@angular/common";
+import { UpdateExpanseComponent } from './forms/update-expanse/update-expanse.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {DatePipe} from "@angular/common";
     BudgetComponent,
     IncomeComponent,
     GoalComponent,
-    NewExpanseFormComponent
+    NewExpanseFormComponent,
+    UpdateExpanseComponent
   ],
   imports: [
     BrowserModule,

@@ -1,22 +1,38 @@
 
+<br><br><!--'ng-template' Directive: will reference the id 'errors' in case the user encounter an error from backend: -->
+<ng-template #errors ><!-- If we have error, we display it here: -->
+  <div class="text-danger">
+    {{errorMessage}}
+  </div>
+</ng-template>
 
-<h4>List of Expanses: </h4>
+<div *ngIf="expansesList; else errors">
+  <h4 class="text-center">List of Expanses: </h4>
+  <br><br>
+  <div class="table-responsive-md">
 
-<div class="table-responsive-md">
+    <table class="table">
+      <thead >
+      <th>Id</th><th>Title</th><th>Amount</th><th>Creation Date</th><th>Category of Expanse</th>
+      <!--    <th>User Id</th>-->
+      <th>User Name</th><th class="text-primary"> Actions </th>
+      </thead>
+      <br>
+      <tbody >
+      <tr *ngFor="let expanse of expansesList ">
+        <td>{{expanse.id}}</td><td>{{expanse.title}}</td><td>{{expanse.amount}}</td>
+        <td>{{expanse.createdDate}}</td><td>{{expanse.categoryExpanse.categoryExpanseType}}</td>
+        <!--      <td>{{expanse.user.id}}</td>-->
+        <td>{{expanse.user.name}}</td>
+        <td>
+          <button class="btn btn-danger" (click)="handleExpanseDelete(expanse)">
+            <i class="bi bi-trash3"></i>
+          </button>
+        </td>
 
-  <table class="table">
-    <thead >
-    <th>Id</th><th>Title</th><th>Amount</th><th>Creation Date</th><th>Category of Expanse</th>
-    <th>User Id</th><th>User Name</th>
-    </thead>
-    <tbody >
-    <tr *ngFor="let expanse of expansesList | async">
-      <td>{{expanse.id}}</td><td>{{expanse.title}}</td><td>{{expanse.amount}}</td>
-      <td>{{expanse.createdDate}}</td><td>{{expanse.categoryExpanse.categoryExpanseType}}</td>
-      <td>{{expanse.user.id}}</td>
-      <td>{{expanse.user.name}}</td>
-    </tr>
-    </tbody>
-  </table>
+      </tr>
+      </tbody>
+    </table>
 
+  </div>
 </div>
