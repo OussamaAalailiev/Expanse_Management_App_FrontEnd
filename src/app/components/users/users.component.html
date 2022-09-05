@@ -10,7 +10,18 @@
     <tbody *ngIf="users.length > 0">
     <tr *ngFor="let user of users">
       <td>{{user.name}}</td><td>{{user.email}}</td>
-      <td><i *ngIf="user.active==true" class="bi bi-activity text-danger"></i></td><td>{{user.totalSold}}</td>
+<!--      <td><i *ngIf="user.active==true" class="bi bi-activity text-danger"></i></td>-->
+<!--      <td>-->
+<!--        <span class="badge" [ngClass]="[user.active===true ? ' bg-success' : '', -->
+<!--                              user.active===true ? ' bg-secondary' : '']">Active</span>-->
+<!--      </td>-->
+      <td *ngIf="user.active===true">
+        <span class="badge bg-success">active</span>
+      </td>
+      <td *ngIf="user.active===false">
+        <span class="badge bg-secondary">inactive</span>
+      </td>
+      <td>{{user.totalSold}}</td>
       <td>{{user.currency}}</td><td>{{user.dateCreation}}</td>
     </tr>
     </tbody>

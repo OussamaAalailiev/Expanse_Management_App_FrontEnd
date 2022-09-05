@@ -1,6 +1,6 @@
 <div class="p-5">
   <div class="card card-header text-center">
-    Expanse Form
+    Add New Expanse Form
   </div>
   <div class="card card-body">
     <div class="container offset-md-3 col-md-6 p-5">
@@ -87,5 +87,11 @@
     </div>
   </div>
 </div>
+<!-- I copied the list of 'categoryExpanseList' & List of 'userList' from this Component to
+       the child Component 'UpdateExpanseComponent' using "@Input" AND Property Binding [the Copy List]="original list"-->
+<app-update-expanse [categoryExpanseListCopied]="categoryExpanseList"
+                    [userListCopied]="userList">
+
+</app-update-expanse>
 
 

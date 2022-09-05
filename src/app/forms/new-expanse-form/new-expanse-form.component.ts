@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators} from "@angular/forms";
 import {CategoryExpanse} from "../../models/CategoryExpanse";
 import {User} from "../../models/user";
@@ -9,6 +9,9 @@ import {ExpanseService} from "../../services/expanse.service";
 import {catchError, throwError} from "rxjs";
 import {ExpanseFormSubmission} from "../../formModels/ExpanseFormSubmission";
 import {DatePipe} from "@angular/common";
+// import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+ import {MatDialogRef} from "@angular/material/dialog";
+
 
 @Component({
   selector: 'app-new-expanse-form',
@@ -65,9 +68,13 @@ export class NewExpanseFormComponent implements OnInit {
                           {id: 'dfa735ec-328b-43c3-ad70-f5dba33eb585', name: "Zakaria"},
                           {id: '653eb6f2-a817-4184-af31-4cff631692f8', name: "Safwane"} ];
 
-  constructor(private fb: FormBuilder,
+  constructor(
+              //@Inject(MAT_DIALOG_DATA)
+              private fb: FormBuilder,
               private expanseService: ExpanseService,
-              private datePipe: DatePipe) { }
+              private datePipe: DatePipe,
+              //private matDialogRef: MatDialogRef<NewExpanseFormComponent>,
+              ) { }
 
   ngOnInit(): void {
     this.initializeForm();
@@ -89,7 +96,8 @@ export class NewExpanseFormComponent implements OnInit {
   }
 
   transformDateFormat(){
-    let createdDateFormated = this.datePipe.transform(this.expanseFormGroup.controls['createdDate'].value, 'yyyy-MM-dd');
+    let createdDateFormated = this.datePipe.transform
+                                    (this.expanseFormGroup.controls['createdDate'].value, 'yyyy-MM-dd');
     //this.expanseFormGroup.controls['createdDate'];
   }
 
@@ -161,6 +169,8 @@ export class NewExpanseFormComponent implements OnInit {
 
   }
 
-
+  // onNoClick(): void {
+  //   this.matDialogRef.close();
+  // }
 
 }

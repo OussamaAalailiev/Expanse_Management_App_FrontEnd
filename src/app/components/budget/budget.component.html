@@ -11,9 +11,10 @@
     <th>Category of Budget</th>
 <!--    <th>User Id</th>-->
     <th>User Name</th>
+    <th class="text-primary">Action</th>
     </thead>
     <tbody >
-    <tr *ngFor="let budget of budgetList | async">
+    <tr *ngFor="let budget of budgetList ">
       <td>{{budget.title}}</td>
       <td>{{budget.description}}</td>
       <td>{{budget.amount}}</td>
@@ -24,6 +25,11 @@
       <td>{{budget.categoryExpanse.categoryExpanseType}}</td>
 <!--      <td *ngIf="budget.user!==null">{{budget.user.id}}</td>-->
       <td *ngIf="budget.user!==null">{{budget.user.name}}</td>
+      <td>
+              <span class="text-danger" (click)="handleBudgetDelete(budget)">
+                <i class="bi bi-x-square"></i>
+              </span>
+      </td>
     </tr>
     </tbody>
   </table>

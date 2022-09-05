@@ -1,38 +1,93 @@
+<ng-container *ngIf="(pageOfExpanses$ | async) as state" [ngSwitch]="state.appState">
 
-<br><br><!--'ng-template' Directive: will reference the id 'errors' in case the user encounter an error from backend: -->
-<ng-template #errors ><!-- If we have error, we display it here: -->
-  <div class="text-danger">
-    {{errorMessage}}
-  </div>
-</ng-template>
-
-<div *ngIf="expansesList; else errors">
-  <h4 class="text-center">List of Expanses: </h4>
+  <!--'ng-template' Directive: will reference the id 'errors' in case the user encounter an error from backend: -->
+  <ng-template #errors><!-- If we have error, we display it here: -->
+    <div class="text-danger">
+      {{errorMessage}}
+    </div>
+  </ng-template>
   <br><br>
-  <div class="table-responsive-md">
+  <!--'*ngSwitchCase="'APP_ERROR'': in case we got an error from the Backend captured by the 'state', THEN we will display the error in json. -->
+  <ng-container *ngSwitchCase="'APP_ERROR'">
+    <div class="container">
+      <h3 class="text-danger">There was an error, Please try later.
+      </h3>
+    </div>
+  </ng-container>
+  <!--'*ngSwitchCase="'APP_ERROR'': in case the data is on 'state' loading, THEN we will display a spinner. -->
+  <ng-container *ngSwitchCase="'APP_LOADING'">
+    <div class="d-flex justify-content-center mt-5">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  </ng-container>
+  <!--'*ngSwitchCase="'APP_LOADED'': in case the data is on 'state' loaded, THEN we will display the whole table. -->
+  <ng-container *ngSwitchCase="'APP_LOADED'">
+    <!--    <div *ngIf="expansesList; else errors">-->
+    <div>
+      <h4 class="text-center">List of Expanses: </h4>
+      <br><br>
+      <div class="table-responsive-md">
 
-    <table class="table">
-      <thead >
-      <th>Id</th><th>Title</th><th>Amount</th><th>Creation Date</th><th>Category of Expanse</th>
-      <!--    <th>User Id</th>-->
-      <th>User Name</th><th class="text-primary"> Actions </th>
-      </thead>
-      <br>
-      <tbody >
-      <tr *ngFor="let expanse of expansesList ">
-        <td>{{expanse.id}}</td><td>{{expanse.title}}</td><td>{{expanse.amount}}</td>
-        <td>{{expanse.createdDate}}</td><td>{{expanse.categoryExpanse.categoryExpanseType}}</td>
-        <!--      <td>{{expanse.user.id}}</td>-->
-        <td>{{expanse.user.name}}</td>
-        <td>
-          <button class="btn btn-danger" (click)="handleExpanseDelete(expanse)">
-            <i class="bi bi-trash3"></i>
-          </button>
-        </td>
+        <table class="table">
+          <thead>
+          <th>Id</th>
+          <th>Title</th>
+          <th>Amount</th>
+          <th>Creation Date</th>
+          <th>Category of Expanse</th>
+          <th>User Name</th>
+          <th class="text-primary"> Actions</th>
+          </thead>
+          <br>
+          <tbody>
+          <!--      {{pageOfExpanses$ | async | json}}-->
+          <tr *ngFor="let expanse of state.appData?.content; let i=index; ">
+            <td>{{expanse.id}}</td>
+            <td>{{expanse.title}}</td>
+            <td>{{expanse.amount}}</td>
+            <td>{{expanse.createdDate}}</td>
+            <td>{{expanse.categoryExpanse.categoryExpanseType}}</td>
+            <td>{{expanse.user.name}}</td>
+            <td>
+              <span class="text-danger" (click)="handleExpanseDelete(expanse)">
+                <i class="bi bi-x-square"></i>
+              </span>
+            </td>
+            <td><!--'expanse/updateExpanse/:expanseId' -->
+              <a> <!-- [routerLink]="['/expanse/updateExpanse/', expanse.id]" -->
+                <span class="text-success" (click)="handleUpdateExpanseForm(expanse)">
+<!--            <span class="text-success" (click)="openModalExpanseUpdate(expanse)">-->
+                  <i class="bi bi-pencil-square"></i>
+                </span>
+              </a>
+            </td>
 
-      </tr>
-      </tbody>
-    </table>
+          </tr>
+          </tbody>
+        </table>
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center">
+            <li [ngClass]="0==(currentPage$ | async)?'diasabledPageNavButton':''" class="page-item pointer">
+              <a (click)="goToNextOrPreviousPage('PreviousPage','')" class="page-link" aria-label="Previous">
+                <span aria-hidden="true">&laquo; Previous</span>
+              </a>
+            </li>
+            <li class="page-item pointer" [ngClass]="(currentPage$ | async)==i?'active':''"
+                *ngFor="let pageNumber of [].constructor(state.appData?.totalPages); let i=index;">
+              <a class="page-link" (click)="goToAnotherPage('', i)">{{i + 1}}</a>
+            </li>
+            <li [ngClass]="state.appData?.last ? 'diasabledPageNavButton':''" class="page-item pointer">
+              <a (click)="goToNextOrPreviousPage('NextPage','')" class="page-link" aria-label="Next">
+                <span aria-hidden="true">Next &raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </ng-container>
 
-  </div>
-</div>
+</ng-container>
+

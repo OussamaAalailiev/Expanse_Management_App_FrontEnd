@@ -15,6 +15,17 @@ import { NewExpanseFormComponent } from './forms/new-expanse-form/new-expanse-fo
 import {ReactiveFormsModule} from "@angular/forms";
 import {DatePipe} from "@angular/common";
 import { UpdateExpanseComponent } from './forms/update-expanse/update-expanse.component';
+// import {MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialog, MatDialogModule} from '@angular/material/dialog';
+import { MatSliderModule } from '@angular/material/slider';
+import { NewBudgetComponent } from './forms/new-budget/new-budget.component';
+
+
+
 
 @NgModule({
   declarations: [
@@ -26,13 +37,13 @@ import { UpdateExpanseComponent } from './forms/update-expanse/update-expanse.co
     IncomeComponent,
     GoalComponent,
     NewExpanseFormComponent,
-    UpdateExpanseComponent
+    UpdateExpanseComponent,
+    NewBudgetComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule,
     RouterModule.forRoot([
       {path: 'users', component: UsersComponent},
       {path: 'home', component: HomeComponent},
@@ -40,12 +51,23 @@ import { UpdateExpanseComponent } from './forms/update-expanse/update-expanse.co
       {path: 'budget', component: BudgetComponent},
       {path: 'income', component: IncomeComponent},
       {path: 'goal', component: GoalComponent},
-      {path: 'expanse/newExpanse', component: NewExpanseFormComponent}
+      {path: 'expanse/newExpanse', component: NewExpanseFormComponent},
+      {path: 'expanse/updateExpanse/:expanseId', component: UpdateExpanseComponent},
+      {path: '',
+        redirectTo: '/components/expanse/expanse.component', pathMatch: 'full'}
     ]),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule,
+    BrowserAnimationsModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSliderModule
   ],
   providers: [
-    DatePipe
+    DatePipe,
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},
+    MatDialog
   ],
   bootstrap: [AppComponent]
 })

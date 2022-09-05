@@ -4,6 +4,7 @@ import {environment} from "../../environments/environment";
 import {Expanse} from "../models/expanse";
 import {catchError, Observable, throwError} from "rxjs";
 import {ExpanseFormSubmission} from "../formModels/ExpanseFormSubmission";
+import {PageOfExpanses} from "../models/pageOfExpanses";
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,15 @@ export class ExpanseService {
     // else
       return this.http.get<Expanse[]>(environment.backendHost + "/api/expanses");
   }
+  /**Retrieve Expanses by title, page & size from Backend: */
+  getExpansesByTitlePageAndSize(title: string='', page: number=0, size: number=5): Observable<PageOfExpanses>{
+    return this.http.get<PageOfExpanses>
+                       (environment.backendHost+`/api/expanses?title=${title}&page=${page}&size=${size}`);
+  }
+  /**'pageOfExpansesObservable$' : is an observable property that gives us the same result as
+   *   the 'getExpansesByTitlePageAndSize(...)' above: */
+  pageOfExpansesObservable$ = (title: string='', page: number=0, size: number=5): Observable<PageOfExpanses> =>
+   this.http.get<PageOfExpanses>(environment.backendHost+`/api/expanses?title=${title}&page=${page}&size=${size}`);
 
    handleError(errorResponse: HttpErrorResponse){
     if (errorResponse.status===0){
@@ -39,8 +49,17 @@ export class ExpanseService {
     return this.http.post(environment.backendHost+"/api/expanses/admin", expanseFormData);
       // .pipe(catchError(this.handleError()));
   }
+
   deleteExpanseService(expanseId: number){
     return this.http.delete<Expanse>(environment.backendHost+`/api/expanses/admin/delete/${expanseId}`);
+  }
+
+  updateExpanseService(expanse: Expanse): Observable<Expanse>{
+    return this.http.put<Expanse>(environment.backendHost+`/api/expanses/admin/${expanse.id}`, expanse);
+  }
+
+  getOneExpanseByIdService(expanseId: number): Observable<Expanse>{
+    return this.http.get<Expanse>(environment.backendHost+`/api/expanses/${expanseId}`)
   }
 
 
