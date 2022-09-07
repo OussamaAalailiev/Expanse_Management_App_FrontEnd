@@ -1,3 +1,8 @@
+<div class="container mt-5 text-center">
+  <button (click)="handleExpanseFormNav()"
+          type="button" class="btn btn-outline-primary">Add New Expanse</button>
+</div>
+
 <ng-container *ngIf="(pageOfExpanses$ | async) as state" [ngSwitch]="state.appState">
 
   <!--'ng-template' Directive: will reference the id 'errors' in case the user encounter an error from backend: -->
@@ -10,7 +15,7 @@
   <!--'*ngSwitchCase="'APP_ERROR'': in case we got an error from the Backend captured by the 'state', THEN we will display the error in json. -->
   <ng-container *ngSwitchCase="'APP_ERROR'">
     <div class="container">
-      <h3 class="text-danger">There was an error, Please try later.
+      <h3 class="text-danger">There was an error while getting your expanses, Please try later.
       </h3>
     </div>
   </ng-container>
@@ -51,13 +56,13 @@
             <td>{{expanse.categoryExpanse.categoryExpanseType}}</td>
             <td>{{expanse.user.name}}</td>
             <td>
-              <span class="text-danger" (click)="handleExpanseDelete(expanse)">
+              <span class="text-danger pointer" (click)="handleExpanseDelete(expanse)">
                 <i class="bi bi-x-square"></i>
               </span>
             </td>
             <td><!--'expanse/updateExpanse/:expanseId' -->
               <a> <!-- [routerLink]="['/expanse/updateExpanse/', expanse.id]" -->
-                <span class="text-success" (click)="handleUpdateExpanseForm(expanse)">
+                <span class="text-success pointer" (click)="handleUpdateExpanseForm(expanse)">
 <!--            <span class="text-success" (click)="openModalExpanseUpdate(expanse)">-->
                   <i class="bi bi-pencil-square"></i>
                 </span>

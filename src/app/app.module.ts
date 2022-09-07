@@ -23,6 +23,12 @@ import {MatButtonModule} from '@angular/material/button';
 import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { MatSliderModule } from '@angular/material/slider';
 import { NewBudgetComponent } from './forms/new-budget/new-budget.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatNativeDateModule} from "@angular/material/core";
+import { UpdateBudgetComponent } from './forms/update-budget/update-budget.component';
+import {CommonValidationMethods} from "./services/validations/commonValidationMethods";
 
 
 
@@ -38,7 +44,8 @@ import { NewBudgetComponent } from './forms/new-budget/new-budget.component';
     GoalComponent,
     NewExpanseFormComponent,
     UpdateExpanseComponent,
-    NewBudgetComponent
+    NewBudgetComponent,
+    UpdateBudgetComponent
   ],
   imports: [
     BrowserModule,
@@ -53,8 +60,10 @@ import { NewBudgetComponent } from './forms/new-budget/new-budget.component';
       {path: 'goal', component: GoalComponent},
       {path: 'expanse/newExpanse', component: NewExpanseFormComponent},
       {path: 'expanse/updateExpanse/:expanseId', component: UpdateExpanseComponent},
-      {path: '',
-        redirectTo: '/components/expanse/expanse.component', pathMatch: 'full'}
+      // {path: '',
+      //   redirectTo: '/components/expanse/expanse.component', pathMatch: 'full'},
+      {path: 'budgets/newBudget', component: NewBudgetComponent},
+      {path: 'budgets/updateBudget/:budgetId', component: UpdateBudgetComponent}
     ]),
     ReactiveFormsModule,
     MatDialogModule,
@@ -62,7 +71,11 @@ import { NewBudgetComponent } from './forms/new-budget/new-budget.component';
     MatIconModule,
     MatToolbarModule,
     MatButtonModule,
-    MatSliderModule
+    MatSliderModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [
     DatePipe,

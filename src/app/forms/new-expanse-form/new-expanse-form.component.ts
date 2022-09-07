@@ -11,6 +11,8 @@ import {ExpanseFormSubmission} from "../../formModels/ExpanseFormSubmission";
 import {DatePipe} from "@angular/common";
 // import {MAT_DIALOG_DATA} from "@angular/material/dialog";
  import {MatDialogRef} from "@angular/material/dialog";
+import {CommonValidationMethods} from "../../services/validations/commonValidationMethods";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -62,7 +64,7 @@ export class NewExpanseFormComponent implements OnInit {
     /** Category Group for > 'Communication & PC': */
     {id: 56, categoryExpanseType: "Internet"}, {id: 57, categoryExpanseType: "Phone"}, {id: 58, categoryExpanseType: "Cell_Phone"},
     {id: 59, categoryExpanseType: "Apps"}, {id: 60, categoryExpanseType: "Games"}, {id: 61, categoryExpanseType: "Drinks"},
-    {id: 62, categoryExpanseType: "Homemade Food"}];
+    {id: 62, categoryExpanseType: "Homemade Food"}, {id: 63, categoryExpanseType: "Computer_PC"}];
 
     userList: User [] = [ {id: '3a300bc8-8954-4e93-9136-2b11ad2461b1', name: "Oussama"},
                           {id: 'dfa735ec-328b-43c3-ad70-f5dba33eb585', name: "Zakaria"},
@@ -74,6 +76,8 @@ export class NewExpanseFormComponent implements OnInit {
               private expanseService: ExpanseService,
               private datePipe: DatePipe,
               //private matDialogRef: MatDialogRef<NewExpanseFormComponent>,
+              public commonValidationMethods : CommonValidationMethods,
+              private route: Router
               ) { }
 
   ngOnInit(): void {
@@ -113,28 +117,10 @@ export class NewExpanseFormComponent implements OnInit {
         })
       ).toPromise();
       console.log(this.expanseFormGroup.value);
-      this.expanseFormGroup.reset();
+      //this.expanseFormGroup.reset();
+      this.route.navigateByUrl('/expanse')
     }
-    // this.expanseFormGroup.value.reset;
   }
-
-  getAmountErrorMessage(amountField: string, errors: ValidationErrors): string {
-
-    if (errors['required']){
-      return amountField + " is required";
-    }else if (errors['min']){
-      return amountField + " should be at least equal or greater than " + 1.00+" .";
-    }else if (errors['max']){
-      return amountField + " should be less than " + errors['max']['max']+" .";
-    }else {
-      return "";
-    }
-
-  }
-
-  // get myControls(): { [p: string]: AbstractControl }{
-  //   return this.expanseFormGroup.controls;
-  // }
 
   /*
   getCategoryExpByNameFromInput(categoryExpanseType: string){
@@ -152,22 +138,6 @@ export class NewExpanseFormComponent implements OnInit {
     }
   }
    */
-
-  getTitleErrorMessage(title: string, errors: ValidationErrors) {
-    if (errors['required']){
-      return title + " is required";
-    }else if (errors['minlength']){
-      console.log(errors.valueOf())
-      return title + " should be at least equal or greater than " + errors['minlength']['requiredLength'] +" Characters.";
-     // return title + " should be at least equal or greater than " + ""+" Characters.";
-    }else if (errors['maxlength']){
-      console.log(errors.valueOf())
-      return title + " should be less than " + errors['maxlength']['requiredLength'] +" Characters.";
-    }else {
-      return "";
-    }
-
-  }
 
   // onNoClick(): void {
   //   this.matDialogRef.close();

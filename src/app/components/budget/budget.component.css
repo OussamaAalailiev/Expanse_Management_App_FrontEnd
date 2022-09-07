@@ -1,0 +1,13 @@
+.pointer{
+  cursor: pointer;
+}
+
+.diasabledPageNavButton{
+  pointer-events: none;
+  opacity: 0.6;
+}
+/*pointer:hover{*/
+/*  background-color: #DB1F48;*/
+/*}*/
+
+

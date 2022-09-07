@@ -1,8 +1,8 @@
-import {Expanse} from "./expanse";
+import {Budget} from "../models/budget";
 
 /**This interface represent a Model or Skeleton of the Page returned from Backend: */
-export interface PageOfExpanses{
-  content: Expanse[],
+export interface PageOfBudgets{
+  content: Budget[],
   pageable: {
     sort: {
       empty: boolean,

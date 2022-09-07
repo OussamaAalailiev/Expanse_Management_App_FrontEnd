@@ -1,0 +1,70 @@
+<!--<p>update-expanse works!</p>-->
+
+<div class="p-5">
+  <div class="card card-header text-center">
+    Update Budget Form
+  </div>
+  <div class="card card-body">
+    <div class="container offset-md-3 col-md-6 p-5">
+      <!--      <form [formGroup]="expanseFormGroup" (ngSubmit)="handleAddNewExpanseSubmission(this.expanseFormGroup.value)">-->
+      <!--      <form *ngIf="expanse | async">-->
+      <form *ngIf="budgetReceived" [formGroup]="budgetUpdateFormGroup"
+            (ngSubmit)="updateBudgetForm(this.budgetUpdateFormGroup.value)">
+        <div class="mb-3">
+          <label for="id">Id:</label>
+          <input id="id" type="number" formControlName="id" class="form-control"
+                 [value]="budgetReceived.id" [hidden]="budgetReceived.id">
+
+        </div>
+        <div class="mb-3">
+          <label for="amount">Amount:</label>
+          <input id="amount" type="number" formControlName="amount" class="form-control" [value]="budgetReceived.amount">
+          <small *ngIf="budgetUpdateFormGroup.controls['amount'].errors && budgetUpdateFormGroup.controls['amount'].touched "
+                 class="text-danger">
+            {{this.commonValidationMethods.getAmountErrorMessage('Amount', budgetUpdateFormGroup.controls['amount'].errors)}}
+          </small>
+        </div>
+        <div class="mb-3">
+          <label for="title">Title:</label>
+          <input id="title" type="text" formControlName="title" class="form-control" [value]="budgetReceived.title">
+          <small *ngIf="budgetUpdateFormGroup.controls['title'].errors && budgetUpdateFormGroup.controls['title'].touched "
+                 class="text-danger">
+            {{this.commonValidationMethods.getTitleErrorMessage('Title', budgetUpdateFormGroup.controls['title'].errors)}}
+          </small>
+        </div>
+
+        <div class="mb-3">
+          <label for="description">Description:</label>
+          <input id="description" type="text" formControlName="description" class="form-control" [value]="budgetReceived.description">
+          <small *ngIf="budgetUpdateFormGroup.controls['description'].errors && budgetUpdateFormGroup.controls['description'].touched "
+                 class="text-danger">
+            {{this.commonValidationMethods.getDescriptionErrorMessage('description', budgetUpdateFormGroup.controls['description'].errors)}}
+          </small>
+        </div>
+
+        <div class="mb-3">
+          <label for="dateDebut">Date Debut: 'year/Month/day'.</label>
+          <input id="dateDebut" type="text" [value]="budgetReceived.dateDebut" disabled>
+        </div>
+
+        <div class="mb-3">
+          <label for="endDate">End Date: 'year/Month/day'.</label>
+          <input id="endDate" type="text" [value]="budgetReceived.endDate" disabled>
+        </div>
+
+        <div class="mb-3">Category of Expanse
+          <input [value]="budgetReceived.categoryExpanse.categoryExpanseType" disabled>
+        </div>
+
+        <div class="mb-3">User:
+          <input [value]="budgetReceived.user.name" [disabled]="budgetReceived.user.id">
+        </div>
+
+        <button [disabled]="budgetUpdateFormGroup.invalid" class="btn btn-success"
+                type="submit" >Update Budget
+        </button>
+      </form>
+
+    </div>
+  </div>
+</div>

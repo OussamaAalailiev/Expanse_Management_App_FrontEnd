@@ -4,7 +4,8 @@ import {environment} from "../../environments/environment";
 import {Expanse} from "../models/expanse";
 import {catchError, Observable, throwError} from "rxjs";
 import {ExpanseFormSubmission} from "../formModels/ExpanseFormSubmission";
-import {PageOfExpanses} from "../models/pageOfExpanses";
+import {PageOfExpanses} from "../pageModels/pageOfExpanses";
+import {ValidationErrors} from "@angular/forms";
 
 @Injectable({
   providedIn: 'root'
@@ -61,7 +62,6 @@ export class ExpanseService {
   getOneExpanseByIdService(expanseId: number): Observable<Expanse>{
     return this.http.get<Expanse>(environment.backendHost+`/api/expanses/${expanseId}`)
   }
-
 
 
 }

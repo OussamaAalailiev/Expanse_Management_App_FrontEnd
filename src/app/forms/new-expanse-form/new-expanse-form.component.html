@@ -10,7 +10,7 @@
           <input id="amount" type="number" formControlName="amount" class="form-control">
           <small *ngIf="expanseFormGroup.controls['amount'].errors && expanseFormGroup.controls['amount'].touched "
                  class="text-danger">
-            {{getAmountErrorMessage('Amount', expanseFormGroup.controls['amount'].errors)}}
+            {{this.commonValidationMethods.getAmountErrorMessage('Amount', expanseFormGroup.controls['amount'].errors)}}
           </small>
         </div>
         <div class="mb-3">
@@ -18,34 +18,12 @@
           <input id="title" type="text" formControlName="title" class="form-control">
           <small *ngIf="expanseFormGroup.controls['title'].errors && expanseFormGroup.controls['title'].touched "
                  class="text-danger">
-            {{getTitleErrorMessage('Title', expanseFormGroup.controls['title'].errors)}}
+            {{this.commonValidationMethods.getTitleErrorMessage('Title', expanseFormGroup.controls['title'].errors)}}
           </small>
-<!--          <span class="text-danger" *ngIf="-->
-<!--                                       expanseFormGroup.controls['title'].dirty &&-->
-<!--                                       expanseFormGroup.controls['title'].invalid ">-->
-<!--                        Title must have between 3 & 55 Characters! </span>-->
-<!--          <span class="text-danger" *ngIf="expanseFormGroup.controls['title'].touched &&-->
-<!--                                       expanseFormGroup.controls['title'].hasError('required')">-->
-<!--                        Title is required! </span>-->
-
-          <!--      <div *ngIf="expanseFormGroup.controls['title'].invalid &&-->
-          <!--                  (expanseFormGroup.controls['title'].dirty || expanseFormGroup.controls['title'].touched)">-->
-          <!--        <div *ngIf="expanseFormGroup.controls['title']?.errors.required"></div>-->
-          <!--        <div *ngIf="expanseFormGroup.controls['title']?.errors.required">-->
-          <!--          Title is required-->
-          <!--        </div>-->
-          <!--        <div *ngIf="expanseFormGroup.controls['title']?.errors.minlength">-->
-          <!--          Title must be at least 3 Characters.-->
-          <!--        </div>-->
-          <!--        <div *ngIf="expanseFormGroup.controls['title']?.errors.minlength">-->
-          <!--          Title must be at most 55 Characters.-->
-          <!--        </div>-->
-          <!--      </div>-->
-
         </div>
 
         <div class="mb-3">
-          <label for="createdDate">Created Date:</label>
+          <label for="createdDate">Created Date: 'Month/day/year'.</label>
           <input id="createdDate" type="date" formControlName="createdDate" class="form-control">
           <span class="text-danger" *ngIf="expanseFormGroup.controls['createdDate'].touched &&
                                        expanseFormGroup.controls['createdDate'].hasError('required')">
@@ -89,9 +67,10 @@
 </div>
 <!-- I copied the list of 'categoryExpanseList' & List of 'userList' from this Component to
        the child Component 'UpdateExpanseComponent' using "@Input" AND Property Binding [the Copy List]="original list"-->
-<app-update-expanse [categoryExpanseListCopied]="categoryExpanseList"
-                    [userListCopied]="userList">
 
-</app-update-expanse>
+<!--<app-update-expanse [categoryExpanseListCopied]="categoryExpanseList"-->
+<!--                    [userListCopied]="userList">-->
+
+<!--</app-update-expanse>-->
 
 

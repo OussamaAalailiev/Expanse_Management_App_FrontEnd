@@ -3,10 +3,11 @@ import {Expanse} from "../../models/expanse";
 import {ExpanseService} from "../../services/expanse.service";
 import {Observable} from "rxjs";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder, FormGroup, ValidationErrors, Validators} from "@angular/forms";
 import {CategoryExpanse} from "../../models/CategoryExpanse";
 import {User} from "../../models/user";
+import {CommonValidationMethods} from "../../services/validations/commonValidationMethods";
 
 @Component({
   selector: 'app-update-expanse',
@@ -19,55 +20,34 @@ export class UpdateExpanseComponent implements OnInit {
   expanseReceived!: Expanse;
   expanseUpdateFormGroup!: FormGroup;
   //'@Input' : used to get data from another file or component in same project into this place:
-  @Input() categoryExpanseListCopied: CategoryExpanse[] = [];
-  @Input() userListCopied: User [] = [];
+  // @Input() categoryExpanseListCopied: CategoryExpanse[] = [];
+  // @Input() userListCopied: User [] = [];
   //categoryExpanse: CategoryExpanse | null | undefined;
   //user: User | undefined;
 
-  constructor(private expanseService: ExpanseService,
-              private route: ActivatedRoute,
-              private fb: FormBuilder
+  constructor(public expanseService: ExpanseService,
+              private activatedRoute: ActivatedRoute,
+              private route: Router,
+              private fb: FormBuilder,
+              public commonValidationMethods : CommonValidationMethods
               // public matDialogRef: MatDialogRef<UpdateExpanseComponent>,
               // @Inject(MAT_DIALOG_DATA) public data: Expanse
              ) { }
 
   ngOnInit(): void {
    // this.expanse = this.data;
-    const routeParams = this.route.snapshot.paramMap;
+    const routeParams = this.activatedRoute.snapshot.paramMap;
     const expanseIdFromRoute = Number(routeParams.get('expanseId'));
-    // this.categoryExpanse = this.getCategoryExpanseByType(this.categoryExpanseListCopied,
-    //   this.expanseReceived.categoryExpanse.categoryExpanseType);
-    // this.categoryExpanse =this.categoryExpanseListCopied.filter((categoryExpanse) => {
-    //   return categoryExpanse.categoryExpanseType===this.expanseReceived.categoryExpanse.categoryExpanseType;
-    // })
-    // console.log(this.categoryExpanse);
-    // this.user = this.userListCopied.find((user)=>{
-    //   user.id === this.expanseReceived.user.id;
-    // })
-    // console.log(this.user);
     this.expanseService.getOneExpanseByIdService(expanseIdFromRoute).subscribe(
       (data) => {
         this.expanseReceived = data;
         this.initializeUpdateForm();
        // this.disableDateFromUpdateExpanse();
       }, error => {
-        console.log(error)
+        console.log(error.value)
       });
     // this.initializeUpdateForm();
   }
-
-  /*
-  handleExpanseUpdate(expanse: Expanse){
-     //this.initUpdateExpanseForm(expanse);
-      this.expanseService.getOneExpanseByIdService(expanse.id).subscribe(
-         (data) => {
-          this.expanseReceived = data;
-      }, error => {
-        console.log(error)
-      });
-      //this.expanseService.updateExpanseService(expanse);
-  }
-   */
 
    /*
    getCategoryExpanseByType(arr: CategoryExpanse[], type: string) {
@@ -95,41 +75,12 @@ export class UpdateExpanseComponent implements OnInit {
     })
   }
 
-  getAmountErrorMessage(amountField: string, errors: ValidationErrors): string {
-
-    if (errors['required']){
-      return amountField + " is required";
-    }else if (errors['min']){
-      return amountField + " should be at least equal or greater than " + 1.00+" .";
-    }else if (errors['max']){
-      return amountField + " should be less than " + errors['max']['max']+" .";
-    }else {
-      return "";
-    }
-
-  }
-
-  getTitleErrorMessage(title: string, errors: ValidationErrors) {
-    if (errors['required']){
-      return title + " is required";
-    }else if (errors['minlength']){
-      console.log(errors.valueOf())
-      return title + " should be at least equal or greater than " + errors['minlength']['requiredLength'] +" Characters.";
-      // return title + " should be at least equal or greater than " + ""+" Characters.";
-    }else if (errors['maxlength']){
-      console.log(errors.valueOf())
-      return title + " should be less than " + errors['maxlength']['requiredLength'] +" Characters.";
-    }else {
-      return "";
-    }
-
-  }
-
   updateExpanseForm(expanse: Expanse){
 
     this.expanseService.updateExpanseService(expanse)
       .subscribe(dataUpdated => {
         console.log(this.expanseUpdateFormGroup.value);
+        this.route.navigateByUrl('/expanse');
       }, error => {
         console.log(error);
       });
@@ -145,9 +96,6 @@ export class UpdateExpanseComponent implements OnInit {
   //   this.matDialogRef.close();
   // }
 
-  // initUpdateExpanseForm(expanse: Expanse){
-  //
-  // }
 
 
 

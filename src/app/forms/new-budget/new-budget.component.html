@@ -1,1 +1,86 @@
-<p>new-budget works!</p>
+<div class="p-5">
+  <div class="card card-header text-center">
+    Add New Budget Form
+  </div>
+  <div class="card card-body">
+    <div class="container offset-md-3 col-md-6 p-5">
+      <form [formGroup]="budgetFormGroup" (ngSubmit)="handleAddNewBudgetSubmission(this.budgetFormGroup.value)">
+        <div class="mb-3">
+          <label for="amount">Amount:</label>
+          <input id="amount" type="number" formControlName="amount" class="form-control">
+          <small *ngIf="budgetFormGroup.controls['amount'].errors && budgetFormGroup.controls['amount'].touched "
+                 class="text-danger">
+            {{this.commonValidationMethods.getAmountErrorMessage('Amount', budgetFormGroup.controls['amount'].errors)}}
+          </small>
+        </div>
+        <div class="mb-3">
+          <label for="title">Title:</label>
+          <input id="title" type="text" formControlName="title" class="form-control">
+          <small *ngIf="budgetFormGroup.controls['title'].errors && budgetFormGroup.controls['title'].touched "
+                 class="text-danger">
+            {{this.commonValidationMethods.getTitleErrorMessage('Title', budgetFormGroup.controls['title'].errors)}}
+          </small>
+        </div>
+
+        <div class="mb-3">
+          <label for="description">Description:</label>
+          <input id="description" type="text" formControlName="description" class="form-control">
+          <small *ngIf="budgetFormGroup.controls['description'].errors && budgetFormGroup.controls['description'].touched "
+                 class="text-danger">
+            {{this.commonValidationMethods.getDescriptionErrorMessage('description', budgetFormGroup.controls['description'].errors)}}
+          </small>
+        </div>
+
+        <div class="mb-3">
+          <label for="dateDebut">Debut Date 'Month/day/year':</label>
+          <input id="dateDebut" type="date" formControlName="dateDebut" class="form-control" [min]="minDate">
+          <span class="text-danger" *ngIf="budgetFormGroup.controls['dateDebut'].touched &&
+                                       budgetFormGroup.controls['dateDebut'].hasError('required')">
+                        Debut Date is required! </span>
+        </div>
+
+        <div class="mb-3">
+          <label for="endDate">End Date 'Month/day/year':</label>
+          <input id="endDate" type="date" formControlName="endDate" class="form-control" [min]="minDate">
+          <span class="text-danger" *ngIf="budgetFormGroup.controls['endDate'].touched &&
+                                       budgetFormGroup.controls['endDate'].hasError('required')">
+                        End Date is required! </span>
+        </div>
+
+        <div class="mb-3">Select a Category of Budget
+          <select formControlName="categoryExpanse">
+            <option value="select" hidden=""> ... </option>
+            <option *ngFor="let categoryExpanseType of categoryExpanseList" [value]="categoryExpanseType.id"
+            >
+              {{categoryExpanseType.categoryExpanseType}}
+            </option>
+          </select>
+          <span class="text-danger" *ngIf="budgetFormGroup.controls['categoryExpanse'].touched &&
+                                       budgetFormGroup.controls['categoryExpanse'].hasError('required')">
+                        Category of Budget is required! </span>
+        </div>
+
+        <div class="mb-3">Select a User
+          <select formControlName="userId">
+            <option value="select" hidden=""> Select a User </option>
+            <option *ngFor="let user of userList" [value]="user.id"
+            >
+              {{user.name}}
+            </option>
+          </select>
+          <span class="text-danger" *ngIf="budgetFormGroup.controls['userId'].touched &&
+                                       budgetFormGroup.controls['userId'].hasError('required')">
+                        User is required! </span>
+        </div>
+
+        <button [disabled]="budgetFormGroup.invalid" class="btn btn-success" type="submit">Submit New Budget</button>
+        <!--
+          <button [disabled]="expanseFormGroup.invalid" class="btn btn-success" type="submit"
+                (click)="getCategoryExpByNameFromInput(categoryExpanseType)">Submit New Expanse</button>
+          -->
+      </form>
+    </div>
+  </div>
+</div>
+
+

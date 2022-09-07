@@ -6,7 +6,7 @@ import {Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {NewExpanseFormComponent} from "../../forms/new-expanse-form/new-expanse-form.component";
 import {UpdateExpanseComponent} from "../../forms/update-expanse/update-expanse.component";
-import {PageOfExpanses} from "../../models/pageOfExpanses";
+import {PageOfExpanses} from "../../pageModels/pageOfExpanses";
 import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
@@ -42,7 +42,7 @@ export class ExpanseComponent implements OnInit {
 
   getPageOfExpansesV2(): void{
     this.pageOfExpanses$ = this.expanseService.pageOfExpansesObservable$().pipe(
-      map((response: PageOfExpanses)=>{
+      map((response)=>{
         this.responseSavedBeforePageNav.next(response);
         this.currentPageSubject.next(response.number);//We get the current page number gotten from Backend
         console.log(response);// response, then we set it to the Behavioral Object 'currentPageSubject':
@@ -112,6 +112,7 @@ export class ExpanseComponent implements OnInit {
         let indexOfExpanseDeleted = this.expansesList.indexOf(expanse);
         this.expansesList.splice(indexOfExpanseDeleted, 1);//To delete locally the Object from frontend table.
         console.log(value);
+        console.log("indexOfExpanseDeleted: " + indexOfExpanseDeleted);
       },error => {
         console.log(error);
       })
@@ -122,6 +123,7 @@ export class ExpanseComponent implements OnInit {
     let confMessage = confirm(`Are you sure you want to update:
                                "${expanse.title?expanse.title.toUpperCase():expanse.title}"!`);
     if (!confMessage) return;//If the user cancel the deletion of the expanse we break out of this method,
+    console.log('Inside \'handleUpdateExpanseForm(expanse: Expanse)\' method')
     this.router.navigateByUrl(`/expanse/updateExpanse/${expanse.id}`);
   }
 
@@ -157,5 +159,9 @@ export class ExpanseComponent implements OnInit {
   }
    */
 
+
+  handleExpanseFormNav() {
+    this.router.navigateByUrl('expanse/newExpanse');
+  }
 
 }

@@ -1,37 +1,92 @@
-<h4>List of Budgets: </h4>
+<div class="container mt-5 text-center">
+  <button (click)="handleBudgetFormNav()"
+    type="button" class="btn btn-outline-primary">Add New Budget</button>
+</div>
+<ng-container *ngIf="(pageOfBudgets$ | async) as state" [ngSwitch]="state.appState">
 
-<div class="table-responsive-md">
+  <br><br>
+  <!--'*ngSwitchCase="'APP_ERROR'': in case we got an error from the Backend captured by the 'state', THEN we will display the error in json. -->
+  <ng-container *ngSwitchCase="'APP_ERROR'">
+    <div class="container">
+      <h3 class="text-danger">There was an error While getting your budgets, Please try later.
+      </h3>
+    </div>
+  </ng-container>
+  <!--'*ngSwitchCase="'APP_ERROR'': in case the data is on 'state' loading, THEN we will display a spinner. -->
+  <ng-container *ngSwitchCase="'APP_LOADING'">
+    <div class="d-flex justify-content-center mt-5">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  </ng-container>
 
-  <table class="table">
-    <thead >
-    <th>Title</th><th>Description</th><th>Amount</th>
-    <th>Debut Date</th><th>End Date</th>
-    <th>Amount Remains</th>
-    <th>Amount Spent</th>
-    <th>Category of Budget</th>
-<!--    <th>User Id</th>-->
-    <th>User Name</th>
-    <th class="text-primary">Action</th>
-    </thead>
-    <tbody >
-    <tr *ngFor="let budget of budgetList ">
-      <td>{{budget.title}}</td>
-      <td>{{budget.description}}</td>
-      <td>{{budget.amount}}</td>
-      <td>{{budget.dateDebut}}</td>
-      <td>{{budget.endDate}}</td>
-      <td>{{budget.amountRemains}}</td>
-      <td>{{budget.amountSpent}}</td>
-      <td>{{budget.categoryExpanse.categoryExpanseType}}</td>
-<!--      <td *ngIf="budget.user!==null">{{budget.user.id}}</td>-->
-      <td *ngIf="budget.user!==null">{{budget.user.name}}</td>
-      <td>
-              <span class="text-danger" (click)="handleBudgetDelete(budget)">
+  <ng-container *ngSwitchCase="'APP_LOADED'">
+    <div>
+      <h4 class="text-center mt-5">List of Budgets: </h4>
+
+      <div class="table-responsive-lg">
+
+        <table class="table">
+          <thead >
+          <th>Title</th><th>Description</th><th>Amount</th>
+          <th>Debut Date</th><th>End Date</th>
+          <th>Amount Remains</th>
+          <th>Amount Spent</th>
+          <th>Category of Budget</th>
+          <!--    <th>User Id</th>-->
+          <th>User Name</th>
+          <th class="text-primary">Actions</th>
+          </thead>
+          <tbody >
+          <tr *ngFor="let budget of state.appData?.content; let i=index; ">
+            <td>{{budget.title}}</td>
+            <td>{{budget.description}}</td>
+            <td>{{budget.amount}}</td>
+            <td>{{budget.dateDebut}}</td>
+            <td>{{budget.endDate}}</td>
+            <td>{{budget.amountRemains}}</td>
+            <td>{{budget.amountSpent}}</td>
+            <td>{{budget.categoryExpanse.categoryExpanseType}}</td>
+            <!--      <td *ngIf="budget.user!==null">{{budget.user.id}}</td>-->
+            <td *ngIf="budget.user!==null">{{budget.user.name}}</td>
+            <td>
+              <span class="text-danger pointer" (click)="handleBudgetDelete(budget)">
                 <i class="bi bi-x-square"></i>
               </span>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+            </td>
+            <td><!--'expanse/updateExpanse/:expanseId' -->
+              <a> <!-- [routerLink]="['/expanse/updateExpanse/', expanse.id]" -->
+                <span class="text-success pointer" (click)="handleUpdateBudgetForm(budget)">
+<!--            <span class="text-success" (click)="openModalExpanseUpdate(expanse)">-->
+                  <i class="bi bi-pencil-square"></i>
+                </span>
+              </a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center">
+            <li [ngClass]="0==(currentPage$ | async)?'diasabledPageNavButton':''" class="page-item pointer">
+              <a (click)="goToNextOrPreviousPageOfBudgets('PreviousPage','')" class="page-link" aria-label="Previous">
+                <span aria-hidden="true">&laquo; Previous</span>
+              </a>
+            </li>
+            <li class="page-item pointer" [ngClass]="(currentPage$ | async)==i?'active':''"
+                *ngFor="let pageNumber of [].constructor(state.appData?.totalPages); let i=index;">
+              <a class="page-link" (click)="goToAnotherPageOfBudgets('', i)">{{i + 1}}</a>
+            </li>
+            <li [ngClass]="state.appData?.last ? 'diasabledPageNavButton':''" class="page-item pointer">
+              <a (click)="goToNextOrPreviousPageOfBudgets('NextPage','')" class="page-link" aria-label="Next">
+                <span aria-hidden="true">Next &raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </ng-container>
 
-</div>
+</ng-container>
+

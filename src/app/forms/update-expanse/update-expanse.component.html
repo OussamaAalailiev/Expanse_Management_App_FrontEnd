@@ -21,7 +21,7 @@
           <input id="amount" type="number" formControlName="amount" class="form-control" [value]="expanseReceived.amount">
           <small *ngIf="expanseUpdateFormGroup.controls['amount'].errors && expanseUpdateFormGroup.controls['amount'].touched "
                  class="text-danger">
-            {{getAmountErrorMessage('Amount', expanseUpdateFormGroup.controls['amount'].errors)}}
+            {{this.commonValidationMethods.getAmountErrorMessage('Amount', expanseUpdateFormGroup.controls['amount'].errors)}}
           </small>
         </div>
         <div class="mb-3">
@@ -29,12 +29,12 @@
           <input id="title" type="text" formControlName="title" class="form-control" [value]="expanseReceived.title">
           <small *ngIf="expanseUpdateFormGroup.controls['title'].errors && expanseUpdateFormGroup.controls['title'].touched "
                  class="text-danger">
-            {{getTitleErrorMessage('Title', expanseUpdateFormGroup.controls['title'].errors)}}
+            {{this.commonValidationMethods.getTitleErrorMessage('Title', expanseUpdateFormGroup.controls['title'].errors)}}
           </small>
         </div>
 
         <div class="mb-3">
-          <label for="createdDate">Created Date:</label>
+          <label for="createdDate">Created Date: 'year/Month/day'.</label>
           <input id="createdDate" type="text"
                  [value]="expanseReceived.createdDate" disabled>
         </div>
