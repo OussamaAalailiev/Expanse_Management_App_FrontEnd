@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
-import {environment} from "../../environments/environment";
-import {Expanse} from "../models/expanse";
+import {environment} from "../../../environments/environment";
+import {Expanse} from "../../models/expanse";
 import {catchError, Observable, throwError} from "rxjs";
-import {ExpanseFormSubmission} from "../formModels/ExpanseFormSubmission";
-import {PageOfExpanses} from "../pageModels/pageOfExpanses";
+import {ExpanseFormSubmission} from "../../formModels/ExpanseFormSubmission";
+import {PageOfExpanses} from "../../pageModels/pageOfExpanses";
 import {ValidationErrors} from "@angular/forms";
 
 @Injectable({

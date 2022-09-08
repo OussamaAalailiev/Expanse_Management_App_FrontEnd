@@ -5,7 +5,7 @@ import {User} from "../../models/user";
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {Expanse} from "../../models/expanse";
-import {ExpanseService} from "../../services/expanse.service";
+import {ExpanseService} from "../../services/expanseService/expanse.service";
 import {catchError, throwError} from "rxjs";
 import {ExpanseFormSubmission} from "../../formModels/ExpanseFormSubmission";
 import {DatePipe} from "@angular/common";

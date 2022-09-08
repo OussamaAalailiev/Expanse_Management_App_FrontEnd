@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {BudgetService} from "../../services/budget.service";
+import {BudgetService} from "../../services/budgetService/budget.service";
 import {BehaviorSubject, catchError, map, Observable, of, startWith} from "rxjs";
 import {Budget} from "../../models/budget";
 import {Router} from "@angular/router";
@@ -83,7 +83,7 @@ export class BudgetComponent implements OnInit {
 
   handleBudgetDelete(budget: Budget) {
     /**Confirmation to user for Delete: */
-    let confMessage = confirm(`Are you sure you want to delete: ${budget.title}!`);
+    let confMessage = confirm(`Are you sure you want to Delete Budget: "${budget.title}"!`);
     if (!confMessage) return;//If the user cancel the deletion of the expanse we break out of this method,
     let budgetId = budget.id;// else we continue down below:
     this.budgetService.deleteBudgetService(budgetId)

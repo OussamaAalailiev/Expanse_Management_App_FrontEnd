@@ -1,6 +1,6 @@
 import {Component, Inject, Input, OnInit} from '@angular/core';
 import {Expanse} from "../../models/expanse";
-import {ExpanseService} from "../../services/expanse.service";
+import {ExpanseService} from "../../services/expanseService/expanse.service";
 import {Observable} from "rxjs";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {ActivatedRoute, Router} from "@angular/router";

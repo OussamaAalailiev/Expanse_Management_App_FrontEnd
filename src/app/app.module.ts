@@ -29,6 +29,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatNativeDateModule} from "@angular/material/core";
 import { UpdateBudgetComponent } from './forms/update-budget/update-budget.component';
 import {CommonValidationMethods} from "./services/validations/commonValidationMethods";
+import { LoginComponent } from './components/login/login.component';
 
 
 
@@ -45,7 +46,8 @@ import {CommonValidationMethods} from "./services/validations/commonValidationMe
     NewExpanseFormComponent,
     UpdateExpanseComponent,
     NewBudgetComponent,
-    UpdateBudgetComponent
+    UpdateBudgetComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +65,9 @@ import {CommonValidationMethods} from "./services/validations/commonValidationMe
       // {path: '',
       //   redirectTo: '/components/expanse/expanse.component', pathMatch: 'full'},
       {path: 'budgets/newBudget', component: NewBudgetComponent},
-      {path: 'budgets/updateBudget/:budgetId', component: UpdateBudgetComponent}
+      {path: 'budgets/updateBudget/:budgetId', component: UpdateBudgetComponent},
+      {path: '', component: LoginComponent},
+      {path: 'login', component: LoginComponent}
     ]),
     ReactiveFormsModule,
     MatDialogModule,
@@ -75,7 +79,7 @@ import {CommonValidationMethods} from "./services/validations/commonValidationMe
     MatDatepickerModule,
     MatNativeDateModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
   ],
   providers: [
     DatePipe,

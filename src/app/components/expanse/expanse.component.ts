@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ExpanseService} from "../../services/expanse.service";
+import {ExpanseService} from "../../services/expanseService/expanse.service";
 import {BehaviorSubject, catchError, map, never, Observable, of, startWith} from "rxjs";
 import {Expanse} from "../../models/expanse";
 import {Router} from "@angular/router";
@@ -100,7 +100,7 @@ export class ExpanseComponent implements OnInit {
 
   handleExpanseDelete(expanse: Expanse) {
     /**Confirmation to user for Delete: */
-    let confMessage = confirm("Are you sure you want to delete this Expanse!");
+    let confMessage = confirm(`Are you sure you want to Delete Expanse: "${expanse.title}"!`);
     if (!confMessage) return;//If the user cancel the deletion of the expanse we break out of this method,
     let expanseId = expanse.id;// else we continue down below:
     this.expanseService.deleteExpanseService(expanseId)
