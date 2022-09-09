@@ -10,6 +10,7 @@ import {BudgetService} from "../../services/budgetService/budget.service";
 import {BudgetFormSubmission} from "../../formModels/BudgetFormSubmission";
 import {CommonValidationMethods} from "../../services/validations/commonValidationMethods";
 import {Router} from "@angular/router";
+import {AuthenticationLoginService} from "../../services/authenticationLoginService/authentication-login.service";
 
 @Component({
   selector: 'app-new-budget',
@@ -62,11 +63,11 @@ export class NewBudgetComponent implements OnInit {
     {id: 59, categoryExpanseType: "Apps"}, {id: 60, categoryExpanseType: "Games"}, {id: 61, categoryExpanseType: "Drinks"},
     {id: 62, categoryExpanseType: "Homemade Food"}, {id: 63, categoryExpanseType: "Computer_PC"}];
 
-  userList: User [] = [ {id: '3a300bc8-8954-4e93-9136-2b11ad2461b1', name: "Oussama"},
-    {id: 'dfa735ec-328b-43c3-ad70-f5dba33eb585', name: "Zakaria"},
-    {id: '653eb6f2-a817-4184-af31-4cff631692f8', name: "Safwane"} ];
+  // userList: User [] = [ {id: '3a300bc8-8954-4e93-9136-2b11ad2461b1', name: "Oussama"},
+  //   {id: 'dfa735ec-328b-43c3-ad70-f5dba33eb585', name: "Zakaria"},
+  //   {id: '653eb6f2-a817-4184-af31-4cff631692f8', name: "Safwane"} ];
 
-  minDate!: Date;
+  //minDate!: Date;
 
   constructor(
     //@Inject(MAT_DIALOG_DATA)
@@ -75,10 +76,13 @@ export class NewBudgetComponent implements OnInit {
     private datePipe: DatePipe,
     //private matDialogRef: MatDialogRef<NewExpanseFormComponent>,
     public commonValidationMethods : CommonValidationMethods,
-    private route: Router
+    private route: Router,
+    public authService: AuthenticationLoginService
   ) {
-    this.minDate = new Date();
+    //this.minDate = new Date();
   }
+
+user?: User = this.authService!.authenticatedUserLogin;
 
   ngOnInit(): void {
     this.initializeAddBudgetForm();

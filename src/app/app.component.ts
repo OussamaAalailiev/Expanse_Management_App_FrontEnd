@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {Router} from "@angular/router";
 import {ValidationErrors} from "@angular/forms";
+import {AuthenticationLoginService} from "./services/authenticationLoginService/authentication-login.service";
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,8 @@ import {ValidationErrors} from "@angular/forms";
 export class AppComponent {
   title = 'budget-angular-management-App';
 
-  constructor(private router: Router) {
+  constructor(private router: Router,
+              public authService: AuthenticationLoginService) {
   }
 
   handleNewExpanseForm() {
@@ -18,4 +20,11 @@ export class AppComponent {
   }
 
 
+  handleLogout() {
+    this.authService.logoutUser().subscribe({
+      next: (data) => {//If the logout process went well, we route the user to Login Page:
+        this.router.navigateByUrl('/login');
+      }
+    });
+  }
 }

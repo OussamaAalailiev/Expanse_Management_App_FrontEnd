@@ -30,6 +30,7 @@ import {MatNativeDateModule} from "@angular/material/core";
 import { UpdateBudgetComponent } from './forms/update-budget/update-budget.component';
 import {CommonValidationMethods} from "./services/validations/commonValidationMethods";
 import { LoginComponent } from './components/login/login.component';
+import {AuthenticationGuard} from "./security/guards/authentication.guard";
 
 
 
@@ -54,18 +55,18 @@ import { LoginComponent } from './components/login/login.component';
     AppRoutingModule,
     HttpClientModule,
     RouterModule.forRoot([
-      {path: 'users', component: UsersComponent},
-      {path: 'home', component: HomeComponent},
-      {path: 'expanse', component: ExpanseComponent},
-      {path: 'budget', component: BudgetComponent},
-      {path: 'income', component: IncomeComponent},
-      {path: 'goal', component: GoalComponent},
-      {path: 'expanse/newExpanse', component: NewExpanseFormComponent},
-      {path: 'expanse/updateExpanse/:expanseId', component: UpdateExpanseComponent},
+      {path: 'users', component: UsersComponent, canActivate: [AuthenticationGuard]},
+      {path: 'home', component: HomeComponent, canActivate: [AuthenticationGuard]},
+      {path: 'expanse', component: ExpanseComponent, canActivate: [AuthenticationGuard]},
+      {path: 'budget', component: BudgetComponent, canActivate: [AuthenticationGuard]},
+      {path: 'income', component: IncomeComponent, canActivate: [AuthenticationGuard]},
+      {path: 'goal', component: GoalComponent, canActivate: [AuthenticationGuard]},
+      {path: 'expanse/newExpanse', component: NewExpanseFormComponent, canActivate: [AuthenticationGuard]},
+      {path: 'expanse/updateExpanse/:expanseId', component: UpdateExpanseComponent, canActivate: [AuthenticationGuard]},
       // {path: '',
       //   redirectTo: '/components/expanse/expanse.component', pathMatch: 'full'},
-      {path: 'budgets/newBudget', component: NewBudgetComponent},
-      {path: 'budgets/updateBudget/:budgetId', component: UpdateBudgetComponent},
+      {path: 'budgets/newBudget', component: NewBudgetComponent, canActivate: [AuthenticationGuard]},
+      {path: 'budgets/updateBudget/:budgetId', component: UpdateBudgetComponent, canActivate: [AuthenticationGuard]},
       {path: '', component: LoginComponent},
       {path: 'login', component: LoginComponent}
     ]),

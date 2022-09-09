@@ -6,6 +6,7 @@ import {Router} from "@angular/router";
 import {PageOfExpanses} from "../../pageModels/pageOfExpanses";
 import {HttpErrorResponse} from "@angular/common/http";
 import {PageOfBudgets} from "../../pageModels/pageOfBudgets";
+import {AuthenticationLoginService} from "../../services/authenticationLoginService/authentication-login.service";
 
 @Component({
   selector: 'app-budget',
@@ -24,7 +25,9 @@ export class BudgetComponent implements OnInit {
   currentPage$ = this.currentPageSubject.asObservable();//'currentPageSubject' will be observed by 'currentPage$'.
 
   constructor(private budgetService: BudgetService,
-              private router: Router) { }
+              private router: Router,
+              public authService: AuthenticationLoginService
+              ) { }
 
   ngOnInit(): void {
     // this.budgetList = this.budgetService.getBudgetsService();
@@ -46,8 +49,8 @@ export class BudgetComponent implements OnInit {
     )
   }
 
-  goToAnotherPageOfBudgets(title?: string, pageNumber?: number): void{
-    this.pageOfBudgets$ = this.budgetService.pageOfBudgetsObservable$(title, pageNumber).pipe(
+  goToAnotherPageOfBudgets(title?: string, userId: string=this.authService.authenticatedUserLogin!.id, pageNumber?: number): void{
+    this.pageOfBudgets$ = this.budgetService.pageOfBudgetsObservable$(title, userId, pageNumber).pipe(
       map((response)=>{
         this.responseSavedBeforePageNav.next(response);
         this.currentPageSubject.next(response.number);//Or we can pass the 'pageNumber':
@@ -60,8 +63,8 @@ export class BudgetComponent implements OnInit {
     )
   }
 
-  goToNextOrPreviousPageOfBudgets(pageDirection?: string, title?: string): void{
-    this.goToAnotherPageOfBudgets(title,
+  goToNextOrPreviousPageOfBudgets(pageDirection?: string, title?: string, userId: string=this.authService.authenticatedUserLogin!.id): void{
+    this.goToAnotherPageOfBudgets(title, userId,
       pageDirection === 'NextPage' ? this.currentPageSubject.value+1 : this.currentPageSubject.value-1);
   }
 

@@ -9,13 +9,15 @@ import {BudgetFormSubmission} from "../../formModels/BudgetFormSubmission";
 import {ValidationErrors} from "@angular/forms";
 import {PageOfExpanses} from "../../pageModels/pageOfExpanses";
 import {PageOfBudgets} from "../../pageModels/pageOfBudgets";
+import {AuthenticationLoginService} from "../authenticationLoginService/authentication-login.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class BudgetService {
 
-  constructor(private http: HttpClient ) { }
+  constructor(private http: HttpClient,
+              private authService: AuthenticationLoginService) { }
 
   getBudgetsService(): Observable<Budget[]> {
     return this.http.get< Budget[] >(environment.backendHost+"/api/budgets")
@@ -39,14 +41,16 @@ export class BudgetService {
   }
 
   /**Retrieve Budgets by title, page & size from Backend: */
-  getBudgetsByTitlePageAndSize(title: string='', page: number=0, size: number=4): Observable<PageOfBudgets>{
+  getBudgetsByTitlePageAndSize(title: string='', userId: string=this.authService.authenticatedUserLogin!.id,
+                               page: number=0, size: number=3): Observable<PageOfBudgets>{
     return this.http.get<PageOfBudgets>
-    (environment.backendHost+`/api/budgets?title=${title}&page=${page}&size=${size}`);
+    (environment.backendHost+`/api/budgetsByUser?title=${title}&page=${page}&size=${size}&userId=${userId}`);
   }
   /**'pageOfBudgetsObservable$' : is an observable property that gives us the same result as
    *   the 'getBudgetsByTitlePageAndSize(...)' above: */
-  pageOfBudgetsObservable$ = (title: string='', page: number=0, size: number=4): Observable<PageOfBudgets> =>
-    this.http.get<PageOfBudgets>(environment.backendHost+`/api/budgets?title=${title}&page=${page}&size=${size}`);
+  pageOfBudgetsObservable$ = (title: string='', userId: string=this.authService.authenticatedUserLogin!.id,
+                              page: number=0, size: number=3): Observable<PageOfBudgets> =>
+    this.http.get<PageOfBudgets>(environment.backendHost+`/api/budgetsByUser?title=${title}&page=${page}&size=${size}&userId=${userId}`);
 
 
 }

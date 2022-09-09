@@ -7,5 +7,7 @@ export interface User{
   email?: string;
   currency?: string;
   dateCreation?: any;
+  password?: string;
+  roles?: string [];
 
 }

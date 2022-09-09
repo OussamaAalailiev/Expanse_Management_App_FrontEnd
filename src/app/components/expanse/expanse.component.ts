@@ -8,6 +8,7 @@ import {NewExpanseFormComponent} from "../../forms/new-expanse-form/new-expanse-
 import {UpdateExpanseComponent} from "../../forms/update-expanse/update-expanse.component";
 import {PageOfExpanses} from "../../pageModels/pageOfExpanses";
 import {HttpErrorResponse} from "@angular/common/http";
+import {AuthenticationLoginService} from "../../services/authenticationLoginService/authentication-login.service";
 
 @Component({
   selector: 'app-expanse',
@@ -28,7 +29,9 @@ export class ExpanseComponent implements OnInit {
 
   constructor(private expanseService: ExpanseService,
               private router: Router,
-              public matDialog: MatDialog) { }
+              //public matDialog: MatDialog
+              public authService: AuthenticationLoginService
+               ) { }
 
   ngOnInit(): void {
    //this.getAllExpanses();
@@ -53,8 +56,8 @@ export class ExpanseComponent implements OnInit {
     )
   }
 //'pageNumber' has a default value of '0':
-  goToAnotherPage(title?: string, pageNumber: number = 0): void{
-    this.pageOfExpanses$ = this.expanseService.pageOfExpansesObservable$(title, pageNumber).pipe(
+  goToAnotherPage(title?: string, userId: string=this.authService.authenticatedUserLogin!.id, pageNumber: number = 0): void{
+    this.pageOfExpanses$ = this.expanseService.pageOfExpansesObservable$(title, userId, pageNumber).pipe(
       map((response: PageOfExpanses)=>{
         this.responseSavedBeforePageNav.next(response);
         this.currentPageSubject.next(response.number);//Or we can pass the 'pageNumber':
@@ -67,8 +70,8 @@ export class ExpanseComponent implements OnInit {
     )
   }
 
-  goToNextOrPreviousPage(pageDirection?: string, title?: string): void{
-    this.goToAnotherPage(title,
+  goToNextOrPreviousPage(pageDirection?: string, title?: string, userId: string=this.authService.authenticatedUserLogin!.id): void{
+    this.goToAnotherPage(title, userId,
       pageDirection === 'NextPage' ? this.currentPageSubject.value+1 : this.currentPageSubject.value-1);
   }
 

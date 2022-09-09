@@ -33,7 +33,7 @@
 
         <div class="mb-3">
           <label for="dateDebut">Debut Date 'Month/day/year':</label>
-          <input id="dateDebut" type="date" formControlName="dateDebut" class="form-control" [min]="minDate">
+          <input id="dateDebut" type="date" formControlName="dateDebut" class="form-control" >
           <span class="text-danger" *ngIf="budgetFormGroup.controls['dateDebut'].touched &&
                                        budgetFormGroup.controls['dateDebut'].hasError('required')">
                         Debut Date is required! </span>
@@ -41,7 +41,7 @@
 
         <div class="mb-3">
           <label for="endDate">End Date 'Month/day/year':</label>
-          <input id="endDate" type="date" formControlName="endDate" class="form-control" [min]="minDate">
+          <input id="endDate" type="date" formControlName="endDate" class="form-control" >
           <span class="text-danger" *ngIf="budgetFormGroup.controls['endDate'].touched &&
                                        budgetFormGroup.controls['endDate'].hasError('required')">
                         End Date is required! </span>
@@ -60,11 +60,10 @@
                         Category of Budget is required! </span>
         </div>
 
-        <div class="mb-3">Select a User
+        <div class="mb-3">Select your Username:
           <select formControlName="userId">
-            <option value="select" hidden=""> Select a User </option>
-            <option *ngFor="let user of userList" [value]="user.id"
-            >
+            <option value="select" hidden="">Select your Username:: </option>
+            <option *ngIf="user" [value]="user.id">
               {{user.name}}
             </option>
           </select>

@@ -43,10 +43,10 @@
                         Category of Expanse is required! </span>
         </div>
 
-        <div class="mb-3">Select a User
+        <div class="mb-3">Select your Username:
           <select formControlName="userId">
-            <option value="select" hidden=""> Select a User </option>
-            <option *ngFor="let user of userList" [value]="user.id"
+            <option value="select" hidden="">Select your Username:: </option>
+            <option *ngIf="user" [value]="user.id"
             >
               {{user.name}}
             </option>

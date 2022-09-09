@@ -6,13 +6,15 @@ import {catchError, Observable, throwError} from "rxjs";
 import {ExpanseFormSubmission} from "../../formModels/ExpanseFormSubmission";
 import {PageOfExpanses} from "../../pageModels/pageOfExpanses";
 import {ValidationErrors} from "@angular/forms";
+import {AuthenticationLoginService} from "../authenticationLoginService/authentication-login.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ExpanseService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private authService: AuthenticationLoginService) { }
 
   getExpansesService(): Observable<Expanse []>{
     // let randomNumber = Math.random();
@@ -22,14 +24,16 @@ export class ExpanseService {
       return this.http.get<Expanse[]>(environment.backendHost + "/api/expanses");
   }
   /**Retrieve Expanses by title, page & size from Backend: */
-  getExpansesByTitlePageAndSize(title: string='', page: number=0, size: number=5): Observable<PageOfExpanses>{
+  getExpansesByTitlePageAndSize(title: string='', userId: string=this.authService.authenticatedUserLogin!.id,
+                                page: number=0, size: number=4): Observable<PageOfExpanses>{
     return this.http.get<PageOfExpanses>
-                       (environment.backendHost+`/api/expanses?title=${title}&page=${page}&size=${size}`);
+                       (environment.backendHost+`/api/expansesByUser?title=${title}&page=${page}&size=${size}&userId=${userId}`);
   }
   /**'pageOfExpansesObservable$' : is an observable property that gives us the same result as
    *   the 'getExpansesByTitlePageAndSize(...)' above: */
-  pageOfExpansesObservable$ = (title: string='', page: number=0, size: number=5): Observable<PageOfExpanses> =>
-   this.http.get<PageOfExpanses>(environment.backendHost+`/api/expanses?title=${title}&page=${page}&size=${size}`);
+  pageOfExpansesObservable$ = (title: string='', userId: string=this.authService.authenticatedUserLogin!.id,
+                               page: number=0, size: number=4): Observable<PageOfExpanses> =>
+   this.http.get<PageOfExpanses>(environment.backendHost+`/api/expansesByUser?title=${title}&page=${page}&size=${size}&userId=${userId}`);
 
    handleError(errorResponse: HttpErrorResponse){
     if (errorResponse.status===0){

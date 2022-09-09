@@ -1,7 +1,7 @@
 <!-- Navigation Bar With a Responsive Menu that can collapse. -->
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
   <div class="container">
-    <a class="navbar-brand" routerLink="/home">Home</a>
+    <a class="navbar-brand" routerLink="/home" *ngIf="authService.isUserAuthenticatedService()">Home</a>
 
     <button class="navbar-toggler"
             type="button"
@@ -12,15 +12,15 @@
 
     <div class="collapse navbar-collapse" id="navmenu">
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="authService.isUserAuthenticatedService()">
           <a href="#" routerLink="/users" class="nav-link" >Users</a>
         </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" *ngIf="authService.isUserAuthenticatedService()">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Expanse Dropdown
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a href="#" routerLink="/expanse" class="dropdown-item">Get Expanses</a></li>
+            <li><a href="#" routerLink="/expanse" class="dropdown-item" >Get Expanses</a></li>
             <li><hr class="dropdown-divider"></li>
             <li>
               <a class="dropdown-item" (click)="handleNewExpanseForm()">Add new Expanse</a>
@@ -29,18 +29,31 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a href="#" routerLink="/budget" class="nav-link">Budget</a>
+          <a href="#" routerLink="/budget" class="nav-link" *ngIf="authService.isUserAuthenticatedService()">Budget</a>
         </li>
         <li class="nav-item">
-          <a href="#" routerLink="/income" class="nav-link">Income</a>
+          <a href="#" routerLink="/income" class="nav-link" *ngIf="authService.isUserAuthenticatedService()">Income</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="authService.isUserAuthenticatedService()">
           <a href="#" routerLink="/goal" class="nav-link">Goal</a>
         </li>
+<!--        <li class="nav-item">-->
+<!--          <a href="#" class="nav-link">Contact us!</a>-->
+<!--        </li>-->
+        <span *ngIf="authService.isUserAuthenticatedService()">
         <li class="nav-item">
-          <a href="#" class="nav-link">Contact us!</a>
+          <strong>
+            <a class="nav-link">{{authService.authenticatedUserLogin!.name.toUpperCase()}}</a>
+          </strong>
         </li>
+        <li class="nav-item">
+          <a class="btn nav-link" (click)="handleLogout()">Logout
+            <i class="bi bi-box-arrow-right"></i>
+          </a>
+        </li>
+        </span>
       </ul>
+
     </div>
 
   </div>

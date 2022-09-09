@@ -41,7 +41,7 @@
           <th>Category of Budget</th>
           <!--    <th>User Id</th>-->
           <th>User Name</th>
-          <th class="text-primary" colspan="2">Actions</th>
+          <th class="text-primary" colspan="2" *ngIf="authService.isAuthenticateUserHasRoleService('ADMIN')">Actions</th>
           </thead>
           <tbody >
           <tr *ngFor="let budget of state.appData?.content; let i=index; ">
@@ -55,13 +55,13 @@
             <td>{{budget.categoryExpanse.categoryExpanseType}}</td>
             <!--      <td *ngIf="budget.user!==null">{{budget.user.id}}</td>-->
             <td *ngIf="budget.user!==null">{{budget.user.name}}</td>
-            <td>
+            <td *ngIf="authService.isAuthenticateUserHasRoleService('USER')">
               <span class="text-danger pointer" (click)="handleBudgetDelete(budget)">
 <!--                <i class="bi bi-x-square"></i>-->
                 <i class="bi bi-trash"></i>
               </span>
             </td>
-            <td><!--'expanse/updateExpanse/:expanseId' -->
+            <td *ngIf="authService.isAuthenticateUserHasRoleService('USER')"><!--'expanse/updateExpanse/:expanseId' -->
               <a> <!-- [routerLink]="['/expanse/updateExpanse/', expanse.id]" -->
                 <span class="text-success pointer" (click)="handleUpdateBudgetForm(budget)">
 <!--            <span class="text-success" (click)="openModalExpanseUpdate(expanse)">-->
@@ -81,7 +81,7 @@
             </li>
             <li class="page-item pointer" [ngClass]="(currentPage$ | async)==i?'active':''"
                 *ngFor="let pageNumber of [].constructor(state.appData?.totalPages); let i=index;">
-              <a class="page-link" (click)="goToAnotherPageOfBudgets(searchForm.value.title, i)">{{i + 1}}</a>
+              <a class="page-link" (click)="goToAnotherPageOfBudgets(searchForm.value.title, authService.authenticatedUserLogin!.id, i)">{{i + 1}}</a>
             </li>
             <li [ngClass]="state.appData?.last ? 'diasabledPageNavButton':''" class="page-item pointer">
               <a (click)="goToNextOrPreviousPageOfBudgets('NextPage',searchForm.value.title)" class="page-link" aria-label="Next">
