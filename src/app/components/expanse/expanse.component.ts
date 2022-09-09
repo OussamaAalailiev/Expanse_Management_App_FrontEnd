@@ -52,8 +52,8 @@ export class ExpanseComponent implements OnInit {
       catchError((errorResponse: HttpErrorResponse) => of({appState: 'APP_ERROR', errorResponse}))
     )
   }
-
-  goToAnotherPage(title?: string, pageNumber?: number): void{
+//'pageNumber' has a default value of '0':
+  goToAnotherPage(title?: string, pageNumber: number = 0): void{
     this.pageOfExpanses$ = this.expanseService.pageOfExpansesObservable$(title, pageNumber).pipe(
       map((response: PageOfExpanses)=>{
         this.responseSavedBeforePageNav.next(response);

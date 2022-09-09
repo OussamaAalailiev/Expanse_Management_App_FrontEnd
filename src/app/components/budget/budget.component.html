@@ -21,10 +21,15 @@
     </div>
   </ng-container>
 
+  <!-- Search Form: -->
+  <form #searchForm="ngForm" (ngSubmit)="goToAnotherPageOfBudgets(searchForm.value.title.trim())" class="container input-group">
+    <input type="text" name="title" ngModel type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+    <button type="submit" class="btn btn-outline-primary">search</button>
+  </form>
   <ng-container *ngSwitchCase="'APP_LOADED'">
-    <div>
+    <div *ngIf="state.appData?.content!.length > 0" class="container">
       <h4 class="text-center mt-5">List of Budgets: </h4>
-
+      <hr>
       <div class="table-responsive-lg">
 
         <table class="table">
@@ -36,7 +41,7 @@
           <th>Category of Budget</th>
           <!--    <th>User Id</th>-->
           <th>User Name</th>
-          <th class="text-primary">Actions</th>
+          <th class="text-primary" colspan="2">Actions</th>
           </thead>
           <tbody >
           <tr *ngFor="let budget of state.appData?.content; let i=index; ">
@@ -70,22 +75,26 @@
         <nav aria-label="Page navigation example">
           <ul class="pagination justify-content-center">
             <li [ngClass]="0==(currentPage$ | async)?'diasabledPageNavButton':''" class="page-item pointer">
-              <a (click)="goToNextOrPreviousPageOfBudgets('PreviousPage','')" class="page-link" aria-label="Previous">
+              <a (click)="goToNextOrPreviousPageOfBudgets('PreviousPage',searchForm.value.title)" class="page-link" aria-label="Previous">
                 <span aria-hidden="true">&laquo; Previous</span>
               </a>
             </li>
             <li class="page-item pointer" [ngClass]="(currentPage$ | async)==i?'active':''"
                 *ngFor="let pageNumber of [].constructor(state.appData?.totalPages); let i=index;">
-              <a class="page-link" (click)="goToAnotherPageOfBudgets('', i)">{{i + 1}}</a>
+              <a class="page-link" (click)="goToAnotherPageOfBudgets(searchForm.value.title, i)">{{i + 1}}</a>
             </li>
             <li [ngClass]="state.appData?.last ? 'diasabledPageNavButton':''" class="page-item pointer">
-              <a (click)="goToNextOrPreviousPageOfBudgets('NextPage','')" class="page-link" aria-label="Next">
+              <a (click)="goToNextOrPreviousPageOfBudgets('NextPage',searchForm.value.title)" class="page-link" aria-label="Next">
                 <span aria-hidden="true">Next &raquo;</span>
               </a>
             </li>
           </ul>
         </nav>
       </div>
+    </div>
+    <!-- Bootstrap Alert Message pops up in case No Expanses were found when we click search! -->
+    <div *ngIf="state.appData?.content!.length < 1" class="alert alert-secondary mt-5" role="alert">
+      No Budgets were found!
     </div>
   </ng-container>
 

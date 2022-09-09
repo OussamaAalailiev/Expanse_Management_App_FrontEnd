@@ -12,7 +12,7 @@ import { BudgetComponent } from './components/budget/budget.component';
 import { IncomeComponent } from './components/income/income.component';
 import { GoalComponent } from './components/goal/goal.component';
 import { NewExpanseFormComponent } from './forms/new-expanse-form/new-expanse-form.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {DatePipe} from "@angular/common";
 import { UpdateExpanseComponent } from './forms/update-expanse/update-expanse.component';
 // import {MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
@@ -72,14 +72,15 @@ import { LoginComponent } from './components/login/login.component';
     ReactiveFormsModule,
     MatDialogModule,
     BrowserAnimationsModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSliderModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatFormFieldModule,
-    MatInputModule,
+    FormsModule
+    // MatIconModule,
+    // MatToolbarModule,
+    // MatButtonModule,
+    // MatSliderModule,
+    // MatDatepickerModule,
+    // MatNativeDateModule,
+    // MatFormFieldModule,
+    // MatInputModule,
   ],
   providers: [
     DatePipe,
