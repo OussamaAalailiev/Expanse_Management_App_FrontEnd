@@ -32,8 +32,9 @@
       <hr>
       <div class="table-responsive-lg">
 
-        <table class="table">
-          <thead >
+        <table class="table bg-white">
+          <thead class="bg-light">
+          <tr>
           <th>Title</th><th>Description</th><th>Amount</th>
           <th>Debut Date</th><th>End Date</th>
           <th>Amount Remains</th>
@@ -41,7 +42,8 @@
           <th>Category of Budget</th>
           <!--    <th>User Id</th>-->
           <th>User Name</th>
-          <th class="text-primary" colspan="2" *ngIf="authService.isAuthenticateUserHasRoleService('ADMIN')">Actions</th>
+          <th class="text-primary" colspan="2" *ngIf="authService.isAuthenticateUserHasRoleService('USER')">Actions</th>
+          </tr>
           </thead>
           <tbody >
           <tr *ngFor="let budget of state.appData?.content; let i=index; ">
@@ -50,7 +52,40 @@
             <td>{{budget.amount}}</td>
             <td>{{budget.dateDebut}}</td>
             <td>{{budget.endDate}}</td>
-            <td>{{budget.amountRemains}}</td>
+            <td>
+              {{budget.amountRemains}}
+<!--              <p class="progress progress-bar bg-success" *ngIf="budget.amountSpent/budget.amountRemains<0.50">-->
+<!--                <span class="progress-bar bg-success" role="progressbar"-->
+<!--                      [ngStyle]="{'width.%':  ((budget.amountRemains-budget.amountSpent)/(budget.amountRemains)) * 100}"-->
+<!--                      attr.aria-valuenow="{{(budget.amountRemains-budget.amountSpent)}}" aria-valuemin="0" aria-valuemax="100" >-->
+
+<!--                </span>-->
+<!--              </p>-->
+<!--              <p class="progress"-->
+<!--                 *ngIf="(budget.amountSpent/budget.amountRemains>0.50 && budget.amountSpent/budget.amountRemains<=0.70)">-->
+<!--                <span class="progress-bar bg-warning" role="progressbar" [ngStyle]="{'width.%':  budget.amountSpent/budget.amountRemains * 100}"-->
+<!--                      attr.aria-valuenow="{{budget.amountRemains-budget.amountSpent}}" aria-valuemin="0" aria-valuemax="100" >-->
+
+<!--                </span>-->
+<!--              </p>-->
+<!--              <p class="progress"-->
+<!--                 *ngIf="(budget.amountSpent/budget.amountRemains>0.70 )">-->
+<!--                <span class="progress-bar bg-danger" role="progressbar"-->
+<!--                      [ngStyle]="{'width.%':  ((budget.amountSpent-budget.amountRemains)/(budget.amountSpent)) * 100}"-->
+<!--                      attr.aria-valuenow="{{budget.amountSpent-budget.amountRemains}}" aria-valuemin="0" aria-valuemax="100" >-->
+
+<!--                </span>-->
+<!--              </p>-->
+              <p class="progress">
+                <span [ngClass]="(budget.amountSpent/budget.amountRemains>=0 && budget.amountSpent/budget.amountRemains<0.50)?'progress-bar-fill bg-success' :
+                                           (budget.amountSpent/budget.amountRemains>0.50 && budget.amountSpent/budget.amountRemains<=0.70)?'progress-bar-fill bg-warning' :
+                                           'progress-bar-fill bg-danger'"
+                role="progressbar" [ngStyle]="{'width.%':  ((budget.amountRemains-budget.amountSpent)/(budget.amountRemains)) * 100}"
+                attr.aria-valuenow="{{((budget.amountRemains-budget.amountSpent)/(budget.amountRemains)) * 100}}" aria-valuemin="0" aria-valuemax="100">
+
+                </span>
+              </p>
+            </td>
             <td>{{budget.amountSpent}}</td>
             <td>{{budget.categoryExpanse.categoryExpanseType}}</td>
             <!--      <td *ngIf="budget.user!==null">{{budget.user.id}}</td>-->
