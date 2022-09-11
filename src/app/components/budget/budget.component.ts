@@ -24,7 +24,7 @@ export class BudgetComponent implements OnInit {
   private currentPageSubject = new BehaviorSubject<number>(0);
   currentPage$ = this.currentPageSubject.asObservable();//'currentPageSubject' will be observed by 'currentPage$'.
 
-  constructor(private budgetService: BudgetService,
+  constructor(public budgetService: BudgetService,
               private router: Router,
               public authService: AuthenticationLoginService
               ) { }

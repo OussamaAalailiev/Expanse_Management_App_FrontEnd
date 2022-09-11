@@ -47,7 +47,18 @@
           </thead>
           <tbody >
           <tr *ngFor="let budget of state.appData?.content; let i=index; ">
-            <td>{{budget.title}}</td>
+            <td>
+              {{budget.title}}<br>
+              <span *ngIf="(budget.amountSpent/budget.amount<=0.50)" class="badge rounded-pill bg-success">
+                Budget is Respected  <i class="bi bi-trophy-fill" style="color: black"></i>
+              </span>
+              <span *ngIf="(budget.amountSpent/budget.amount>=0.50) && (budget.amountSpent/budget.amount<=0.99)" class="badge rounded-pill bg-warning">
+                Budget's nearly Out of Control <i class="bi bi-exclamation-triangle-fill" style="color: black"></i>!
+              </span>
+              <span *ngIf="(budget.amountSpent/budget.amount>=1)" class="badge rounded-pill bg-danger">
+                Budget is Out of Control <i class="fa fa-battery-empty" style="color: black"></i>!
+              </span>
+            </td>
             <td>{{budget.description}}</td>
             <td>{{budget.amount}}</td>
             <td>{{budget.dateDebut}}</td>
@@ -76,17 +87,29 @@
 
 <!--                </span>-->
 <!--              </p>-->
-              <p class="progress">
-                <span [ngClass]="(budget.amountSpent/budget.amountRemains>=0 && budget.amountSpent/budget.amountRemains<0.50)?'progress-bar-fill bg-success' :
-                                           (budget.amountSpent/budget.amountRemains>0.50 && budget.amountSpent/budget.amountRemains<=0.70)?'progress-bar-fill bg-warning' :
-                                           'progress-bar-fill bg-danger'"
-                role="progressbar" [ngStyle]="{'width.%':  ((budget.amountRemains-budget.amountSpent)/(budget.amountRemains)) * 100}"
-                attr.aria-valuenow="{{((budget.amountRemains-budget.amountSpent)/(budget.amountRemains)) * 100}}" aria-valuemin="0" aria-valuemax="100">
 
+              <p class="progress">
+                <span [ngClass]="(budget.amountRemains/budget.amount>=0 && budget.amountRemains/budget.amount<0.50)?'progress-bar-fill bg-warning' :
+                                           (budget.amountRemains/budget.amount>=0.50)?'progress-bar-fill bg-success' :
+                                           (budget.amountRemains/budget.amount<0)?'progress-bar-fill bg-secondary':''"
+                role="progressbar" [ngStyle]="{'width.%':  ((budget.amountRemains)/(budget.amount)) * 100}"
+                attr.aria-valuenow="{{((budget.amountRemains)/(budget.amount)) * 100}}"
+                      aria-valuemin="0" aria-valuemax="100">
+                  {{budgetService.getPercentageOfAmountRemains(budget.amountRemains, budget.amount)}}%
                 </span>
               </p>
             </td>
-            <td>{{budget.amountSpent}}</td>
+            <td>
+              {{budget.amountSpent}}
+              <p class="progress">
+                <span [ngClass]="(budget.amountSpent/budget.amount>0)?'progress-bar-fill bg-danger' : ''"
+                      role="progressbar" [ngStyle]="{'width.%':  (budget.amountSpent/budget.amount) * 100}"
+                      attr.aria-valuenow="{{(budget.amountSpent/budget.amount) * 100}}"
+                      aria-valuemin="0" aria-valuemax="100">
+                  {{budgetService.getPercentageOfAmountSpent(budget.amount, budget.amountSpent)}}%
+                </span>
+              </p>
+            </td>
             <td>{{budget.categoryExpanse.categoryExpanseType}}</td>
             <!--      <td *ngIf="budget.user!==null">{{budget.user.id}}</td>-->
             <td *ngIf="budget.user!==null">{{budget.user.name}}</td>

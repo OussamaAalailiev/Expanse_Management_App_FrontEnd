@@ -52,5 +52,12 @@ export class BudgetService {
                               page: number=0, size: number=3): Observable<PageOfBudgets> =>
     this.http.get<PageOfBudgets>(environment.backendHost+`/api/budgetsByUser?title=${title}&page=${page}&size=${size}&userId=${userId}`);
 
+  getPercentageOfAmountRemains(amountRemains: number, amountBudget: number): number{
+    return Math.floor(((amountRemains)/(amountBudget)) * 100);
+  }
+
+  getPercentageOfAmountSpent(amountBudget: number, amountSpent: number): number{
+    return Math.floor((amountSpent/amountBudget) * 100);
+  }
 
 }
