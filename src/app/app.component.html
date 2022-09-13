@@ -13,7 +13,7 @@
     <div class="collapse navbar-collapse" id="navmenu">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item" *ngIf="authService.isUserAuthenticatedService()">
-          <a href="#" routerLink="/users" class="nav-link" >Users</a>
+          <a href="#" routerLink="/users" class="nav-link" >User Profile</a>
         </li>
         <li class="nav-item dropdown" *ngIf="authService.isUserAuthenticatedService()">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

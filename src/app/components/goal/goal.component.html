@@ -1,26 +1,133 @@
-<h4>List of Goals: </h4>
-
-<div class="table-responsive-md">
-
-  <table class="table">
-    <thead >
-    <th>Title</th><th>Description</th><th>Amount</th>
-    <th>Debut Date</th><th>End Date</th>
-    <th>Category of Goal</th>
-    <th>User Id</th><th>User Name</th>
-    </thead>
-    <tbody >
-    <tr *ngFor="let goal of goalList | async">
-      <td>{{goal.title}}</td>
-      <td>{{goal.description}}</td>
-      <td>{{goal.amount}}</td>
-      <td>{{goal.dateDebut}}</td>
-      <td>{{goal.endDate}}</td>
-      <td>{{goal.categoryIncome.categoryIncomeType}}</td>
-      <td *ngIf="goal.user!==null">{{goal.user.id}}</td>
-      <td *ngIf="goal.user!==null">{{goal.user.name}}</td>
-    </tr>
-    </tbody>
-  </table>
-
+<div class="container mt-5 text-center">
+  <button (click)="handleGoalFormNav()"
+          type="button" class="btn btn-outline-info">Add New Goal</button>
 </div>
+
+<ng-container *ngIf="(pageOfGoals$ | async) as state" [ngSwitch]="state.appState">
+
+  <!--'ng-template' Directive: will reference the id 'errors' in case the user encounter an error from backend: -->
+  <ng-template #errors><!-- If we have error, we display it here: -->
+    <div class="text-danger">
+      {{errorMessage}}
+    </div>
+  </ng-template>
+  <br><br>
+  <!--'*ngSwitchCase="'APP_ERROR'': in case we got an error from the Backend captured by the 'state', THEN we will display the error in json. -->
+  <ng-container *ngSwitchCase="'APP_ERROR'">
+    <div class="container">
+      <h3 class="text-danger">There was an error while getting your Goals, Please try later.
+      </h3>
+    </div>
+  </ng-container>
+  <!--'*ngSwitchCase="'APP_ERROR'': in case the data is on 'state' loading, THEN we will display a spinner. -->
+  <ng-container *ngSwitchCase="'APP_LOADING'">
+    <div class="d-flex justify-content-center mt-5">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  </ng-container>
+  <!--'*ngSwitchCase="'APP_LOADED'': in case the data is on 'state' loaded, THEN we will display the whole table. -->
+  <ng-container *ngSwitchCase="'APP_LOADED'" >
+    <div *ngIf="state.appData?.content!.length > 0">
+      <!-- Search Form: -->
+      <form #searchForm="ngForm" (ngSubmit)="goToAnotherPage(searchForm.value.title.trim())" class="container input-group">
+        <input type="text" name="title" ngModel type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+        <button type="submit" class="btn btn-outline-primary">search</button>
+      </form>
+      <h4 class="text-center">List of Goals: </h4>
+      <br><br>
+      <div class="table-responsive-md">
+
+        <table class="table bg-white">
+          <thead class="bg-light">
+          <tr>
+            <th>Title</th><th>Amount</th>
+            <th>Debut Date</th><th>End Date</th>
+            <th>Category of Goal</th><th>User Name</th>
+            <th class="text-primary" colspan="2"> Actions</th>
+          </tr>
+          </thead>
+          <br>
+          <tbody>
+          <tr *ngFor="let goal of state.appData?.content; let i=index; ">
+            <td>{{goal.title}}</td>
+            <td>{{goal.amount}}</td>
+            <td>{{goal.dateDebut}}</td>
+            <td>{{goal.endDate}}</td>
+            <td>{{goal.categoryIncome!.categoryIncomeType}}</td>
+            <td>{{goal.user.name}}</td>
+            <td *ngIf="authService.isAuthenticateUserHasRoleService('USER')">
+              <span class="text-danger pointer" (click)="handleGoalDelete(goal)">
+                <i class="bi bi-trash"></i>
+              </span>
+            </td>
+            <td *ngIf="authService.isAuthenticateUserHasRoleService('USER')">
+              <a>
+                <span class="text-success pointer" (click)="handleUpdateGoalForm(goal)">
+                  <i class="bi bi-pencil-square"></i>
+                </span>
+              </a>
+            </td>
+
+          </tr>
+          </tbody>
+        </table>
+        <nav *ngIf="state.appData?.content!.length > 0" aria-label="Page navigation example">
+          <ul  class="pagination justify-content-center">
+            <li [ngClass]="0==(currentPage$ | async)?'diasabledPageNavButton':''" class="page-item pointer">
+              <a (click)="goToNextOrPreviousPage('PreviousPage',searchForm.value.title)" class="page-link" aria-label="Previous">
+                <span aria-hidden="true">&laquo; Previous</span>
+              </a>
+            </li>
+            <li class="page-item pointer" [ngClass]="(currentPage$ | async)==i?'active':''"
+                *ngFor="let pageNumber of [].constructor(state.appData?.totalPages); let i=index;">
+              <a class="page-link" (click)="goToAnotherPage(searchForm.value.title, authService.authenticatedUserLogin!.id, i)">{{i + 1}}</a>
+            </li>
+            <li [ngClass]="state.appData?.last ? 'diasabledPageNavButton':''" class="page-item pointer">
+              <a (click)="goToNextOrPreviousPage('NextPage',searchForm.value.title)" class="page-link" aria-label="Next">
+                <span aria-hidden="true">Next &raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <!-- Bootstrap Alert Message pops up in case No Goals were found when we click search! -->
+    <div *ngIf="state.appData?.content!.length < 1" class="alert alert-secondary mt-5" role="alert">
+      No Goals were found!
+    </div>
+
+  </ng-container>
+
+</ng-container>
+
+
+
+
+<!--<h4>List of Goals: </h4>-->
+
+<!--<div class="table-responsive-md">-->
+
+<!--  <table class="table">-->
+<!--    <thead >-->
+<!--    <th>Title</th><th>Description</th><th>Amount</th>-->
+<!--    <th>Debut Date</th><th>End Date</th>-->
+<!--    <th>Category of Goal</th>-->
+<!--    <th>User Id</th><th>User Name</th>-->
+<!--    </thead>-->
+<!--    <tbody >-->
+<!--    <tr *ngFor="let goal of goalList | async">-->
+<!--      <td>{{goal.title}}</td>-->
+<!--      <td>{{goal.description}}</td>-->
+<!--      <td>{{goal.amount}}</td>-->
+<!--      <td>{{goal.dateDebut}}</td>-->
+<!--      <td>{{goal.endDate}}</td>-->
+<!--      <td>{{goal.categoryIncome.categoryIncomeType}}</td>-->
+<!--      <td *ngIf="goal.user!==null">{{goal.user.id}}</td>-->
+<!--      <td *ngIf="goal.user!==null">{{goal.user.name}}</td>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--  </table>-->
+
+<!--</div>-->

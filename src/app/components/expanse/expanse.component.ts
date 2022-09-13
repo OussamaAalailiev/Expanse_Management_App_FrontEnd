@@ -39,10 +39,6 @@ export class ExpanseComponent implements OnInit {
     this.getPageOfExpansesV2();
   }
 
-  // public getExpansesFromComponent(): Expanse[] {
-  //   return this.expansesList;
-  // }
-
   getPageOfExpansesV2(): void{
     this.pageOfExpanses$ = this.expanseService.pageOfExpansesObservable$().pipe(
       map((response)=>{

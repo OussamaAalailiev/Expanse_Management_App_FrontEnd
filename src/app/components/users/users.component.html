@@ -1,30 +1,29 @@
 
-<h4>List of Users: </h4>
+<!--<h4>List of Users: </h4>-->
+<div class="container p-5">
+  <h4>User Information: </h4>
 
-<div class="table-responsive-md">
+  <div class="table-responsive-md">
 
-  <table class="table">
-    <thead >
-    <th>Name</th><th>Email</th><th>Active</th><th>Total Sold</th><th>Currency</th><th>Creation Date</th>
-    </thead>
-    <tbody *ngIf="users.length > 0">
-    <tr *ngFor="let user of users">
-      <td>{{user.name}}</td><td>{{user.email}}</td>
-<!--      <td><i *ngIf="user.active==true" class="bi bi-activity text-danger"></i></td>-->
-<!--      <td>-->
-<!--        <span class="badge" [ngClass]="[user.active===true ? ' bg-success' : '', -->
-<!--                              user.active===true ? ' bg-secondary' : '']">Active</span>-->
-<!--      </td>-->
-      <td *ngIf="user.active===true">
-        <span class="badge bg-success">active</span>
-      </td>
-      <td *ngIf="user.active===false">
-        <span class="badge bg-secondary">inactive</span>
-      </td>
-      <td>{{user.totalSold}}</td>
-      <td>{{user.currency}}</td><td>{{user.dateCreation}}</td>
-    </tr>
-    </tbody>
-  </table>
+    <table class="table mt-5">
+      <thead >
+      <th>Name</th><th>Email</th><th>Active</th><th>Total Sold</th><th>Currency</th><th>Creation Date</th>
+      </thead>
+      <tbody *ngIf="user">
+      <!--    <tr *ngFor="let user of users">-->
+      <tr >
+        <td>{{user.name}}</td><td>{{user.email}}</td>
+        <td *ngIf="user.active===true">
+          <span class="badge bg-success">active</span>
+        </td>
+        <td *ngIf="user.active===false">
+          <span class="badge bg-secondary">inactive</span>
+        </td>
+        <td>{{user.totalSold}}</td>
+        <td>{{user.currency}}</td><td>{{user.dateCreation}}</td>
+      </tr>
+      </tbody>
+    </table>
 
+  </div>
 </div>

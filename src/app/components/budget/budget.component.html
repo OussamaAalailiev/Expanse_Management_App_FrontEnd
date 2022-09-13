@@ -21,13 +21,18 @@
     </div>
   </ng-container>
 
-  <!-- Search Form: -->
-  <form #searchForm="ngForm" (ngSubmit)="goToAnotherPageOfBudgets(searchForm.value.title.trim())" class="container input-group">
-    <input type="text" name="title" ngModel type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-    <button type="submit" class="btn btn-outline-primary">search</button>
-  </form>
+<!--  &lt;!&ndash; Search Form: &ndash;&gt;-->
+<!--  <form #searchForm="ngForm" (ngSubmit)="goToAnotherPageOfBudgets(searchForm.value.title.trim())" class="container input-group">-->
+<!--    <input type="text" name="title" ngModel type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />-->
+<!--    <button type="submit" class="btn btn-outline-primary">search</button>-->
+<!--  </form>-->
   <ng-container *ngSwitchCase="'APP_LOADED'">
     <div *ngIf="state.appData?.content!.length > 0" class="container">
+      <!-- Search Form: -->
+      <form #searchForm="ngForm" (ngSubmit)="goToAnotherPageOfBudgets(searchForm.value.title.trim())" class="container input-group">
+        <input type="text" name="title" ngModel type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+        <button type="submit" class="btn btn-outline-primary">search</button>
+      </form>
       <h4 class="text-center mt-5">List of Budgets: </h4>
       <hr>
       <div class="table-responsive-lg">
@@ -56,7 +61,7 @@
                 Budget's nearly Out of Control <i class="bi bi-exclamation-triangle-fill" style="color: black"></i>!
               </span>
               <span *ngIf="(budget.amountSpent/budget.amount>=1)" class="badge rounded-pill bg-danger">
-                Budget is Out of Control <i class="fa fa-battery-empty" style="color: black"></i>!
+                Budget is Out of Control <i class="bi bi-sign-stop" style="color: black"></i>!
               </span>
             </td>
             <td>{{budget.description}}</td>
@@ -65,29 +70,6 @@
             <td>{{budget.endDate}}</td>
             <td>
               {{budget.amountRemains}}
-<!--              <p class="progress progress-bar bg-success" *ngIf="budget.amountSpent/budget.amountRemains<0.50">-->
-<!--                <span class="progress-bar bg-success" role="progressbar"-->
-<!--                      [ngStyle]="{'width.%':  ((budget.amountRemains-budget.amountSpent)/(budget.amountRemains)) * 100}"-->
-<!--                      attr.aria-valuenow="{{(budget.amountRemains-budget.amountSpent)}}" aria-valuemin="0" aria-valuemax="100" >-->
-
-<!--                </span>-->
-<!--              </p>-->
-<!--              <p class="progress"-->
-<!--                 *ngIf="(budget.amountSpent/budget.amountRemains>0.50 && budget.amountSpent/budget.amountRemains<=0.70)">-->
-<!--                <span class="progress-bar bg-warning" role="progressbar" [ngStyle]="{'width.%':  budget.amountSpent/budget.amountRemains * 100}"-->
-<!--                      attr.aria-valuenow="{{budget.amountRemains-budget.amountSpent}}" aria-valuemin="0" aria-valuemax="100" >-->
-
-<!--                </span>-->
-<!--              </p>-->
-<!--              <p class="progress"-->
-<!--                 *ngIf="(budget.amountSpent/budget.amountRemains>0.70 )">-->
-<!--                <span class="progress-bar bg-danger" role="progressbar"-->
-<!--                      [ngStyle]="{'width.%':  ((budget.amountSpent-budget.amountRemains)/(budget.amountSpent)) * 100}"-->
-<!--                      attr.aria-valuenow="{{budget.amountSpent-budget.amountRemains}}" aria-valuemin="0" aria-valuemax="100" >-->
-
-<!--                </span>-->
-<!--              </p>-->
-
               <p class="progress">
                 <span [ngClass]="(budget.amountRemains/budget.amount>=0 && budget.amountRemains/budget.amount<0.50)?'progress-bar-fill bg-warning' :
                                            (budget.amountRemains/budget.amount>=0.50)?'progress-bar-fill bg-success' :

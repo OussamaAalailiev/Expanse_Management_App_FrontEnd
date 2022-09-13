@@ -34,7 +34,6 @@
     <button type="submit" class="btn btn-outline-primary">search</button>
   </form>
   <ng-container *ngSwitchCase="'APP_LOADED'" >
-    <!--    <div *ngIf="expansesList; else errors">-->
     <div *ngIf="state.appData?.content!.length > 0">
       <h4 class="text-center">List of Expanses: </h4>
       <br><br>
@@ -80,7 +79,7 @@
           </tr>
           </tbody>
         </table>
-        <nav *ngIf="state.appData?.content!.length > 1" aria-label="Page navigation example">
+        <nav *ngIf="state.appData?.content!.length > 0" aria-label="Page navigation example">
           <ul  class="pagination justify-content-center">
             <li [ngClass]="0==(currentPage$ | async)?'diasabledPageNavButton':''" class="page-item pointer">
               <a (click)="goToNextOrPreviousPage('PreviousPage',searchForm.value.title)" class="page-link" aria-label="Previous">
