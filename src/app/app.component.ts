@@ -27,4 +27,8 @@ export class AppComponent {
       }
     });
   }
+
+  handleTotalExpansesPage() {
+    this.router.navigateByUrl('totalExpansesByUser');
+  }
 }

@@ -1,0 +1,32 @@
+
+<div *ngIf="totalExpansesList" class="container p-5">
+  <h4 class="text-center">Total Expanses By Year and Month: </h4>
+  <br><br>
+  <div class="table-responsive-md">
+
+    <table class="table bg-white">
+      <thead class="bg-light">
+      <tr>
+        <th>Year</th>
+        <th>Month</th>
+        <th>Total Expanses</th>
+        <th>User Name</th>
+      </tr>
+      </thead>
+      <br>
+      <tbody>
+      <!--      {{pageOfExpanses$ | async | json}}-->
+      <tr *ngFor="let expanse of totalExpansesList ">
+        <td>{{expanse.year}}</td>
+        <td>{{expanse.month}}</td>
+        <td>{{expanse.totalExpanses}}</td>
+        <td>{{expanse.userName}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div *ngIf="!totalExpansesList"  class="alert alert-secondary mt-5" role="alert">
+  <!-- Bootstrap Alert Message pops up in case No Total Expanses were found when we click search! -->
+    No Expanses Summary were found!
+</div>

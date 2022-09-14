@@ -7,6 +7,8 @@ import {ExpanseFormSubmission} from "../../formModels/ExpanseFormSubmission";
 import {PageOfExpanses} from "../../pageModels/pageOfExpanses";
 import {ValidationErrors} from "@angular/forms";
 import {AuthenticationLoginService} from "../authenticationLoginService/authentication-login.service";
+import {TotalExpansePerMonthDTO} from "../../models/TotalExpansePerMonthDTO";
+import {UUID} from "angular2-uuid";
 
 @Injectable({
   providedIn: 'root'
@@ -65,6 +67,14 @@ export class ExpanseService {
 
   getOneExpanseByIdService(expanseId: number): Observable<Expanse>{
     return this.http.get<Expanse>(environment.backendHost+`/api/expanses/${expanseId}`)
+  }
+
+  /**Get Total Amount of Expanses per Month & Year By UserID: */
+  getTotalExpansesByYearMonthUserIDService(
+                     userId: string = this.authService.authenticatedUserLogin!.id): Observable<TotalExpansePerMonthDTO[]>{
+    console.log("Inside Service: ");
+    console.log("Url= " + environment.backendHost+`/api/expansesSumByUser/${userId}`);
+    return this.http.get<TotalExpansePerMonthDTO[]>(environment.backendHost+`/api/expansesSumByUser/${userId}`)
   }
 
 

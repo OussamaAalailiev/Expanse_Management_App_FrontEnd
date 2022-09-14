@@ -31,6 +31,7 @@ import { UpdateBudgetComponent } from './forms/update-budget/update-budget.compo
 import {CommonValidationMethods} from "./services/validations/commonValidationMethods";
 import { LoginComponent } from './components/login/login.component';
 import {AuthenticationGuard} from "./security/guards/authentication.guard";
+import { TotalExpansesComponent } from './components/total-expanses/total-expanses.component';
 
 
 
@@ -48,7 +49,8 @@ import {AuthenticationGuard} from "./security/guards/authentication.guard";
     UpdateExpanseComponent,
     NewBudgetComponent,
     UpdateBudgetComponent,
-    LoginComponent
+    LoginComponent,
+    TotalExpansesComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +70,8 @@ import {AuthenticationGuard} from "./security/guards/authentication.guard";
       {path: 'budgets/newBudget', component: NewBudgetComponent, canActivate: [AuthenticationGuard]},
       {path: 'budgets/updateBudget/:budgetId', component: UpdateBudgetComponent, canActivate: [AuthenticationGuard]},
       {path: '', component: LoginComponent},
-      {path: 'login', component: LoginComponent}
+      {path: 'login', component: LoginComponent},
+      {path: 'totalExpansesByUser', component: TotalExpansesComponent, canActivate: [AuthenticationGuard]}
     ]),
     ReactiveFormsModule,
     MatDialogModule,
