@@ -17,7 +17,7 @@ export class UsersComponent implements OnInit {
               public authService: AuthenticationLoginService) { }
 
   ngOnInit(): void {
-    this.getUsersFromUserService();
+    //this.getUsersFromUserService();
     this.getUserById(this.authService.authenticatedUserLogin!.id);
   }
 
@@ -33,7 +33,6 @@ export class UsersComponent implements OnInit {
       )
   }
 
-  //TODO: Get User By Id Not Tested yet!
   getUserById(userId: string){
     this.userService.getUserByIdService(userId).subscribe(
       (user) => {
