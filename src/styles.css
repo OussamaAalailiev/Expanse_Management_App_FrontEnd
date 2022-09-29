@@ -1,3 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap-icons/font/bootstrap-icons.css";
 @import "~font-awesome/css/font-awesome.css";
+
+.notAllowedButtonSuccess{
+  cursor: not-allowed;
+  background-color: rgba(25, 135, 84, 0.75);
+  border-radius: 4px;
+  border-style: none;
+  color: white;
+  height: 38px;
+  width: 168px;
+}

@@ -56,11 +56,9 @@
                         User is required! </span>
         </div>
 
-        <button [disabled]="expanseFormGroup.invalid" class="btn btn-success" type="submit">Submit New Expanse</button>
-        <!--
-          <button [disabled]="expanseFormGroup.invalid" class="btn btn-success" type="submit"
-                (click)="getCategoryExpByNameFromInput(categoryExpanseType)">Submit New Expanse</button>
-          -->
+        <button [disabled]="expanseFormGroup.invalid" [ngClass]="expanseFormGroup.invalid?'notAllowedButtonSuccess':'btn btn-success'" type="submit">Submit New Expanse</button>
+<!--        <button [disabled]="expanseFormGroup.invalid" class="btn btn-success" type="submit">Submit New Expanse</button>-->
+
       </form>
     </div>
   </div>

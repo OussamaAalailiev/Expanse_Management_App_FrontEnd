@@ -1,0 +1,12 @@
+/*
+ Button Success Style for Not Allowed state:
+ */
+.notAllowedButtonUpdateSuccess{
+  cursor: not-allowed;
+  background-color: rgba(25, 135, 84, 0.75);
+  border-radius: 4px;
+  border-style: none;
+  color: white;
+  height: 38px;
+  width: 133px;
+}

@@ -72,11 +72,9 @@
                         User is required! </span>
         </div>
 
-        <button [disabled]="budgetFormGroup.invalid" class="btn btn-success" type="submit">Submit New Budget</button>
-        <!--
-          <button [disabled]="expanseFormGroup.invalid" class="btn btn-success" type="submit"
-                (click)="getCategoryExpByNameFromInput(categoryExpanseType)">Submit New Expanse</button>
-          -->
+        <button [disabled]="budgetFormGroup.invalid" [ngClass]="budgetFormGroup.invalid?'notAllowedButtonSuccess':'btn btn-success'" type="submit">Submit New Budget</button>
+<!--        <button [disabled]="budgetFormGroup.invalid" class="btn btn-success" type="submit">Submit New Budget</button>-->
+
       </form>
     </div>
   </div>

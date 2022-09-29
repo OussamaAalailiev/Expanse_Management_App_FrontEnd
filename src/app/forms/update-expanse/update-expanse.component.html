@@ -56,8 +56,10 @@
           <input [value]="expanseReceived.user.name" [disabled]="expanseReceived.user.id">
         </div>
 
-        <button [disabled]="expanseUpdateFormGroup.invalid" class="btn btn-success"
+        <button [disabled]="expanseUpdateFormGroup.invalid" [ngClass]="expanseUpdateFormGroup.invalid?'notAllowedButtonUpdateSuccess':'btn btn-success'"
                 type="submit" >Update Expanse</button>
+<!--        <button [disabled]="expanseUpdateFormGroup.invalid" class="btn btn-success"-->
+<!--                type="submit" >Update Expanse</button>-->
 
       </form>
     </div>

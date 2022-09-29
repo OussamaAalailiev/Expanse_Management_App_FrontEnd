@@ -60,9 +60,12 @@
           <input [value]="budgetReceived.user.name" [disabled]="budgetReceived.user.id">
         </div>
 
-        <button [disabled]="budgetUpdateFormGroup.invalid" class="btn btn-success"
+        <button [disabled]="budgetUpdateFormGroup.invalid" [ngClass]="budgetUpdateFormGroup.invalid?'notAllowedButtonUpdateSuccess':'btn btn-success'"
                 type="submit" >Update Budget
         </button>
+<!--        <button [disabled]="budgetUpdateFormGroup.invalid" class="btn btn-success"-->
+<!--                type="submit" >Update Budget-->
+<!--        </button>-->
       </form>
 
     </div>
