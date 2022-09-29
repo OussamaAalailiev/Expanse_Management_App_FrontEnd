@@ -33,10 +33,10 @@
         <div class="mb-3">Select a Category of Expanse
           <select formControlName="categoryExpanse">
             <option value="select" hidden=""> ... </option>
-            <option *ngFor="let categoryExpanseType of categoryExpanseList" [value]="categoryExpanseType.id"
+              <option *ngFor="let categoryExpanseType of categoryExpanseList" [value]="categoryExpanseType.id"
               >
-              {{categoryExpanseType.categoryExpanseType}}
-            </option>
+                {{categoryExpanseType.categoryExpanseType}}
+              </option>
           </select>
           <span class="text-danger" *ngIf="expanseFormGroup.controls['categoryExpanse'].touched &&
                                        expanseFormGroup.controls['categoryExpanse'].hasError('required')">

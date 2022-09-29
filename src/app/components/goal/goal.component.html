@@ -42,7 +42,7 @@
         <table class="table bg-white">
           <thead class="bg-light">
           <tr>
-            <th>Title</th><th>Amount</th>
+            <th>Title</th><th>Amount</th><th>Amount Achieved</th>
             <th>Debut Date</th><th>End Date</th>
             <th>Category of Goal</th><th>User Name</th>
             <th class="text-primary" colspan="2"> Actions</th>
@@ -51,8 +51,22 @@
           <br>
           <tbody>
           <tr *ngFor="let goal of state.appData?.content; let i=index; ">
-            <td>{{goal.title}}</td>
+            <td>
+              {{goal.title}} <br>
+              <span *ngIf="(goal.amountAchieved/goal.amount<0.50)" class="badge rounded-pill bg-secondary">
+                Goal Not Achieved yet <i class="bi bi-x-octagon" style="color: black"></i>
+              </span>
+              <span *ngIf="(goal.amountAchieved/goal.amount>0.50) && (goal.amountAchieved/goal.amount<1)" class="badge rounded-pill bg-info">
+                Goal's nearly Achieved <i class="bi bi-check2-circle" style="color: black"></i>
+              </span>
+              <span *ngIf="(goal.amountAchieved/goal.amount>=1)" class="badge rounded-pill bg-success">
+                Goal Achieved <i class="bi bi-check-circle-fill" style="color: black"></i>
+              </span>
+            </td>
             <td>{{goal.amount}}</td>
+            <td>
+              {{goal.amountAchieved}}
+            </td>
             <td>{{goal.dateDebut}}</td>
             <td>{{goal.endDate}}</td>
             <td>{{goal.categoryIncome!.categoryIncomeType}}</td>

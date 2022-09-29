@@ -8,6 +8,7 @@ export interface Goal{
   dateDebut: any;
   endDate: any;
   amount: number;
+  amountAchieved: number;
   goalAchieved: boolean;
   categoryIncome: CategoryIncome;
   user: User;

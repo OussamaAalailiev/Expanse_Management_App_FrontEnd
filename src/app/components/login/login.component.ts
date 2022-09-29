@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
       next: (userLogin) => {//If the logging process went well:
         this.authService.authenticateUserService(userLogin).subscribe({
           next: (data) => {
-            this.router.navigateByUrl('/budget');
+            this.router.navigateByUrl('/expanse');
           }
         })
       },

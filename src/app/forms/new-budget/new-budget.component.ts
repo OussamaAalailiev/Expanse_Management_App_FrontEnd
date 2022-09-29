@@ -32,7 +32,8 @@ export class NewBudgetComponent implements OnInit {
 
     /** Category Group for > 'Food & Drinks': */
     {id: 17, categoryExpanseType: "Cafe"}, {id: 18, categoryExpanseType: "Restaurant"}, {id: 19, categoryExpanseType: 'Fast_Food'},
-    {id: 20, categoryExpanseType: 'Groceries'},
+    {id: 20, categoryExpanseType: 'Groceries'}, {id: 61, categoryExpanseType: "Drinks"},
+    {id: 62, categoryExpanseType: "Homemade Food"},//Added Recently
 
     /**Category Group > 'Housing': */
     {id: 21, categoryExpanseType: "Mortgage"}, {id: 22, categoryExpanseType: "Property_Insurance"}, {id: 23, categoryExpanseType: "Rent"},
@@ -60,8 +61,8 @@ export class NewBudgetComponent implements OnInit {
 
     /** Category Group for > 'Communication & PC': */
     {id: 56, categoryExpanseType: "Internet"}, {id: 57, categoryExpanseType: "Phone"}, {id: 58, categoryExpanseType: "Cell_Phone"},
-    {id: 59, categoryExpanseType: "Apps"}, {id: 60, categoryExpanseType: "Games"}, {id: 61, categoryExpanseType: "Drinks"},
-    {id: 62, categoryExpanseType: "Homemade Food"}, {id: 63, categoryExpanseType: "Computer_PC"}];
+    {id: 59, categoryExpanseType: "Apps"}, {id: 60, categoryExpanseType: "Games"},
+    {id: 63, categoryExpanseType: "Computer_PC"}];
 
   // userList: User [] = [ {id: '3a300bc8-8954-4e93-9136-2b11ad2461b1', name: "Oussama"},
   //   {id: 'dfa735ec-328b-43c3-ad70-f5dba33eb585', name: "Zakaria"},
