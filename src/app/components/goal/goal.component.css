@@ -6,3 +6,12 @@
 .pointer{
   cursor: pointer;
 }
+
+myImage {
+  background-image: url('src/assets/images/money.jpg');
+}
+
+marginOfPercent {
+  margin: 0 auto;
+
+}

@@ -23,7 +23,7 @@ export class GoalComponent implements OnInit {
   private currentPageSubject = new BehaviorSubject<number>(0);
   currentPage$ = this.currentPageSubject.asObservable();//'currentPageSubject' will be observed by 'currentPage$'.
 
-  constructor( private goalService: GoalService,
+  constructor( public goalService: GoalService,
                public authService: AuthenticationLoginService) { }
 
   ngOnInit(): void {

@@ -31,4 +31,7 @@ export class GoalService {
                                page: number=0, size: number=4): Observable<PageOfGoals> =>
     this.http.get<PageOfGoals>(environment.backendHost+`/api/goalsByUserId?title=${title}&page=${page}&size=${size}&userId=${userId}`);
 
+  getPercentageOfAmountAchieved(amountAchieved: number, amountGoal: number): number{
+    return Math.floor(((amountAchieved)/(amountGoal)) * 100);
+  }
 }
