@@ -13,5 +13,13 @@ myImage {
 
 marginOfPercent {
   margin: 0 auto;
+}
+#MoneyImage {
+  display: inline;
+  width: 60px;
+  height: 48px;
+}
 
+inlineImage {
+  display: inline;
 }

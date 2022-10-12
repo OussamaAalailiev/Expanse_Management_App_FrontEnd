@@ -31,7 +31,7 @@
       <!-- Search Form: -->
       <form #searchForm="ngForm" (ngSubmit)="goToAnotherPageOfBudgets(searchForm.value.title.trim())" class="container input-group">
         <input type="text" name="title" ngModel type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-        <button type="submit" class="btn btn-outline-primary">search</button>
+        <button type="submit" class="btn btn-outline-primary">search <i class="bi bi-search"></i></button>
       </form>
       <h4 class="text-center mt-5">List of Budgets: </h4>
       <hr>

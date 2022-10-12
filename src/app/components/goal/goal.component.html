@@ -1,6 +1,8 @@
 <div class="container mt-5 text-center">
   <button (click)="handleGoalFormNav()"
-          type="button" class="btn btn-outline-info">Add New Goal</button>
+          type="button" class="btn btn-outline-info">
+    Add New Goal <img class="inlineImage" src="./assets/images/rocket.png" alt="Rocket image" width="35" height="35">
+  </button>
 </div>
 
 <ng-container *ngIf="(pageOfGoals$ | async) as state" [ngSwitch]="state.appState">
@@ -33,11 +35,13 @@
       <!-- Search Form: -->
       <form #searchForm="ngForm" (ngSubmit)="goToAnotherPage(searchForm.value.title.trim())" class="container input-group">
         <input type="text" name="title" ngModel type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-        <button type="submit" class="btn btn-outline-primary">search</button>
+        <button type="submit" class="btn btn-outline-primary">search <i class="bi bi-search"></i></button>
       </form>
-      <h4 class="text-center">Goals: </h4> <br>
-      <h6 class="text-center">How much I already saved? <i class="bi bi-coin"></i></h6>
-      <br><br>
+      <h4 class="text-center mt-2">Goals: </h4>
+      <h6 class="text-center">How much I already saved?
+        <img id="MoneyImage" src="./assets/images/money2.png" alt="money image">
+      </h6>
+      <br>
 <!--      <div class="table-responsive-md">-->
 
 <!--        <table class="table bg-white">-->
@@ -120,11 +124,28 @@
       <section class="container">
         <section class="card" *ngFor="let goal of state.appData?.content; let i=index;" >
           <section class="row">
-            <div class="col-md-3">{{goal.categoryIncome.categoryIncomeType}}</div>
+            <div class="col-md-3">
+              <div class="m-5">
+                {{goal.categoryIncome.categoryIncomeType}}
+                <div *ngIf="goal.categoryIncome.categoryIncomeType==='SALARY'">
+                  <img src="./assets/images/salary.png" alt="Salary image" width="55" height="55">
+                </div>
+                <div *ngIf="goal.categoryIncome.categoryIncomeType==='SAVINGS'">
+                  <img src="./assets/images/saving.png" alt="Savings image" width="55" height="55">
+                </div>
+                <div *ngIf="goal.categoryIncome.categoryIncomeType==='GIFTS'">
+                  <img src="./assets/images/gift.png" alt="Gift image" width="55" height="55">
+                </div>
+                <div *ngIf="goal.categoryIncome.categoryIncomeType==='TRADE_SALES'">
+                  <img src="./assets/images/trade.jpg" alt="Trade image" width="55" height="55">
+                </div>
+              </div>
+            </div>
+
             <span class="col-md-9">
             <div class="card-body">
               <div class="card-title">{{goal.title}}</div>
-              <section class="card-text"><small class="text-muted">{{goal.amount}} DH</small></section>
+              <section class="card-text"><strong >{{goal.amount}} DH</strong></section>
               <section >
                               <span *ngIf="(goal.amountAchieved/goal.amount<0.50)" class="badge rounded-pill bg-secondary">
                                 Goal Not Achieved yet <i class="bi bi-patch-exclamation-fill" style="color: black"></i>
