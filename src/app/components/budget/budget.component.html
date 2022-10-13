@@ -1,6 +1,9 @@
 <div class="container mt-5 text-center">
   <button (click)="handleBudgetFormNav()"
-    type="button" class="btn btn-outline-primary">Add New Budget</button>
+    type="button" class="btn btn-outline-primary">
+    Add New Budget <img class="inlineElement" src="./assets/images/budget.png" alt="Goal image" width="35" height="35">
+    <i class="m-1 bi bi-plus-circle"></i>
+  </button>
 </div>
 <ng-container *ngIf="(pageOfBudgets$ | async) as state" [ngSwitch]="state.appState">
 
@@ -33,28 +36,188 @@
         <input type="text" name="title" ngModel type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
         <button type="submit" class="btn btn-outline-primary">search <i class="bi bi-search"></i></button>
       </form>
-      <h4 class="text-center mt-5">List of Budgets: </h4>
+      <h4 class="text-center mt-5">Budgets: </h4>
+      <h6 class="text-center">How much I want to spent for something on a period of time?
+        <img class="inlineElement" src="./assets/images/budgetHowMuch.png"
+             alt="budget image" height="55" width="55">
+        <i class="bi bi-calendar-date"></i>
+      </h6>
       <hr>
-      <div class="table-responsive-lg">
 
-        <table class="table bg-white">
-          <thead class="bg-light">
-          <tr>
-          <th>Title</th><th>Description</th><th>Amount</th>
-          <th>Debut Date</th><th>End Date</th>
-          <th>Amount Remains</th>
-          <th>Amount Spent</th>
-          <th>Category of Budget</th>
-          <!--    <th>User Id</th>-->
-          <th>User Name</th>
-          <th class="text-primary" colspan="2" *ngIf="authService.isAuthenticateUserHasRoleService('USER')">Actions</th>
-          </tr>
-          </thead>
-          <tbody >
-          <tr *ngFor="let budget of state.appData?.content; let i=index; ">
-            <td>
-              {{budget.title}}<br>
-              <span *ngIf="(budget.amountSpent/budget.amount<=0.50)" class="badge rounded-pill bg-success">
+<!--      <div class="table-responsive-lg">-->
+
+<!--        <table class="table bg-white">-->
+<!--          <thead class="bg-light">-->
+<!--          <tr>-->
+<!--          <th>Title</th><th>Description</th><th>Amount</th>-->
+<!--          <th>Debut Date</th><th>End Date</th>-->
+<!--          <th>Amount Remains</th>-->
+<!--          <th>Amount Spent</th>-->
+<!--          <th>Category of Budget</th>-->
+<!--          &lt;!&ndash;    <th>User Id</th>&ndash;&gt;-->
+<!--          <th>User Name</th>-->
+<!--          <th class="text-primary" colspan="2" *ngIf="authService.isAuthenticateUserHasRoleService('USER')">Actions</th>-->
+<!--          </tr>-->
+<!--          </thead>-->
+<!--          <tbody >-->
+<!--          <tr *ngFor="let budget of state.appData?.content; let i=index; ">-->
+<!--            <td>-->
+<!--              {{budget.title}}<br>-->
+<!--              <span *ngIf="(budget.amountSpent/budget.amount<=0.50)" class="badge rounded-pill bg-success">-->
+<!--                Budget is Respected  <i class="bi bi-trophy-fill" style="color: black"></i>-->
+<!--              </span>-->
+<!--              <span *ngIf="(budget.amountSpent/budget.amount>=0.50) && (budget.amountSpent/budget.amount<=0.99)" class="badge rounded-pill bg-warning">-->
+<!--                Budget's nearly Out of Control <i class="bi bi-exclamation-triangle-fill" style="color: black"></i>!-->
+<!--              </span>-->
+<!--              <span *ngIf="(budget.amountSpent/budget.amount>=1)" class="badge rounded-pill bg-danger">-->
+<!--                Budget is Out of Control <i class="bi bi-sign-stop" style="color: black"></i>!-->
+<!--              </span>-->
+<!--            </td>-->
+<!--            <td>{{budget.description}}</td>-->
+<!--            <td>{{budget.amount}}</td>-->
+<!--            <td>{{budget.dateDebut}}</td>-->
+<!--            <td>{{budget.endDate}}</td>-->
+<!--            <td>-->
+<!--              {{budget.amountRemains}}-->
+<!--              <p class="progress">-->
+<!--                <span [ngClass]="(budget.amountRemains/budget.amount>=0 && budget.amountRemains/budget.amount<0.50)?'progress-bar-fill bg-warning' :-->
+<!--                                           (budget.amountRemains/budget.amount>=0.50)?'progress-bar-fill bg-success' :-->
+<!--                                           (budget.amountRemains/budget.amount<0)?'progress-bar-fill bg-secondary':''"-->
+<!--                role="progressbar" [ngStyle]="{'width.%':  ((budget.amountRemains)/(budget.amount)) * 100}"-->
+<!--                attr.aria-valuenow="{{((budget.amountRemains)/(budget.amount)) * 100}}"-->
+<!--                      aria-valuemin="0" aria-valuemax="100">-->
+<!--                  {{budgetService.getPercentageOfAmountRemains(budget.amountRemains, budget.amount)}}%-->
+<!--                </span>-->
+<!--              </p>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--              {{budget.amountSpent}}-->
+<!--              <p class="progress">-->
+<!--                <span [ngClass]="(budget.amountSpent/budget.amount>0)?'progress-bar-fill bg-danger' : ''"-->
+<!--                      role="progressbar" [ngStyle]="{'width.%':  (budget.amountSpent/budget.amount) * 100}"-->
+<!--                      attr.aria-valuenow="{{(budget.amountSpent/budget.amount) * 100}}"-->
+<!--                      aria-valuemin="0" aria-valuemax="100">-->
+<!--                  {{budgetService.getPercentageOfAmountSpent(budget.amount, budget.amountSpent)}}%-->
+<!--                </span>-->
+<!--              </p>-->
+<!--            </td>-->
+<!--            <td>{{budget.categoryExpanse.categoryExpanseType}}</td>-->
+<!--            &lt;!&ndash;      <td *ngIf="budget.user!==null">{{budget.user.id}}</td>&ndash;&gt;-->
+<!--            <td *ngIf="budget.user!==null">{{budget.user.name}}</td>-->
+<!--            <td *ngIf="authService.isAuthenticateUserHasRoleService('USER')">-->
+<!--              <span class="text-danger pointer" (click)="handleBudgetDelete(budget)">-->
+<!--&lt;!&ndash;                <i class="bi bi-x-square"></i>&ndash;&gt;-->
+<!--                <i class="bi bi-trash"></i>-->
+<!--              </span>-->
+<!--            </td>-->
+<!--            <td *ngIf="authService.isAuthenticateUserHasRoleService('USER')">&lt;!&ndash;'expanse/updateExpanse/:expanseId' &ndash;&gt;-->
+<!--              <a> &lt;!&ndash; [routerLink]="['/expanse/updateExpanse/', expanse.id]" &ndash;&gt;-->
+<!--                <span class="text-success pointer" (click)="handleUpdateBudgetForm(budget)">-->
+<!--&lt;!&ndash;            <span class="text-success" (click)="openModalExpanseUpdate(expanse)">&ndash;&gt;-->
+<!--                  <i class="bi bi-pencil-square"></i>-->
+<!--                </span>-->
+<!--              </a>-->
+<!--            </td>-->
+<!--          </tr>-->
+<!--          </tbody>-->
+<!--        </table>-->
+<!--        <nav aria-label="Page navigation example">-->
+<!--          <ul class="pagination justify-content-center">-->
+<!--            <li [ngClass]="0==(currentPage$ | async)?'diasabledPageNavButton':''" class="page-item pointer">-->
+<!--              <a (click)="goToNextOrPreviousPageOfBudgets('PreviousPage',searchForm.value.title)" class="page-link" aria-label="Previous">-->
+<!--                <span aria-hidden="true">&laquo; Previous</span>-->
+<!--              </a>-->
+<!--            </li>-->
+<!--            <li class="page-item pointer" [ngClass]="(currentPage$ | async)==i?'active':''"-->
+<!--                *ngFor="let pageNumber of [].constructor(state.appData?.totalPages); let i=index;">-->
+<!--              <a class="page-link" (click)="goToAnotherPageOfBudgets(searchForm.value.title, authService.authenticatedUserLogin!.id, i)">{{i + 1}}</a>-->
+<!--            </li>-->
+<!--            <li [ngClass]="state.appData?.last ? 'diasabledPageNavButton':''" class="page-item pointer">-->
+<!--              <a (click)="goToNextOrPreviousPageOfBudgets('NextPage',searchForm.value.title)" class="page-link" aria-label="Next">-->
+<!--                <span aria-hidden="true">Next &raquo;</span>-->
+<!--              </a>-->
+<!--            </li>-->
+<!--          </ul>-->
+<!--        </nav>-->
+<!--      </div>-->
+
+      <!-- Display Goals In Cards of Rows: -->
+      <section class="container">
+        <section class="card" *ngFor="let budget of state.appData?.content; let i=index;" >
+          <section class="row">
+            <div class="col-md-3">
+              <div class="m-5">
+                {{budget .categoryExpanse.categoryExpanseType}}
+                <div *ngIf="budget.categoryExpanse.categoryExpanseType==='Groceries'">
+                  <img src="./assets/images/grocery.png" alt="Grocery image" width="55" height="55">
+                </div>
+                <div *ngIf="budget.categoryExpanse.categoryExpanseType==='Drinks'">
+                  <img src="./assets/images/drinks2.png" alt="Drinks image" width="52.5" height="55">
+                </div>
+                <div *ngIf="budget.categoryExpanse.categoryExpanseType==='Gifts'">
+                  <img src="./assets/images/gift.png" alt="Gift image" width="55" height="55">
+                </div>
+                <div *ngIf="budget.categoryExpanse.categoryExpanseType==='Plane_LongDistance'">
+                  <img src="./assets/images/airplane.png" alt="Airplane image" width="55" height="55">
+                </div>
+                <div *ngIf="budget.categoryExpanse.categoryExpanseType==='Loan'">
+                  <img src="./assets/images/trade.png" alt="Loan image" width="55" height="55">
+                </div>
+                <div *ngIf="budget.categoryExpanse.categoryExpanseType==='Internet'">
+                  <img src="./assets/images/internet.png" alt="Internet image" width="55" height="55">
+                </div>
+                <div *ngIf="budget.categoryExpanse.categoryExpanseType==='Cell_Phone'">
+                  <img src="./assets/images/cellphone.png" alt="Cell phone image" width="55" height="55">
+                </div>
+
+                <div *ngIf="budget.categoryExpanse.categoryExpanseType==='Cafe'">
+                  <img src="./assets/images/coffee.png" alt="Caffe image" width="55" height="55">
+                </div>
+                <div *ngIf="budget.categoryExpanse.categoryExpanseType==='Fast_Food'">
+                  <img src="./assets/images/fastfood.png" alt="Fast food image" width="55" height="55">
+                </div>
+                <div *ngIf="budget.categoryExpanse.categoryExpanseType==='Restaurant'">
+                  <img src="./assets/images/restaurant2.png" alt="Cell phone image" width="55" height="55">
+                </div>
+                <div *ngIf="budget.categoryExpanse.categoryExpanseType==='Homemade_Food'">
+                  <img src="./assets/images/HomemadeFood.png" alt="Homemade Food image" width="55" height="55">
+                </div>
+                <div *ngIf="budget.categoryExpanse.categoryExpanseType==='Charges_Fees'">
+                  <img src="./assets/images/financialfees.png" alt="Charge Fees image" width="55" height="55">
+                </div>
+                <div *ngIf="budget.categoryExpanse.categoryExpanseType==='Drug_store_Chemist'">
+                  <img src="./assets/images/pharmacy.png" alt="Drug_store_Chemist image" width="55" height="55">
+                </div>
+              </div>
+            </div>
+
+            <span class="col-md-9">
+            <div class="card-body">
+              <div class="d-flex justify-content-between">
+                <span class="card-title">{{budget.title}}</span>
+                <span *ngIf="authService.isAuthenticateUserHasRoleService('USER')"><!--'expanse/updateExpanse/:expanseId' -->
+                  <a> <!-- [routerLink]="['/expanse/updateExpanse/', expanse.id]" -->
+                    <span class="text-success pointer" (click)="handleUpdateBudgetForm(budget)">
+                    <i class="bi bi-pencil-square"></i>
+                </span>
+              </a>
+            </span>
+              </div>
+              <section class="card-text"><strong >{{budget.amount}} DH</strong></section>
+              <section class="card-text"><span >AmountSpent: {{budget.amountSpent}} DH</span></section>
+              <section class="card-text"><span >AmountRemains: {{budget.amountRemains}} DH</span></section>
+              <section class="card-text"><small class="text-muted">Debut Date: {{budget.dateDebut}}</small></section>
+              <section class="card-text"><small class="text-muted">End Date: {{budget.endDate}}</small></section>
+              <section>
+                <span class="d-flex justify-content-end" *ngIf="authService.isAuthenticateUserHasRoleService('USER')">
+                  <span class="text-danger pointer" (click)="handleBudgetDelete(budget)">
+<!--                <i class="bi bi-x-square"></i>-->
+                    <i class="bi bi-trash"></i>
+                  </span>
+                </span>
+              </section>
+              <section class="d-flex justify-content-between">
+                              <span *ngIf="(budget.amountSpent/budget.amount<0.50)" class="badge rounded-pill bg-success">
                 Budget is Respected  <i class="bi bi-trophy-fill" style="color: black"></i>
               </span>
               <span *ngIf="(budget.amountSpent/budget.amount>=0.50) && (budget.amountSpent/budget.amount<=0.99)" class="badge rounded-pill bg-warning">
@@ -63,74 +226,57 @@
               <span *ngIf="(budget.amountSpent/budget.amount>=1)" class="badge rounded-pill bg-danger">
                 Budget is Out of Control <i class="bi bi-sign-stop" style="color: black"></i>!
               </span>
-            </td>
-            <td>{{budget.description}}</td>
-            <td>{{budget.amount}}</td>
-            <td>{{budget.dateDebut}}</td>
-            <td>{{budget.endDate}}</td>
-            <td>
-              {{budget.amountRemains}}
-              <p class="progress">
+
+                <span>
+                  {{budgetService.getPercentageOfAmountRemains(budget.amountRemains, budget.amount)}}% Respected
+                </span>
+              </section>
+            </div>
+
+            <section class="container">
+              <section class="progress mb-3">
+
                 <span [ngClass]="(budget.amountRemains/budget.amount>=0 && budget.amountRemains/budget.amount<0.50)?'progress-bar-fill bg-warning' :
                                            (budget.amountRemains/budget.amount>=0.50)?'progress-bar-fill bg-success' :
                                            (budget.amountRemains/budget.amount<0)?'progress-bar-fill bg-secondary':''"
-                role="progressbar" [ngStyle]="{'width.%':  ((budget.amountRemains)/(budget.amount)) * 100}"
-                attr.aria-valuenow="{{((budget.amountRemains)/(budget.amount)) * 100}}"
+                      role="progressbar" [ngStyle]="{'width.%':  ((budget.amountRemains)/(budget.amount)) * 100}"
+                      attr.aria-valuenow="{{((budget.amountRemains)/(budget.amount)) * 100}}"
                       aria-valuemin="0" aria-valuemax="100">
-                  {{budgetService.getPercentageOfAmountRemains(budget.amountRemains, budget.amount)}}%
+
                 </span>
-              </p>
-            </td>
-            <td>
-              {{budget.amountSpent}}
-              <p class="progress">
-                <span [ngClass]="(budget.amountSpent/budget.amount>0)?'progress-bar-fill bg-danger' : ''"
-                      role="progressbar" [ngStyle]="{'width.%':  (budget.amountSpent/budget.amount) * 100}"
-                      attr.aria-valuenow="{{(budget.amountSpent/budget.amount) * 100}}"
-                      aria-valuemin="0" aria-valuemax="100">
-                  {{budgetService.getPercentageOfAmountSpent(budget.amount, budget.amountSpent)}}%
-                </span>
-              </p>
-            </td>
-            <td>{{budget.categoryExpanse.categoryExpanseType}}</td>
-            <!--      <td *ngIf="budget.user!==null">{{budget.user.id}}</td>-->
-            <td *ngIf="budget.user!==null">{{budget.user.name}}</td>
-            <td *ngIf="authService.isAuthenticateUserHasRoleService('USER')">
-              <span class="text-danger pointer" (click)="handleBudgetDelete(budget)">
-<!--                <i class="bi bi-x-square"></i>-->
-                <i class="bi bi-trash"></i>
-              </span>
-            </td>
-            <td *ngIf="authService.isAuthenticateUserHasRoleService('USER')"><!--'expanse/updateExpanse/:expanseId' -->
-              <a> <!-- [routerLink]="['/expanse/updateExpanse/', expanse.id]" -->
-                <span class="text-success pointer" (click)="handleUpdateBudgetForm(budget)">
-<!--            <span class="text-success" (click)="openModalExpanseUpdate(expanse)">-->
-                  <i class="bi bi-pencil-square"></i>
-                </span>
-              </a>
-            </td>
-          </tr>
-          </tbody>
-        </table>
-        <nav aria-label="Page navigation example">
-          <ul class="pagination justify-content-center">
-            <li [ngClass]="0==(currentPage$ | async)?'diasabledPageNavButton':''" class="page-item pointer">
-              <a (click)="goToNextOrPreviousPageOfBudgets('PreviousPage',searchForm.value.title)" class="page-link" aria-label="Previous">
-                <span aria-hidden="true">&laquo; Previous</span>
-              </a>
-            </li>
-            <li class="page-item pointer" [ngClass]="(currentPage$ | async)==i?'active':''"
-                *ngFor="let pageNumber of [].constructor(state.appData?.totalPages); let i=index;">
-              <a class="page-link" (click)="goToAnotherPageOfBudgets(searchForm.value.title, authService.authenticatedUserLogin!.id, i)">{{i + 1}}</a>
-            </li>
-            <li [ngClass]="state.appData?.last ? 'diasabledPageNavButton':''" class="page-item pointer">
-              <a (click)="goToNextOrPreviousPageOfBudgets('NextPage',searchForm.value.title)" class="page-link" aria-label="Next">
-                <span aria-hidden="true">Next &raquo;</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
+<!--                <span [ngClass]="(budget.amountRemains/budget.amount>=0 && budget.amountRemains/budget.amount<0.50)?'progress-bar-fill bg-warning' :-->
+<!--                                           (budget.amountRemains/budget.amount>=0.50)?'progress-bar-fill bg-success' :-->
+<!--                                           (budget.amountRemains/budget.amount<0)?'progress-bar-fill bg-secondary':''"-->
+<!--                      role="progressbar" [ngStyle]="{'width.%':  ((budget.amountRemains)/(budget.amount)) * 100}"-->
+<!--                      attr.aria-valuenow="{{((budget.amountRemains)/(budget.amount)) * 100}}"-->
+<!--                      aria-valuemin="0" aria-valuemax="100">-->
+
+<!--                </span>-->
+              </section>
+            </section>
+          </span>
+          </section>
+        </section>
+      </section>
+              <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                  <li [ngClass]="0==(currentPage$ | async)?'diasabledPageNavButton':''" class="page-item pointer">
+                    <a (click)="goToNextOrPreviousPageOfBudgets('PreviousPage',searchForm.value.title)" class="page-link" aria-label="Previous">
+                      <span aria-hidden="true">&laquo; Previous</span>
+                    </a>
+                  </li>
+                  <li class="page-item pointer" [ngClass]="(currentPage$ | async)==i?'active':''"
+                      *ngFor="let pageNumber of [].constructor(state.appData?.totalPages); let i=index;">
+                    <a class="page-link" (click)="goToAnotherPageOfBudgets(searchForm.value.title, authService.authenticatedUserLogin!.id, i)">{{i + 1}}</a>
+                  </li>
+                  <li [ngClass]="state.appData?.last ? 'diasabledPageNavButton':''" class="page-item pointer">
+                    <a (click)="goToNextOrPreviousPageOfBudgets('NextPage',searchForm.value.title)" class="page-link" aria-label="Next">
+                      <span aria-hidden="true">Next &raquo;</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+
     </div>
     <!-- Bootstrap Alert Message pops up in case No Expanses were found when we click search! -->
     <div *ngIf="state.appData?.content!.length < 1" class="alert alert-secondary mt-5" role="alert">

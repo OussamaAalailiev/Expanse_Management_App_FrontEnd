@@ -1,7 +1,8 @@
 <div class="container mt-5 text-center">
   <button (click)="handleGoalFormNav()"
           type="button" class="btn btn-outline-info">
-    Add New Goal <img class="inlineImage" src="./assets/images/addGoal.png" alt="Goal image" width="35" height="35">
+    Add New Goal <img class="inlineElement" src="./assets/images/addGoal.png" alt="Goal image" width="35" height="35">
+    <i class="bi bi-plus-circle-fill"></i>
   </button>
 </div>
 
@@ -33,93 +34,22 @@
   <ng-container *ngSwitchCase="'APP_LOADED'" >
     <div *ngIf="state.appData?.content!.length > 0">
       <!-- Search Form: -->
-      <form #searchForm="ngForm" (ngSubmit)="goToAnotherPage(searchForm.value.title.trim())" class="container input-group">
-        <input type="text" name="title" ngModel type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-        <button type="submit" class="btn btn-outline-primary">search <i class="bi bi-search"></i></button>
-      </form>
+        <form #searchForm="ngForm" (ngSubmit)="goToAnotherPage(searchForm.value.title.trim())" class="container input-group">
+          <input type="text" name="title" ngModel type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+          <button type="submit" class="btn btn-outline-primary">search <i class="bi bi-search"></i></button>
+        </form>
+
+<!--      <div class="d-flex justify-content-center">-->
+<!--        <form >-->
+<!--          <input type="text">-->
+<!--          <button type="submit" class="btn btn-outline-primary">search <i class="bi bi-search"></i></button>-->
+<!--        </form>-->
+<!--      </div>-->
       <h4 class="text-center mt-2">Goals: </h4>
       <h6 class="text-center">How much I already saved?
         <img id="MoneyImage" src="./assets/images/money.jpg" alt="money image">
       </h6>
       <br>
-<!--      <div class="table-responsive-md">-->
-
-<!--        <table class="table bg-white">-->
-<!--          <thead class="bg-light">-->
-<!--          <tr>-->
-<!--            <th>Title</th><th>Amount</th><th>Amount Achieved</th><th>Goal Achievement</th>-->
-<!--            <th>Debut Date</th><th>End Date</th>-->
-<!--            <th>Category of Goal</th><th>User Name</th>-->
-<!--            <th class="text-primary" colspan="2"> Actions</th>-->
-<!--          </tr>-->
-<!--          </thead>-->
-<!--          <br>-->
-<!--          <tbody>-->
-<!--          <tr *ngFor="let goal of state.appData?.content; let i=index; ">-->
-<!--            <td>-->
-<!--              {{goal.title}} <br>-->
-<!--              <span *ngIf="(goal.amountAchieved/goal.amount>=1)" class="badge rounded-pill bg-success">-->
-<!--&lt;!&ndash;                <i class="bi bi-award-fill" style="color: black"></i>&ndash;&gt;-->
-<!--                <i class="bi bi-trophy-fill" style="color: black"></i>-->
-<!--              </span>-->
-<!--            </td>-->
-<!--            <td>{{goal.amount}}</td>-->
-<!--            <td>-->
-<!--              {{goal.amountAchieved}}-->
-<!--            </td>-->
-<!--            <td>-->
-<!--              <span *ngIf="(goal.amountAchieved/goal.amount<0.50)" class="badge rounded-pill bg-secondary">-->
-<!--                Goal Not Achieved yet <i class="bi bi-patch-exclamation-fill" style="color: black"></i>-->
-<!--              </span>-->
-<!--              <span *ngIf="(goal.amountAchieved/goal.amount>0.50) && (goal.amountAchieved/goal.amount<1)" class="badge rounded-pill bg-info">-->
-<!--&lt;!&ndash;                Goal's nearly Achieved <i class="bi bi-hand-thumbs-up-fill" style="color: black"></i>&ndash;&gt;-->
-<!--                Goal's nearly Achieved <i class="bi bi-arrow-up-right-circle-fill" style="color: black"></i>-->
-<!--              </span>-->
-<!--              <span *ngIf="(goal.amountAchieved/goal.amount>=1)" class="badge rounded-pill bg-success">-->
-<!--                Goal Achieved <i class="bi bi-patch-check-fill" style="color: black"></i>-->
-<!--&lt;!&ndash;                <i class="bi bi-award-fill" style="color: black"></i>&ndash;&gt;-->
-<!--              </span>-->
-<!--            </td>-->
-<!--            <td>{{goal.dateDebut}}</td>-->
-<!--            <td>{{goal.endDate}}</td>-->
-<!--            <td>{{goal.categoryIncome!.categoryIncomeType}}</td>-->
-<!--            <td>{{goal.user.name}}</td>-->
-<!--            <td *ngIf="authService.isAuthenticateUserHasRoleService('USER')">-->
-<!--              <span class="text-danger pointer" (click)="handleGoalDelete(goal)">-->
-<!--                <i class="bi bi-trash"></i>-->
-<!--              </span>-->
-<!--            </td>-->
-<!--            <td *ngIf="authService.isAuthenticateUserHasRoleService('USER')">-->
-<!--              <a>-->
-<!--                <span class="text-success pointer" (click)="handleUpdateGoalForm(goal)">-->
-<!--                  <i class="bi bi-pencil-square"></i>-->
-<!--                </span>-->
-<!--              </a>-->
-<!--            </td>-->
-
-<!--          </tr>-->
-<!--          </tbody>-->
-<!--        </table>-->
-<!--        <nav *ngIf="state.appData?.content!.length > 0" aria-label="Page navigation example">-->
-<!--          <ul  class="pagination justify-content-center">-->
-<!--            <li [ngClass]="0==(currentPage$ | async)?'diasabledPageNavButton':''" class="page-item pointer">-->
-<!--              <a (click)="goToNextOrPreviousPage('PreviousPage',searchForm.value.title)" class="page-link" aria-label="Previous">-->
-<!--                <span aria-hidden="true">&laquo; Previous</span>-->
-<!--              </a>-->
-<!--            </li>-->
-<!--            <li class="page-item pointer" [ngClass]="(currentPage$ | async)==i?'active':''"-->
-<!--                *ngFor="let pageNumber of [].constructor(state.appData?.totalPages); let i=index;">-->
-<!--              <a class="page-link" (click)="goToAnotherPage(searchForm.value.title, authService.authenticatedUserLogin!.id, i)">{{i + 1}}</a>-->
-<!--            </li>-->
-<!--            <li [ngClass]="state.appData?.last ? 'diasabledPageNavButton':''" class="page-item pointer">-->
-<!--              <a (click)="goToNextOrPreviousPage('NextPage',searchForm.value.title)" class="page-link" aria-label="Next">-->
-<!--                <span aria-hidden="true">Next &raquo;</span>-->
-<!--              </a>-->
-<!--            </li>-->
-<!--          </ul>-->
-<!--        </nav>-->
-<!--      </div>-->
-
       <!-- Display Goals In Cards of Rows: -->
       <section class="container">
         <section class="card" *ngFor="let goal of state.appData?.content; let i=index;" >
@@ -137,7 +67,7 @@
                   <img src="./assets/images/gift.png" alt="Gift image" width="55" height="55">
                 </div>
                 <div *ngIf="goal.categoryIncome.categoryIncomeType==='TRADE_SALES'">
-                  <img src="./assets/images/trade.jpg" alt="Trade image" width="55" height="55">
+                  <img src="./assets/images/trade.png" alt="Trade image" width="55" height="55">
                 </div>
               </div>
             </div>
@@ -146,7 +76,7 @@
             <div class="card-body">
               <div class="card-title">{{goal.title}}</div>
               <section class="card-text"><strong >{{goal.amount}} DH</strong></section>
-              <section >
+              <section class="d-flex justify-content-between">
                               <span *ngIf="(goal.amountAchieved/goal.amount<0.50)" class="badge rounded-pill bg-secondary">
                                 Goal Not Achieved yet <i class="bi bi-patch-exclamation-fill" style="color: black"></i>
                               </span>
@@ -158,7 +88,7 @@
                                 Goal Achieved <i class="bi bi-patch-check-fill" style="color: black"></i>
                                 <!--                <i class="bi bi-award-fill" style="color: black"></i>-->
                               </span>
-                <span class="d-flex justify-content-end">
+                <span>
                   {{goalService.getPercentageOfAmountAchieved(goal.amountAchieved, goal.amount)}}%
                 </span>
               </section>

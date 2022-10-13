@@ -9,3 +9,17 @@
   font-weight: bold;
 }
 
+#searchBarWrap{
+  display: flex;
+  justify-content: center;
+}
+
+inlineElement {
+  display: inline;
+}
+
+#inlineImageAndSize {
+  display: inline;
+  width: 55px;
+  height: 55px;
+}
