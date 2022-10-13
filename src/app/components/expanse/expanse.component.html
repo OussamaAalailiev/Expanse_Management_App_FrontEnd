@@ -1,6 +1,8 @@
 <div class="container mt-5 text-center">
   <button (click)="handleExpanseFormNav()"
-          type="button" class="btn btn-outline-primary">Add New Expanse</button>
+          type="button" class="btn btn-outline-primary">
+    Add New Expanse <i class="bi bi-coin" style="color: black"></i><i class="bi bi-arrow-up" style="color: black"></i>
+  </button>
 </div>
 
 <ng-container *ngIf="(pageOfExpanses$ | async) as state" [ngSwitch]="state.appState">
@@ -35,69 +37,173 @@
   </form>
   <ng-container *ngSwitchCase="'APP_LOADED'" >
     <div *ngIf="state.appData?.content!.length > 0">
-      <h4 class="text-center">List of Expanses: </h4>
-      <br><br>
-      <div class="table-responsive-md">
+      <h4 class="text-center">Expanses: </h4>
+      <br>
+<!--      <div class="table-responsive-md">-->
 
-        <table class="table bg-white">
-          <thead class="bg-light">
-          <tr>
-          <th>Id</th>
-          <th>Title</th>
-          <th>Amount</th>
-          <th>Creation Date</th>
-          <th>Category of Expanse</th>
-          <th>User Name</th>
-          <th class="text-primary" colspan="2"> Actions</th>
-          </tr>
-          </thead>
-          <br>
-          <tbody>
-          <!--      {{pageOfExpanses$ | async | json}}-->
-          <tr *ngFor="let expanse of state.appData?.content; let i=index; ">
-            <td>{{expanse.id}}</td>
-            <td>{{expanse.title}}</td>
-            <td>{{expanse.amount}}</td>
-            <td>{{expanse.createdDate}}</td>
-            <td>{{expanse.categoryExpanse.categoryExpanseType}}</td>
-            <td>{{expanse.user.name}}</td>
-            <td *ngIf="authService.isAuthenticateUserHasRoleService('USER')">
-              <span class="text-danger pointer" (click)="handleExpanseDelete(expanse)">
-<!--                <i class="bi bi-x-square"></i>-->
-                <i class="bi bi-trash"></i>
-              </span>
-            </td>
-            <td *ngIf="authService.isAuthenticateUserHasRoleService('USER')"><!--'expanse/updateExpanse/:expanseId' -->
-              <a> <!-- [routerLink]="['/expanse/updateExpanse/', expanse.id]" -->
-                <span class="text-success pointer" (click)="handleUpdateExpanseForm(expanse)">
-<!--            <span class="text-success" (click)="openModalExpanseUpdate(expanse)">-->
-                  <i class="bi bi-pencil-square"></i>
+<!--        <table class="table bg-white">-->
+<!--          <thead class="bg-light">-->
+<!--          <tr>-->
+<!--          <th>Id</th>-->
+<!--          <th>Title</th>-->
+<!--          <th>Amount</th>-->
+<!--          <th>Creation Date</th>-->
+<!--          <th>Category of Expanse</th>-->
+<!--          <th>User Name</th>-->
+<!--          <th class="text-primary" colspan="2"> Actions</th>-->
+<!--          </tr>-->
+<!--          </thead>-->
+<!--          <br>-->
+<!--          <tbody>-->
+<!--          &lt;!&ndash;      {{pageOfExpanses$ | async | json}}&ndash;&gt;-->
+<!--          <tr *ngFor="let expanse of state.appData?.content; let i=index; ">-->
+<!--            <td>{{expanse.id}}</td>-->
+<!--            <td>{{expanse.title}}</td>-->
+<!--            <td>{{expanse.amount}}</td>-->
+<!--            <td>{{expanse.createdDate}}</td>-->
+<!--            <td>{{expanse.categoryExpanse.categoryExpanseType}}</td>-->
+<!--            <td>{{expanse.user.name}}</td>-->
+<!--            <td *ngIf="authService.isAuthenticateUserHasRoleService('USER')">-->
+<!--              <span class="text-danger pointer" (click)="handleExpanseDelete(expanse)">-->
+<!--&lt;!&ndash;                <i class="bi bi-x-square"></i>&ndash;&gt;-->
+<!--                <i class="bi bi-trash"></i>-->
+<!--              </span>-->
+<!--            </td>-->
+<!--            <td *ngIf="authService.isAuthenticateUserHasRoleService('USER')">&lt;!&ndash;'expanse/updateExpanse/:expanseId' &ndash;&gt;-->
+<!--              <a> &lt;!&ndash; [routerLink]="['/expanse/updateExpanse/', expanse.id]" &ndash;&gt;-->
+<!--                <span class="text-success pointer" (click)="handleUpdateExpanseForm(expanse)">-->
+<!--&lt;!&ndash;            <span class="text-success" (click)="openModalExpanseUpdate(expanse)">&ndash;&gt;-->
+<!--                  <i class="bi bi-pencil-square"></i>-->
+<!--                </span>-->
+<!--              </a>-->
+<!--            </td>-->
+
+<!--          </tr>-->
+<!--          </tbody>-->
+<!--        </table>-->
+<!--        <nav *ngIf="state.appData?.content!.length > 0" aria-label="Page navigation example">-->
+<!--          <ul  class="pagination justify-content-center">-->
+<!--            <li [ngClass]="0==(currentPage$ | async)?'diasabledPageNavButton':''" class="page-item pointer">-->
+<!--              <a (click)="goToNextOrPreviousPage('PreviousPage',searchForm.value.title)" class="page-link" aria-label="Previous">-->
+<!--                <span aria-hidden="true">&laquo; Previous</span>-->
+<!--              </a>-->
+<!--            </li>-->
+<!--            <li class="page-item pointer" [ngClass]="(currentPage$ | async)==i?'active':''"-->
+<!--                *ngFor="let pageNumber of [].constructor(state.appData?.totalPages); let i=index;">-->
+<!--              <a class="page-link" (click)="goToAnotherPage(searchForm.value.title, authService.authenticatedUserLogin!.id, i)">{{i + 1}}</a>-->
+<!--            </li>-->
+<!--            <li [ngClass]="state.appData?.last ? 'diasabledPageNavButton':''" class="page-item pointer">-->
+<!--              <a (click)="goToNextOrPreviousPage('NextPage',searchForm.value.title)" class="page-link" aria-label="Next">-->
+<!--                <span aria-hidden="true">Next &raquo;</span>-->
+<!--              </a>-->
+<!--            </li>-->
+<!--          </ul>-->
+<!--        </nav>-->
+<!--      </div>-->
+
+      <!-- Cards & Rows Instead of Table: -->
+      <section class="container">
+        <section class="card" *ngFor="let expanse of state.appData?.content; let i=index;" >
+          <section class="row">
+            <div class="col-md-3">
+              <div class="m-5">
+                {{expanse.categoryExpanse.categoryExpanseType}}
+                <div *ngIf="expanse.categoryExpanse.categoryExpanseType==='Groceries'">
+                  <img src="./assets/images/grocery.png" alt="Grocery image" width="55" height="55">
+                </div>
+                <div *ngIf="expanse.categoryExpanse.categoryExpanseType==='Drinks'">
+                  <img src="./assets/images/drinks2.png" alt="Drinks image" width="52.5" height="55">
+                </div>
+                <div *ngIf="expanse.categoryExpanse.categoryExpanseType==='Gifts'">
+                  <img src="./assets/images/gift.png" alt="Gift image" width="55" height="55">
+                </div>
+                <div *ngIf="expanse.categoryExpanse.categoryExpanseType==='Plane_LongDistance'">
+                  <img src="./assets/images/airplane.png" alt="Airplane image" width="55" height="55">
+                </div>
+                <div *ngIf="expanse.categoryExpanse.categoryExpanseType==='Loan'">
+                  <img src="./assets/images/trade.jpg" alt="Loan image" width="55" height="55">
+                </div>
+                <div *ngIf="expanse.categoryExpanse.categoryExpanseType==='Internet'">
+                  <img src="./assets/images/internet.png" alt="Internet image" width="55" height="55">
+                </div>
+                <div *ngIf="expanse.categoryExpanse.categoryExpanseType==='Cell_Phone'">
+                  <img src="./assets/images/cellphone.png" alt="Cell phone image" width="55" height="55">
+                </div>
+
+                <div *ngIf="expanse.categoryExpanse.categoryExpanseType==='Cafe'">
+                  <img src="./assets/images/coffee.png" alt="Caffe image" width="55" height="55">
+                </div>
+                <div *ngIf="expanse.categoryExpanse.categoryExpanseType==='Fast_Food'">
+                  <img src="./assets/images/fastfood.png" alt="Fast food image" width="55" height="55">
+                </div>
+                <div *ngIf="expanse.categoryExpanse.categoryExpanseType==='Restaurant'">
+                  <img src="./assets/images/restaurant2.png" alt="Cell phone image" width="55" height="55">
+                </div>
+                <div *ngIf="expanse.categoryExpanse.categoryExpanseType==='Homemade_Food'">
+                  <img src="./assets/images/HomemadeFood.png" alt="Homemade Food image" width="55" height="55">
+                </div>
+                <div *ngIf="expanse.categoryExpanse.categoryExpanseType==='Charges_Fees'">
+                  <img src="./assets/images/financialfees.png" alt="Charge Fees image" width="55" height="55">
+                </div>
+                <div *ngIf="expanse.categoryExpanse.categoryExpanseType==='Drug_store_Chemist'">
+                  <img src="./assets/images/pharmacy.png" alt="Drug_store_Chemist image" width="55" height="55">
+                </div>
+              </div>
+            </div>
+
+            <span class="col-md-9">
+            <div class="card-body">
+              <div class="card-title">
+                {{expanse.title}}
+                <span class="d-flex justify-content-end p-0 m-0">
+                  <span *ngIf="authService.isAuthenticateUserHasRoleService('USER')"><!--'expanse/updateExpanse/:expanseId' -->
+                   <a>
+                     <span class="text-success pointer" (click)="handleUpdateExpanseForm(expanse)">
+                       <i class="bi bi-pencil-square"></i>
+                     </span>
+                   </a>
+                 </span>
                 </span>
-              </a>
-            </td>
+              </div>
+              <section class="card-text"><strong >{{expanse.amount}} DH</strong></section>
+              <section class="card-text"><SMALL class="text-muted">{{expanse.createdDate}}</SMALL></section>
+              <section >
+                <span class="d-flex justify-content-end">
+                <a>
+                  <span class="text-danger pointer" (click)="handleExpanseDelete(expanse)">
+                    <i class="bi bi-trash"></i>
+                  </span>
+                </a>
+              </span>
+              </section>
+            </div>
 
-          </tr>
-          </tbody>
-        </table>
-        <nav *ngIf="state.appData?.content!.length > 0" aria-label="Page navigation example">
-          <ul  class="pagination justify-content-center">
-            <li [ngClass]="0==(currentPage$ | async)?'diasabledPageNavButton':''" class="page-item pointer">
-              <a (click)="goToNextOrPreviousPage('PreviousPage',searchForm.value.title)" class="page-link" aria-label="Previous">
-                <span aria-hidden="true">&laquo; Previous</span>
-              </a>
-            </li>
-            <li class="page-item pointer" [ngClass]="(currentPage$ | async)==i?'active':''"
-                *ngFor="let pageNumber of [].constructor(state.appData?.totalPages); let i=index;">
-              <a class="page-link" (click)="goToAnotherPage(searchForm.value.title, authService.authenticatedUserLogin!.id, i)">{{i + 1}}</a>
-            </li>
-            <li [ngClass]="state.appData?.last ? 'diasabledPageNavButton':''" class="page-item pointer">
-              <a (click)="goToNextOrPreviousPage('NextPage',searchForm.value.title)" class="page-link" aria-label="Next">
-                <span aria-hidden="true">Next &raquo;</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
+            <section class="container">
+
+            </section>
+          </span>
+          </section>
+        </section>
+      </section>
+
+              <nav *ngIf="state.appData?.content!.length > 0" aria-label="Page navigation example">
+                <ul  class="pagination justify-content-center">
+                  <li [ngClass]="0==(currentPage$ | async)?'diasabledPageNavButton':''" class="page-item pointer">
+                    <a (click)="goToNextOrPreviousPage('PreviousPage',searchForm.value.title)" class="page-link" aria-label="Previous">
+                      <span aria-hidden="true">&laquo; Previous</span>
+                    </a>
+                  </li>
+                  <li class="page-item pointer" [ngClass]="(currentPage$ | async)==i?'active':''"
+                      *ngFor="let pageNumber of [].constructor(state.appData?.totalPages); let i=index;">
+                    <a class="page-link" (click)="goToAnotherPage(searchForm.value.title, authService.authenticatedUserLogin!.id, i)">{{i + 1}}</a>
+                  </li>
+                  <li [ngClass]="state.appData?.last ? 'diasabledPageNavButton':''" class="page-item pointer">
+                    <a (click)="goToNextOrPreviousPage('NextPage',searchForm.value.title)" class="page-link" aria-label="Next">
+                      <span aria-hidden="true">Next &raquo;</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
     </div>
     <!-- Bootstrap Alert Message pops up in case No Expanses were found when we click search! -->
     <div *ngIf="state.appData?.content!.length < 1" class="alert alert-secondary mt-5" role="alert">

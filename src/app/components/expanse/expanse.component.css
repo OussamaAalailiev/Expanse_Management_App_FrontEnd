@@ -6,3 +6,10 @@
 .pointer{
   cursor: pointer;
 }
+
+inlineElement {
+  display: inline;
+}
+blockElement {
+  display: block;
+}
