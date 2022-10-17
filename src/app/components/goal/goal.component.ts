@@ -15,6 +15,7 @@ import {AuthenticationLoginService} from "../../services/authenticationLoginServ
 export class GoalComponent implements OnInit {
 
   goalList!: Observable<Goal []>;
+  //progressCircleVal : number = this.getPercentageOfAmountAchievedToCircularBar();
 
   errorMessage: string | undefined;//I don't know what 'appState' means yet:
   pageOfGoals$!: Observable<{appState: string, appData?: PageOfGoals, error?: HttpErrorResponse}>;
@@ -77,5 +78,26 @@ export class GoalComponent implements OnInit {
   handleUpdateGoalForm(goal: Goal) {
     alert("'handleUpdateGoalForm' Function Not Working yet!");
   }
+
+  //  getPercentageOfAmountAchievedToCircularBar(amountAchieved: number, amountGoal: number) : number{
+  //   let circularProgress : HTMLDivElement= document.querySelector('circular-progress')!;
+  //   let progressValue = document.querySelector('progress-value');
+  //   let progressStartValue = 0,
+  //     progressEndValue = Math.floor(((amountAchieved)/(amountGoal)) * 100),
+  //     speed = 100;
+  //
+  //   let progress = setInterval(() => {
+  //     progressStartValue++;
+  //
+  //     progressValue!.textContent = `${progressStartValue}%`
+  //     circularProgress!.style.background = `conic-gradient(#7d2ae8 ${progressStartValue * 3.6}deg, #ededed 0deg)`
+  //
+  //     if(progressStartValue == progressEndValue){
+  //       clearInterval(progress);
+  //     }
+  //   }, speed);
+  //   return progressEndValue;
+  //
+  // }
 
 }

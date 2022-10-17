@@ -34,4 +34,6 @@ export class GoalService {
   getPercentageOfAmountAchieved(amountAchieved: number, amountGoal: number): number{
     return Math.floor(((amountAchieved)/(amountGoal)) * 100);
   }
+
+
 }

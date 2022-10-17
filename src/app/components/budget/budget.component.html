@@ -198,10 +198,10 @@
                 <span *ngIf="authService.isAuthenticateUserHasRoleService('USER')"><!--'expanse/updateExpanse/:expanseId' -->
                   <a> <!-- [routerLink]="['/expanse/updateExpanse/', expanse.id]" -->
                     <span class="text-success pointer" (click)="handleUpdateBudgetForm(budget)">
-                    <i class="bi bi-pencil-square"></i>
+                      <i class="bi bi-pencil-square"></i>
+                    </span>
+                  </a>
                 </span>
-              </a>
-            </span>
               </div>
               <section class="card-text"><strong >{{budget.amount}} DH</strong></section>
               <section class="card-text"><span >AmountSpent: {{budget.amountSpent}} DH</span></section>
