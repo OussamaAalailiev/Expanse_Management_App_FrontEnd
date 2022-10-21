@@ -28,16 +28,17 @@
 <!--  </div>-->
 <!--</div>-->
 <main class="Mymain">
+  <h1 class="text-center p-2">Profile page </h1>
   <main class="myProfileContainer" *ngIf="user">
-    <img src="./assets/images/profile.png" alt="My profile image" >
+    <img class="MyProfileImage" src="./assets/images/oussama.png" alt="My profile image" width="200" height="172">
     <!--  <section class="myProfileContainer">-->
     <h2 class="box card-text">{{user.name}}</h2>
     <h5 class="box card-text">{{user.email}}</h5>
-    <p class="box title">Currency: &nbsp;<strong>{{user.currency}}</strong></p>
-    <section class="box card-text">Creation Date: &nbsp;<strong class="text-muted"> {{user.dateCreation}}</strong></section>
-    <section class="box card-text">Total Balance: &nbsp;<strong> {{user.totalSold}}</strong></section>
-    <section *ngIf="user.active===true" class="box card-text">Account: &nbsp;<span class="badge bg-success"> Active</span></section>
-    <section *ngIf="user.active===false" class="box card-text">Account: &nbsp;<span class="badge bg-secondary"> Inactive</span></section>
+    <p class="box title">Currency:&nbsp;<strong>{{user.currency}}</strong></p>
+    <section class="box card-text">Creation Date:&nbsp;<strong>{{user.dateCreation}}</strong></section>
+    <section class="box card-text">Total Balance:&nbsp;<strong>{{user.totalSold}}</strong></section>
+    <section *ngIf="user.active===true" class="box card-text">Account:&nbsp;<span class="badge bg-success"> Active</span></section>
+    <section *ngIf="user.active===false" class="box card-text">Account:&nbsp;<span class="badge bg-secondary"> Inactive</span></section>
     <!--  </section>-->
   </main>
 </main>

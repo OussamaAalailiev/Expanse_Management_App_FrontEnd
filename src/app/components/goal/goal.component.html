@@ -36,7 +36,7 @@
       <!-- Search Form: -->
         <form #searchForm="ngForm" (ngSubmit)="goToAnotherPage(searchForm.value.title.trim())" class="container input-group">
           <input type="text" name="title" ngModel type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-          <button type="submit" class="btn btn-outline-primary">search <i class="bi bi-search"></i></button>
+          <button type="submit" class="btn btn-outline-primary">search Goal(s)&nbsp;<i class="bi bi-search"></i></button>
         </form>
 
 <!--      <div class="d-flex justify-content-center">-->
@@ -45,7 +45,7 @@
 <!--          <button type="submit" class="btn btn-outline-primary">search <i class="bi bi-search"></i></button>-->
 <!--        </form>-->
 <!--      </div>-->
-      <h4 class="text-center mt-2">Goals: </h4>
+      <h4 class="text-center mt-3">Goals </h4>
       <h6 class="text-center">How much I already saved?
         <img id="MoneyImage" src="./assets/images/money.jpg" alt="money image">
       </h6>
@@ -77,7 +77,7 @@
 <!--              <div class="card-title">{{goal.title}}</div>-->
 
               <div class="d-flex justify-content-between">
-                <span class="card-title">{{goal.title}}</span>
+                <strong><span class="card-title">{{goal.title}}</span></strong>
                 <!-- Circular Progress Bar: -->
 <!--                <div class="myCircularContainer p-1">-->
 <!--                  <div class="circular-progress">-->
@@ -147,14 +147,15 @@
                   ></circle-progress>
                 </span>
               </div>
-              <section class="card-text"><span>Amount: <strong>{{goal.amount}} DH</strong></span></section>
+              <section class="card-text"><span>Limit: <strong>{{goal.amount}} DH</strong></span></section>
               <section class="card-text"><span >Amount Achieved: <strong>{{goal.amountAchieved}} DH</strong></span></section>
               <br>
               <section class="d-flex justify-content-between">
                               <span *ngIf="(goal.amountAchieved/goal.amount<0.50)" class="badge rounded-pill bg-secondary">
                                 Goal Not Achieved yet <i class="bi bi-patch-exclamation-fill" style="color: black"></i>
                               </span>
-                              <span *ngIf="(goal.amountAchieved/goal.amount>0.50) && (goal.amountAchieved/goal.amount<1)" class="badge rounded-pill bg-info">
+                              <span *ngIf="(goal.amountAchieved/goal.amount>0.50) && (goal.amountAchieved/goal.amount<1)"
+                                    class="badge rounded-pill" style="background-color: #73d46a">
                 <!--                Goal's nearly Achieved <i class="bi bi-hand-thumbs-up-fill" style="color: black"></i>-->
                                 Goal is nearly Achieved <i class="bi bi-arrow-up-right-circle-fill" style="color: black"></i>
                               </span>

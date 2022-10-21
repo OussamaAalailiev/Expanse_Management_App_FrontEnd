@@ -34,11 +34,11 @@
   <!-- Search Form: -->
   <form #searchForm="ngForm" (ngSubmit)="goToAnotherPage(searchForm.value.title.trim())" class="container input-group">
     <input type="text" name="title" ngModel type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-    <button type="submit" class="btn btn-outline-primary">search <i class="bi bi-search"></i></button>
+    <button type="submit" class="btn btn-outline-primary">search Expense(s)&nbsp;<i class="bi bi-search"></i></button>
   </form>
   <ng-container *ngSwitchCase="'APP_LOADED'" >
     <div *ngIf="state.appData?.content!.length > 0">
-      <h4 class="text-center">Expenses: </h4>
+      <h4 class="text-center mt-3">Expenses </h4>
       <h6 class="text-center">How much I spend? <img class="inlineElement" src="./assets/images/expenseHowMuch.png"
                                                           alt="budget image" height="55" width="55">
       </h6>
@@ -109,7 +109,7 @@
                  </span>
                 </span>
               </div>
-              <section class="card-text"><strong >{{expanse.amount}} DH</strong></section>
+              <section class="card-text">Spent:&nbsp;<strong >{{expanse.amount}} DH</strong></section>
               <section class="card-text"><SMALL class="text-muted">{{expanse.createdDate}}</SMALL></section>
               <section >
                 <span class="d-flex justify-content-end" *ngIf="authService.isAuthenticateUserHasRoleService('USER')">
