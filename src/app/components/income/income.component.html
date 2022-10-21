@@ -1,6 +1,10 @@
 <div class="container mt-5 text-center">
   <button (click)="handleIncomeFormNav()"
-          type="button" class="btn btn-outline-info">Add New Income</button>
+          type="button" class="btn btn-outline-info">
+    Add New Income
+    <img class="inlineElement" src="./assets/images/addIncome.png" alt="Income image" width="35" height="35">
+    <i class="m-1 bi bi-plus-circle"></i>
+  </button>
 </div>
 
 <ng-container *ngIf="(pageOfIncomes$ | async) as state" [ngSwitch]="state.appState">
@@ -35,63 +39,193 @@
         <input type="text" name="title" ngModel type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
         <button type="submit" class="btn btn-outline-primary">search <i class="bi bi-search"></i></button>
       </form>
-      <h4 class="text-center">List of Incomes: </h4>
-      <br><br>
-      <div class="table-responsive-md">
+      <h4 class="text-center">Incomes: </h4>
+      <h6 class="text-center">How much I Have Earned? <img class="inlineElement" src="./assets/images/incomeHowMuch.png"
+                                                     alt="budget image" height="55" width="55">
+      </h6>
+<!--      <div class="table-responsive-md">-->
 
-        <table class="table bg-white">
-          <thead class="bg-light">
-          <tr>
-            <th>Title</th><th>Amount</th>
-            <th>Created Date</th>
-            <th>Category of Income</th><th>User Name</th>
-            <th class="text-primary" colspan="2"> Actions</th>
-          </tr>
-          </thead>
-          <br>
-          <tbody>
-          <tr *ngFor="let income of state.appData?.content; let i=index; ">
-            <td>{{income.title}}</td>
-            <td>{{income.amount}}</td>
-            <td>{{income.createdDate}}</td>
-            <td>{{income.categoryIncome.categoryIncomeType}}</td>
-            <td *ngIf="income.user!==null">{{income.user.id}}</td>
-            <td *ngIf="income.user!==null">{{income.user.name}}</td>
-            <td *ngIf="authService.isAuthenticateUserHasRoleService('USER')">
-              <span class="text-danger pointer" (click)="handleIncomeDelete(income)">
-                <i class="bi bi-trash"></i>
-              </span>
-            </td>
-            <td *ngIf="authService.isAuthenticateUserHasRoleService('USER')">
-              <a>
-                <span class="text-success pointer" (click)="handleUpdateIncomeForm(income)">
-                  <i class="bi bi-pencil-square"></i>
+<!--        <table class="table bg-white">-->
+<!--          <thead class="bg-light">-->
+<!--          <tr>-->
+<!--            <th>Title</th><th>Amount</th>-->
+<!--            <th>Created Date</th>-->
+<!--            <th>Category of Income</th><th>User Name</th>-->
+<!--            <th class="text-primary" colspan="2"> Actions</th>-->
+<!--          </tr>-->
+<!--          </thead>-->
+<!--          <br>-->
+<!--          <tbody>-->
+<!--          <tr *ngFor="let income of state.appData?.content; let i=index; ">-->
+<!--            <td>{{income.title}}</td>-->
+<!--            <td>{{income.amount}}</td>-->
+<!--            <td>{{income.createdDate}}</td>-->
+<!--            <td>{{income.categoryIncome.categoryIncomeType}}</td>-->
+<!--            <td *ngIf="income.user!==null">{{income.user.id}}</td>-->
+<!--            <td *ngIf="income.user!==null">{{income.user.name}}</td>-->
+<!--            <td *ngIf="authService.isAuthenticateUserHasRoleService('USER')">-->
+<!--              <span class="text-danger pointer" (click)="handleIncomeDelete(income)">-->
+<!--                <i class="bi bi-trash"></i>-->
+<!--              </span>-->
+<!--            </td>-->
+<!--            <td *ngIf="authService.isAuthenticateUserHasRoleService('USER')">-->
+<!--              <a>-->
+<!--                <span class="text-success pointer" (click)="handleUpdateIncomeForm(income)">-->
+<!--                  <i class="bi bi-pencil-square"></i>-->
+<!--                </span>-->
+<!--              </a>-->
+<!--            </td>-->
+
+<!--          </tr>-->
+<!--          </tbody>-->
+<!--        </table>-->
+<!--        <nav *ngIf="state.appData?.content!.length > 0" aria-label="Page navigation example">-->
+<!--          <ul  class="pagination justify-content-center">-->
+<!--            <li [ngClass]="0==(currentPage$ | async)?'diasabledPageNavButton':''" class="page-item pointer">-->
+<!--              <a (click)="goToNextOrPreviousPage('PreviousPage',searchForm.value.title)" class="page-link" aria-label="Previous">-->
+<!--                <span aria-hidden="true">&laquo; Previous</span>-->
+<!--              </a>-->
+<!--            </li>-->
+<!--            <li class="page-item pointer" [ngClass]="(currentPage$ | async)==i?'active':''"-->
+<!--                *ngFor="let pageNumber of [].constructor(state.appData?.totalPages); let i=index;">-->
+<!--              <a class="page-link" (click)="goToAnotherPage(searchForm.value.title, authService.authenticatedUserLogin!.id, i)">{{i + 1}}</a>-->
+<!--            </li>-->
+<!--            <li [ngClass]="state.appData?.last ? 'diasabledPageNavButton':''" class="page-item pointer">-->
+<!--              <a (click)="goToNextOrPreviousPage('NextPage',searchForm.value.title)" class="page-link" aria-label="Next">-->
+<!--                <span aria-hidden="true">Next &raquo;</span>-->
+<!--              </a>-->
+<!--            </li>-->
+<!--          </ul>-->
+<!--        </nav>-->
+<!--      </div>-->
+
+      <br>
+      <!-- Cards & Rows Instead of Table: -->
+      <section class="container">
+        <section class="card" *ngFor="let income of state.appData?.content; let i=index;" >
+          <section class="row">
+            <div class="col-md-3">
+              <div class="m-5">
+<!--                {{income.categoryIncome.categoryIncomeType}}-->
+                <div *ngIf="income.categoryIncome.categoryIncomeType==='CHILD_SUPPORT'">
+                  <img src="./assets/images/" alt="CHILD_SUPPORT image" width="55" height="55">
+                </div>
+                <div *ngIf="income.categoryIncome.categoryIncomeType==='RENTAL_INCOME'">
+                  <img src="./assets/images/" alt="RENTAL_INCOME image" width="52.5" height="55">
+                </div>
+                <div *ngIf="income.categoryIncome.categoryIncomeType==='SALARY'">
+                  <img src="./assets/images/salary.png" alt="SALARY image" width="55" height="55">
+                </div>
+                <div *ngIf="income.categoryIncome.categoryIncomeType==='DIVIDENDS'">
+                  <img src="./assets/images/" alt="DIVIDENDS image" width="55" height="55">
+                </div>
+                <div *ngIf="income.categoryIncome.categoryIncomeType==='TAX_REFUND'">
+                  <img src="./assets/images/" alt="TAX_REFUND image" width="55" height="55">
+                </div>
+                <div *ngIf="income.categoryIncome.categoryIncomeType==='GIFTS'">
+                  <img src="./assets/images/gift.png" alt="GIFTS image" width="55" height="55">
+                </div>
+                <div *ngIf="income.categoryIncome.categoryIncomeType==='TRADE_SALES'">
+                  <img src="./assets/images/trade.png" alt="TRADE_SALES image" width="55" height="55">
+                </div>
+                <div *ngIf="income.categoryIncome.categoryIncomeType==='Dues_and_Grants'">
+                  <img src="./assets/images/" alt="Dues_and_Grants image" width="55" height="55">
+                </div>
+                <div *ngIf="income.categoryIncome.categoryIncomeType==='Checks_Coupons'">
+                  <img src="./assets/images/" alt="Checks_Coupons image" width="55" height="55">
+                </div>
+                <div *ngIf="income.categoryIncome.categoryIncomeType==='SAVINGS'">
+                  <img src="./assets/images/saving.png" alt="SAVINGS image" width="55" height="55">
+                </div>
+                <div *ngIf="income.categoryIncome.categoryIncomeType==='ROYALTIES'">
+                  <img src="./assets/images/" alt="ROYALTIES image" width="55" height="55">
+                </div>
+                <div *ngIf="income.categoryIncome.categoryIncomeType==='CONSTRUCTIONS'">
+                  <img src="./assets/images/construction2.png" alt="CONSTRUCTIONS image" width="55" height="55">
+                </div>
+                <div *ngIf="income.categoryIncome.categoryIncomeType==='AGRICULTURE'">
+                  <img src="./assets/images/" alt="AGRICULTURE image" width="55" height="55">
+                </div>
+                <div *ngIf="income.categoryIncome.categoryIncomeType==='SEA_FISHING'">
+                  <img src="./assets/images/" alt="SEA_FISHING image" width="55" height="55">
+                </div>
+                <div *ngIf="income.categoryIncome.categoryIncomeType==='MEDICAL_CONSULTATION'">
+                  <img src="./assets/images/medicalservice.png" alt="MEDICAL_CONSULTATION image" width="55" height="55">
+                </div>
+                <div *ngIf="income.categoryIncome.categoryIncomeType==='COURT_SERVICE'">
+                  <img src="./assets/images/courtservice.png" alt="COURT_SERVICE image" width="55" height="55">
+                </div>
+                <div *ngIf="income.categoryIncome.categoryIncomeType==='TOURIST_SERVICE'">
+                  <img src="./assets/images/" alt="TOURIST_SERVICE image" width="55" height="55">
+                </div>
+                <div *ngIf="income.categoryIncome.categoryIncomeType==='SECURITY_SERVICE'">
+                  <img src="./assets/images/" alt="SECURITY_SERVICE image" width="55" height="55">
+                </div>
+                <div *ngIf="income.categoryIncome.categoryIncomeType==='EDUCATION_SERVICE'">
+                  <img src="./assets/images/" alt="EDUCATION_SERVICE image" width="55" height="55">
+                </div>
+                <div *ngIf="income.categoryIncome.categoryIncomeType==='OTHER_SERVICE'">
+                  <img src="./assets/images/" alt="OTHER_SERVICE image" width="55" height="55">
+                </div>
+              </div>
+            </div>
+
+            <span class="col-md-9">
+            <div class="card-body">
+              <div class="d-flex justify-content-between">
+                <span class="card-title">
+                {{income.title}}
                 </span>
-              </a>
-            </td>
+              <span >
+                  <span *ngIf="authService.isAuthenticateUserHasRoleService('USER')"><!--'expanse/updateExpanse/:expanseId' -->
+                   <a>
+                     <span class="text-success pointer" (click)="handleUpdateIncomeForm(income)">
+                       <i class="bi bi-pencil-square"></i>
+                     </span>
+                   </a>
+                 </span>
+                </span>
+              </div>
+              <section class="card-text"><strong >{{income.amount}} DH</strong></section>
+              <section class="card-text"><SMALL class="text-muted">{{income.createdDate}}</SMALL></section>
+              <section >
+                <span class="d-flex justify-content-end" *ngIf="authService.isAuthenticateUserHasRoleService('USER')">
+                <a>
+                  <span class="text-danger pointer" (click)="handleIncomeDelete(income)">
+                    <i class="bi bi-trash"></i>
+                  </span>
+                </a>
+              </span>
+              </section>
+            </div>
 
-          </tr>
-          </tbody>
-        </table>
-        <nav *ngIf="state.appData?.content!.length > 0" aria-label="Page navigation example">
-          <ul  class="pagination justify-content-center">
-            <li [ngClass]="0==(currentPage$ | async)?'diasabledPageNavButton':''" class="page-item pointer">
-              <a (click)="goToNextOrPreviousPage('PreviousPage',searchForm.value.title)" class="page-link" aria-label="Previous">
-                <span aria-hidden="true">&laquo; Previous</span>
-              </a>
-            </li>
-            <li class="page-item pointer" [ngClass]="(currentPage$ | async)==i?'active':''"
-                *ngFor="let pageNumber of [].constructor(state.appData?.totalPages); let i=index;">
-              <a class="page-link" (click)="goToAnotherPage(searchForm.value.title, authService.authenticatedUserLogin!.id, i)">{{i + 1}}</a>
-            </li>
-            <li [ngClass]="state.appData?.last ? 'diasabledPageNavButton':''" class="page-item pointer">
-              <a (click)="goToNextOrPreviousPage('NextPage',searchForm.value.title)" class="page-link" aria-label="Next">
-                <span aria-hidden="true">Next &raquo;</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
+            <section class="container">
+
+            </section>
+          </span>
+          </section>
+        </section>
+      </section>
+
+      <nav *ngIf="state.appData?.content!.length > 0" aria-label="Page navigation example">
+        <ul  class="pagination justify-content-center">
+          <li [ngClass]="0==(currentPage$ | async)?'diasabledPageNavButton':''" class="page-item pointer">
+            <a (click)="goToNextOrPreviousPage('PreviousPage',searchForm.value.title)" class="page-link" aria-label="Previous">
+              <span aria-hidden="true">&laquo; Previous</span>
+            </a>
+          </li>
+          <li class="page-item pointer" [ngClass]="(currentPage$ | async)==i?'active':''"
+              *ngFor="let pageNumber of [].constructor(state.appData?.totalPages); let i=index;">
+            <a class="page-link" (click)="goToAnotherPage(searchForm.value.title, authService.authenticatedUserLogin!.id, i)">{{i + 1}}</a>
+          </li>
+          <li [ngClass]="state.appData?.last ? 'diasabledPageNavButton':''" class="page-item pointer">
+            <a (click)="goToNextOrPreviousPage('NextPage',searchForm.value.title)" class="page-link" aria-label="Next">
+              <span aria-hidden="true">Next &raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
     </div>
     <!-- Bootstrap Alert Message pops up in case No Incomes were found when we click search! -->
     <div *ngIf="state.appData?.content!.length < 1" class="alert alert-secondary mt-5" role="alert">

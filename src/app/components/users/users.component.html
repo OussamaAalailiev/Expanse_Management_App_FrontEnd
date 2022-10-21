@@ -1,29 +1,43 @@
 
 <!--<h4>List of Users: </h4>-->
-<div class="p-5">
-  <h4>User Information Profile: </h4>
+<!--<div class="p-5">-->
+<!--  <h4>User Information Profile: </h4>-->
 
-  <div class="table-responsive-md">
+<!--  <div class="table-responsive-md">-->
 
-    <table class="table mt-5">
-      <thead >
-      <th>Name</th><th>Email</th><th>Active</th><th>Total Sold</th><th>Currency</th><th>Creation Date</th>
-      </thead>
-      <tbody *ngIf="user">
-      <!--    <tr *ngFor="let user of users">-->
-      <tr >
-        <td>{{user.name}}</td><td>{{user.email}}</td>
-        <td *ngIf="user.active===true">
-          <span class="badge bg-success">active</span>
-        </td>
-        <td *ngIf="user.active===false">
-          <span class="badge bg-secondary">inactive</span>
-        </td>
-        <td>{{user.totalSold}}</td>
-        <td>{{user.currency}}</td><td>{{user.dateCreation}}</td>
-      </tr>
-      </tbody>
-    </table>
+<!--    <table class="table mt-5">-->
+<!--      <thead >-->
+<!--      <th>Name</th><th>Email</th><th>Active</th><th>Total Sold</th><th>Currency</th><th>Creation Date</th>-->
+<!--      </thead>-->
+<!--      <tbody *ngIf="user">-->
+<!--      &lt;!&ndash;    <tr *ngFor="let user of users">&ndash;&gt;-->
+<!--      <tr >-->
+<!--        <td>{{user.name}}</td><td>{{user.email}}</td>-->
+<!--        <td *ngIf="user.active===true">-->
+<!--          <span class="badge bg-success">active</span>-->
+<!--        </td>-->
+<!--        <td *ngIf="user.active===false">-->
+<!--          <span class="badge bg-secondary">inactive</span>-->
+<!--        </td>-->
+<!--        <td>{{user.totalSold}}</td>-->
+<!--        <td>{{user.currency}}</td><td>{{user.dateCreation}}</td>-->
+<!--      </tr>-->
+<!--      </tbody>-->
+<!--    </table>-->
 
-  </div>
-</div>
+<!--  </div>-->
+<!--</div>-->
+<main class="Mymain">
+  <main class="myProfileContainer" *ngIf="user">
+    <img src="./assets/images/profile.png" alt="My profile image" >
+    <!--  <section class="myProfileContainer">-->
+    <h2 class="box card-text">{{user.name}}</h2>
+    <h5 class="box card-text">{{user.email}}</h5>
+    <p class="box title">Currency: &nbsp;<strong>{{user.currency}}</strong></p>
+    <section class="box card-text">Creation Date: &nbsp;<strong class="text-muted"> {{user.dateCreation}}</strong></section>
+    <section class="box card-text">Total Balance: &nbsp;<strong> {{user.totalSold}}</strong></section>
+    <section *ngIf="user.active===true" class="box card-text">Account: &nbsp;<span class="badge bg-success"> Active</span></section>
+    <section *ngIf="user.active===false" class="box card-text">Account: &nbsp;<span class="badge bg-secondary"> Inactive</span></section>
+    <!--  </section>-->
+  </main>
+</main>
