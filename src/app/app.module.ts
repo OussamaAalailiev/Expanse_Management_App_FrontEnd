@@ -15,6 +15,7 @@ import { NewExpanseFormComponent } from './forms/new-expanse-form/new-expanse-fo
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {DatePipe} from "@angular/common";
 import { UpdateExpanseComponent } from './forms/update-expanse/update-expanse.component';
+import { NgCircleProgressModule } from 'ng-circle-progress';
 // import {MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -76,15 +77,8 @@ import { TotalExpansesComponent } from './components/total-expanses/total-expans
     ReactiveFormsModule,
     MatDialogModule,
     BrowserAnimationsModule,
-    FormsModule
-    // MatIconModule,
-    // MatToolbarModule,
-    // MatButtonModule,
-    // MatSliderModule,
-    // MatDatepickerModule,
-    // MatNativeDateModule,
-    // MatFormFieldModule,
-    // MatInputModule,
+    FormsModule,
+    NgCircleProgressModule.forRoot({})
   ],
   providers: [
     DatePipe,
