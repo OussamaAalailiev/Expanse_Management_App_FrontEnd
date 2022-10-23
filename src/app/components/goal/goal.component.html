@@ -33,7 +33,7 @@
 
   <!-- Search Form: -->
   <div class="MyDivForm">
-    <form #searchForm="ngForm" (ngSubmit)="goToAnotherPage(searchForm.value.title.trim())">
+    <form class="FormHover" #searchForm="ngForm" (ngSubmit)="goToAnotherPage(searchForm.value.title.trim())">
       <input type="text" name="title" ngModel type="search" placeholder=" Search Goal(s)" aria-label="Search" aria-describedby="search-addon" />
       <button type="submit" class="MySearchButton">&nbsp;<i class="bi bi-search"></i></button>
     </form>
@@ -56,7 +56,7 @@
       <!-- Display Goals In Cards of Rows: -->
       <section class="container">
         <section class="card" *ngFor="let goal of state.appData?.content; let i=index;" >
-          <section class="row">
+          <section class="row visitedCard">
             <div class="col-md-3">
               <div class="m-5">
 <!--                {{goal.categoryIncome.categoryIncomeType}}-->

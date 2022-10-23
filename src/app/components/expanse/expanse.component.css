@@ -48,9 +48,13 @@ input:focus {
   outline: none;
 }
 
-form:hover {
-  box-shadow: 3px 3px 3px 1px grey;
-}
+/*form:hover {*/
+/*  box-shadow: 3px 3px 3px 1px grey;*/
+/*}*/
+
+/*.visitedCard:hover {*/
+/*  background-color: lightblue;*/
+/*}*/
 
 .MySearchButton {
   /* Just a little styling to make it pretty */

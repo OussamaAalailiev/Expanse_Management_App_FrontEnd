@@ -34,7 +34,7 @@
 
   <!-- Search Form: -->
   <div class="MyDivForm">
-    <form #searchForm="ngForm" (ngSubmit)="goToAnotherPage(searchForm.value.title.trim())">
+    <form class="FormHover" #searchForm="ngForm" (ngSubmit)="goToAnotherPage(searchForm.value.title.trim())">
       <input type="text" name="title" ngModel type="search" placeholder=" search Income(s)" aria-label="Search" aria-describedby="search-addon" />
       <button type="submit" class="MySearchButton">&nbsp;<i class="bi bi-search"></i></button>
     </form>
@@ -46,67 +46,12 @@
       <h6 class="text-center">How much I Have Earned? <img class="inlineElement" src="./assets/images/incomeHowMuch.png"
                                                      alt="budget image" height="55" width="55">
       </h6>
-<!--      <div class="table-responsive-md">-->
-
-<!--        <table class="table bg-white">-->
-<!--          <thead class="bg-light">-->
-<!--          <tr>-->
-<!--            <th>Title</th><th>Amount</th>-->
-<!--            <th>Created Date</th>-->
-<!--            <th>Category of Income</th><th>User Name</th>-->
-<!--            <th class="text-primary" colspan="2"> Actions</th>-->
-<!--          </tr>-->
-<!--          </thead>-->
-<!--          <br>-->
-<!--          <tbody>-->
-<!--          <tr *ngFor="let income of state.appData?.content; let i=index; ">-->
-<!--            <td>{{income.title}}</td>-->
-<!--            <td>{{income.amount}}</td>-->
-<!--            <td>{{income.createdDate}}</td>-->
-<!--            <td>{{income.categoryIncome.categoryIncomeType}}</td>-->
-<!--            <td *ngIf="income.user!==null">{{income.user.id}}</td>-->
-<!--            <td *ngIf="income.user!==null">{{income.user.name}}</td>-->
-<!--            <td *ngIf="authService.isAuthenticateUserHasRoleService('USER')">-->
-<!--              <span class="text-danger pointer" (click)="handleIncomeDelete(income)">-->
-<!--                <i class="bi bi-trash"></i>-->
-<!--              </span>-->
-<!--            </td>-->
-<!--            <td *ngIf="authService.isAuthenticateUserHasRoleService('USER')">-->
-<!--              <a>-->
-<!--                <span class="text-success pointer" (click)="handleUpdateIncomeForm(income)">-->
-<!--                  <i class="bi bi-pencil-square"></i>-->
-<!--                </span>-->
-<!--              </a>-->
-<!--            </td>-->
-
-<!--          </tr>-->
-<!--          </tbody>-->
-<!--        </table>-->
-<!--        <nav *ngIf="state.appData?.content!.length > 0" aria-label="Page navigation example">-->
-<!--          <ul  class="pagination justify-content-center">-->
-<!--            <li [ngClass]="0==(currentPage$ | async)?'diasabledPageNavButton':''" class="page-item pointer">-->
-<!--              <a (click)="goToNextOrPreviousPage('PreviousPage',searchForm.value.title)" class="page-link" aria-label="Previous">-->
-<!--                <span aria-hidden="true">&laquo; Previous</span>-->
-<!--              </a>-->
-<!--            </li>-->
-<!--            <li class="page-item pointer" [ngClass]="(currentPage$ | async)==i?'active':''"-->
-<!--                *ngFor="let pageNumber of [].constructor(state.appData?.totalPages); let i=index;">-->
-<!--              <a class="page-link" (click)="goToAnotherPage(searchForm.value.title, authService.authenticatedUserLogin!.id, i)">{{i + 1}}</a>-->
-<!--            </li>-->
-<!--            <li [ngClass]="state.appData?.last ? 'diasabledPageNavButton':''" class="page-item pointer">-->
-<!--              <a (click)="goToNextOrPreviousPage('NextPage',searchForm.value.title)" class="page-link" aria-label="Next">-->
-<!--                <span aria-hidden="true">Next &raquo;</span>-->
-<!--              </a>-->
-<!--            </li>-->
-<!--          </ul>-->
-<!--        </nav>-->
-<!--      </div>-->
 
       <br>
       <!-- Cards & Rows Instead of Table: -->
       <section class="container">
         <section class="card" *ngFor="let income of state.appData?.content; let i=index;" >
-          <section class="row">
+          <section class="row visitedCard">
             <div class="col-md-3">
               <div class="m-5">
 <!--                {{income.categoryIncome.categoryIncomeType}}-->

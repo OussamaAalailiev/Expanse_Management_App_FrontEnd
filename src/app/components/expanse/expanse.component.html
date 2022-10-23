@@ -33,7 +33,7 @@
   <!--'*ngSwitchCase="'APP_LOADED'': in case the data is on 'state' loaded, THEN we will display the whole table. -->
   <!-- Search Form: -->
   <div class="MyDivForm">
-  <form #searchForm="ngForm" (ngSubmit)="goToAnotherPage(searchForm.value.title.trim())">
+  <form class="FormHover" #searchForm="ngForm" (ngSubmit)="goToAnotherPage(searchForm.value.title.trim())">
     <input type="text" name="title" ngModel type="search" placeholder=" Search Expense(s)" aria-label="Search" aria-describedby="search-addon" />
     <button type="submit" class="MySearchButton">&nbsp;<i class="bi bi-search"></i></button>
   </form>
@@ -48,7 +48,7 @@
       <!-- Cards & Rows Instead of Table: -->
       <section class="container">
         <section class="card" *ngFor="let expanse of state.appData?.content; let i=index;" >
-          <section class="row">
+          <section class="row visitedCard">
             <div class="col-md-3">
               <div class="m-5">
 <!--                {{expanse.categoryExpanse.categoryExpanseType}}-->
@@ -95,7 +95,7 @@
               </div>
             </div>
 
-            <span class="col-md-9">
+            <span class="col-md-9 ">
             <div class="card-body">
               <div class="d-flex justify-content-between">
                 <span class="card-title">

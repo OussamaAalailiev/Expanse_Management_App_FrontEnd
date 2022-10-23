@@ -22,7 +22,7 @@ form {
   /*flex-direction:row;*/
   flex-flow: row wrap;
   /* This bit draws the box around it */
-  border:1px solid grey;
+  border:1px solid lightgray;
 
   /* I've used padding so you can see the edges of the elements. */
   padding:2px;
@@ -48,9 +48,9 @@ input:focus {
   outline: none;
 }
 
-form:hover {
-  box-shadow: 3px 3px 3px 1px grey;
-}
+/*form:hover {*/
+/*  box-shadow: 3px 3px 3px 1px grey;*/
+/*}*/
 
 .MySearchButton {
   /* Just a little styling to make it pretty */

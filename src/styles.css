@@ -14,3 +14,11 @@
 body{
   /*background-color: lightyellow;*/
 }
+
+.visitedCard:hover {
+  background-color: lightblue;
+}
+
+.FormHover:hover {
+  box-shadow: 3px 3px 3px 1px grey;
+}

@@ -26,7 +26,7 @@
 
   <!-- Search Form: -->
   <div class="MyDivForm">
-    <form #searchForm="ngForm" (ngSubmit)="goToAnotherPageOfBudgets(searchForm.value.title.trim())">
+    <form class="FormHover" #searchForm="ngForm" (ngSubmit)="goToAnotherPageOfBudgets(searchForm.value.title.trim())">
       <input type="text" name="title" ngModel type="search" placeholder=" Search Budget(s)" aria-label=" Search Budget(s)" aria-describedby="search-addon" />
       <button type="submit" class="MySearchButton">&nbsp;<i class="bi bi-search"></i></button>
     </form>
@@ -52,7 +52,7 @@
       <!-- Display Goals In Cards of Rows: -->
       <section class="container">
         <section class="card" *ngFor="let budget of state.appData?.content; let i=index;" >
-          <section class="row">
+          <section class="row visitedCard">
             <div class="col-md-3">
               <div class="m-5">
 <!--                {{budget .categoryExpanse.categoryExpanseType}}-->
