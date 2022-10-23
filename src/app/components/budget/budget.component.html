@@ -24,18 +24,23 @@
     </div>
   </ng-container>
 
-<!--  &lt;!&ndash; Search Form: &ndash;&gt;-->
-<!--  <form #searchForm="ngForm" (ngSubmit)="goToAnotherPageOfBudgets(searchForm.value.title.trim())" class="container input-group">-->
-<!--    <input type="text" name="title" ngModel type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />-->
-<!--    <button type="submit" class="btn btn-outline-primary">search</button>-->
-<!--  </form>-->
+  <!-- Search Form: -->
+  <div class="MyDivForm">
+    <form #searchForm="ngForm" (ngSubmit)="goToAnotherPageOfBudgets(searchForm.value.title.trim())">
+      <input type="text" name="title" ngModel type="search" placeholder=" Search Budget(s)" aria-label=" Search Budget(s)" aria-describedby="search-addon" />
+      <button type="submit" class="MySearchButton">&nbsp;<i class="bi bi-search"></i></button>
+    </form>
+  </div>
   <ng-container *ngSwitchCase="'APP_LOADED'">
     <div *ngIf="state.appData?.content!.length > 0" class="container">
-      <!-- Search Form: -->
-      <form #searchForm="ngForm" (ngSubmit)="goToAnotherPageOfBudgets(searchForm.value.title.trim())" class="container input-group">
-        <input type="text" name="title" ngModel type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-        <button type="submit" class="btn btn-outline-primary">search Budget(s)&nbsp;<i class="bi bi-search"></i></button>
-      </form>
+<!--      &lt;!&ndash; Search Form: &ndash;&gt;-->
+<!--      <div class="MyDivForm">-->
+<!--      <form #searchForm="ngForm" (ngSubmit)="goToAnotherPageOfBudgets(searchForm.value.title.trim())">-->
+<!--        <input type="text" name="title" ngModel type="search" placeholder="Search" aria-label=" Search Budget(s)" aria-describedby="search-addon" />-->
+<!--        <button type="submit" class="MySearchButton">&nbsp;<i class="bi bi-search"></i></button>-->
+<!--      </form>-->
+<!--      </div>-->
+
       <h4 class="text-center mt-3">Budgets </h4>
       <h6 class="text-center">How much I want to spent for something on a period of time?
         <img class="inlineElement" src="./assets/images/budgetHowMuch.png"

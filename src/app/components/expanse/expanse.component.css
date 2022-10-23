@@ -9,6 +9,67 @@
   font-family: 'Poppins', sans-serif;
 }
 
+.MyDivForm {
+  display: block;
+  text-align: center;
+}
+
+form {
+  justify-content: center;
+  /* This bit sets up the horizontal layout */
+  display: inline-block;
+  /*display: flex;*/
+  /*flex-direction:row;*/
+  flex-flow: row wrap;
+  /* This bit draws the box around it */
+  /*border:1px solid grey;*/
+  border:1px solid lightgray;
+  /* I've used padding so you can see the edges of the elements. */
+  padding:2px;
+  width: 33%;
+
+  border-radius: 20px;
+  background-color: white;
+}
+
+input {
+  border-radius: 20px;
+  width: 85%;
+  /*height: 2rem;*/
+  /* Tell the input to use all the available space */
+  /*flex-grow:2;*/
+  /* And hide the input's outline, so the form looks like the outline */
+  border:none;
+  display: inline;
+}
+
+input:focus {
+  /* removing the input focus blue box. Put this on the form if you like. */
+  outline: none;
+}
+
+form:hover {
+  box-shadow: 3px 3px 3px 1px grey;
+}
+
+.MySearchButton {
+  /* Just a little styling to make it pretty */
+  /*border:1px solid blue;*/
+  border: none;
+  /*background:blue;*/
+  /*color:white;*/
+  width: 15%;
+  display: inline;
+  justify-content: flex-end;
+  /*justify-content: center;*/
+  padding: 0;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-color: white;
+  /*position: relative;*/
+  /*font-size: 75%;*/
+}
+
 .diasabledPageNavButton{
   pointer-events: none;
   opacity: 0.6;

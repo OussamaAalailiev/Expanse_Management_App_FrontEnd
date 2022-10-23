@@ -32,10 +32,12 @@
   </ng-container>
   <!--'*ngSwitchCase="'APP_LOADED'': in case the data is on 'state' loaded, THEN we will display the whole table. -->
   <!-- Search Form: -->
-  <form #searchForm="ngForm" (ngSubmit)="goToAnotherPage(searchForm.value.title.trim())" class="container input-group">
-    <input type="text" name="title" ngModel type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-    <button type="submit" class="btn btn-outline-primary">search Expense(s)&nbsp;<i class="bi bi-search"></i></button>
+  <div class="MyDivForm">
+  <form #searchForm="ngForm" (ngSubmit)="goToAnotherPage(searchForm.value.title.trim())">
+    <input type="text" name="title" ngModel type="search" placeholder=" Search Expense(s)" aria-label="Search" aria-describedby="search-addon" />
+    <button type="submit" class="MySearchButton">&nbsp;<i class="bi bi-search"></i></button>
   </form>
+  </div>
   <ng-container *ngSwitchCase="'APP_LOADED'" >
     <div *ngIf="state.appData?.content!.length > 0">
       <h4 class="text-center mt-3">Expenses </h4>
