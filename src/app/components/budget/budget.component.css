@@ -14,6 +14,7 @@
   text-align: center;
 }
 
+/*Begin of Search bar CSS: */
 form {
   justify-content: center;
   /* This bit sets up the horizontal layout */
@@ -69,7 +70,8 @@ input:focus {
   background-color: white;
   /*position: relative;*/
   /*font-size: 75%;*/
-}
+
+}/*End of Search bar CSS: */
 
 .pointer{
   cursor: pointer;
