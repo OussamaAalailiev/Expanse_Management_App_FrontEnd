@@ -1,0 +1,35 @@
+
+<div *ngIf="expensesByCategory" class="container p-5">
+  <h4 class="text-center">Total Expanses By Category: </h4>
+  <br><br>
+  <div class="table-responsive-md">
+
+    <table class="table bg-white">
+      <thead class="bg-secondary">
+      <tr>
+        <th>category_expanse_id</th>
+        <th>createdDate</th>
+        <th>Sum of Expenses</th>
+        <th>Percentage (%)</th>
+        <th>UserId</th>
+      </tr>
+      </thead>
+      <br>
+      <tbody>
+      <!--      {{pageOfExpanses$ | async | json}}-->
+      <tr *ngFor="let expansesByCatg of expensesByCategory ">
+        <td>{{expansesByCatg.category_expanse_id}}</td>
+        <td>{{expansesByCatg.createdDate}}</td>
+        <td>{{expansesByCatg.SumExpensesByCategory}}</td>
+        <td>{{expansesByCatg.percentOfExpensesPerMonth}}</td>
+        <td>{{expansesByCatg.userId}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div *ngIf="!expensesByCategory"  class="alert alert-secondary mt-5" role="alert">
+  <!-- Bootstrap Alert Message pops up in case No Total Expanses were found when we click search! -->
+  No Expanses By Category were found!
+</div>
+

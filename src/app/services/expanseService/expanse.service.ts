@@ -9,6 +9,7 @@ import {ValidationErrors} from "@angular/forms";
 import {AuthenticationLoginService} from "../authenticationLoginService/authentication-login.service";
 import {TotalExpansePerMonthDTO} from "../../models/TotalExpansePerMonthDTO";
 import {UUID} from "angular2-uuid";
+import {ExpensesByCategory} from "../../models/ExpensesByCategory";
 
 @Injectable({
   providedIn: 'root'
@@ -74,7 +75,15 @@ export class ExpanseService {
                      userId: string = this.authService.authenticatedUserLogin!.id): Observable<TotalExpansePerMonthDTO[]>{
     console.log("Inside Service: ");
     console.log("Url= " + environment.backendHost+`/api/expansesSumByUser/${userId}`);
-    return this.http.get<TotalExpansePerMonthDTO[]>(environment.backendHost+`/api/expansesSumByUser/${userId}`)
+    return this.http.get<TotalExpansePerMonthDTO[]>(environment.backendHost+`/api/expansesSumByUser/${userId}`);
+  }
+
+  /**Get Total Amount of Expanses By Category & UserID: */
+  getTotalExpansesByCategoryAndUserIDService(
+    userId: string = this.authService.authenticatedUserLogin!.id): Observable<ExpensesByCategory[]>{
+    console.log("Inside Service: ");
+    console.log("Url= " + environment.backendHost+`/api/expensesSumByCategoryAndUserId/${userId}`);
+    return this.http.get<ExpensesByCategory[]>(environment.backendHost+`/api/expensesSumByCategoryAndUserId/${userId}`);
   }
 
 

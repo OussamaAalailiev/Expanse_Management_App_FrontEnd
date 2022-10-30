@@ -33,6 +33,7 @@ import {CommonValidationMethods} from "./services/validations/commonValidationMe
 import { LoginComponent } from './components/login/login.component';
 import {AuthenticationGuard} from "./security/guards/authentication.guard";
 import { TotalExpansesComponent } from './components/total-expanses/total-expanses.component';
+import { ExpensesSumByCategoryComponent } from './components/expenses-sum-by-category/expenses-sum-by-category.component';
 
 
 
@@ -51,7 +52,8 @@ import { TotalExpansesComponent } from './components/total-expanses/total-expans
     NewBudgetComponent,
     UpdateBudgetComponent,
     LoginComponent,
-    TotalExpansesComponent
+    TotalExpansesComponent,
+    ExpensesSumByCategoryComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +74,8 @@ import { TotalExpansesComponent } from './components/total-expanses/total-expans
       {path: 'budgets/updateBudget/:budgetId', component: UpdateBudgetComponent, canActivate: [AuthenticationGuard]},
       {path: '', component: LoginComponent},
       {path: 'login', component: LoginComponent},
-      {path: 'totalExpansesByUser', component: TotalExpansesComponent, canActivate: [AuthenticationGuard]}
+      {path: 'totalExpansesByUser', component: TotalExpansesComponent, canActivate: [AuthenticationGuard]},
+      {path: 'expensesByCategoryAndUserId', component: ExpensesSumByCategoryComponent, canActivate: [AuthenticationGuard]}
     ]),
     ReactiveFormsModule,
     MatDialogModule,
