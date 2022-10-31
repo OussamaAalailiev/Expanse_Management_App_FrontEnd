@@ -52,55 +52,59 @@
             <div class="col-md-3">
               <div class="m-5">
 <!--                {{expanse.categoryExpanse.categoryExpanseType}}-->
-                <div *ngIf="expanse.categoryExpanse.categoryExpanseType==='Groceries'">
-                  <img src="./assets/images/grocery.png" alt="Grocery image" width="55" height="55">
+                <div *ngIf="expanse.categoryExpanse.categoryExpanseType" >
+                  <img [src]="handleImagesExpense(expanse.categoryExpanse.categoryExpanseType)" alt="Grocery image" width="55" height="55">
                 </div>
-                <div *ngIf="expanse.categoryExpanse.categoryExpanseType==='Drinks'">
-                  <img src="./assets/images/drinks2.png" alt="Drinks image" width="52.5" height="55">
-                </div>
-                <div *ngIf="expanse.categoryExpanse.categoryExpanseType==='Gifts'">
-                  <img src="./assets/images/gift.png" alt="Gift image" width="55" height="55">
-                </div>
-                <div *ngIf="expanse.categoryExpanse.categoryExpanseType==='Plane_LongDistance'">
-                  <img src="./assets/images/airplane.png" alt="Airplane image" width="55" height="55">
-                </div>
-                <div *ngIf="expanse.categoryExpanse.categoryExpanseType==='Loan'">
-                  <img src="./assets/images/trade.png" alt="Loan image" width="55" height="55">
-                </div>
-                <div *ngIf="expanse.categoryExpanse.categoryExpanseType==='Internet'">
-                  <img src="./assets/images/internet.png" alt="Internet image" width="55" height="55">
-                </div>
-                <div *ngIf="expanse.categoryExpanse.categoryExpanseType==='Cell_Phone'">
-                  <img src="./assets/images/cellphone.png" alt="Cell phone image" width="55" height="55">
-                </div>
+<!--                <div *ngIf="expanse.categoryExpanse.categoryExpanseType==='Groceries'" >-->
+<!--                  <img src="./assets/images/grocery.png" alt="Grocery image" width="55" height="55">-->
+<!--                </div>-->
 
-                <div *ngIf="expanse.categoryExpanse.categoryExpanseType==='Cafe'">
-                  <img src="./assets/images/coffee.png" alt="Caffe image" width="55" height="55">
-                </div>
-                <div *ngIf="expanse.categoryExpanse.categoryExpanseType==='Fast_Food'">
-                  <img src="./assets/images/fastfood.png" alt="Fast food image" width="55" height="55">
-                </div>
-                <div *ngIf="expanse.categoryExpanse.categoryExpanseType==='Restaurant'">
-                  <img src="./assets/images/restaurant2.png" alt="Cell phone image" width="55" height="55">
-                </div>
-                <div *ngIf="expanse.categoryExpanse.categoryExpanseType==='Homemade_Food'">
-                  <img src="./assets/images/HomemadeFood.png" alt="Homemade Food image" width="55" height="55">
-                </div>
-                <div *ngIf="expanse.categoryExpanse.categoryExpanseType==='Charges_Fees'">
-                  <img src="./assets/images/financialfees.png" alt="Charge Fees image" width="55" height="55">
-                </div>
-                <div *ngIf="expanse.categoryExpanse.categoryExpanseType==='Drug_store_Chemist'">
-                  <img src="./assets/images/pharmacy.png" alt="Drug_store_Chemist image" width="55" height="55">
-                </div>
-                <div *ngIf="expanse.categoryExpanse.categoryExpanseType==='Games'">
-                  <img src="./assets/images/games2.png" alt="Games image" width="55" height="55">
-                </div>
-                <div *ngIf="expanse.categoryExpanse.categoryExpanseType==='Pets_Animals'">
-                  <img src="./assets/images/animals.png" alt="Pets_Animals image" width="55" height="55">
-                </div>
-                <div *ngIf="expanse.categoryExpanse.categoryExpanseType==='Computer_PC'">
-                  <img src="./assets/images/Computer_PC.png" alt="Computer_PC image" width="55" height="55">
-                </div>
+<!--                <div *ngIf="expanse.categoryExpanse.categoryExpanseType==='Drinks'">-->
+<!--                  <img src="./assets/images/drinks2.png" alt="Drinks image" width="52.5" height="55">-->
+<!--                </div>-->
+<!--                <div *ngIf="expanse.categoryExpanse.categoryExpanseType==='Gifts'">-->
+<!--                  <img src="./assets/images/gift.png" alt="Gift image" width="55" height="55">-->
+<!--                </div>-->
+<!--                <div *ngIf="expanse.categoryExpanse.categoryExpanseType==='Plane_LongDistance'">-->
+<!--                  <img src="./assets/images/airplane.png" alt="Airplane image" width="55" height="55">-->
+<!--                </div>-->
+<!--                <div *ngIf="expanse.categoryExpanse.categoryExpanseType==='Loan'">-->
+<!--                  <img src="./assets/images/trade.png" alt="Loan image" width="55" height="55">-->
+<!--                </div>-->
+<!--                <div *ngIf="expanse.categoryExpanse.categoryExpanseType==='Internet'">-->
+<!--                  <img src="./assets/images/internet.png" alt="Internet image" width="55" height="55">-->
+<!--                </div>-->
+<!--                <div *ngIf="expanse.categoryExpanse.categoryExpanseType==='Cell_Phone'">-->
+<!--                  <img src="./assets/images/cellphone.png" alt="Cell phone image" width="55" height="55">-->
+<!--                </div>-->
+
+<!--                <div *ngIf="expanse.categoryExpanse.categoryExpanseType==='Cafe'">-->
+<!--                  <img src="./assets/images/coffee.png" alt="Caffe image" width="55" height="55">-->
+<!--                </div>-->
+<!--                <div *ngIf="expanse.categoryExpanse.categoryExpanseType==='Fast_Food'">-->
+<!--                  <img src="./assets/images/fastfood.png" alt="Fast food image" width="55" height="55">-->
+<!--                </div>-->
+<!--                <div *ngIf="expanse.categoryExpanse.categoryExpanseType==='Restaurant'">-->
+<!--                  <img src="./assets/images/restaurant2.png" alt="Cell phone image" width="55" height="55">-->
+<!--                </div>-->
+<!--                <div *ngIf="expanse.categoryExpanse.categoryExpanseType==='Homemade_Food'">-->
+<!--                  <img src="./assets/images/HomemadeFood.png" alt="Homemade Food image" width="55" height="55">-->
+<!--                </div>-->
+<!--                <div *ngIf="expanse.categoryExpanse.categoryExpanseType==='Charges_Fees'">-->
+<!--                  <img src="./assets/images/financialfees.png" alt="Charge Fees image" width="55" height="55">-->
+<!--                </div>-->
+<!--                <div *ngIf="expanse.categoryExpanse.categoryExpanseType==='Drug_store_Chemist'">-->
+<!--                  <img src="./assets/images/pharmacy.png" alt="Drug_store_Chemist image" width="55" height="55">-->
+<!--                </div>-->
+<!--                <div *ngIf="expanse.categoryExpanse.categoryExpanseType==='Games'">-->
+<!--                  <img src="./assets/images/games2.png" alt="Games image" width="55" height="55">-->
+<!--                </div>-->
+<!--                <div *ngIf="expanse.categoryExpanse.categoryExpanseType==='Pets_Animals'">-->
+<!--                  <img src="./assets/images/animals.png" alt="Pets_Animals image" width="55" height="55">-->
+<!--                </div>-->
+<!--                <div *ngIf="expanse.categoryExpanse.categoryExpanseType==='Computer_PC'">-->
+<!--                  <img src="./assets/images/Computer_PC.png" alt="Computer_PC image" width="55" height="55">-->
+<!--                </div>-->
               </div>
             </div>
 
