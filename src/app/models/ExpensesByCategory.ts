@@ -7,6 +7,6 @@ export interface ExpensesByCategory{
   title: string;
   category_expanse_id: number;
   userId: UUID;
-  SumExpensesByCategory: number;
+  sumExpensesByCategory: number;
   percentOfExpensesPerMonth: number;
 }
