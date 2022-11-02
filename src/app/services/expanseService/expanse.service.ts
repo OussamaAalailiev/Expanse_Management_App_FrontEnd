@@ -86,5 +86,89 @@ export class ExpanseService {
     return this.http.get<ExpensesByCategory[]>(environment.backendHost+`/api/expensesSumByCategoryAndUserId/${userId}`);
   }
 
+  /** Return Images Dynamically: */
+  handleImagesExpense(categoryExpanseType: string) : string {
+    let imgSamePath = './assets/images/';
+    let imgEndPath = '.png';
+    switch (categoryExpanseType) {
+      case 'Groceries':
+        return `${imgSamePath}grocery${imgEndPath}`;
+      case 'Drinks':
+        return `${imgSamePath}drinks2${imgEndPath}`;
+      case 'Gifts':
+        return `${imgSamePath}gift${imgEndPath}`;
+      case 'Plane_LongDistance':
+        return `${imgSamePath}airplane${imgEndPath}`;
+      case 'Loan':
+        return `${imgSamePath}loan2${imgEndPath}`;
+      case 'Internet':
+        return `${imgSamePath}internet${imgEndPath}`;
+      case 'Cell_Phone':
+        return `${imgSamePath}cellphone${imgEndPath}`;
+      case 'Cafe':
+        return `${imgSamePath}coffee${imgEndPath}`;
+      case 'Fast_Food':
+        return `${imgSamePath}fastfood${imgEndPath}`;
+      case 'Restaurant':
+        return `${imgSamePath}restaurant2${imgEndPath}`;
+      case 'Homemade_Food':
+        return `${imgSamePath}HomemadeFood${imgEndPath}`;
+      case 'Charges_Fees':
+        return `${imgSamePath}financialfees${imgEndPath}`;
+      case 'Drug_store_Chemist':
+        return `${imgSamePath}pharmacy${imgEndPath}`;
+      case 'Games':
+        return `${imgSamePath}games2${imgEndPath}`;
+      case 'Pets_Animals':
+        return `${imgSamePath}animals${imgEndPath}`;
+      // case 'Public_transport':
+      //   return `${imgSamePath}bus${imgEndPath}`;
+      case 'Public_transport':
+        return `${imgSamePath}trainOrTram${imgEndPath}`;
+      default:
+        return `${imgSamePath}EmptyImage${imgEndPath}`;//EmptyImage isn't saved in 'assets/images' yet!
+    }
+  }
+
+  /** To return ALT of Image dynamically: */
+  handleAltOfImagesExpense(categoryExpanseType: string) : string{
+    switch (categoryExpanseType) {
+      case 'Groceries':
+        return `${categoryExpanseType} image`;
+      case 'Drinks':
+        return `${categoryExpanseType} image`;
+      case 'Gifts':
+        return `${categoryExpanseType} image`;
+      case 'Plane_LongDistance':
+        return `${categoryExpanseType} image`;
+      case 'Loan':
+        return `${categoryExpanseType} image`;
+      case 'Internet':
+        return `${categoryExpanseType} image`;
+      case 'Cell_Phone':
+        return `${categoryExpanseType} image`;
+      case 'Cafe':
+        return `${categoryExpanseType} image`;
+      case 'Fast_Food':
+        return `${categoryExpanseType} image`;
+      case 'Restaurant':
+        return `${categoryExpanseType} image`;
+      case 'Homemade_Food':
+        return `${categoryExpanseType} image`;
+      case 'Charges_Fees':
+        return `${categoryExpanseType} image`;
+      case 'Drug_store_Chemist':
+        return `${categoryExpanseType} image`;
+      case 'Games':
+        return `${categoryExpanseType} image`;
+      case 'Pets_Animals':
+        return `${categoryExpanseType} image`;
+      case 'Computer_PC':
+        return `${categoryExpanseType} image`;
+      default:
+        return `Image unfounded`;//EmptyImage isn't saved in 'assets/images' yet!
+    }
+  }
+
 
 }

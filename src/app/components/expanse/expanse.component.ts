@@ -27,7 +27,7 @@ export class ExpanseComponent implements OnInit {
   private currentPageSubject = new BehaviorSubject<number>(0);
   currentPage$ = this.currentPageSubject.asObservable();//'currentPageSubject' will be observed by 'currentPage$'.
 
-  constructor(private expanseService: ExpanseService,
+  constructor(public expanseService: ExpanseService,
               private router: Router,
               //public matDialog: MatDialog
               public authService: AuthenticationLoginService
@@ -163,44 +163,4 @@ export class ExpanseComponent implements OnInit {
     this.router.navigateByUrl('expanse/newExpanse');
   }
 
-  handleImagesExpense(categoryExpanseType: string) : string {
-    let imgSamePath = './assets/images/';
-    let imgEndPath = '.png';
-    switch (categoryExpanseType) {
-      case 'Groceries':
-        return `${imgSamePath}grocery${imgEndPath}`;
-      case 'Drinks':
-        return `${imgSamePath}drinks2${imgEndPath}`;
-      case 'Gifts':
-        return `${imgSamePath}gift${imgEndPath}`;
-      case 'Plane_LongDistance':
-        return `${imgSamePath}airplane${imgEndPath}`;
-      case 'Loan':
-        return `${imgSamePath}loan2${imgEndPath}`;
-      case 'Internet':
-        return `${imgSamePath}internet${imgEndPath}`;
-      case 'Cell_Phone':
-        return `${imgSamePath}cellphone${imgEndPath}`;
-      case 'Cafe':
-        return `${imgSamePath}coffee${imgEndPath}`;
-      case 'Fast_Food':
-        return `${imgSamePath}fastfood${imgEndPath}`;
-      case 'Restaurant':
-        return `${imgSamePath}restaurant2${imgEndPath}`;
-      case 'Homemade_Food':
-        return `${imgSamePath}HomemadeFood${imgEndPath}`;
-      case 'Charges_Fees':
-        return `${imgSamePath}financialfees${imgEndPath}`;
-      case 'Drug_store_Chemist':
-        return `${imgSamePath}pharmacy${imgEndPath}`;
-      case 'Games':
-        return `${imgSamePath}games2${imgEndPath}`;
-      case 'Pets_Animals':
-        return `${imgSamePath}animals${imgEndPath}`;
-      case 'Computer_PC':
-        return `${imgSamePath}Computer_PC${imgEndPath}`;
-      default:
-        return `${imgSamePath}EmptyImage${imgEndPath}`;//EmptyImage isn't saved in 'assets/images' yet!
-    }
-  }
 }
