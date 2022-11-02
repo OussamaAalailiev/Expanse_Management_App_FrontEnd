@@ -12,7 +12,7 @@ export class ExpensesSumByCategoryComponent implements OnInit {
 
   expensesByCategory: ExpensesByCategory[] | undefined;
 
-  constructor(private expanseService: ExpanseService,
+  constructor(public expanseService: ExpanseService,
               public authService: AuthenticationLoginService) { }
 
   ngOnInit(): void {

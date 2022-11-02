@@ -121,8 +121,8 @@ export class ExpanseService {
         return `${imgSamePath}games2${imgEndPath}`;
       case 'Pets_Animals':
         return `${imgSamePath}animals${imgEndPath}`;
-      // case 'Public_transport':
-      //   return `${imgSamePath}bus${imgEndPath}`;
+      case 'Computer_PC':
+        return `${imgSamePath}Computer_PC${imgEndPath}`;
       case 'Public_transport':
         return `${imgSamePath}trainOrTram${imgEndPath}`;
       default:

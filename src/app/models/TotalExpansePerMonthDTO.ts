@@ -7,5 +7,7 @@ export interface TotalExpansePerMonthDTO {
   totalExpanses: number;
   userId: UUID;
   userName: string;
+  amountInterval: number;
+  percentOfAmountInterval: number;
 
 }
