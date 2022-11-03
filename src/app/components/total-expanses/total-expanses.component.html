@@ -10,26 +10,31 @@
     <section class="row visitedCard">
       <div class="col-md-3">
         <div class="m-5">
-          <span *ngIf="expense.month==='08'">
+          <span *ngIf="expense.month">
             <div class="card-title" >{{expense.year}}</div>
-            <img src="./assets/images/august.png" alt="Over Spending image" width="55" height="55">
+            <img [src]="handleCalendarMonth(expense.month)" [alt]="handleAltOfCalendarMonth(expense.month)"
+                  width="55" height="55">
           </span>
-          <span *ngIf="expense.month==='09'">
-            <div class="card-title" >{{expense.year}}</div>
-            <img src="./assets/images/september.png" alt="Over Spending image" width="55" height="55">
-          </span>
-          <span *ngIf="expense.month==='10'">
-            <div class="card-title" >{{expense.year}}</div>
-            <img src="./assets/images/october.png" alt="Over Spending image" width="55" height="55">
-          </span>
-          <span *ngIf="expense.month==='11'">
-            <div class="card-title" >{{expense.year}}</div>
-            <img src="./assets/images/november.png" alt="Over Spending image" width="55" height="55">
-          </span>
-          <span *ngIf="expense.month==='12'">
-            <div class="card-title" >{{expense.year}}</div>
-            <img src="./assets/images/december.png" alt="Over Spending image" width="55" height="55">
-          </span>
+<!--          <span *ngIf="expense.month==='08'">-->
+<!--            <div class="card-title" >{{expense.year}}</div>-->
+<!--            <img src="./assets/images/august.png" alt="Over Spending image" width="55" height="55">-->
+<!--          </span>-->
+<!--          <span *ngIf="expense.month==='09'">-->
+<!--            <div class="card-title" >{{expense.year}}</div>-->
+<!--            <img src="./assets/images/september.png" alt="Over Spending image" width="55" height="55">-->
+<!--          </span>-->
+<!--          <span *ngIf="expense.month==='10'">-->
+<!--            <div class="card-title" >{{expense.year}}</div>-->
+<!--            <img src="./assets/images/october.png" alt="Over Spending image" width="55" height="55">-->
+<!--          </span>-->
+<!--          <span *ngIf="expense.month==='11'">-->
+<!--            <div class="card-title" >{{expense.year}}</div>-->
+<!--            <img src="./assets/images/november.png" alt="Over Spending image" width="55" height="55">-->
+<!--          </span>-->
+<!--          <span *ngIf="expense.month==='12'">-->
+<!--            <div class="card-title" >{{expense.year}}</div>-->
+<!--            <img src="./assets/images/december.png" alt="Over Spending image" width="55" height="55">-->
+<!--          </span>-->
 <!--          <span class="card-title" *ngIf="expense.month==='08'">Aug 2022</span>-->
 <!--          <span class="card-title" *ngIf="expense.month==='09'">Sep 2022</span>-->
 <!--          <span class="card-title" *ngIf="expense.month==='10'">Oct 2022</span>-->
