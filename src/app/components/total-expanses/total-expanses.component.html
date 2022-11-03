@@ -1,60 +1,39 @@
 
-<!--<div *ngIf="totalExpansesList" class="container p-5">-->
-<!--  <h4 class="text-center">Total Expanses By Year and Month: </h4>-->
-<!--  <br><br>-->
-<!--  <div class="table-responsive-md">-->
-
-<!--    <table class="table bg-white">-->
-<!--      <thead class="bg-info">-->
-<!--      <tr>-->
-<!--        <th>Year</th>-->
-<!--        <th>Month</th>-->
-<!--        <th>Total Expanses</th>-->
-<!--        <th>Amount Interval</th>-->
-<!--        <th>Percent Interval</th>-->
-<!--        <th>User Name</th>-->
-<!--      </tr>-->
-<!--      </thead>-->
-<!--      <br>-->
-<!--      <tbody>-->
-<!--      &lt;!&ndash;      {{pageOfExpanses$ | async | json}}&ndash;&gt;-->
-<!--      <tr *ngFor="let expanse of totalExpansesList ">-->
-<!--        <td>{{expanse.year}}</td>-->
-<!--        <td>{{expanse.month}}</td>-->
-<!--        <td>{{expanse.totalExpanses}}</td>-->
-<!--        <td *ngIf="expanse.amountInterval==null">-->
-<!--          <span>0.0</span>-->
-<!--        </td>-->
-<!--        <td *ngIf="expanse.amountInterval">-->
-<!--          <span>{{expanse.amountInterval.toFixed(2)}}</span>-->
-<!--        </td>-->
-<!--        <td *ngIf="expanse.percentOfAmountInterval==null">-->
-<!--          <span>0%</span>-->
-<!--        </td>-->
-<!--        <td *ngIf="expanse.percentOfAmountInterval">-->
-<!--          <span>{{expanse.percentOfAmountInterval.toFixed(2)}} %</span>-->
-<!--        </td>-->
-<!--        <td>{{expanse.userName}}</td>-->
-<!--      </tr>-->
-<!--      </tbody>-->
-<!--    </table>-->
-<!--  </div>-->
-<!--</div>-->
-
-
-
-<h1 class="text-center p-5">
-  Total Expenses
-</h1>
+<!--<h2 class="text-center p-5">-->
+<!--  Total Expenses-->
+<!--</h2>-->
+<div class="twelve">
+  <h1>Total Expenses</h1>
+</div>
 <section class="container" *ngIf="totalExpansesList">
   <section class="card" *ngFor="let expense of totalExpansesList" >
     <section class="row visitedCard">
       <div class="col-md-3">
         <div class="m-5">
-          <span class="card-title" *ngIf="expense.month==='08'">Aug 2022</span>
-          <span class="card-title" *ngIf="expense.month==='09'">Sep 2022</span>
-          <span class="card-title" *ngIf="expense.month==='10'">Oct 2022</span>
-          <span class="card-title" *ngIf="expense.month==='11'">Nov 2022</span>
+          <span *ngIf="expense.month==='08'">
+            <div class="card-title" >{{expense.year}}</div>
+            <img src="./assets/images/august.png" alt="Over Spending image" width="55" height="55">
+          </span>
+          <span *ngIf="expense.month==='09'">
+            <div class="card-title" >{{expense.year}}</div>
+            <img src="./assets/images/september.png" alt="Over Spending image" width="55" height="55">
+          </span>
+          <span *ngIf="expense.month==='10'">
+            <div class="card-title" >{{expense.year}}</div>
+            <img src="./assets/images/october.png" alt="Over Spending image" width="55" height="55">
+          </span>
+          <span *ngIf="expense.month==='11'">
+            <div class="card-title" >{{expense.year}}</div>
+            <img src="./assets/images/november.png" alt="Over Spending image" width="55" height="55">
+          </span>
+          <span *ngIf="expense.month==='12'">
+            <div class="card-title" >{{expense.year}}</div>
+            <img src="./assets/images/december.png" alt="Over Spending image" width="55" height="55">
+          </span>
+<!--          <span class="card-title" *ngIf="expense.month==='08'">Aug 2022</span>-->
+<!--          <span class="card-title" *ngIf="expense.month==='09'">Sep 2022</span>-->
+<!--          <span class="card-title" *ngIf="expense.month==='10'">Oct 2022</span>-->
+<!--          <span class="card-title" *ngIf="expense.month==='11'">Nov 2022</span>-->
 
         </div>
       </div>
@@ -63,44 +42,78 @@
             <div class="card-body">
               <div class="d-flex justify-content-between">
                 <span>
-                  <strong>{{expense.totalExpanses}} DH</strong>
+<!--                    <img src="./assets/images/monthlyexpenses-4.png" alt="Over Spending image" width="55" height="55">-->
                 </span>
-                <div *ngIf="expense.amountInterval>0">
-                  <img src="./assets/images/overspending2.png" alt="Over Spending image" width="55" height="55">
+                <div>
+<!--                  Empty div to gain another fake place for UI Position of pics: -->
                 </div>
-                <div *ngIf="expense.amountInterval<0">
-                  <img src="./assets/images/lessspendings4.png" alt="Over Spending image" width="55" height="55">
-                </div>
-<!--                <span class="card-title " *ngIf="expense.amountInterval==null"><strong>0 DH</strong></span>-->
-<!--                <span class="card-title text-danger" *ngIf="expense.amountInterval>0"><strong>{{expense.amountInterval}} DH</strong></span>-->
-<!--                <span class="card-title text-success" *ngIf="expense.amountInterval<0"><strong>{{expense.amountInterval}} DH</strong></span>-->
-                <span class="card-title" *ngIf="expense.percentOfAmountInterval==null">
+
+              </div>
+              <section class="d-flex justify-content-between">
+                <span class="pt-5">
+                  <span>
+                    <img src="./assets/images/totalExpenses.webp" alt="Over Spending image" width="55" height="55">
+                  </span>&nbsp;
+                  <span>
+                    <strong>{{expense.totalExpanses}} DH</strong>
+                  </span>
+                </span>
+                <span class="card-title align-center pt-5 mx-lg-auto" *ngIf="expense.amountInterval==null"><strong>0 DH</strong></span>
+                <span>
+                  <div *ngIf="expense.amountInterval>0">
+<!--                  <div>-->
+<!--                    <span class="card-title align-center text-danger" *ngIf="expense.amountInterval>0">-->
+<!--                      <strong>{{expense.amountInterval}} DH</strong>-->
+<!--                    </span>-->
+<!--                  </div>-->
+                  <div>
+                    <img src="./assets/images/overspending-reel.png" alt="Over Spending image" width="55" height="55">
+                  </div>
+                  <span>
+                    <img src="./assets/images/overspending-reel-4.png" alt="Over Spending image" width="55" height="55">
+                  </span>&nbsp;
+                  <span class="card-title align-center text-danger" *ngIf="expense.amountInterval>0">
+                    <strong>{{expense.amountInterval}} DH</strong>
+                  </span>
+                  </div>
+                </span>
+                <span>
+                  <div *ngIf="expense.amountInterval<0">
+<!--                  <div>-->
+<!--                    <span class="card-title align-center text-success" *ngIf="expense.amountInterval<0">-->
+<!--                      <strong>{{expense.amountInterval}} DH</strong>-->
+<!--                    </span>-->
+<!--                  </div>-->
+                  <div>
+                    <img src="./assets/images/lessspendings-reel.png" alt="Over Spending image" width="55" height="55">
+                  </div>
+                  <span>
+                    <img src="./assets/images/lessspendings-reel-2.png" alt="Over Spending image" width="55" height="55">
+                  </span>&nbsp;
+                  <span class="card-title align-center text-success" *ngIf="expense.amountInterval<0">
+                    <strong>{{expense.amountInterval}} DH</strong>
+                  </span>
+                  </div>
+                </span>
+
+                <span class="card-title pt-5" *ngIf="expense.percentOfAmountInterval==null">
                   <strong>
-                    <em >0%
+                    <em >(0%)
                     </em>
                   </strong>
                 </span>
-                <span class="card-title" *ngIf="expense.percentOfAmountInterval">
+                <span class="card-title pt-5 mt-4" *ngIf="expense.percentOfAmountInterval">
                   <strong *ngIf="expense.percentOfAmountInterval<0">
                     <em class="text-success">
-                      {{expense.percentOfAmountInterval.toFixed(2) }} %
+                      ({{expense.percentOfAmountInterval.toFixed(2)}} %)
                     </em>
                   </strong>
                   <strong *ngIf="expense.percentOfAmountInterval>0">
                     <em class="text-danger">
-                      +{{expense.percentOfAmountInterval.toFixed(2) }} %
+                      ({{expense.percentOfAmountInterval.toFixed(2) }} %)
                     </em>
                   </strong>
                 </span>
-
-              </div>
-              <!--              <section class="card-text"><span>Limit: &nbsp;<strong>{{budget.amount}} DH</strong></span></section>-->
-              <!--              <section class="card-text"><span >Spent: &nbsp;<strong>{{budget.amountSpent}} DH</strong></span></section>-->
-              <!--              <section class="card-text"><span >Remaining: &nbsp;<strong>{{budget.amountRemains}} DH</strong></span></section>-->
-              <section class="d-flex justify-content-center">
-                <span class="card-title align-center" *ngIf="expense.amountInterval==null"><strong>0 DH</strong></span>
-                <span class="card-title align-center text-danger" *ngIf="expense.amountInterval>0"><strong>+{{expense.amountInterval}} DH</strong></span>
-                <span class="card-title align-center text-success" *ngIf="expense.amountInterval<0"><strong>{{expense.amountInterval}} DH</strong></span>
                 <!--                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="card-text">End Date:&nbsp;<small class="text-muted">{{expensesByCat.endDate}}</small></span>-->
               </section>
               <!--              <section class="card-text">Debut Date:&nbsp;<small class="text-muted">{{budget.dateDebut}}</small></section>-->

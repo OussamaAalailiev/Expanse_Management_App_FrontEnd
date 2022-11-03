@@ -1,8 +1,11 @@
 
 
-<h1 class="text-center p-5">
-  Total Expenses by Category
-</h1>
+<!--<h1 class="text-center p-5">-->
+<!--  Total Expenses by Category-->
+<!--</h1>-->
+<div class="one">
+  <h1>Total Expenses by Category</h1>
+</div>
 <section class="container" *ngIf="expensesByCategory">
   <section class="card" *ngFor="let expensesByCat of expensesByCategory" >
     <section class="row visitedCard">
@@ -10,55 +13,12 @@
         <div class="m-5">
           <!--                {{budget .categoryExpanse.categoryExpanseType}}-->
 
-          <div *ngIf="expensesByCat.category_expanse_id===20">
-            <img src="./assets/images/grocery.png" alt="Grocery image" width="55" height="55">
-          </div>
-          <div *ngIf="expensesByCat.category_expanse_id===61">
-            <img src="./assets/images/drinks2.png" alt="Drinks image" width="52.5" height="55">
-          </div>
-          <div *ngIf="expensesByCat.category_expanse_id===9">
-            <img src="./assets/images/gift.png" alt="Gift image" width="55" height="55">
-          </div>
-          <div *ngIf="expensesByCat.category_expanse_id===3">
-            <img src="./assets/images/airplane.png" alt="Airplane image" width="55" height="55">
-          </div>
-          <div *ngIf="expensesByCat.category_expanse_id===49">
-            <img src="./assets/images/trade.png" alt="Loan image" width="55" height="55">
-          </div>
-          <div *ngIf="expensesByCat.category_expanse_id===56">
-            <img src="./assets/images/internet.png" alt="Internet image" width="55" height="55">
-          </div>
-          <div *ngIf="expensesByCat.category_expanse_id===58">
-            <img src="./assets/images/cellphone.png" alt="Cell phone image" width="55" height="55">
+          <div *ngIf="expensesByCat.category_expanse_id">
+            <img [src]="expanseService.handleImageExpenseById(expensesByCat.category_expanse_id)"
+                 [alt]="expanseService.handleAltOfImagesExpenseById(expensesByCat.category_expanse_id)"
+                 width="55" height="55">
           </div>
 
-          <div *ngIf="expensesByCat.category_expanse_id===17">
-            <img src="./assets/images/coffee.png" alt="Caffe image" width="55" height="55">
-          </div>
-          <div *ngIf="expensesByCat.category_expanse_id===19">
-            <img src="./assets/images/fastfood.png" alt="Fast food image" width="55" height="55">
-          </div>
-          <div *ngIf="expensesByCat.category_expanse_id===18">
-            <img src="./assets/images/restaurant2.png" alt="Cell phone image" width="55" height="55">
-          </div>
-          <div *ngIf="expensesByCat.category_expanse_id===62">
-            <img src="./assets/images/HomemadeFood.png" alt="Homemade Food image" width="55" height="55">
-          </div>
-          <div *ngIf="expensesByCat.category_expanse_id===45">
-            <img src="./assets/images/financialfees.png" alt="Charge Fees image" width="55" height="55">
-          </div>
-          <div *ngIf="expensesByCat.category_expanse_id===6">
-            <img src="./assets/images/pharmacy.png" alt="Drug_store_Chemist image" width="55" height="55">
-          </div>
-          <div *ngIf="expensesByCat.category_expanse_id===60">
-            <img src="./assets/images/games2.png" alt="Games image" width="55" height="55">
-          </div>
-          <div *ngIf="expensesByCat.category_expanse_id===14">
-            <img src="./assets/images/animals.png" alt="Pets_Animals image" width="55" height="55">
-          </div>
-          <div *ngIf="expensesByCat.category_expanse_id===63">
-            <img src="./assets/images/Computer_PC.png" alt="Computer_PC image" width="55" height="55">
-          </div>
         </div>
       </div>
 

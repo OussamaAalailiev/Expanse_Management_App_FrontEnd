@@ -86,8 +86,11 @@ export class ExpanseService {
     return this.http.get<ExpensesByCategory[]>(environment.backendHost+`/api/expensesSumByCategoryAndUserId/${userId}`);
   }
 
+  // readonly imgSamePath : string = './assets/images/';
+  // readonly imgEndPath : string = '.png';
+
   /** Return Images Dynamically: */
-  handleImagesExpense(categoryExpanseType: string) : string {
+  handleImageExpense(categoryExpanseType: string) : string {
     let imgSamePath = './assets/images/';
     let imgEndPath = '.png';
     switch (categoryExpanseType) {
@@ -125,13 +128,21 @@ export class ExpanseService {
         return `${imgSamePath}Computer_PC${imgEndPath}`;
       case 'Public_transport':
         return `${imgSamePath}trainOrTram${imgEndPath}`;
+      case 'Electronics_Accessories':
+        return `${imgSamePath}Electronics_Accessories${imgEndPath}`;
+      case 'Sport_Fitness':
+        return `${imgSamePath}Sport_Fitness${imgEndPath}`;
+      case 'Books_audio_subscriptions':
+        return `${imgSamePath}Books_audio_subscriptions${imgEndPath}`;
+      case 'Alcohol_tobacco':
+        return `${imgSamePath}Alcohol_tobacco${imgEndPath}`;
       default:
         return `${imgSamePath}EmptyImage${imgEndPath}`;//EmptyImage isn't saved in 'assets/images' yet!
     }
   }
 
   /** To return ALT of Image dynamically: */
-  handleAltOfImagesExpense(categoryExpanseType: string) : string{
+  handleAltOfImageExpense(categoryExpanseType: string) : string{
     switch (categoryExpanseType) {
       case 'Groceries':
         return `${categoryExpanseType} image`;
@@ -165,10 +176,119 @@ export class ExpanseService {
         return `${categoryExpanseType} image`;
       case 'Computer_PC':
         return `${categoryExpanseType} image`;
+      case 'Electronics_Accessories':
+        return `${categoryExpanseType} image`;
+      case 'Sport_Fitness':
+        return `${categoryExpanseType} image`;
+      case 'Books_audio_subscriptions':
+        return `${categoryExpanseType} image`;
+      case 'Alcohol_tobacco':
+        return `${categoryExpanseType} image`;
       default:
         return `Image unfounded`;//EmptyImage isn't saved in 'assets/images' yet!
     }
   }
 
+
+  handleImageExpenseById(category_expanse_id: number) : string{
+    let imgSamePath = './assets/images/';
+    let imgEndPath = '.png';
+    switch (category_expanse_id) {
+      case 20:
+        return `${imgSamePath}grocery${imgEndPath}`;
+      case 61:
+        return `${imgSamePath}drinks2${imgEndPath}`;
+      case 9:
+        return `${imgSamePath}gift${imgEndPath}`;
+      case 3:
+        return `${imgSamePath}airplane${imgEndPath}`;
+      case 49:
+        return `${imgSamePath}loan2${imgEndPath}`;
+      case 56:
+        return `${imgSamePath}internet${imgEndPath}`;
+      case 58:
+        return `${imgSamePath}cellphone${imgEndPath}`;
+      case 17:
+        return `${imgSamePath}coffee${imgEndPath}`;
+      case 19:
+        return `${imgSamePath}fastfood${imgEndPath}`;
+      case 18:
+        return `${imgSamePath}restaurant2${imgEndPath}`;
+      case 62:
+        return `${imgSamePath}HomemadeFood${imgEndPath}`;
+      case 45:
+        return `${imgSamePath}financialfees${imgEndPath}`;
+      case 6:
+        return `${imgSamePath}pharmacy${imgEndPath}`;
+      case 60:
+        return `${imgSamePath}games2${imgEndPath}`;
+      case 14:
+        return `${imgSamePath}animals${imgEndPath}`;
+      case 63:
+        return `${imgSamePath}Computer_PC${imgEndPath}`;
+      case 2:
+        return `${imgSamePath}trainOrTram${imgEndPath}`;
+      case 7:
+        return `${imgSamePath}Electronics_Accessories${imgEndPath}`;
+      case 32:
+        return `${imgSamePath}Sport_Fitness${imgEndPath}`;
+      case 33:
+        return `${imgSamePath}Books_audio_subscriptions${imgEndPath}`;
+      case 43:
+        return `${imgSamePath}Alcohol_tobacco${imgEndPath}`;
+      default:
+        return `${imgSamePath}EmptyImage${imgEndPath}`;//EmptyImage isn't saved in 'assets/images' yet!
+    }
+  }
+
+
+  handleAltOfImagesExpenseById(category_expanse_id: number) : string{
+    switch (category_expanse_id) {
+      case 20:
+        return `Groceries image`;
+      case 61:
+        return `Drinks image`;
+      case 9:
+        return `Gift image`;
+      case 3:
+        return `Airplane image`;
+      case 49:
+        return `Loan image`;
+      case 56:
+        return `internet image`;
+      case 58:
+        return `Cell_Phone image`;
+      case 17:
+        return `Cafe image`;
+      case 19:
+        return `Fast_Food image`;
+      case 18:
+        return `Restaurant image`;
+      case 62:
+        return `Homemade_Food image`;
+      case 45:
+        return `Charges_Fees image`;
+      case 6:
+        return `Drug_store_Chemist image`;
+      case 60:
+        return `Games image`;
+      case 14:
+        return `Pets_Animals image`;
+      case 63:
+        return `Computer_PC image`;
+      case 2:
+        return `Train/Tram image`;
+      case 7:
+        return `Electronics_Accessories image`;
+      case 32:
+        return `Sport_Fitness image`;
+      case 33:
+        return `Books_audio_subscriptions image`;
+      case 43:
+        return `Alcohol_tobacco image`;
+      default:
+        return `Image unfounded`;//EmptyImage isn't saved in 'assets/images' yet!
+    }
+  }
 
 }

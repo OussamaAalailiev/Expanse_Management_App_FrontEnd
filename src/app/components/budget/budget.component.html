@@ -56,55 +56,11 @@
             <div class="col-md-3">
               <div class="m-5">
 <!--                {{budget .categoryExpanse.categoryExpanseType}}-->
-                <div *ngIf="budget.categoryExpanse.categoryExpanseType==='Groceries'">
-                  <img src="./assets/images/grocery.png" alt="Grocery image" width="55" height="55">
-                </div>
-                <div *ngIf="budget.categoryExpanse.categoryExpanseType==='Drinks'">
-                  <img src="./assets/images/drinks2.png" alt="Drinks image" width="52.5" height="55">
-                </div>
-                <div *ngIf="budget.categoryExpanse.categoryExpanseType==='Gifts'">
-                  <img src="./assets/images/gift.png" alt="Gift image" width="55" height="55">
-                </div>
-                <div *ngIf="budget.categoryExpanse.categoryExpanseType==='Plane_LongDistance'">
-                  <img src="./assets/images/airplane.png" alt="Airplane image" width="55" height="55">
-                </div>
-                <div *ngIf="budget.categoryExpanse.categoryExpanseType==='Loan'">
-                  <img src="./assets/images/trade.png" alt="Loan image" width="55" height="55">
-                </div>
-                <div *ngIf="budget.categoryExpanse.categoryExpanseType==='Internet'">
-                  <img src="./assets/images/internet.png" alt="Internet image" width="55" height="55">
-                </div>
-                <div *ngIf="budget.categoryExpanse.categoryExpanseType==='Cell_Phone'">
-                  <img src="./assets/images/cellphone.png" alt="Cell phone image" width="55" height="55">
+                <div *ngIf="budget.categoryExpanse.categoryExpanseType" >
+                  <img [src]="expenseService.handleImageExpense(budget.categoryExpanse.categoryExpanseType)"
+                       [alt]="expenseService.handleAltOfImageExpense(budget.categoryExpanse.categoryExpanseType)" width="55" height="55">
                 </div>
 
-                <div *ngIf="budget.categoryExpanse.categoryExpanseType==='Cafe'">
-                  <img src="./assets/images/coffee.png" alt="Caffe image" width="55" height="55">
-                </div>
-                <div *ngIf="budget.categoryExpanse.categoryExpanseType==='Fast_Food'">
-                  <img src="./assets/images/fastfood.png" alt="Fast food image" width="55" height="55">
-                </div>
-                <div *ngIf="budget.categoryExpanse.categoryExpanseType==='Restaurant'">
-                  <img src="./assets/images/restaurant2.png" alt="Cell phone image" width="55" height="55">
-                </div>
-                <div *ngIf="budget.categoryExpanse.categoryExpanseType==='Homemade_Food'">
-                  <img src="./assets/images/HomemadeFood.png" alt="Homemade Food image" width="55" height="55">
-                </div>
-                <div *ngIf="budget.categoryExpanse.categoryExpanseType==='Charges_Fees'">
-                  <img src="./assets/images/financialfees.png" alt="Charge Fees image" width="55" height="55">
-                </div>
-                <div *ngIf="budget.categoryExpanse.categoryExpanseType==='Drug_store_Chemist'">
-                  <img src="./assets/images/pharmacy.png" alt="Drug_store_Chemist image" width="55" height="55">
-                </div>
-                <div *ngIf="budget.categoryExpanse.categoryExpanseType==='Games'">
-                  <img src="./assets/images/games2.png" alt="Games image" width="55" height="55">
-                </div>
-                <div *ngIf="budget.categoryExpanse.categoryExpanseType==='Pets_Animals'">
-                  <img src="./assets/images/animals.png" alt="Pets_Animals image" width="55" height="55">
-                </div>
-                <div *ngIf="budget.categoryExpanse.categoryExpanseType==='Computer_PC'">
-                  <img src="./assets/images/Computer_PC.png" alt="Computer_PC image" width="55" height="55">
-                </div>
               </div>
             </div>
 

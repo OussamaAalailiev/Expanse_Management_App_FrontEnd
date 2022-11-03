@@ -7,6 +7,7 @@ import {PageOfExpanses} from "../../pageModels/pageOfExpanses";
 import {HttpErrorResponse} from "@angular/common/http";
 import {PageOfBudgets} from "../../pageModels/pageOfBudgets";
 import {AuthenticationLoginService} from "../../services/authenticationLoginService/authentication-login.service";
+import {ExpanseService} from "../../services/expanseService/expanse.service";
 
 @Component({
   selector: 'app-budget',
@@ -25,6 +26,7 @@ export class BudgetComponent implements OnInit {
   currentPage$ = this.currentPageSubject.asObservable();//'currentPageSubject' will be observed by 'currentPage$'.
 
   constructor(public budgetService: BudgetService,
+              public expenseService: ExpanseService,
               private router: Router,
               public authService: AuthenticationLoginService
               ) { }
