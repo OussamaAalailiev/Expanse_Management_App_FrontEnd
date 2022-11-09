@@ -22,21 +22,18 @@
       <span class="col-md-12">
             <div class="card-body">
 <!--              <div class="d-flex justify-content-center">-->
-              <div style="display: flex; flex-flow: row wrap; align-items: center;
-              align-content: space-evenly; justify-content: space-evenly; margin: auto">
+              <div class="myContainerOfExpenses">
 
 <!--                <div class="m-5">-->
                   <span *ngIf="expense.month"
-                        style="min-width: 200px; padding: 0.5rem; display: flex; align-items: center;
-                        justify-content: center; margin-top: 2rem">
+                        class="boxAndMarginTop">
                     <img [src]="handleCalendarMonth(expense.month)" [alt]="handleAltOfCalendarMonth(expense.month)"
                           width="40" height="40">&nbsp;
                     <div class="card-title" >{{expense.year}}</div>
                   </span>
 <!--                </div>-->
 
-                <span style="min-width: 200px; padding: 0.5rem; display: flex; align-items: center;
-                 justify-content: center; margin-top: 2rem">
+                <span class="boxAndMarginTop">
                   <span>
                     <img src="./assets/images/totalExpenses.webp" alt="Total Expenses image" width="45" height="45">
                   </span>&nbsp;
@@ -45,8 +42,7 @@
                   </span>
                 </span>
 
-                <span *ngIf="expense.amountInterval>0" style="min-width: 200px;
-                padding: 0.5rem; display: flex; align-items: center; justify-content: center;">
+                <span *ngIf="expense.amountInterval>0" class="box">
                   <div >
                   <div>
                     <img src="./assets/images/overspending-reel.png" alt="Over Spending image" width="32" height="32">
@@ -60,8 +56,7 @@
                   </div>
                 </span>
 
-                <span *ngIf="expense.amountInterval<0" style="min-width: 200px;
-                padding: 0.5rem; display: flex; align-items: center; justify-content: center;">
+                <span *ngIf="expense.amountInterval<0" class="box">
                   <div >
                   <div>
                     <img src="./assets/images/lessspendings-reel.png" alt="Less Spending image" width="32" height="32">
@@ -75,8 +70,11 @@
                   </div>
                 </span>
 
-                <span class="card-title " *ngIf="expense.percentOfAmountInterval" style="min-width: 200px;
-                padding: 0.5rem; display: flex; align-items: center; justify-content: center; margin-top: 2rem">
+                <span class="hrLineInterval " *ngIf="expense.amountInterval===0" >
+
+                </span>
+
+                <span class="card-title boxAndMarginTop" >
                   <span *ngIf="expense.percentOfAmountInterval<0">
                     <strong>
                     <em class="text-success">
@@ -95,9 +93,11 @@
 <!--                    <em >-->
 <!--                    </em>-->
 <!--                  </strong>-->
-<!--                  <span *ngIf="expense.percentOfAmountInterval===0">-->
-                    <hr *ngIf="expense.percentOfAmountInterval===0" id="hrLine">
-<!--                  </span>-->
+                  <span class="hrLinePercent" *ngIf="expense.percentOfAmountInterval===0"
+                        >
+<!--                        <hr style="border-top: 1px solid black; width: 25%;">-->
+<!--                        <hr >-->
+                  </span>
                 </span>
 <!--                <div>-->
 <!--&lt;!&ndash;                  Empty div to gain another fake place for UI Position of pics: &ndash;&gt;-->
@@ -105,55 +105,7 @@
 
               </div>
               <section class="d-flex justify-content-start">
-<!--                <span class="pt-5">-->
-<!--                  <span>-->
-<!--                    <img src="./assets/images/totalExpenses.webp" alt="Total Expenses image" width="45" height="45">-->
-<!--                  </span>&nbsp;-->
-<!--                  <span>-->
-<!--                    <strong>{{expense.totalExpanses}} DH</strong>-->
-<!--                  </span>-->
-<!--                </span>-->
 
-<!--                <span>-->
-<!--                  <div *ngIf="expense.amountInterval>0">-->
-<!--                  <div>-->
-<!--                    <img src="./assets/images/overspending-reel.png" alt="Over Spending image" width="45" height="45">-->
-<!--                  </div>-->
-<!--                  <span>-->
-<!--                    <img src="./assets/images/overspending-reel-4.png" alt="Over Spending image" width="45" height="45">-->
-<!--                  </span>&nbsp;-->
-<!--                  <span class="card-title align-center text-danger" *ngIf="expense.amountInterval>0">-->
-<!--                    <strong>{{expense.amountInterval}} DH</strong>-->
-<!--                  </span>-->
-<!--                  </div>-->
-<!--                </span>-->
-<!--                -->
-<!--                <span>-->
-<!--                  <div *ngIf="expense.amountInterval<0">-->
-<!--                  <div>-->
-<!--                    <img src="./assets/images/lessspendings-reel.png" alt="Less Spending image" width="32" height="32">-->
-<!--                  </div>-->
-<!--                  <span>-->
-<!--                    <img src="./assets/images/lessspendings-reel-2.png" alt="Less Spending image" width="32" height="32">-->
-<!--                  </span>&nbsp;-->
-<!--                  <span class="card-title align-center text-success" *ngIf="expense.amountInterval<0">-->
-<!--                    <strong>{{expense.amountInterval}} DH</strong>-->
-<!--                  </span>-->
-<!--                  </div>-->
-<!--                </span>-->
-<!--                -->
-<!--                <span class="card-title pt-5 mt-4" *ngIf="expense.percentOfAmountInterval">-->
-<!--                  <strong *ngIf="expense.percentOfAmountInterval<0">-->
-<!--                    <em class="text-success">-->
-<!--                      ({{expense.percentOfAmountInterval.toFixed(2)}} %)-->
-<!--                    </em>-->
-<!--                  </strong>-->
-<!--                  <strong *ngIf="expense.percentOfAmountInterval>0">-->
-<!--                    <em class="text-danger">-->
-<!--                      ({{expense.percentOfAmountInterval.toFixed(2) }} %)-->
-<!--                    </em>-->
-<!--                  </strong>-->
-<!--                </span>-->
                 <!--                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="card-text">End Date:&nbsp;<small class="text-muted">{{expensesByCat.endDate}}</small></span>-->
               </section>
               <!--              <section class="card-text">Debut Date:&nbsp;<small class="text-muted">{{budget.dateDebut}}</small></section>-->

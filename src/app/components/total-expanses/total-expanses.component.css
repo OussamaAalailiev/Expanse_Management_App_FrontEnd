@@ -44,7 +44,40 @@ h1 em {
   margin-bottom: 0.25em;
 }
 
-#hrLine {
-  border-top: 1px solid black;
+.hrLinePercent {
+  border-top: 2px solid black;
   width: 25%;
+  font-weight: bold;
+}
+.hrLineInterval {
+  border-top: 2px solid black;
+  width: 18%;
+  font-weight: bold;
+  margin-top: 1.5rem;
+}
+
+.box {
+  min-width: 200px;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.boxAndMarginTop {
+  min-width: 200px;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.myContainerOfExpenses{
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  align-content: space-evenly;
+  justify-content: space-evenly;
+  margin: auto;
 }
