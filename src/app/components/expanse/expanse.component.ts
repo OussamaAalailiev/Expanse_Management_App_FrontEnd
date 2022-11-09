@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ExpanseService} from "../../services/expanseService/expanse.service";
-import {BehaviorSubject, catchError, map, never, Observable, of, startWith} from "rxjs";
+import {BehaviorSubject, catchError, never, Observable, of, startWith} from "rxjs";
 import {Expanse} from "../../models/expanse";
 import {Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
@@ -9,6 +9,7 @@ import {UpdateExpanseComponent} from "../../forms/update-expanse/update-expanse.
 import {PageOfExpanses} from "../../pageModels/pageOfExpanses";
 import {HttpErrorResponse} from "@angular/common/http";
 import {AuthenticationLoginService} from "../../services/authenticationLoginService/authentication-login.service";
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-expanse',
@@ -103,16 +104,24 @@ export class ExpanseComponent implements OnInit {
     if (!confMessage) return;//If the user cancel the deletion of the expanse we break out of this method,
     let expanseId = expanse.id;// else we continue down below:
     this.expanseService.deleteExpanseService(expanseId)
-      .subscribe(value => {
+      .subscribe((value) => {
         // this.getAllExpanses();//To refresh the page dynamically after an Expanse Deletion:
         /**Instead of re-request the list of Expanses from backend again, we will refresh the list
          *  by deleting the expanse locally:
          * */
-        let indexOfExpanseDeleted = this.expansesList.indexOf(expanse);
-        this.expansesList.splice(indexOfExpanseDeleted, 1);//To delete locally the Object from frontend table.
-        console.log(value);
+        // let indexOfExpanseDeleted = this.expansesList.indexOf(expanse);
+        console.log('Before getting IndexOf! ..')
+        let indexOfExpanseDeleted = this.expansesList.indexOf(value);
+        console.log("indexOfExpanseDeleted: " + indexOfExpanseDeleted);
+        if(indexOfExpanseDeleted!==-1){//To ensure that if the index of element isn't found then it won't remove an item(last item) from the Array:
+          console.log("Before Splice(...) ...");
+          this.expansesList.splice(indexOfExpanseDeleted, 1);
+          console.log("After Splice(...) ...");
+        }//To delete locally the Object from frontend table.
+        console.log(value); console.log("Inside IndexOf! :)");
         console.log("indexOfExpanseDeleted: " + indexOfExpanseDeleted);
       },error => {
+        console.log("Inside Error IndexOf! :(");
         console.log(error);
       })
   }
