@@ -35,4 +35,10 @@ export class AppComponent {
   handleExpansesByCategoryPage() {
     this.router.navigateByUrl('expensesByCategoryAndUserId');
   }
+
+  handleTotalIncomesPage() {
+    this.router.navigateByUrl('totalIncomesByUser');
+  }
+
+
 }

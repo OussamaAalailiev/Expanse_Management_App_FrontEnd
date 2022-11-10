@@ -34,6 +34,7 @@ import { LoginComponent } from './components/login/login.component';
 import {AuthenticationGuard} from "./security/guards/authentication.guard";
 import { TotalExpansesComponent } from './components/total-expanses/total-expanses.component';
 import { ExpensesSumByCategoryComponent } from './components/expenses-sum-by-category/expenses-sum-by-category.component';
+import { TotalIncomesComponent } from './components/income/total-incomes/total-incomes.component';
 
 
 
@@ -53,7 +54,8 @@ import { ExpensesSumByCategoryComponent } from './components/expenses-sum-by-cat
     UpdateBudgetComponent,
     LoginComponent,
     TotalExpansesComponent,
-    ExpensesSumByCategoryComponent
+    ExpensesSumByCategoryComponent,
+    TotalIncomesComponent
   ],
   imports: [
     BrowserModule,
@@ -65,6 +67,7 @@ import { ExpensesSumByCategoryComponent } from './components/expenses-sum-by-cat
       {path: 'expanse', component: ExpanseComponent, canActivate: [AuthenticationGuard]},
       {path: 'budget', component: BudgetComponent, canActivate: [AuthenticationGuard]},
       {path: 'income', component: IncomeComponent, canActivate: [AuthenticationGuard]},
+      {path: 'totalIncomesByUser', component: TotalIncomesComponent, canActivate: [AuthenticationGuard]},
       {path: 'goal', component: GoalComponent, canActivate: [AuthenticationGuard]},
       {path: 'expanse/newExpanse', component: NewExpanseFormComponent, canActivate: [AuthenticationGuard]},
       {path: 'expanse/updateExpanse/:expanseId', component: UpdateExpanseComponent, canActivate: [AuthenticationGuard]},

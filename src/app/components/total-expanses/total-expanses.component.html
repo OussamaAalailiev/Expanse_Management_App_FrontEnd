@@ -8,16 +8,6 @@
 <section class="container" *ngIf="totalExpansesList">
   <section class="card" *ngFor="let expense of totalExpansesList" >
     <section class="row visitedCard">
-<!--      <div class="col-md-3">-->
-<!--        <div class="m-5">-->
-<!--          <span *ngIf="expense.month">-->
-<!--            <div class="card-title" >{{expense.year}}</div>-->
-<!--            <img [src]="handleCalendarMonth(expense.month)" [alt]="handleAltOfCalendarMonth(expense.month)"-->
-<!--                  width="40" height="40">-->
-<!--          </span>-->
-
-<!--        </div>-->
-<!--      </div>-->
 
       <span class="col-md-12">
             <div class="card-body">
@@ -27,7 +17,7 @@
 <!--                <div class="m-5">-->
                   <span *ngIf="expense.month"
                         class="boxAndMarginTop">
-                    <img [src]="handleCalendarMonth(expense.month)" [alt]="handleAltOfCalendarMonth(expense.month)"
+                    <img [src]="expanseService.handleCalendarMonth(expense.month)" [alt]="expanseService.handleAltOfCalendarMonth(expense.month)"
                           width="40" height="40">&nbsp;
                     <div class="card-title" >{{expense.year}}</div>
                   </span>
@@ -35,7 +25,7 @@
 
                 <span class="boxAndMarginTop">
                   <span>
-                    <img src="./assets/images/totalExpenses.webp" alt="Total Expenses image" width="45" height="45">
+                    <img src="./assets/images/totalExpenses.webp" alt="Total Expenses image" width="40" height="40">
                   </span>&nbsp;
                   <span>
                     <strong>{{expense.totalExpanses}} DH</strong>
@@ -89,53 +79,24 @@
                       </em>
                   </strong>
                   </span>
-<!--                  <strong *ngIf="expense.percentOfAmountInterval===0">-->
-<!--                    <em >-->
-<!--                    </em>-->
-<!--                  </strong>-->
-                  <span class="hrLinePercent" *ngIf="expense.percentOfAmountInterval===0"
-                        >
-<!--                        <hr style="border-top: 1px solid black; width: 25%;">-->
-<!--                        <hr >-->
+
+                  <span class="hrLinePercent" *ngIf="expense.percentOfAmountInterval===0">
                   </span>
                 </span>
-<!--                <div>-->
-<!--&lt;!&ndash;                  Empty div to gain another fake place for UI Position of pics: &ndash;&gt;-->
-<!--                </div>-->
 
               </div>
-              <section class="d-flex justify-content-start">
 
-                <!--                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="card-text">End Date:&nbsp;<small class="text-muted">{{expensesByCat.endDate}}</small></span>-->
-              </section>
-              <!--              <section class="card-text">Debut Date:&nbsp;<small class="text-muted">{{budget.dateDebut}}</small></section>-->
-              <!--              <section class="card-text">End Date:&nbsp;<small class="text-muted">{{budget.endDate}}</small></section>-->
-              <section>
-<!--                <span class="d-flex justify-content-end" *ngIf="authService.isAuthenticateUserHasRoleService('USER')">-->
-                <!--                  <span class="text-danger pointer" (click)="handleBudgetDelete(budget)">-->
-                <!--&lt;!&ndash;                <i class="bi bi-x-square"></i>&ndash;&gt;-->
-                <!--                    <i class="bi bi-trash"></i>-->
-                <!--                  </span>-->
-                <!--                </span>-->
-              </section>
-              <section class="d-flex justify-content-between">
-
-              </section>
             </div>
 
             <section class="container d-flex justify-content-center">
-              <span class="card-text">Date:&nbsp;<small class="text-muted">{{expense.month}} / {{expense.year}}</small></span>
+              <span class="card-text">Date:&nbsp;
+                <small class="text-muted">
+                  {{expense.month}}
+                    /
+                  {{expense.year}}
+                </small>
+              </span>
 
-
-              <!--                <section class="progress mb-3">-->
-<!--                <span [ngClass]="(expense.percentOfAmountInterval>0)?'progress-bar-fill ':''"-->
-<!--                      role="progressbar" [ngStyle]="{'width.%':  expense.percentOfAmountInterval,-->
-<!--                       'background-color': '#2e3b31'}"-->
-<!--                      attr.aria-valuenow="{{expense.percentOfAmountInterval}}"-->
-<!--                      aria-valuemin="0" aria-valuemax="100">-->
-
-<!--                </span>-->
-<!--                </section>-->
             </section>
           </span>
 
