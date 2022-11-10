@@ -26,10 +26,10 @@
 
                 <span class="boxAndMarginTop">
                   <span>
-                    <img src="./assets/images/calendar.png" alt="Calendar image" width="25" height="25">
+                    <img src="./assets/images/totalincome.png" alt="Calendar image" width="25" height="25">
                   </span>
                   <span>
-                    <img src="./assets/images/monthlyexpenses-3.png" alt="Total Incomes image" width="40" height="40">
+                    <img src="./assets/images/incomestats.png" alt="Total Incomes image" width="40" height="40">
                   </span>
                   <span>
                     <strong>{{income.totalIncomes}} DH</strong>
@@ -39,7 +39,7 @@
                 <span *ngIf="income.amountInterval>0" class="box">
                   <div >
                     <span>
-                      <img src="./assets/images/lessspendings.png" alt="High Income image" width="40" height="40">
+                      <img src="./assets/images/highincome.png" alt="High Income image" width="40" height="40">
                     </span>&nbsp;
                   <span class="card-title align-center text-success" *ngIf="income.amountInterval>0">
                     <strong>{{income.amountInterval}} DH</strong>
@@ -52,11 +52,11 @@
 <!--                  <div>-->
 <!--                    <img src="./assets/images/lessspendings-reel.png" alt="Less Spending image" width="32" height="32">-->
 <!--                  </div>-->
-                  <div>
-                    <img src="./assets/images/overspending-reel.png" alt="Low Income image" width="32" height="32">
-                  </div>
+<!--                  <div>-->
+<!--                    <img src="./assets/images/overspending-reel.png" alt="Low Income image" width="32" height="32">-->
+<!--                  </div>-->
                   <span>
-                    <img src="./assets/images/overspending-reel-4.png" alt="Low Income image" width="32" height="32">
+                    <img src="./assets/images/lowincome.png" alt="Low Income image" width="40" height="40">
                   </span>&nbsp;
                   <span class="card-title align-center text-danger" *ngIf="income.amountInterval<0">
                     <strong>{{income.amountInterval}} DH</strong>
@@ -112,7 +112,7 @@
   ERROR TypeError: Cannot read properties of undefined (reading 'length')
     at TotalIncomesComponent_Template (total-incomes.component.html:115:7)
 -->
-<div *ngIf="totalIncomesList.length===0"  class="container alert alert-secondary mt-5" role="alert">
+<div *ngIf="totalIncomesList.length==0"  class="container alert alert-secondary mt-5" role="alert">
   <!-- Bootstrap Alert Message pops up in case No Total Expanses were found when we click search! -->
   No Incomes Summary were found!
 </div>
