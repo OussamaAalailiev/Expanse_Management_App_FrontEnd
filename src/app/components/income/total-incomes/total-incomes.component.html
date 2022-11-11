@@ -106,13 +106,19 @@
 
     </section>
   </section>
+  <!-- We check if the Array is Not null & empty by '!totalIncomesList.length'. -->
+  <div *ngIf="!totalIncomesList.length"  class="container alert alert-secondary mt-5" role="alert">
+    <!-- Bootstrap Alert Message pops up in case No Total Expanses were found when we click search! -->
+    No Incomes Summary were found!
+  </div>
 </section>
 
 <!--
   ERROR TypeError: Cannot read properties of undefined (reading 'length')
     at TotalIncomesComponent_Template (total-incomes.component.html:115:7)
 -->
-<div *ngIf="totalIncomesList.length==0"  class="container alert alert-secondary mt-5" role="alert">
-  <!-- Bootstrap Alert Message pops up in case No Total Expanses were found when we click search! -->
-  No Incomes Summary were found!
-</div>
+
+<!--<div *ngIf="totalIncomesList.length <1"  class="container alert alert-secondary mt-5" role="alert">-->
+<!--  &lt;!&ndash; Bootstrap Alert Message pops up in case No Total Expanses were found when we click search! &ndash;&gt;-->
+<!--  No Incomes Summary were found!-->
+<!--</div>-->

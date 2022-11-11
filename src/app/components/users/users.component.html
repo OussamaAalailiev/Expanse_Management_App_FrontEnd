@@ -30,7 +30,16 @@
 <main class="Mymain">
   <h1 class="text-center p-2">Profile page </h1>
   <main class="myProfileContainer" *ngIf="user">
-    <img class="MyProfileImage" src="./assets/images/oussama.png" alt="My profile image" width="200" height="172">
+    <span *ngIf="user.name==='Oussama'">
+      <img class="MyProfileImage" src="./assets/images/oussama.png" alt="My profile image" width="200" height="172">
+    </span>
+    <span *ngIf="user.name==='Zakaria'">
+      <img class="MyProfileImage" src="./assets/images/profile.png" alt="My profile image" width="200" height="172">
+    </span>
+    <span *ngIf="user.name==='Safwane'">
+      <img class="MyProfileImage" src="./assets/images/profile.png" alt="My profile image" width="200" height="172">
+    </span>
+    <!--    <img class="MyProfileImage" src="./assets/images/oussama.png" alt="My profile image" width="200" height="172">-->
     <!--  <section class="myProfileContainer">-->
     <h2 class="box card-text">{{user.name}}</h2>
     <h5 class="box card-text">{{user.email}}</h5>
