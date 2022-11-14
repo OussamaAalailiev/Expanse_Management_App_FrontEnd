@@ -35,6 +35,7 @@ import {AuthenticationGuard} from "./security/guards/authentication.guard";
 import { TotalExpansesComponent } from './components/total-expanses/total-expanses.component';
 import { ExpensesSumByCategoryComponent } from './components/expenses-sum-by-category/expenses-sum-by-category.component';
 import { TotalIncomesComponent } from './components/income/total-incomes/total-incomes.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 
 
@@ -55,7 +56,8 @@ import { TotalIncomesComponent } from './components/income/total-incomes/total-i
     LoginComponent,
     TotalExpansesComponent,
     ExpensesSumByCategoryComponent,
-    TotalIncomesComponent
+    TotalIncomesComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -75,10 +77,14 @@ import { TotalIncomesComponent } from './components/income/total-incomes/total-i
       //   redirectTo: '/components/expanse/expanse.component', pathMatch: 'full'},
       {path: 'budgets/newBudget', component: NewBudgetComponent, canActivate: [AuthenticationGuard]},
       {path: 'budgets/updateBudget/:budgetId', component: UpdateBudgetComponent, canActivate: [AuthenticationGuard]},
-      {path: '', component: LoginComponent},
+      //Instead of -> '{path: '', component: LoginComponent}':
+      // If the user doesn't specify a path, we redirect the user to the '/login' path:
+      {path: '', redirectTo: '/login', pathMatch: 'full'},
       {path: 'login', component: LoginComponent},
       {path: 'totalExpansesByUser', component: TotalExpansesComponent, canActivate: [AuthenticationGuard]},
-      {path: 'expensesByCategoryAndUserId', component: ExpensesSumByCategoryComponent, canActivate: [AuthenticationGuard]}
+      {path: 'expensesByCategoryAndUserId', component: ExpensesSumByCategoryComponent, canActivate: [AuthenticationGuard]},
+      //If the user specify a path that does Not exist, we display the component down below:
+      {path: '**', component: PageNotFoundComponent}
     ]),
     ReactiveFormsModule,
     MatDialogModule,
