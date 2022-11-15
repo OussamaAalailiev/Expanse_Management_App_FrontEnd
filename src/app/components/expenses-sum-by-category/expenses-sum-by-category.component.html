@@ -26,9 +26,13 @@
       <span class="col-md-9">
             <div class="card-body">
               <div class="d-flex justify-content-between">
-                <span class="card-title" *ngIf="expensesByCat.category_expanse_id===60"><strong>Games</strong></span>
-                <span class="card-title" *ngIf="expensesByCat.category_expanse_id===63"><strong>Laptop/Computer</strong></span>
-                <span class="card-title" *ngIf="expensesByCat.category_expanse_id===14"><strong>Animal(s)</strong></span>
+                <span class="card-title" *ngIf="expensesByCat.category_expanse_id">
+                  <strong>{{expanseService.handleCatExpNameByExpenseById(expensesByCat.category_expanse_id)}}
+                  </strong>
+                </span>
+<!--                <span class="card-title" *ngIf="expensesByCat.category_expanse_id===60"><strong>Games</strong></span>-->
+<!--                <span class="card-title" *ngIf="expensesByCat.category_expanse_id===63"><strong>Laptop/Computer</strong></span>-->
+<!--                <span class="card-title" *ngIf="expensesByCat.category_expanse_id===14"><strong>Animal(s)</strong></span>-->
                 <span class="card-title text-danger"><strong>-{{expensesByCat.sumExpensesByCategory}} DH</strong></span>
                 <span class="card-title"><strong><em style="color: #2e3b31">{{expensesByCat.percentOfExpensesPerMonth.toFixed(2) }} %</em></strong></span>
 

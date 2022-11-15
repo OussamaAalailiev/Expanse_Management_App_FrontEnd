@@ -290,6 +290,54 @@ export class ExpanseService {
         return `Image unfounded`;//EmptyImage isn't saved in 'assets/images' yet!
     }
   }
+  handleCatExpNameByExpenseById(category_expanse_id: number) : string{
+    switch (category_expanse_id) {
+      case 20:
+        return `Groceries`;
+      case 61:
+        return `Drinks`;
+      case 9:
+        return `Gift`;
+      case 3:
+        return `Airplane - Long distance Transit`;
+      case 49:
+        return `Loan`;
+      case 56:
+        return `internet`;
+      case 58:
+        return `Cell Phone`;
+      case 17:
+        return `Cafe`;
+      case 19:
+        return `Fast Food`;
+      case 18:
+        return `Restaurant`;
+      case 62:
+        return `Homemade Food `;
+      case 45:
+        return `Charges Fees `;
+      case 6:
+        return `Pharmacy `;
+      case 60:
+        return `Games`;
+      case 14:
+        return `Pets Animals `;
+      case 63:
+        return `Computer PC`;
+      case 2:
+        return `Train - Tram `;
+      case 7:
+        return `Electronics - Accessories`;
+      case 32:
+        return `Sport Fitness`;
+      case 33:
+        return `Books - audio subscriptions`;
+      case 43:
+        return `Alcohol & tobacco`;
+      default:
+        return `Unknown Category`;//EmptyImage isn't saved in 'assets/images' yet!
+    }
+  }
 
   handleCalendarMonth(month: string) : string{
     let imgStandardPath = './assets/images/';
