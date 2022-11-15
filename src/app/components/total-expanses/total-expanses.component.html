@@ -11,35 +11,32 @@
 
       <span class="col-md-12">
             <div class="card-body">
-<!--              <div class="d-flex justify-content-center">-->
               <div class="myContainerOfExpenses">
 
-<!--                <div class="m-5">-->
                   <span *ngIf="expense.month"
                         class="boxAndMarginTop">
                     <img [src]="expanseService.handleCalendarMonth(expense.month)" [alt]="expanseService.handleAltOfCalendarMonth(expense.month)"
                           width="40" height="40">&nbsp;
                     <div class="card-title" >{{expense.year}}</div>
                   </span>
-<!--                </div>-->
-
                 <span class="boxAndMarginTop">
-                  <span>
-                    <img src="./assets/images/totalincome.png" alt="Calendar image" width="25" height="25">
-                  </span>
-                  <span>
-                    <img src="./assets/images/totalExpenses.webp" alt="Total Expenses image" width="40" height="40">
-                  </span>&nbsp;
-                  <span>
+<!--                  <span>-->
+<!--                    <img src="./assets/images/totalincome.png" alt="Calendar image" width="25" height="25">-->
+<!--                  </span>-->
+<!--                  <span>-->
+<!--                    <img src="./assets/images/totalExpenses.webp" alt="Total Expenses image" width="40" height="40">-->
+<!--                  </span>&nbsp;-->
+<!--                  <span>-->
+<!--                    <strong>{{expense.totalExpanses}} DH</strong>-->
+<!--                  </span>-->
+                  <div>
                     <strong>{{expense.totalExpanses}} DH</strong>
-                  </span>
+                  </div>
+                  <div>expenses</div>
                 </span>
 
                 <span *ngIf="expense.amountInterval>0" class="box">
                   <div >
-<!--                  <div>-->
-<!--                    <img src="./assets/images/overspending-reel.png" alt="Over Spending image" width="32" height="32">-->
-<!--                  </div>-->
                   <span>
                     <img src="./assets/images/overspending-reel-4.png" alt="Over Spending image" width="32" height="32">
                   </span>&nbsp;
@@ -51,9 +48,6 @@
 
                 <span *ngIf="expense.amountInterval<0" class="box">
                   <div >
-<!--                  <div>-->
-<!--                    <img src="./assets/images/lessspendings-reel.png" alt="Less Spending image" width="32" height="32">-->
-<!--                  </div>-->
                   <span>
                     <img src="./assets/images/saving.png" alt="Less Spending image" width="40" height="40">
                   </span>&nbsp;

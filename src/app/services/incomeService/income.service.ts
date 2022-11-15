@@ -133,4 +133,51 @@ export class IncomeService {
     }
   }
 
+  handleCatIncomeNameByCategory(categoryIncomeType: string) : string{
+    switch (categoryIncomeType) {
+      case 'CHILD_SUPPORT':
+        return `Child Support`;
+      case 'RENTAL_INCOME':
+        return `Rental Income`;
+      case 'SALARY':
+        return `Salary`;
+      case 'DIVIDENDS':
+        return `Dividends`;
+      case 'TAX_REFUND':
+        return `Tax Refund`;
+      case 'GIFTS':
+        return `Gifts`;
+      case 'TRADE_SALES':
+        return `Trade - Sales`;
+      case 'Dues_and_Grants':
+        return `Dues - Grants`;
+      case 'Checks_Coupons':
+        return `Coupons`;
+      case 'SAVINGS':
+        return `Savings`;
+      case 'ROYALTIES':
+        return `Royalties`;
+      case 'CONSTRUCTIONS':
+        return `Constructions`;
+      case 'AGRICULTURE':
+        return `Agriculture`;
+      case 'SEA_FISHING':
+        return `Sea Fishing`;
+      case 'MEDICAL_CONSULTATION':
+        return `Medical - Consultation`;
+      case 'COURT_SERVICE':
+        return `Court Service`;
+      case 'TOURIST_SERVICE':
+        return `Tourist Service`;
+      case 'SECURITY_SERVICE':
+        return `Security Service`;
+      case 'EDUCATION_SERVICE':
+        return `Education Service`;
+      case 'OTHER_SERVICE':
+        return `Other Service`;
+      default:
+        return `Unknown Category`;//EmptyImage isn't saved in 'assets/images' yet!
+    }
+  }
+
 }

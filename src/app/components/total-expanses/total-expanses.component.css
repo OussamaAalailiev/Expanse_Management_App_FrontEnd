@@ -68,7 +68,9 @@ h1 em {
 .boxAndMarginTop {
   min-width: 200px;
   padding: 0.5rem;
-  display: flex;
+  /*display: flex;*/
+  /*display: inline-block;*/
+  display: -ms-flexbox;
   align-items: center;
   justify-content: center;
   margin-top: 2rem;

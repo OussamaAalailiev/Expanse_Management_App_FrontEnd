@@ -403,4 +403,54 @@ export class ExpanseService {
     }
   }
 
+  handleCatExpNameByCategory(categoryExpanseType: string) : string{
+    switch (categoryExpanseType) {
+      case 'Groceries':
+        return `Groceries`;
+      case 'Drinks':
+        return `Drinks`;
+      case 'Gifts':
+        return `Gift`;
+      case 'Plane_LongDistance':
+        return `Airplane - Long distance Transit`;
+      case 'Loan':
+        return `Loan`;
+      case 'Internet':
+        return `internet`;
+      case 'Cell_Phone':
+        return `Cell Phone`;
+      case 'Cafe':
+        return `Cafe`;
+      case 'Fast_Food':
+        return `Fast Food`;
+      case 'Restaurant':
+        return `Restaurant`;
+      case 'Homemade_Food':
+        return `Homemade Food `;
+      case 'Charges_Fees':
+        return `Charges Fees `;
+      case 'Drug_store_Chemist':
+        return `Pharmacy `;
+      case 'Games':
+        return `Games`;
+      case 'Pets_Animals':
+        return `Pets Animals `;
+      case 'Computer_PC':
+        return `Computer PC`;
+      case 'Public_transport':
+        return `Train - Tram `;
+      case 'Electronics_Accessories':
+        return `Electronics - Accessories`;
+      case 'Sport_Fitness':
+        return `Sport Fitness`;
+      case 'Books_audio_subscriptions':
+        return `Books - audio subscriptions`;
+      case 'Alcohol_tobacco':
+        return `Alcohol & tobacco`;
+      default:
+        return `Unknown Category`;//EmptyImage isn't saved in 'assets/images' yet!
+    }
+  }
+
+
 }

@@ -64,9 +64,11 @@
             <span class="col-md-9 ">
             <div class="card-body">
               <div class="d-flex justify-content-between">
-                <span class="card-title">
-                {{expanse.title}}
-                </span>
+                <strong>
+                  <span class="card-title">
+                    {{expanseService.handleCatExpNameByCategory(expanse.categoryExpanse.categoryExpanseType)}}
+                  </span>
+                </strong>
               <span >
                   <span *ngIf="authService.isAuthenticateUserHasRoleService('USER')"><!--'expanse/updateExpanse/:expanseId' -->
                    <a>

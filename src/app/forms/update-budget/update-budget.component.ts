@@ -20,6 +20,7 @@ export class UpdateBudgetComponent implements OnInit {
   budgetUpdateFormGroup!: FormGroup;
 
   constructor(public budgetService: BudgetService,
+              public expense: ExpanseService,
               private activatedRoute: ActivatedRoute,
               private route: Router,
               private fb: FormBuilder,

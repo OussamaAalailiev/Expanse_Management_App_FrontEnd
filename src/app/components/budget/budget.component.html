@@ -68,7 +68,7 @@
             <span class="col-md-9">
             <div class="card-body">
               <div class="d-flex justify-content-between">
-                <span class="card-title"><strong>{{budget.title}}</strong></span>
+                <span class="card-title"><strong>{{expenseService.handleCatExpNameByCategory(budget.categoryExpanse.categoryExpanseType)}}</strong></span>
                 <span *ngIf="authService.isAuthenticateUserHasRoleService('USER')"><!--'expanse/updateExpanse/:expanseId' -->
                   <a> <!-- [routerLink]="['/expanse/updateExpanse/', expanse.id]" -->
                     <span class="text-success pointer" (click)="handleUpdateBudgetForm(budget)">
