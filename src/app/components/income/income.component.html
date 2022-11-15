@@ -55,66 +55,11 @@
             <div class="col-md-3">
               <div class="m-5">
 <!--                {{income.categoryIncome.categoryIncomeType}}-->
-                <div *ngIf="income.categoryIncome.categoryIncomeType==='CHILD_SUPPORT'">
-                  <img src="./assets/images/" alt="CHILD_SUPPORT image" width="55" height="55">
+                <div *ngIf="income.categoryIncome.categoryIncomeType">
+                  <img [src]="incomeService.handleIncomeImage(income.categoryIncome.categoryIncomeType)"
+                       [alt]="incomeService.handleAltOfIncomeImage(income.categoryIncome.categoryIncomeType)" width="55" height="55">
                 </div>
-                <div *ngIf="income.categoryIncome.categoryIncomeType==='RENTAL_INCOME'">
-                  <img src="./assets/images/" alt="RENTAL_INCOME image" width="52.5" height="55">
-                </div>
-                <div *ngIf="income.categoryIncome.categoryIncomeType==='SALARY'">
-                  <img src="./assets/images/salary.png" alt="SALARY image" width="55" height="55">
-                </div>
-                <div *ngIf="income.categoryIncome.categoryIncomeType==='DIVIDENDS'">
-                  <img src="./assets/images/DIVIDENDS.png" alt="DIVIDENDS image" width="55" height="55">
-                </div>
-                <div *ngIf="income.categoryIncome.categoryIncomeType==='TAX_REFUND'">
-                  <img src="./assets/images/" alt="TAX_REFUND image" width="55" height="55">
-                </div>
-                <div *ngIf="income.categoryIncome.categoryIncomeType==='GIFTS'">
-                  <img src="./assets/images/gift.png" alt="GIFTS image" width="55" height="55">
-                </div>
-                <div *ngIf="income.categoryIncome.categoryIncomeType==='TRADE_SALES'">
-                  <img src="./assets/images/trade.png" alt="TRADE_SALES image" width="55" height="55">
-                </div>
-                <div *ngIf="income.categoryIncome.categoryIncomeType==='Dues_and_Grants'">
-                  <img src="./assets/images/" alt="Dues_and_Grants image" width="55" height="55">
-                </div>
-                <div *ngIf="income.categoryIncome.categoryIncomeType==='Checks_Coupons'">
-                  <img src="./assets/images/" alt="Checks_Coupons image" width="55" height="55">
-                </div>
-                <div *ngIf="income.categoryIncome.categoryIncomeType==='SAVINGS'">
-                  <img src="./assets/images/saving.png" alt="SAVINGS image" width="55" height="55">
-                </div>
-                <div *ngIf="income.categoryIncome.categoryIncomeType==='ROYALTIES'">
-                  <img src="./assets/images/" alt="ROYALTIES image" width="55" height="55">
-                </div>
-                <div *ngIf="income.categoryIncome.categoryIncomeType==='CONSTRUCTIONS'">
-                  <img src="./assets/images/construction2.png" alt="CONSTRUCTIONS image" width="55" height="55">
-                </div>
-                <div *ngIf="income.categoryIncome.categoryIncomeType==='AGRICULTURE'">
-                  <img src="./assets/images/" alt="AGRICULTURE image" width="55" height="55">
-                </div>
-                <div *ngIf="income.categoryIncome.categoryIncomeType==='SEA_FISHING'">
-                  <img src="./assets/images/" alt="SEA_FISHING image" width="55" height="55">
-                </div>
-                <div *ngIf="income.categoryIncome.categoryIncomeType==='MEDICAL_CONSULTATION'">
-                  <img src="./assets/images/medicalservice.png" alt="MEDICAL_CONSULTATION image" width="55" height="55">
-                </div>
-                <div *ngIf="income.categoryIncome.categoryIncomeType==='COURT_SERVICE'">
-                  <img src="./assets/images/courtservice.png" alt="COURT_SERVICE image" width="55" height="55">
-                </div>
-                <div *ngIf="income.categoryIncome.categoryIncomeType==='TOURIST_SERVICE'">
-                  <img src="./assets/images/" alt="TOURIST_SERVICE image" width="55" height="55">
-                </div>
-                <div *ngIf="income.categoryIncome.categoryIncomeType==='SECURITY_SERVICE'">
-                  <img src="./assets/images/" alt="SECURITY_SERVICE image" width="55" height="55">
-                </div>
-                <div *ngIf="income.categoryIncome.categoryIncomeType==='EDUCATION_SERVICE'">
-                  <img src="./assets/images/" alt="EDUCATION_SERVICE image" width="55" height="55">
-                </div>
-                <div *ngIf="income.categoryIncome.categoryIncomeType==='OTHER_SERVICE'">
-                  <img src="./assets/images/" alt="OTHER_SERVICE image" width="55" height="55">
-                </div>
+
               </div>
             </div>
 

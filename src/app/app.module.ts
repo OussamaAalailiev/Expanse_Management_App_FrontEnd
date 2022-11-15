@@ -71,7 +71,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
       {path: 'income', component: IncomeComponent, canActivate: [AuthenticationGuard]},
       {path: 'totalIncomesByUser', component: TotalIncomesComponent, canActivate: [AuthenticationGuard]},
       {path: 'goal', component: GoalComponent, canActivate: [AuthenticationGuard]},
-      {path: 'expanse/newExpanse', component: NewExpanseFormComponent, canActivate: [AuthenticationGuard]},
+      {path: 'newExpanse', component: NewExpanseFormComponent, canActivate: [AuthenticationGuard]},
       {path: 'expanse/updateExpanse/:expanseId', component: UpdateExpanseComponent, canActivate: [AuthenticationGuard]},
       // {path: '',
       //   redirectTo: '/components/expanse/expanse.component', pathMatch: 'full'},

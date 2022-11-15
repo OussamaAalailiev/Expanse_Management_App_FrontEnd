@@ -6,6 +6,7 @@ import {PageOfExpanses} from "../../pageModels/pageOfExpanses";
 import {HttpErrorResponse} from "@angular/common/http";
 import {PageOfGoals} from "../../pageModels/pageOfGoals";
 import {AuthenticationLoginService} from "../../services/authenticationLoginService/authentication-login.service";
+import {IncomeService} from "../../services/incomeService/income.service";
 
 @Component({
   selector: 'app-goal',
@@ -25,6 +26,7 @@ export class GoalComponent implements OnInit {
   currentPage$ = this.currentPageSubject.asObservable();//'currentPageSubject' will be observed by 'currentPage$'.
 
   constructor( public goalService: GoalService,
+               public incomeService: IncomeService,
                public authService: AuthenticationLoginService) { }
 
   ngOnInit(): void {

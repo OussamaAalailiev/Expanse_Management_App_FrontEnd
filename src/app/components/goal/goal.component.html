@@ -61,17 +61,9 @@
             <div class="col-md-3">
               <div class="m-5">
 <!--                {{goal.categoryIncome.categoryIncomeType}}-->
-                <div *ngIf="goal.categoryIncome.categoryIncomeType==='SALARY'">
-                  <img src="./assets/images/salary.png" alt="Salary image" width="55" height="55">
-                </div>
-                <div *ngIf="goal.categoryIncome.categoryIncomeType==='SAVINGS'">
-                  <img src="./assets/images/saving.png" alt="Savings image" width="55" height="55">
-                </div>
-                <div *ngIf="goal.categoryIncome.categoryIncomeType==='GIFTS'">
-                  <img src="./assets/images/gift.png" alt="Gift image" width="55" height="55">
-                </div>
-                <div *ngIf="goal.categoryIncome.categoryIncomeType==='TRADE_SALES'">
-                  <img src="./assets/images/trade.png" alt="Trade image" width="55" height="55">
+                <div *ngIf="goal.categoryIncome.categoryIncomeType">
+                  <img [src]="incomeService.handleIncomeImage(goal.categoryIncome.categoryIncomeType)"
+                       [alt]="incomeService.handleAltOfIncomeImage(goal.categoryIncome.categoryIncomeType)" width="55" height="55">
                 </div>
               </div>
             </div>

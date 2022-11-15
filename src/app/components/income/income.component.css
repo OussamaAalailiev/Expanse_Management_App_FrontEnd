@@ -71,3 +71,12 @@ input:focus {
   /*font-size: 75%;*/
 
 }/*End of Search bar CSS: */
+
+.pointer{
+  cursor: pointer;
+}
+
+.diasabledPageNavButton{
+  pointer-events: none;
+  opacity: 0.6;
+}

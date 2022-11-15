@@ -16,7 +16,8 @@ export class AppComponent {
   }
 
   handleNewExpanseForm() {
-    this.router.navigateByUrl("/expanse/newExpanse")
+    // this.router.navigateByUrl("/expanse/newExpanse")
+    this.router.navigateByUrl("/newExpanse");
   }
 
 

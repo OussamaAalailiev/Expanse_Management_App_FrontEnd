@@ -1,7 +1,8 @@
 <!-- Navigation Bar With a Responsive Menu that can collapse. -->
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
   <div class="container">
-    <a class="navbar-brand" routerLink="/home" *ngIf="authService.isUserAuthenticatedService()">Home</a>
+    <a class="navbar-brand" routerLink="/home" *ngIf="authService.isUserAuthenticatedService()"
+       routerLinkActive="active-link">Home</a>
 
     <button class="navbar-toggler"
             type="button"
@@ -13,48 +14,70 @@
     <div class="collapse navbar-collapse" id="navmenu">
       <ul class="navbar-nav ms-auto" id="myUlNav">
         <li class="nav-item" *ngIf="authService.isUserAuthenticatedService()">
-          <a href="#" routerLink="/users" class="nav-link" >User Profile</a>
+          <a href="#" routerLink="/users" class="nav-link"
+             routerLinkActive="active-link" >User Profile</a>
         </li>
-        <li class="nav-item dropdown" *ngIf="authService.isUserAuthenticatedService()">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Expanse
+        <li class="nav-item dropdown" *ngIf="authService.isUserAuthenticatedService()" >
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+             data-bs-toggle="dropdown" aria-expanded="false">
+            Expanses Overview
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a href="#" routerLink="/expanse" class="dropdown-item" >Get Expanses</a></li>
-            <li><hr class="dropdown-divider"></li>
+            <li ><a href="#" routerLink="/expanse" class="dropdown-item dropdownItemStyle"
+                    routerLinkActive="active-link" >List of Expanses</a></li>
+<!--            <li><hr class="dropdown-divider"></li>-->
             <li>
-              <a class="dropdown-item clickable" (click)="handleNewExpanseForm()">Add new Expanse</a>
-<!--              <a class="dropdown-item" routerLink="/expanse/newExpanse">Add new Expanse</a>-->
+<!--              <a class="dropdown-item clickable dropdownItemStyle" (click)="handleNewExpanseForm()"-->
+<!--                 routerLinkActive="active-link" >Add new Expanse</a>-->
+              <a class="dropdown-item clickable dropdownItemStyle" routerLink="/newExpanse"
+                 routerLinkActive="active-link" >Add new Expanse</a>
             </li>
+<!--            <li><hr class="dropdown-divider"></li>-->
             <li>
-              <a class="dropdown-item clickable" (click)="handleTotalExpansesPage()">My Total Expanses</a>
-              <!--              <a class="dropdown-item" routerLink="/expanse/newExpanse">Add new Expanse</a>-->
+<!--              <a class="dropdown-item clickable dropdownItemStyle" (click)="handleTotalExpansesPage()"-->
+<!--                 routerLinkActive="active-link">My Total Expanses</a>-->
+              <a class="dropdown-item clickable dropdownItemStyle" routerLink="totalExpansesByUser"
+                 routerLinkActive="active-link">My Total Expanses</a>
             </li>
+<!--            <li><hr class="dropdown-divider"></li>-->
             <li>
-              <a class="dropdown-item clickable" (click)="handleExpansesByCategoryPage()">Total Expanses By Category</a>
-              <!--              <a class="dropdown-item" routerLink="/expanse/newExpanse">Add new Expanse</a>-->
+<!--              <a class="dropdown-item clickable dropdownItemStyle" (click)="handleExpansesByCategoryPage()"-->
+<!--                 routerLinkActive="active-link" >Total Expanses By Category</a>-->
+              <a class="dropdown-item clickable dropdownItemStyle" routerLink="expensesByCategoryAndUserId"
+                 routerLinkActive="active-link" >Total Expanses By Category</a>
             </li>
           </ul>
         </li>
         <li class="nav-item">
-          <a href="#" routerLink="/budget" class="nav-link" *ngIf="authService.isUserAuthenticatedService()">Budget</a>
+          <a href="#" routerLink="/budget" class="nav-link" *ngIf="authService.isUserAuthenticatedService()"
+             routerLinkActive="active-link" >Budget</a>
         </li>
 
-<!--        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
-<!--          Income-->
-<!--        </a>-->
-<!--        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">-->
-          <li class="nav-item">
-            <a href="#" routerLink="/income" class="nav-link" *ngIf="authService.isUserAuthenticatedService()">Income</a>
-          </li>
-          <li class="nav-item">
-            <a  (click)="handleTotalIncomesPage()"
-               class="nav-link clickable" *ngIf="authService.isUserAuthenticatedService()">My Total Incomes</a>
-          </li>
-<!--        </ul>-->
+        <li class="nav-item dropdown" *ngIf="authService.isUserAuthenticatedService()">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+             data-bs-toggle="dropdown" aria-expanded="false">
+            Incomes Overview
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li class="nav-item">
+              <a href="#" routerLink="/income" class="dropdown-item clickable dropdownItemStyle"
+                 *ngIf="authService.isUserAuthenticatedService()"
+                 routerLinkActive="active-link" >List of Incomes</a>
+            </li>
+<!--            <li><hr class="dropdown-divider"></li>-->
+            <li class="nav-item">
+<!--              <a  (click)="handleTotalIncomesPage()"-->
+<!--                  class="dropdown-item clickable dropdownItemStyle" *ngIf="authService.isUserAuthenticatedService()"-->
+<!--                  routerLinkActive="active-link" >My Total Incomes</a>-->
+              <a  routerLink="totalIncomesByUser"
+                  class="dropdown-item clickable dropdownItemStyle" *ngIf="authService.isUserAuthenticatedService()"
+                  routerLinkActive="active-link" >My Total Incomes</a>
+            </li>
+          </ul>
+        </li>
 
         <li class="nav-item" *ngIf="authService.isUserAuthenticatedService()">
-          <a href="#" routerLink="/goal" class="nav-link">Goal</a>
+          <a href="#" routerLink="/goal" class="nav-link" routerLinkActive="active-link" >Goal</a>
         </li>
 <!--        <li class="nav-item">-->
 <!--          <a href="#" class="nav-link">Contact us!</a>-->
@@ -66,7 +89,7 @@
 <!--          </strong>-->
 <!--        </li>-->
         <li class="nav-item">
-          <a class="btn nav-link" (click)="handleLogout()">Logout
+          <a class="btn nav-link" (click)="handleLogout()" routerLinkActive="active-link" >Logout
             <i class="bi bi-box-arrow-right"></i>
           </a>
         </li>
