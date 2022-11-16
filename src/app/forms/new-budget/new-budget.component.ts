@@ -99,7 +99,8 @@ user?: User = this.authService!.authenticatedUserLogin;
       dateDebut: this.fb.control(null, Validators.required),
       endDate: this.fb.control(null, Validators.required),
       categoryExpanse: this.fb.control(null, Validators.required),
-      userId: this.fb.control(null, Validators.required)
+      // userId: this.fb.control(null, Validators.required)
+      userId: this.user!.id
     })
   }
 

@@ -169,7 +169,8 @@ export class ExpanseComponent implements OnInit {
 
 
   handleExpanseFormNav() {
-    this.router.navigateByUrl('expanse/newExpanse');
+    // this.router.navigateByUrl('expanse/newExpanse');
+    this.router.navigateByUrl('newExpanse');
   }
 
 }

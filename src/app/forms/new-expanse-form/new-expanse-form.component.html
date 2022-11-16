@@ -43,18 +43,18 @@
                         Category of Expanse is required! </span>
         </div>
 
-        <div class="mb-3">Select your Username:
-          <select formControlName="userId">
-            <option value="select" hidden="">Select your Username:: </option>
-            <option *ngIf="user" [value]="user.id"
-            >
-              {{user.name}}
-            </option>
-          </select>
-          <span class="text-danger" *ngIf="expanseFormGroup.controls['userId'].touched &&
-                                       expanseFormGroup.controls['userId'].hasError('required')">
-                        User is required! </span>
-        </div>
+<!--        <div class="mb-3">Select your Username:-->
+<!--          <select formControlName="userId">-->
+<!--            <option value="select" hidden="">Select your Username:: </option>-->
+<!--            <option *ngIf="user" [value]="user.id"-->
+<!--            >-->
+<!--              {{user.name}}-->
+<!--            </option>-->
+<!--          </select>-->
+<!--          <span class="text-danger" *ngIf="expanseFormGroup.controls['userId'].touched &&-->
+<!--                                       expanseFormGroup.controls['userId'].hasError('required')">-->
+<!--                        User is required! </span>-->
+<!--        </div>-->
 
         <button [disabled]="expanseFormGroup.invalid" [ngClass]="expanseFormGroup.invalid?'notAllowedButtonSuccess':'btn btn-success'" type="submit">Submit New Expanse</button>
 <!--        <button [disabled]="expanseFormGroup.invalid" class="btn btn-success" type="submit">Submit New Expanse</button>-->

@@ -95,7 +95,8 @@ export class NewExpanseFormComponent implements OnInit {
         Validators.minLength(3), Validators.maxLength(55)]),
       createdDate: this.fb.control(null, Validators.required),
       categoryExpanse: this.fb.control(null, Validators.required),
-      userId: this.fb.control(null, Validators.required)
+      // userId: this.fb.control(null, Validators.required)
+      userId: this.user!.id
       // categoryExpanse: this.fb.control(CategoryExpanse.arguments.categoryExpanseType),
 
       // user: User
@@ -121,7 +122,7 @@ export class NewExpanseFormComponent implements OnInit {
       ).toPromise();
       console.log(this.expanseFormGroup.value);
       //this.expanseFormGroup.reset();
-      this.route.navigateByUrl('/expanse')
+      this.route.navigateByUrl('/expanse');
     }
   }
 

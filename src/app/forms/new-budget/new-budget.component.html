@@ -60,17 +60,17 @@
                         Category of Budget is required! </span>
         </div>
 
-        <div class="mb-3">Select your Username:
-          <select formControlName="userId">
-            <option value="select" hidden="">Select your Username:: </option>
-            <option *ngIf="user" [value]="user.id">
-              {{user.name}}
-            </option>
-          </select>
-          <span class="text-danger" *ngIf="budgetFormGroup.controls['userId'].touched &&
-                                       budgetFormGroup.controls['userId'].hasError('required')">
-                        User is required! </span>
-        </div>
+<!--        <div class="mb-3">Select your Username:-->
+<!--          <select formControlName="userId">-->
+<!--            <option value="select" hidden="">Select your Username:: </option>-->
+<!--            <option *ngIf="user" [value]="user.id">-->
+<!--              {{user.name}}-->
+<!--            </option>-->
+<!--          </select>-->
+<!--          <span class="text-danger" *ngIf="budgetFormGroup.controls['userId'].touched &&-->
+<!--                                       budgetFormGroup.controls['userId'].hasError('required')">-->
+<!--                        User is required! </span>-->
+<!--        </div>-->
 
         <button [disabled]="budgetFormGroup.invalid" [ngClass]="budgetFormGroup.invalid?'notAllowedButtonSuccess':'btn btn-success'" type="submit">Submit New Budget</button>
 <!--        <button [disabled]="budgetFormGroup.invalid" class="btn btn-success" type="submit">Submit New Budget</button>-->
