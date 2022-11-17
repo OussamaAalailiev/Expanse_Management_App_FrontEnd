@@ -37,6 +37,7 @@ import { ExpensesSumByCategoryComponent } from './components/expenses-sum-by-cat
 import { TotalIncomesComponent } from './components/income/total-incomes/total-incomes.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { GlobalExpensesByCatComponent } from './global-expenses-by-cat/global-expenses-by-cat.component';
+import { ExpensesSumDescByCatComponent } from './components/expenses-sum-desc-by-cat/expenses-sum-desc-by-cat.component';
 
 
 
@@ -59,7 +60,8 @@ import { GlobalExpensesByCatComponent } from './global-expenses-by-cat/global-ex
     ExpensesSumByCategoryComponent,
     TotalIncomesComponent,
     PageNotFoundComponent,
-    GlobalExpensesByCatComponent
+    GlobalExpensesByCatComponent,
+    ExpensesSumDescByCatComponent
   ],
   imports: [
     BrowserModule,
@@ -86,6 +88,7 @@ import { GlobalExpensesByCatComponent } from './global-expenses-by-cat/global-ex
       {path: 'totalExpansesByUser', component: TotalExpansesComponent, canActivate: [AuthenticationGuard]},
       // {path: 'expensesByCategoryAndUserId', component: ExpensesSumByCategoryComponent, canActivate: [AuthenticationGuard]},
       {path: 'global-Expenses-By-Cat/expensesByCategoryAndUserId', component: ExpensesSumByCategoryComponent, canActivate: [AuthenticationGuard]},
+      {path: 'global-Expenses-By-Cat/expensesByCategoryAndUserIdAmountDesc', component: ExpensesSumDescByCatComponent, canActivate: [AuthenticationGuard]},
       //If the user specify a path that does Not exist, we display the component down below:
       {path: 'global-Expenses-By-Cat', component: GlobalExpensesByCatComponent, canActivate: [AuthenticationGuard]},
       {path: '**', component: PageNotFoundComponent}

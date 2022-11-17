@@ -78,12 +78,19 @@ export class ExpanseService {
     return this.http.get<TotalExpansePerMonthDTO[]>(environment.backendHost+`/api/expansesSumByUser/${userId}`);
   }
 
-  /**Get Total Amount of Expanses By Category & UserID: */
+  /**Get Total Amount of Expanses By Category & UserID Ordered By Date Desc: */
   getTotalExpansesByCategoryAndUserIDService(
     userId: string = this.authService.authenticatedUserLogin!.id): Observable<ExpensesByCategory[]>{
     console.log("Inside Service: ");
     console.log("Url= " + environment.backendHost+`/api/expensesSumByCategoryAndUserId/${userId}`);
     return this.http.get<ExpensesByCategory[]>(environment.backendHost+`/api/expensesSumByCategoryAndUserId/${userId}`);
+  }
+  /**Get Total Amount of Expanses By Category & UserID Ordered By Date Desc: */
+  getTotalExpansesByCategoryAndUserAmountDescIDService(
+    userId: string = this.authService.authenticatedUserLogin!.id): Observable<ExpensesByCategory[]>{
+    console.log("Inside Service: ");
+    console.log("Url= " + environment.backendHost+`/api/expensesSumByCategoryAndUserIdAmountDesc/${userId}`);
+    return this.http.get<ExpensesByCategory[]>(environment.backendHost+`/api/expensesSumByCategoryAndUserIdAmountDesc/${userId}`);
   }
 
   // readonly imgSamePath : string = './assets/images/';
