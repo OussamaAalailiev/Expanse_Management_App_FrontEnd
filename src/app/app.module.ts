@@ -18,18 +18,10 @@ import { UpdateExpanseComponent } from './forms/update-expanse/update-expanse.co
 import { NgCircleProgressModule } from 'ng-circle-progress';
 // import {MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
+
 import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialog, MatDialogModule} from '@angular/material/dialog';
-import { MatSliderModule } from '@angular/material/slider';
 import { NewBudgetComponent } from './forms/new-budget/new-budget.component';
-import {MatDatepickerModule} from "@angular/material/datepicker";
-import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatInputModule} from "@angular/material/input";
-import {MatNativeDateModule} from "@angular/material/core";
 import { UpdateBudgetComponent } from './forms/update-budget/update-budget.component';
-import {CommonValidationMethods} from "./services/validations/commonValidationMethods";
 import { LoginComponent } from './components/login/login.component';
 import {AuthenticationGuard} from "./security/guards/authentication.guard";
 import { TotalExpansesComponent } from './components/total-expanses/total-expanses.component';
@@ -38,6 +30,9 @@ import { TotalIncomesComponent } from './components/income/total-incomes/total-i
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { GlobalExpensesByCatComponent } from './global-expenses-by-cat/global-expenses-by-cat.component';
 import { ExpensesSumDescByCatComponent } from './components/expenses-sum-desc-by-cat/expenses-sum-desc-by-cat.component';
+import { IncomesSumByCategoryComponent } from './components/income/incomes-sum-by-category/incomes-sum-by-category.component';
+import { IncomesSumDescByCatComponent } from './components/income/incomes-sum-desc-by-cat/incomes-sum-desc-by-cat.component';
+import { GlobalIncomesByCatComponent } from './components/income/global-incomes-by-cat/global-incomes-by-cat.component';
 
 
 
@@ -61,7 +56,10 @@ import { ExpensesSumDescByCatComponent } from './components/expenses-sum-desc-by
     TotalIncomesComponent,
     PageNotFoundComponent,
     GlobalExpensesByCatComponent,
-    ExpensesSumDescByCatComponent
+    ExpensesSumDescByCatComponent,
+    IncomesSumByCategoryComponent,
+    IncomesSumDescByCatComponent,
+    GlobalIncomesByCatComponent
   ],
   imports: [
     BrowserModule,
@@ -91,6 +89,8 @@ import { ExpensesSumDescByCatComponent } from './components/expenses-sum-desc-by
       {path: 'global-Expenses-By-Cat/expensesByCategoryAndUserIdAmountDesc', component: ExpensesSumDescByCatComponent, canActivate: [AuthenticationGuard]},
       //If the user specify a path that does Not exist, we display the component down below:
       {path: 'global-Expenses-By-Cat', component: GlobalExpensesByCatComponent, canActivate: [AuthenticationGuard]},
+      {path: 'global-Incomes-By-Cat', component: GlobalIncomesByCatComponent, canActivate: [AuthenticationGuard]},
+      {path: 'global-Incomes-By-Cat/incomesByCategoryAndUserId', component: IncomesSumByCategoryComponent, canActivate: [AuthenticationGuard]},
       {path: '**', component: PageNotFoundComponent}
     ]),
     ReactiveFormsModule,

@@ -29,8 +29,12 @@
 <!--                <span class="card-title" *ngIf="expensesByCat.category_expanse_id===60"><strong>Games</strong></span>-->
 <!--                <span class="card-title" *ngIf="expensesByCat.category_expanse_id===63"><strong>Laptop/Computer</strong></span>-->
 <!--                <span class="card-title" *ngIf="expensesByCat.category_expanse_id===14"><strong>Animal(s)</strong></span>-->
-                <span class="card-title text-danger"><strong>-{{expensesByCat.sumExpensesByCategory}} DH</strong></span>
-                <span class="card-title"><strong><em style="color: #2e3b31">{{expensesByCat.percentOfExpensesPerMonth.toFixed(2) }} %</em></strong></span>
+                <span class="card-title text-danger">
+                  <strong>-{{expensesByCat.sumExpensesByCategory }}
+                  </strong>
+                  <strong>{{authService.authenticatedUserLogin!.currency}}</strong>
+                </span>
+                <span class="card-title"><strong><em style="color: #dc3545">{{expensesByCat.percentOfExpensesPerMonth.toFixed(2) }} %</em></strong></span>
 
               </div>
 <!--              <section class="card-text"><span>Limit: &nbsp;<strong>{{budget.amount}} DH</strong></span></section>-->
@@ -60,7 +64,7 @@
 
                 <span [ngClass]="(expensesByCat.percentOfExpensesPerMonth>0)?'progress-bar-fill ':''"
                       role="progressbar" [ngStyle]="{'width.%':  expensesByCat.percentOfExpensesPerMonth,
-                       'background-color': '#2e3b31'}"
+                       'background-color': '#dc3545'}"
                       attr.aria-valuenow="{{expensesByCat.percentOfExpensesPerMonth}}"
                       aria-valuemin="0" aria-valuemax="100">
 

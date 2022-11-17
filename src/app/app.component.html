@@ -69,12 +69,15 @@
             </li>
 <!--            <li><hr class="dropdown-divider"></li>-->
             <li class="nav-item">
-<!--              <a  (click)="handleTotalIncomesPage()"-->
-<!--                  class="dropdown-item clickable dropdownItemStyle" *ngIf="authService.isUserAuthenticatedService()"-->
-<!--                  routerLinkActive="active-link" >My Total Incomes</a>-->
               <a  routerLink="totalIncomesByUser"
                   class="dropdown-item clickable dropdownItemStyle" *ngIf="authService.isUserAuthenticatedService()"
                   routerLinkActive="active-link" >My Total Incomes</a>
+            </li>
+            <li>
+              <a class="dropdown-item clickable dropdownItemStyle" routerLink="global-Incomes-By-Cat"
+                 routerLinkActive="active-link" >
+                Global Incomes by Cat
+              </a>
             </li>
           </ul>
         </li>

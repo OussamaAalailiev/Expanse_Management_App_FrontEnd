@@ -12,9 +12,9 @@ export class AuthenticationLoginService {
   //This will contain the users populated locally here by the method below:
   //users: UserLogin [] = [];
   users: User [] = [
-    {id: '3a300bc8-8954-4e93-9136-2b11ad2461b1', name: "Oussama", password: "oussama123", roles: ["USER"]},
-    {id: 'dfa735ec-328b-43c3-ad70-f5dba33eb585', name: "Zakaria", password: "zakaria123", roles: ["USER"]},
-    {id: '653eb6f2-a817-4184-af31-4cff631692f8', name: "Safwane", password: "safwane123", roles: ["USER"]}
+    {id: '3a300bc8-8954-4e93-9136-2b11ad2461b1', name: "Oussama", currency: "DH",password: "oussama123", roles: ["USER"]},
+    {id: 'dfa735ec-328b-43c3-ad70-f5dba33eb585', name: "Zakaria", currency: "$",password: "zakaria123", roles: ["USER"]},
+    {id: '653eb6f2-a817-4184-af31-4cff631692f8', name: "Safwane", currency: "€",password: "safwane123", roles: ["USER"]}
   ];
   //To always have the authenticated User inside the system(app) if it was previously
   //  authenticated successfully THEN we save it inside a method below:
