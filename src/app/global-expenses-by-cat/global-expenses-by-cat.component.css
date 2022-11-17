@@ -1,0 +1,26 @@
+.box {
+  min-width: 200px;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.myContainerOfExpenses{
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  align-content: space-evenly;
+  justify-content: space-evenly;
+  margin: auto;
+}
+
+/*.boxAndMarginTop {*/
+/*  min-width: 200px;*/
+/*  padding: 0.5rem;*/
+/*  display: flex;*/
+/*  align-items: center;*/
+/*  justify-content: center;*/
+/*  margin-top: 2rem;*/
+/*}*/

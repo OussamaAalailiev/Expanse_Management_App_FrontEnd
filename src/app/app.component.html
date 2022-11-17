@@ -4,7 +4,7 @@
     <a class="navbar-brand" routerLink="/home" *ngIf="authService.isUserAuthenticatedService()"
        routerLinkActive="active-link">Home</a>
 
-    <button class="navbar-toggler"
+    <button class="navbar-toggler" *ngIf="authService.isUserAuthenticatedService()"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navmenu">
@@ -15,7 +15,9 @@
       <ul class="navbar-nav ms-auto" id="myUlNav">
         <li class="nav-item" *ngIf="authService.isUserAuthenticatedService()">
           <a href="#" routerLink="/users" class="nav-link"
-             routerLinkActive="active-link" >User Profile</a>
+             routerLinkActive="active-link" >
+            User Profile
+          </a>
         </li>
         <li class="nav-item dropdown" *ngIf="authService.isUserAuthenticatedService()" >
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -23,19 +25,29 @@
             Expanses Overview
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li ><a href="#" routerLink="/expanse" class="dropdown-item dropdownItemStyle"
-                    routerLinkActive="active-link" >List of Expanses</a></li>
-<!--            <li>-->
-<!--              <a class="dropdown-item clickable dropdownItemStyle" routerLink="/newExpanse"-->
-<!--                 routerLinkActive="active-link" >Add new Expanse</a>-->
-<!--            </li>-->
-            <li>
-              <a class="dropdown-item clickable dropdownItemStyle" routerLink="totalExpansesByUser"
-                 routerLinkActive="active-link">My Total Expanses</a>
+            <li >
+              <a href="#" routerLink="/expanse" class="dropdown-item dropdownItemStyle"
+                    routerLinkActive="active-link" >
+                List of Expanses
+              </a>
             </li>
             <li>
-              <a class="dropdown-item clickable dropdownItemStyle" routerLink="expensesByCategoryAndUserId"
-                 routerLinkActive="active-link" >Total Expanses By Category</a>
+              <a class="dropdown-item clickable dropdownItemStyle" routerLink="totalExpansesByUser"
+                 routerLinkActive="active-link">
+                My Total Expanses
+              </a>
+            </li>
+<!--            <li>-->
+<!--              <a class="dropdown-item clickable dropdownItemStyle" routerLink="expensesByCategoryAndUserId"-->
+<!--                 routerLinkActive="active-link">-->
+<!--                Total Expanses By Category-->
+<!--              </a>-->
+<!--            </li>-->
+            <li>
+              <a class="dropdown-item clickable dropdownItemStyle" routerLink="global-Expenses-By-Cat"
+                 routerLinkActive="active-link" >
+                Global Expenses by Cat
+              </a>
             </li>
           </ul>
         </li>
