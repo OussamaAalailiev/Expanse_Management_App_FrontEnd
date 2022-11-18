@@ -77,6 +77,12 @@ export class ExpanseService {
     console.log("Url= " + environment.backendHost+`/api/expansesSumByUser/${userId}`);
     return this.http.get<TotalExpansePerMonthDTO[]>(environment.backendHost+`/api/expansesSumByUser/${userId}`);
   }
+  /**Get Total Amount of Expanses per LifeTime By UserID: */
+  getTotalExpansesByUserPerLifeTimeIDService(
+                     userId: string = this.authService.authenticatedUserLogin!.id): Observable<TotalExpansePerMonthDTO>{
+    console.log("Url= " + environment.backendHost+`/api/expenses/expansesBalanceByUser/${userId}`);
+    return this.http.get<TotalExpansePerMonthDTO>(environment.backendHost+`/api/expenses/expansesBalanceByUser/${userId}`);
+  }
 
   /**Get Total Amount of Expanses By Category & UserID Ordered By Date Desc: */
   getTotalExpansesByCategoryAndUserIDService(

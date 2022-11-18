@@ -33,6 +33,7 @@ import { ExpensesSumDescByCatComponent } from './components/expenses-sum-desc-by
 import { IncomesSumByCategoryComponent } from './components/income/incomes-sum-by-category/incomes-sum-by-category.component';
 import { IncomesSumDescByCatComponent } from './components/income/incomes-sum-desc-by-cat/incomes-sum-desc-by-cat.component';
 import { GlobalIncomesByCatComponent } from './components/income/global-incomes-by-cat/global-incomes-by-cat.component';
+import { UserTotalBalanceComponent } from './components/users/user-total-balance/user-total-balance.component';
 
 
 
@@ -59,7 +60,8 @@ import { GlobalIncomesByCatComponent } from './components/income/global-incomes-
     ExpensesSumDescByCatComponent,
     IncomesSumByCategoryComponent,
     IncomesSumDescByCatComponent,
-    GlobalIncomesByCatComponent
+    GlobalIncomesByCatComponent,
+    UserTotalBalanceComponent
   ],
   imports: [
     BrowserModule,

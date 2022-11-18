@@ -44,6 +44,12 @@ export class IncomeService {
     console.log("Url= " + environment.backendHost + `/api/incomes/incomesSumByUser/${userId}`);
     return this.http.get<TotalIncomesPerMonthDTO[]>(environment.backendHost + `/api/incomes/incomesSumByUser/${userId}`);
   }
+  /**Get Total Amount of Incomes per LifeTime By UserID: */
+  getTotalIncomesByUserOnLifeTimeIDService(
+    userId: string = this.authService.authenticatedUserLogin!.id): Observable<TotalIncomesPerMonthDTO> {
+    console.log("Url= " + environment.backendHost + `/api/incomes/incomesBalanceByUser/${userId}`);
+    return this.http.get<TotalIncomesPerMonthDTO>(environment.backendHost + `/api/incomes/incomesBalanceByUser/${userId}`);
+  }
 
   /**Get Total Amount of Incomes By Category & UserID Ordered By Amount Desc: */
   getTotalIncomesByCategoryAndUserIDAmountDescService(

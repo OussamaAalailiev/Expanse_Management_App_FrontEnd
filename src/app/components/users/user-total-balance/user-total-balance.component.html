@@ -1,0 +1,11 @@
+<section>
+  Total Balance:&nbsp;
+    <section>
+      <span *ngIf="totalIncomesPerLifeTime" class="text-success">{{totalIncomesPerLifeTime.totalIncomes}}</span>
+      &nbsp;|&nbsp;
+      <span *ngIf="totalExpensesPerLifeTime" class="text-danger">{{totalExpensesPerLifeTime.totalExpanses}}</span>
+    </section>
+<!--    <span class="hrLineInterval" ></span>-->
+    <span style="border-top: 2px solid black; width: 30px; font-weight: bold; margin-top: 1.5rem;" ></span>
+    <section></section>
+</section>

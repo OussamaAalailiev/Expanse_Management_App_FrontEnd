@@ -1,0 +1,12 @@
+.hrLinePercent {
+  border-top: 2px solid black;
+  width: 25%;
+  font-weight: bold;
+}
+
+.hrLineInterval {
+  border-top: 2px solid black;
+  width: 18%;
+  font-weight: bold;
+  margin-top: 1.5rem;
+}
