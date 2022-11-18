@@ -30,7 +30,8 @@
 <!--                    <strong>{{expense.totalExpanses}} DH</strong>-->
 <!--                  </span>-->
                   <div>
-                    <strong>{{expense.totalExpanses}} DH</strong>
+                    <strong>{{expense.totalExpanses.toFixed(2)}}</strong>
+                    <strong>&nbsp;{{authService.authenticatedUserLogin!.currency}}</strong>
                   </div>
                   <div>expenses</div>
                 </span>

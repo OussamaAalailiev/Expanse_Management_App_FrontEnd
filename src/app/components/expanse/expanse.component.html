@@ -79,7 +79,10 @@
                  </span>
                 </span>
               </div>
-              <section class="card-text">Spent:&nbsp;<strong >{{expanse.amount}} DH</strong></section>
+              <section class="card-text">Spent:&nbsp;
+                <strong >{{expanse.amount.toFixed(2)}}</strong>
+                <strong>&nbsp;{{authService.authenticatedUserLogin!.currency}}</strong>
+              </section>
               <section class="card-text"><SMALL class="text-muted">{{expanse.createdDate}}</SMALL></section>
               <section >
                 <span class="d-flex justify-content-end" *ngIf="authService.isAuthenticateUserHasRoleService('USER')">

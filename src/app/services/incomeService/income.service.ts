@@ -49,7 +49,7 @@ export class IncomeService {
   getTotalIncomesByCategoryAndUserIDAmountDescService(
     userId: string = this.authService.authenticatedUserLogin!.id): Observable<IncomesByCategory[]> {
     console.log("Inside Service: ");
-    console.log("Url= " + environment.backendHost + `/api/incomes/incomesByCategoryAndUserId/${userId}`);
+    console.log("Url= " + environment.backendHost + `/api/incomes/incomesByCategoryAndUserIdAmountDesc/${userId}`);
     return this.http.get<IncomesByCategory[]>(environment.backendHost + `/api/incomes/incomesByCategoryAndUserIdAmountDesc/${userId}`);
   }
   /**Get Total Amount of Incomes By Category & UserID Ordered By Amount Desc: */

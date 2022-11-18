@@ -89,8 +89,8 @@ export class ExpanseService {
   getTotalExpansesByCategoryAndUserAmountDescIDService(
     userId: string = this.authService.authenticatedUserLogin!.id): Observable<ExpensesByCategory[]>{
     console.log("Inside Service: ");
-    console.log("Url= " + environment.backendHost+`/api/expensesSumByCategoryAndUserIdAmountDesc/${userId}`);
-    return this.http.get<ExpensesByCategory[]>(environment.backendHost+`/api/expensesSumByCategoryAndUserIdAmountDesc/${userId}`);
+    console.log("Url= " + environment.backendHost+`/api/expenses/expensesSumByCategoryAndUserIdAmountDesc/${userId}`);
+    return this.http.get<ExpensesByCategory[]>(environment.backendHost+`/api/expenses/expensesSumByCategoryAndUserIdAmountDesc/${userId}`);
   }
 
   // readonly imgSamePath : string = './assets/images/';
@@ -297,6 +297,7 @@ export class ExpanseService {
         return `Image unfounded`;//EmptyImage isn't saved in 'assets/images' yet!
     }
   }
+
   handleCatExpNameByExpenseById(category_expanse_id: number) : string{
     switch (category_expanse_id) {
       case 20:

@@ -35,7 +35,8 @@
 <!--                    <strong>{{income.totalIncomes}} DH</strong>-->
 <!--                  </span>-->
                   <div>
-                    <strong>{{income.totalIncomes}} DH</strong>
+                    <strong>{{income.totalIncomes.toFixed(2)}}</strong>
+                    <strong>&nbsp;{{authService.authenticatedUserLogin!.currency}}</strong>
                   </div>
                   <div>
                     incomes

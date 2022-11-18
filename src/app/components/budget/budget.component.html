@@ -77,9 +77,24 @@
                   </a>
                 </span>
               </div>
-              <section class="card-text"><span>Limit: &nbsp;<strong>{{budget.amount}} DH</strong></span></section>
-              <section class="card-text"><span >Spent: &nbsp;<strong>{{budget.amountSpent}} DH</strong></span></section>
-              <section class="card-text"><span >Remaining: &nbsp;<strong>{{budget.amountRemains}} DH</strong></span></section>
+              <section class="card-text">
+                <span>
+                  Limit: &nbsp;<strong>{{budget.amount.toFixed(2)}}</strong>
+                          <strong>&nbsp;{{authService.authenticatedUserLogin!.currency}}</strong>
+                </span>
+              </section>
+              <section class="card-text">
+                <span >Spent: &nbsp;
+                  <strong>{{budget.amountSpent.toFixed(2)}}</strong>
+                  <strong>&nbsp;{{authService.authenticatedUserLogin!.currency}}</strong>
+                </span>
+              </section>
+              <section class="card-text">
+                <span >
+                  Remaining: &nbsp;<strong>{{budget.amountRemains.toFixed(2)}}</strong>
+                             &nbsp;<strong>{{authService.authenticatedUserLogin!.currency}}</strong>
+                </span>
+              </section>
               <section class="d-flex justify-content-center">
                 <span class="card-text">Debut Date:&nbsp;<small class="text-muted">{{budget.dateDebut}}</small></span>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="card-text">End Date:&nbsp;<small class="text-muted">{{budget.endDate}}</small></span>

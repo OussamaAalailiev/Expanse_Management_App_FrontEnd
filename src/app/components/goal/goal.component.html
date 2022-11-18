@@ -143,8 +143,18 @@
                   ></circle-progress>
                 </span>
               </div>
-              <section class="card-text"><span>Limit: <strong>{{goal.amount}} DH</strong></span></section>
-              <section class="card-text"><span >Amount Achieved: <strong>{{goal.amountAchieved}} DH</strong></span></section>
+              <section class="card-text">
+                <span>
+                  Limit: <strong>{{goal.amount.toFixed(2)}}</strong>
+                         <strong>&nbsp;{{authService.authenticatedUserLogin!.currency}}</strong>
+                </span>
+              </section>
+              <section class="card-text">
+                <span >Amount Achieved:
+                  <strong>{{goal.amountAchieved.toFixed(2)}}</strong>
+                  <strong>&nbsp;{{authService.authenticatedUserLogin!.currency}}</strong>
+                </span>
+              </section>
               <br>
               <section class="d-flex justify-content-between">
                               <span *ngIf="(goal.amountAchieved/goal.amount<0.50)" class="badge rounded-pill bg-secondary">

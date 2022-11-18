@@ -29,7 +29,10 @@
                 <!--                <span class="card-title" *ngIf="expensesByCat.category_expanse_id===60"><strong>Games</strong></span>-->
                 <!--                <span class="card-title" *ngIf="expensesByCat.category_expanse_id===63"><strong>Laptop/Computer</strong></span>-->
                 <!--                <span class="card-title" *ngIf="expensesByCat.category_expanse_id===14"><strong>Animal(s)</strong></span>-->
-                <span class="card-title text-danger"><strong>-{{expensesByCat.sumExpensesByCategory}} DH</strong></span>
+                <span class="card-title text-danger">
+                  <strong>-{{expensesByCat.sumExpensesByCategory}}</strong>
+                  <strong>{{authService.authenticatedUserLogin!.currency}}</strong>
+                </span>
                 <span class="card-title "><strong><em style="color: #dc3545">{{expensesByCat.percentOfExpensesPerMonth.toFixed(2) }} %</em></strong></span>
 
               </div>

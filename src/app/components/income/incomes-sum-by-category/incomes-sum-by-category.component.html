@@ -26,20 +26,14 @@
                   <strong>{{incomeService.handleCatIncomeNameByIncomeCatId(incomesByCat.category_income_id)}}
                   </strong>
                 </span>
-                <!--                <span class="card-title" *ngIf="expensesByCat.category_expanse_id===60"><strong>Games</strong></span>-->
-                <!--                <span class="card-title" *ngIf="expensesByCat.category_expanse_id===63"><strong>Laptop/Computer</strong></span>-->
-                <!--                <span class="card-title" *ngIf="expensesByCat.category_expanse_id===14"><strong>Animal(s)</strong></span>-->
+
                 <span class="card-title text-success">
-                  <strong>{{incomesByCat.totalIncomesByCategory }}
-                  </strong>
-                  <strong>{{authService.authenticatedUserLogin!.currency}}</strong>
+                  <strong>{{incomesByCat.totalIncomesByCategory }}</strong>
+                  <strong>&nbsp;{{authService.authenticatedUserLogin!.currency}}</strong>
                 </span>
                 <span class="card-title"><strong><em style="color: #198754">{{incomesByCat.percentOfIncomesPerMonth.toFixed(2) }} %</em></strong></span>
 
               </div>
-              <!--              <section class="card-text"><span>Limit: &nbsp;<strong>{{budget.amount}} DH</strong></span></section>-->
-              <!--              <section class="card-text"><span >Spent: &nbsp;<strong>{{budget.amountSpent}} DH</strong></span></section>-->
-              <!--              <section class="card-text"><span >Remaining: &nbsp;<strong>{{budget.amountRemains}} DH</strong></span></section>-->
               <section class="d-flex justify-content-center">
                 <span class="card-text">From Date:&nbsp;<small class="text-muted">{{incomesByCat.createdDate}}</small></span>
                 <!--                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="card-text">End Date:&nbsp;<small class="text-muted">{{expensesByCat.endDate}}</small></span>-->

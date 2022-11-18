@@ -91,6 +91,7 @@ import { GlobalIncomesByCatComponent } from './components/income/global-incomes-
       {path: 'global-Expenses-By-Cat', component: GlobalExpensesByCatComponent, canActivate: [AuthenticationGuard]},
       {path: 'global-Incomes-By-Cat', component: GlobalIncomesByCatComponent, canActivate: [AuthenticationGuard]},
       {path: 'global-Incomes-By-Cat/incomesByCategoryAndUserId', component: IncomesSumByCategoryComponent, canActivate: [AuthenticationGuard]},
+      {path: 'global-Incomes-By-Cat/incomesByCategoryAndUserIdAmountDesc', component: IncomesSumDescByCatComponent, canActivate: [AuthenticationGuard]},
       {path: '**', component: PageNotFoundComponent}
     ]),
     ReactiveFormsModule,

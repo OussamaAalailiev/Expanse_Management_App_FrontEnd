@@ -1,1 +1,80 @@
-<p>incomes-sum-desc-by-cat works!</p>
+
+<div class="one">
+  <h1>Total Incomes by Category Ordered By Amount</h1>
+</div>
+<br>
+<section class="container" *ngIf="incomesByCategory">
+  <section class="card" *ngFor="let incomesByCat of incomesByCategory" >
+    <section class="row visitedCard">
+      <div class="col-md-3">
+        <div class="m-5">
+          <!--                {{budget .categoryExpanse.categoryExpanseType}}-->
+
+          <div *ngIf="incomesByCat.category_income_id">
+            <img [src]="incomeService.handleImageIncomeById(incomesByCat.category_income_id)"
+                 [alt]="incomeService.handleAltOfImageIncomeById(incomesByCat.category_income_id)"
+                 width="55" height="55">
+          </div>
+
+        </div>
+      </div>
+
+      <span class="col-md-9">
+            <div class="card-body">
+              <div class="d-flex justify-content-between">
+                <span class="card-title" *ngIf="incomesByCat.category_income_id">
+                  <strong>{{incomeService.handleCatIncomeNameByIncomeCatId(incomesByCat.category_income_id)}}
+                  </strong>
+                </span>
+
+                <span class="card-title text-success">
+                  <strong>{{incomesByCat.totalIncomesByCategory }}
+                  </strong>
+                  <strong>{{authService.authenticatedUserLogin!.currency}}</strong>
+                </span>
+                <span class="card-title"><strong><em style="color: #198754">{{incomesByCat.percentOfIncomesPerMonth.toFixed(2) }} %</em></strong></span>
+
+              </div>
+              <section class="d-flex justify-content-center">
+                <span class="card-text">From Date:&nbsp;<small class="text-muted">{{incomesByCat.createdDate}}</small></span>
+                <!--                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="card-text">End Date:&nbsp;<small class="text-muted">{{expensesByCat.endDate}}</small></span>-->
+              </section>
+              <!--              <section class="card-text">Debut Date:&nbsp;<small class="text-muted">{{budget.dateDebut}}</small></section>-->
+              <!--              <section class="card-text">End Date:&nbsp;<small class="text-muted">{{budget.endDate}}</small></section>-->
+              <section>
+<!--                <span class="d-flex justify-content-end" *ngIf="authService.isAuthenticateUserHasRoleService('USER')">-->
+                <!--                  <span class="text-danger pointer" (click)="handleBudgetDelete(budget)">-->
+                <!--&lt;!&ndash;                <i class="bi bi-x-square"></i>&ndash;&gt;-->
+                <!--                    <i class="bi bi-trash"></i>-->
+                <!--                  </span>-->
+                <!--                </span>-->
+              </section>
+              <section class="d-flex justify-content-between">
+
+              </section>
+            </div>
+
+            <section class="container">
+              <section class="progress mb-3">
+
+                <span [ngClass]="(incomesByCat.percentOfIncomesPerMonth>0)?'progress-bar-fill ':''"
+                      role="progressbar" [ngStyle]="{'width.%':  incomesByCat.percentOfIncomesPerMonth,
+                       'background-color': '#198754'}"
+                      attr.aria-valuenow="{{incomesByCat.percentOfIncomesPerMonth}}"
+                      aria-valuemin="0" aria-valuemax="100">
+
+                </span>
+
+              </section>
+            </section>
+          </span>
+
+    </section>
+  </section>
+</section>
+
+<div *ngIf="!incomesByCategory"  class="alert alert-secondary mt-5" role="alert">
+  <!-- Bootstrap Alert Message pops up in case No Total Expanses were found when we click search! -->
+  No Incomes By Category were found!
+</div>
+

@@ -81,7 +81,10 @@
                  </span>
                 </span>
               </div>
-              <section class="card-text"><strong >{{income.amount}} DH</strong></section>
+              <section class="card-text">
+                <strong>{{income.amount.toFixed(2)}}</strong>
+                <strong>&nbsp;{{authService.authenticatedUserLogin!.currency}}</strong>
+              </section>
               <section class="card-text"><SMALL class="text-muted">{{income.createdDate}}</SMALL></section>
               <section >
                 <span class="d-flex justify-content-end" *ngIf="authService.isAuthenticateUserHasRoleService('USER')">

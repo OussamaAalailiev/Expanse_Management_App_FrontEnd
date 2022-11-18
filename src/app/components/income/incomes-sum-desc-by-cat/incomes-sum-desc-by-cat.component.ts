@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {IncomeService} from "../../../services/incomeService/income.service";
+import {AuthenticationLoginService} from "../../../services/authenticationLoginService/authentication-login.service";
+import {IncomesByCategory} from "../../../models/IncomesByCategory";
 
 @Component({
   selector: 'app-incomes-sum-desc-by-cat',
@@ -7,9 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IncomesSumDescByCatComponent implements OnInit {
 
-  constructor() { }
+  incomesByCategory: IncomesByCategory[] | undefined;
+
+  constructor(public incomeService: IncomeService,
+              public authService: AuthenticationLoginService) { }
 
   ngOnInit(): void {
+    this.getIncomesSumByCategoryAndUserIdByAmountDesc();
+  }
+
+  getIncomesSumByCategoryAndUserIdByAmountDesc(){
+    this.incomeService.getTotalIncomesByCategoryAndUserIDAmountDescService(this.authService.authenticatedUserLogin!.id)
+      .subscribe(
+        (data) =>{
+          this.incomesByCategory = data;
+          console.log(data)
+        }
+        ,(error) =>{
+          console.log(error);
+        });
   }
 
 }
