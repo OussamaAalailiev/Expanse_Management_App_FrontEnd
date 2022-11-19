@@ -70,10 +70,15 @@
 
     </section>
   </section>
+  <div *ngIf="incomesByCategory.length<1"  class="alert alert-secondary mt-5" role="alert">
+    <!-- Bootstrap Alert Message pops up in case No Total Expanses were found when we click search! -->
+    <span class="text-success">No Incomes By Category were found!</span>
+  </div>
 </section>
 
-<div *ngIf="!incomesByCategory"  class="alert alert-secondary mt-5" role="alert">
-  <!-- Bootstrap Alert Message pops up in case No Total Expanses were found when we click search! -->
-  No Incomes By Category were found!
-</div>
+<!--<div *ngIf="!incomesByCategory"  class="alert alert-secondary mt-5" role="alert">-->
+<!--  &lt;!&ndash; Bootstrap Alert Message pops up in case No Total Expanses were found when we click search! &ndash;&gt;-->
+<!--  No Incomes By Category were found!-->
+<!--</div>-->
+
 

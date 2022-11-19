@@ -57,3 +57,20 @@
   justify-content: center;
 
 }
+
+.myGreenBadge {
+  background-color: #198754;
+  color: white;
+  padding: 4px 6px;
+  text-align: center;
+  border-radius: 16px;
+  font-weight: 600;
+}
+.myGreyBadge{
+  background-color: #7b837f;
+  color: black;
+  padding: 4px 6px;
+  text-align: center;
+  border-radius: 16px;
+  font-weight: 600;
+}

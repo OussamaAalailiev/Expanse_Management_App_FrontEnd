@@ -3,7 +3,8 @@
 <!--  Total Expenses-->
 <!--</h2>-->
 <div class="twelve">
-  <h1>Total Expenses</h1>
+<!--  <h1>Total Expenses</h1>-->
+  <h1>Monthly Expenses</h1>
 </div>
 <section class="container" *ngIf="totalExpansesList">
   <section class="card" *ngFor="let expense of totalExpansesList" >
@@ -42,8 +43,12 @@
                     <img src="./assets/images/overspending-reel-4.png" alt="Over Spending image" width="32" height="32">
                   </span>&nbsp;
                   <span class="card-title align-center text-danger" *ngIf="expense.amountInterval>0">
-                    <strong>{{expense.amountInterval}} DH</strong>
+                    <strong>{{expense.amountInterval}}</strong>
+                    <strong>&nbsp;{{authService.authenticatedUserLogin!.currency}}</strong>
                   </span>
+                    <span>
+                    <img src="./assets/images/expensesincreased.png" alt="expenses increased image" width="32" height="32">
+                    </span>
                   </div>
                 </span>
 
@@ -100,9 +105,13 @@
 
     </section>
   </section>
+  <div *ngIf="!totalExpansesList"  class="alert alert-secondary mt-5" role="alert">
+    <!-- Bootstrap Alert Message pops up in case No Total Expanses were found when we click search! -->
+    No Monthly Expanses Summary were found!
+  </div>
 </section>
 
-<div *ngIf="!totalExpansesList"  class="alert alert-secondary mt-5" role="alert">
-  <!-- Bootstrap Alert Message pops up in case No Total Expanses were found when we click search! -->
-    No Expanses Summary were found!
-</div>
+<!--<div *ngIf="!totalExpansesList"  class="alert alert-secondary mt-5" role="alert">-->
+<!--  &lt;!&ndash; Bootstrap Alert Message pops up in case No Total Expanses were found when we click search! &ndash;&gt;-->
+<!--    No Monthly Expanses Summary were found!-->
+<!--</div>-->

@@ -3,7 +3,8 @@
 <!--  Total Expenses-->
 <!--</h2>-->
 <div class="twelve">
-  <h1>Total Incomes</h1>
+<!--  <h1>Total Incomes</h1>-->
+  <h1>Monthly Incomes</h1>
 </div>
 <section class="container" *ngIf="totalIncomesList">
   <section class="card" *ngFor="let income of totalIncomesList" >
@@ -116,7 +117,7 @@
   <!-- We check if the Array is Not null & empty by '!totalIncomesList.length'. -->
   <div *ngIf="!totalIncomesList.length"  class="container alert alert-secondary mt-5" role="alert">
     <!-- Bootstrap Alert Message pops up in case No Total Expanses were found when we click search! -->
-    No Incomes Summary were found!
+    No Monthly Incomes were found!
   </div>
 </section>
 

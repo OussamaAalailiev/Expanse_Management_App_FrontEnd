@@ -18,8 +18,10 @@
     <section class="box card-text">Creation Date:&nbsp;<strong>{{user.dateCreation}}</strong></section>
 <!--    <section class="box card-text">Total Balance:&nbsp;<strong>{{user.totalSold}}</strong></section>-->
     <app-user-total-balance class="box card-text"> </app-user-total-balance>
-    <section *ngIf="user.active===true" class="box card-text">Account:&nbsp;<span class="badge bg-success"> Active</span></section>
-    <section *ngIf="user.active===false" class="box card-text">Account:&nbsp;<span class="badge bg-secondary"> Inactive</span></section>
+<!--    <section *ngIf="user.active===true" class="box card-text">Account:&nbsp;<span class="badge bg-success"> Active</span></section>-->
+<!--    <section *ngIf="user.active===false" class="box card-text">Account:&nbsp;<span class="badge bg-secondary"> Inactive</span></section>-->
+    <section *ngIf="user.active===true" class="box card-text">Account:&nbsp;<span class="myGreenBadge"> Active</span></section>
+    <section *ngIf="user.active===false" class="box card-text">Account:&nbsp;<span class="myGreyBadge"> Inactive</span></section>
     <!--  </section>-->
   </main>
 </main>

@@ -89,7 +89,7 @@ export class ExpanseService {
     userId: string = this.authService.authenticatedUserLogin!.id): Observable<ExpensesByCategory[]>{
     console.log("Inside Service: ");
     console.log("Url= " + environment.backendHost+`/api/expensesSumByCategoryAndUserId/${userId}`);
-    return this.http.get<ExpensesByCategory[]>(environment.backendHost+`/api/expensesSumByCategoryAndUserId/${userId}`);
+    return this.http.get<ExpensesByCategory[]>(environment.backendHost+`/api/expenses/expensesSumByCategoryAndUserId/${userId}`);
   }
   /**Get Total Amount of Expanses By Category & UserID Ordered By Date Desc: */
   getTotalExpansesByCategoryAndUserAmountDescIDService(
