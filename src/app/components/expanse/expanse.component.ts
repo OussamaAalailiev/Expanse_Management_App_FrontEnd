@@ -43,8 +43,12 @@ export class ExpanseComponent implements OnInit {
   getPageOfExpansesV2(): void{
     this.pageOfExpanses$ = this.expanseService.pageOfExpansesObservable$().pipe(
       map((response)=>{
+        //We save the current pageOfExpanses of type Observable in 'responseSavedBeforePageNav'
+        // using 'next(response)':
         this.responseSavedBeforePageNav.next(response);
-        this.currentPageSubject.next(response.number);//We get the current page number gotten from Backend
+        if (response.number != null) {
+          this.currentPageSubject.next(response.number);
+        }//We get the current page number gotten from Backend
         console.log(response);// response, then we set it to the Behavioral Object 'currentPageSubject':
         return ({appState: 'APP_LOADED', appData: response})
       }),
@@ -57,7 +61,9 @@ export class ExpanseComponent implements OnInit {
     this.pageOfExpanses$ = this.expanseService.pageOfExpansesObservable$(title, userId, pageNumber).pipe(
       map((response: PageOfExpanses)=>{
         this.responseSavedBeforePageNav.next(response);
-        this.currentPageSubject.next(response.number);//Or we can pass the 'pageNumber':
+        if (response.number != null) {
+          this.currentPageSubject.next(response.number);
+        }//Or we can pass the 'pageNumber':
         console.log(response);
         return ({appState: 'APP_LOADED', appData: response})
       }),
@@ -109,22 +115,52 @@ export class ExpanseComponent implements OnInit {
         /**Instead of re-request the list of Expanses from backend again, we will refresh the list
          *  by deleting the expanse locally:
          * */
-        // let indexOfExpanseDeleted = this.expansesList.indexOf(expanse);
-        console.log('Before getting IndexOf! ..')
+        // this.responseSavedBeforePageNav.next(
+        //   {...,content: {this.responseSavedBeforePageNav.}}
+        // );
+          //TODO : Expense Delete Locally doesn't Work!
+
+        /*
+        //Get the current items 'currentPageOfExpenses' from the BehavioralSubject:
+        const currentPageOfExpenses = this.responseSavedBeforePageNav.getValue()?.content;
+        // Use the id of the argument item to remove it from the currentItems 'currentPageOfExpenses':
+        const pageOfExpensesWithoutExpenseDeleted = currentPageOfExpenses?.filter(({id})=> id!==expanseId);
+        //Emit the new Array of Expenses:
+        this.responseSavedBeforePageNav.next(pageOfExpensesWithoutExpenseDeleted);
+         */
+
+
+       /*
         let indexOfExpanseDeleted = this.expansesList.indexOf(value);
-        console.log("indexOfExpanseDeleted: " + indexOfExpanseDeleted);
         if(indexOfExpanseDeleted!==-1){//To ensure that if the index of element isn't found then it won't remove an item(last item) from the Array:
-          console.log("Before Splice(...) ...");
           this.expansesList.splice(indexOfExpanseDeleted, 1);
-          console.log("After Splice(...) ...");
         }//To delete locally the Object from frontend table.
-        console.log(value); console.log("Inside IndexOf! :)");
-        console.log("indexOfExpanseDeleted: " + indexOfExpanseDeleted);
+        */
+
       },error => {
         console.log("Inside Error IndexOf! :(");
         console.log(error);
       })
   }
+
+  // handleExpanseDelete2(expanse: Expanse){
+  //   /**Confirmation to user for Delete: */
+  //   let confMessage = confirm(`Are you sure you want to Delete Expanse: "${expanse.title}"!`);
+  //   if (!confMessage) return;//If the user cancel the deletion of the expanse we break out of this method,
+  //   this.expanseService.deleteExpanseService(expanse.id)
+  //     .pipe(
+  //       map((response) => {
+  //         this.responseSavedBeforePageNav.next(
+  //           {...response, content: this.responseSavedBeforePageNav.value!.content!.filter((e)=> e.id!==expanse.id)}
+  //         )
+  //         return ({appState: 'APP_LOADED', appData: this.responseSavedBeforePageNav.value})
+  //       }),
+  //     startWith({appState: 'APP_LOADED', appData: this.responseSavedBeforePageNav.value}),//(2)Changed State to 'APP_LOADED' because the data was already loaded.
+  //     //(3) Then we will grab the previous response into the 'startWith(...)':
+  //     catchError((errorResponse: HttpErrorResponse) => of({appState: 'APP_ERROR', errorResponse}))
+  //     )
+  // }
+
 
   //Only Amount can be modified in Expanse:
   handleUpdateExpanseForm(expanse: Expanse) {

@@ -58,9 +58,12 @@ export class ExpanseService {
       // .pipe(catchError(this.handleError()));
   }
 
-  deleteExpanseService(expanseId: number){
+  deleteExpanseService(expanseId: number): Observable<Expanse>{
     return this.http.delete<Expanse>(environment.backendHost+`/api/expanses/admin/delete/${expanseId}`);
   }
+  // deleteExpanseService(expanseId: number): Observable<void>{
+  //   return this.http.delete<void>(environment.backendHost+`/api/expanses/admin/delete/${expanseId}`);
+  // }
 
   updateExpanseService(expanse: Expanse): Observable<Expanse>{
     return this.http.put<Expanse>(environment.backendHost+`/api/expanses/admin/${expanse.id}`, expanse);

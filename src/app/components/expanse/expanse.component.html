@@ -42,8 +42,10 @@
   <ng-container *ngSwitchCase="'APP_LOADED'" >
     <div *ngIf="state.appData?.content!.length > 0">
       <h4 class="text-center mt-3">Expenses </h4>
-      <h6 class="text-center">How much I spend? <img class="inlineElement" src="./assets/images/expenseHowMuch.png"
-                                                          alt="budget image" height="55" width="55">
+      <h6 class="text-center">
+        <img class="inlineElement" src="./assets/images/expenseHowMuch.png"
+             alt="budget image" height="55" width="55">
+        <span>&nbsp;How much I spend?</span>
       </h6>
       <br>
       <!-- Cards & Rows Instead of Table: -->
@@ -83,7 +85,7 @@
                 <strong >{{expanse.amount.toFixed(2)}}</strong>
                 <strong>&nbsp;{{authService.authenticatedUserLogin!.currency}}</strong>
               </section>
-              <section class="card-text"><SMALL class="text-muted">{{expanse.createdDate}}</SMALL></section>
+              <section class="card-text"><SMALL class="text-muted">{{expanse.createdDate | date}}</SMALL></section>
               <section >
                 <span class="d-flex justify-content-end" *ngIf="authService.isAuthenticateUserHasRoleService('USER')">
                 <a>

@@ -85,6 +85,7 @@ input:focus {
 
 inlineElement {
   display: inline;
+  /*margin: 0 auto;*/
 }
 blockElement {
   display: block;

@@ -3,7 +3,7 @@ import {Expanse} from "../models/expanse";
 /**This interface represent a Model or Skeleton of the Page returned from Backend: */
 export interface PageOfExpanses{
   content: Expanse[],
-  pageable: {
+  pageable?: {
     sort: {
       empty: boolean,
       sorted: boolean,
@@ -15,17 +15,17 @@ export interface PageOfExpanses{
     unpaged: boolean,
     paged: boolean
   },
-  last: boolean,
-  totalElements: number,
-  totalPages: number,
-  size: number,
-  sort: {
+  last?: boolean,
+  totalElements?: number,
+  totalPages?: number,
+  size?: number,
+  sort?: {
     empty: boolean,
     sorted: boolean,
     unsorted: boolean
   },
-  first: boolean,
-  numberOfElements: number,
-  number: number,
-  empty: boolean
+  first?: boolean,
+  numberOfElements?: number,
+  number?: number,
+  empty?: boolean
 }

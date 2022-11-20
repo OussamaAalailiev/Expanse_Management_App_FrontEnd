@@ -43,11 +43,12 @@
 <!--      </div>-->
 
       <h4 class="text-center mt-3">Budgets </h4>
-      <h6 class="text-center">How much I want to spent for something on a period of time?
+      <h6 class="text-center">
         <img class="inlineElement" src="./assets/images/budgetHowMuch.png"
              alt="budget image" height="55" width="55">
         <i class="bi bi-calendar-date"></i>
         <i class="bi bi-hourglass-split"></i>
+        <span>&nbsp;How much I want to spent for something on a period of time?</span>
       </h6>
 
       <!-- Display Goals In Cards of Rows: -->
@@ -96,8 +97,8 @@
                 </span>
               </section>
               <section class="d-flex justify-content-center">
-                <span class="card-text">Debut Date:&nbsp;<small class="text-muted">{{budget.dateDebut}}</small></span>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="card-text">End Date:&nbsp;<small class="text-muted">{{budget.endDate}}</small></span>
+                <span class="card-text">Debut Date:&nbsp;<small class="text-muted">{{budget.dateDebut | date}}</small></span>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="card-text">End Date:&nbsp;<small class="text-muted">{{budget.endDate | date}}</small></span>
               </section>
 <!--              <section class="card-text">Debut Date:&nbsp;<small class="text-muted">{{budget.dateDebut}}</small></section>-->
 <!--              <section class="card-text">End Date:&nbsp;<small class="text-muted">{{budget.endDate}}</small></section>-->
