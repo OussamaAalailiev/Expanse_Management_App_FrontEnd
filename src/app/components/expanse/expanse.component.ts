@@ -230,12 +230,18 @@ export class ExpanseComponent implements OnInit {
     this.pageOfExpanses$ = this.expanseService.deleteExpense$(expense.id)
       .pipe(
         map((response) => {
+          console.log('Response Before -> from Expense Component: '+ response);
           this.responseSavedBeforePageNav.next(
             {...response,
               content: this.responseSavedBeforePageNav.value!.content!.filter((e)=> e.id!==expense.id)}
           );
+          console.log('responseSavedBeforePageNav Content -> from Expense Component: '+
+            this.responseSavedBeforePageNav.value?.content);
+          console.log('responseSavedBeforePageNav PageNumber -> from Expense Component: '+
+            this.responseSavedBeforePageNav.value?.number);
           return ({appState: 'APP_LOADED', appData: this.responseSavedBeforePageNav.value});
         }),
+
         startWith({appState: 'APP_LOADED', appData: this.responseSavedBeforePageNav.value}),
         catchError((errorResponse: HttpErrorResponse) => of({appState: 'APP_ERROR', errorResponse}))
       );
@@ -287,6 +293,39 @@ export class ExpanseComponent implements OnInit {
   handleExpanseFormNav() {
     // this.router.navigateByUrl('expanse/newExpanse');
     this.router.navigateByUrl('newExpanse');
+  }
+
+  handleExpenseDeleteFinalV2(expense: Expanse, number: number | undefined, last: boolean | undefined,
+                             totalPages: number | undefined, length: number, totalElements: number | undefined) {
+    /**Confirmation to user for Delete: */
+    let confMessage = confirm(`Are you sure you want to Delete Expanse: "${expense.title}"!`);
+    if (!confMessage) return;//If the user cancel the deletion of the expanse we break out of this method,
+    this.pageOfExpanses$ = this.expanseService.deleteExpense$(expense.id)
+      .pipe(
+        map((response) => {
+          this.responseSavedBeforePageNav.value!.number=number;
+          this.responseSavedBeforePageNav.value!.last = last;
+          this.responseSavedBeforePageNav.value!.totalPages = totalPages;
+          this.responseSavedBeforePageNav.value!.content.length = length;
+          this.responseSavedBeforePageNav.value!.totalElements = totalElements;
+          console.log('Page Number: '+ number);
+          console.log('Page Last: '+ last);
+          console.log('Page Total: '+ totalPages);
+          console.log('Page TotalElements: '+ totalElements);
+          console.log('Page content length: '+ length);
+          this.responseSavedBeforePageNav.next(
+            {...response,
+              content: this.responseSavedBeforePageNav.value!.content!.filter((e)=> e.id!==expense.id)}
+          );
+          if (number != null) {
+            this.currentPageSubject.next(number);
+          }
+          return ({appState: 'APP_LOADED', appData: this.responseSavedBeforePageNav.value});
+        }),
+
+        startWith({appState: 'APP_LOADED', appData: this.responseSavedBeforePageNav.value}),
+        catchError((errorResponse: HttpErrorResponse) => of({appState: 'APP_ERROR', errorResponse}))
+      );
   }
 
 }

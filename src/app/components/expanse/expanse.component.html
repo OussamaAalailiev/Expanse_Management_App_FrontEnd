@@ -93,7 +93,15 @@
 <!--                  <span class="text-danger pointer" (click)="handleExpanseDelete2(expanse)">-->
 <!--                  <span class="text-danger pointer" (click)="handleExpanseDelete3(expanse)">-->
 <!--                  <span class="text-danger pointer" (click)="handleExpanseDelete4(expanse)">-->
-                  <span class="text-danger pointer" (click)="handleExpenseDeleteFinal(expanse)">
+<!--                  <span class="text-danger pointer" (click)="handleExpenseDeleteFinal(expanse)">-->
+                  <span class="text-danger pointer"
+                        (click)="
+                        handleExpenseDeleteFinalV2(
+                        expanse, state.appData!.number=i+1,
+                         state.appData!.last=state.appData!.last,
+                        state.appData!.totalPages=state.appData!.totalPages,
+                        state.appData!.content!.length=state.appData!.content!.length,
+                         state.appData!.totalElements=state.appData!.totalElements)">
                     <i class="bi bi-trash"></i>
                   </span>
                 </a>
