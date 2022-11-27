@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {Expanse} from "../../models/expanse";
-import {catchError, Observable, throwError} from "rxjs";
+import {catchError, Observable, tap, throwError} from "rxjs";
 import {ExpanseFormSubmission} from "../../formModels/ExpanseFormSubmission";
 import {PageOfExpanses} from "../../pageModels/pageOfExpanses";
 import {ValidationErrors} from "@angular/forms";
@@ -38,7 +38,7 @@ export class ExpanseService {
                                page: number=0, size: number=4): Observable<PageOfExpanses> =>
    this.http.get<PageOfExpanses>(environment.backendHost+`/api/expansesByUser?title=${title}&page=${page}&size=${size}&userId=${userId}`);
 
-   handleError(errorResponse: HttpErrorResponse){
+   private handleError(errorResponse: HttpErrorResponse){
     if (errorResponse.status===0){
       // A client-side or network error occurred. Handle it accordingly.
       console.error(errorResponse.error);
@@ -57,11 +57,27 @@ export class ExpanseService {
     return this.http.post(environment.backendHost+"/api/expanses/admin", expanseFormData);
       // .pipe(catchError(this.handleError()));
   }
-
+  //Original:
   deleteExpanseService(expanseId: number): Observable<Expanse>{
     return this.http.delete<Expanse>(environment.backendHost+`/api/expanses/admin/delete/${expanseId}`);
   }
-  // deleteExpanseService(expanseId: number): Observable<void>{
+
+  //CustomResponse is like <-> PageOfExpenses:
+  //appState$ is like pageOfExpenses$ in the Component:
+  deleteExpense$ = (expenseId: number) : Observable<PageOfExpanses> =>
+    this.http.delete<PageOfExpanses>(environment.backendHost+`/api/expanses/admin/delete/${expenseId}`)
+      .pipe(
+        tap(console.log),
+        catchError(this.handleError)
+      );
+
+  // deleteExpanseService(expanseId: number){
+  //   return this.http.delete(environment.backendHost+`/api/expanses/admin/delete/${expanseId}`);
+  // }
+  // deleteExpanseService3(expanseId: number){
+  //   return this.http.delete(environment.backendHost+`/api/expanses/admin/delete/${expanseId}`);
+  // }
+  // deleteExpanseService2(expanseId: number): Observable<void>{
   //   return this.http.delete<void>(environment.backendHost+`/api/expanses/admin/delete/${expanseId}`);
   // }
 

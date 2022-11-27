@@ -78,7 +78,7 @@
                        <i class="bi bi-pencil-square"></i>
                      </span>
                    </a>
-                 </span>
+                  </span>
                 </span>
               </div>
               <section class="card-text">Spent:&nbsp;
@@ -89,7 +89,11 @@
               <section >
                 <span class="d-flex justify-content-end" *ngIf="authService.isAuthenticateUserHasRoleService('USER')">
                 <a>
-                  <span class="text-danger pointer" (click)="handleExpanseDelete(expanse)">
+<!--                  <span class="text-danger pointer" (click)="handleExpanseDelete(expanse)">-->
+<!--                  <span class="text-danger pointer" (click)="handleExpanseDelete2(expanse)">-->
+<!--                  <span class="text-danger pointer" (click)="handleExpanseDelete3(expanse)">-->
+<!--                  <span class="text-danger pointer" (click)="handleExpanseDelete4(expanse)">-->
+                  <span class="text-danger pointer" (click)="handleExpenseDeleteFinal(expanse)">
                     <i class="bi bi-trash"></i>
                   </span>
                 </a>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ExpanseService} from "../../services/expanseService/expanse.service";
-import {BehaviorSubject, catchError, never, Observable, of, startWith} from "rxjs";
+import {BehaviorSubject, catchError, Observable, of, startWith} from "rxjs";
 import {Expanse} from "../../models/expanse";
 import {Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
@@ -18,15 +18,33 @@ import {map} from 'rxjs/operators';
 })
 export class ExpanseComponent implements OnInit {
 
+  //InitialState :
+  initialState: PageOfExpanses = {
+    content: []
+  };
   //expansesList!: Observable<Expanse []>;
   expansesList!: Expanse [];
   //errorMessage: Observable<never> | undefined;
-  errorMessage: string | undefined;//I don't know what 'appState' means yet:
+  errorMessage: string | undefined;
+  //'{appState: string, appData?: PageOfExpanses, error?: HttpErrorResponse}' is the State of the app: 'appState$':
   pageOfExpanses$!: Observable<{appState: string, appData?: PageOfExpanses, error?: HttpErrorResponse}>;
   /**(1) The 'BehaviorSubject(...)' will contain the response added in the 'getPageOfExpansesV2' below: */
+    //'undefined' could be replaced by 'initialState' below:
   responseSavedBeforePageNav = new BehaviorSubject<PageOfExpanses | undefined>(undefined);
   private currentPageSubject = new BehaviorSubject<number>(0);
   currentPage$ = this.currentPageSubject.asObservable();//'currentPageSubject' will be observed by 'currentPage$'.
+
+  get state(){
+    return this.responseSavedBeforePageNav.getValue();
+  }
+  //'setState(...)': whenever a state is coming we will push it into our subscriber stored in 'BehaviorSubject':
+  setState(pageOfExpenses: PageOfExpanses){
+    this.responseSavedBeforePageNav.next(pageOfExpenses);
+  }
+
+  get state$(){
+    return this.responseSavedBeforePageNav.asObservable();
+  }
 
   constructor(public expanseService: ExpanseService,
               private router: Router,
@@ -143,23 +161,85 @@ export class ExpanseComponent implements OnInit {
       })
   }
 
-  // handleExpanseDelete2(expanse: Expanse){
-  //   /**Confirmation to user for Delete: */
-  //   let confMessage = confirm(`Are you sure you want to Delete Expanse: "${expanse.title}"!`);
-  //   if (!confMessage) return;//If the user cancel the deletion of the expanse we break out of this method,
-  //   this.expanseService.deleteExpanseService(expanse.id)
-  //     .pipe(
-  //       map((response) => {
-  //         this.responseSavedBeforePageNav.next(
-  //           {...response, content: this.responseSavedBeforePageNav.value!.content!.filter((e)=> e.id!==expanse.id)}
-  //         )
-  //         return ({appState: 'APP_LOADED', appData: this.responseSavedBeforePageNav.value})
-  //       }),
-  //     startWith({appState: 'APP_LOADED', appData: this.responseSavedBeforePageNav.value}),//(2)Changed State to 'APP_LOADED' because the data was already loaded.
-  //     //(3) Then we will grab the previous response into the 'startWith(...)':
-  //     catchError((errorResponse: HttpErrorResponse) => of({appState: 'APP_ERROR', errorResponse}))
-  //     )
-  // }
+  handleExpanseDelete2(expanse: Expanse){
+    /**Confirmation to user for Delete: */
+    let confMessage = confirm(`Are you sure you want to Delete Expanse: "${expanse.title}"!`);
+    if (!confMessage) return;//If the user cancel the deletion of the expanse we break out of this method,
+    this.expanseService.deleteExpanseService(expanse.id)
+      .pipe(
+        map((response) => {
+          this.responseSavedBeforePageNav.next(
+            // {this.responseSavedBeforePageNav,
+            //        content: this.responseSavedBeforePageNav.value!.content!.filter((e)=> e.id!==expanse.id)}
+          {...response,content: this.responseSavedBeforePageNav.value!.content!.filter((e)=> e.id!==expanse.id)}
+          )
+          // if (response.number != null) {
+          //   this.currentPageSubject.next(response.number);
+          // }
+          return ({appState: 'APP_LOADED', appData: this.responseSavedBeforePageNav})
+        }),
+      startWith({appState: 'APP_LOADED', appData: this.responseSavedBeforePageNav}),//(2)Changed State to 'APP_LOADED' because the data was already loaded.
+      //(3) Then we will grab the previous response into the 'startWith(...)':
+      catchError((errorResponse: HttpErrorResponse) => of({appState: 'APP_ERROR', errorResponse}))
+      )
+      .subscribe(
+        (value) => {
+          this.responseSavedBeforePageNav.next(
+            {...value,
+              content: this.responseSavedBeforePageNav.value!.content}
+          );
+          window.location.reload();
+        }
+      )
+  }
+
+  handleExpanseDelete3(expanse: Expanse){
+    /**Confirmation to user for Delete: */
+    let confMessage = confirm(`Are you sure you want to Delete Expanse: "${expanse.title}"!`);
+    if (!confMessage) return;//If the user cancel the deletion of the expanse we break out of this method,
+    this.expanseService.deleteExpanseService(expanse.id)
+      .subscribe(
+        (expense) => {
+          const newState = {...this.responseSavedBeforePageNav,
+                            content: this.responseSavedBeforePageNav.value!.content!.filter((e)=> e.id!==expanse.id)};
+          this.setState(newState);
+          // this.responseSavedBeforePageNav.next(
+          //   {content: this.responseSavedBeforePageNav.value!.content!.filter((e)=> e.id!==expense.id)}
+          // )
+          console.log("responseSavedBeforePageNav Content: "+this.responseSavedBeforePageNav.value?.content);
+          console.log("responseSavedBeforePageNav Value: "+this.responseSavedBeforePageNav.value);
+          return ({appState: 'APP_LOADED', appData: this.responseSavedBeforePageNav.value})
+        },error => {
+          console.log("Inside Error IndexOf! :(");
+          console.log(error);
+        }
+      )
+  }
+
+  handleExpanseDelete4(expanse: Expanse){
+    /**Confirmation to user for Delete: */
+    let confMessage = confirm(`Are you sure you want to Delete Expanse: "${expanse.title}"!`);
+    if (!confMessage) return;//If the user cancel the deletion of the expanse we break out of this method,
+    this.expanseService.deleteExpanseService(expanse.id).subscribe();
+  }
+
+  handleExpenseDeleteFinal(expense: Expanse): void{
+    /**Confirmation to user for Delete: */
+    let confMessage = confirm(`Are you sure you want to Delete Expanse: "${expense.title}"!`);
+    if (!confMessage) return;//If the user cancel the deletion of the expanse we break out of this method,
+    this.pageOfExpanses$ = this.expanseService.deleteExpense$(expense.id)
+      .pipe(
+        map((response) => {
+          this.responseSavedBeforePageNav.next(
+            {...response,
+              content: this.responseSavedBeforePageNav.value!.content!.filter((e)=> e.id!==expense.id)}
+          );
+          return ({appState: 'APP_LOADED', appData: this.responseSavedBeforePageNav.value});
+        }),
+        startWith({appState: 'APP_LOADED', appData: this.responseSavedBeforePageNav.value}),
+        catchError((errorResponse: HttpErrorResponse) => of({appState: 'APP_ERROR', errorResponse}))
+      );
+  }
 
 
   //Only Amount can be modified in Expanse:

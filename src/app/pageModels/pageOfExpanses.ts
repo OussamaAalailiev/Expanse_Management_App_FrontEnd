@@ -1,6 +1,6 @@
 import {Expanse} from "../models/expanse";
 
-/**This interface represent a Model or Skeleton of the Page returned from Backend: */
+/**This interface represent 'State' a Model or Skeleton of the Page returned from Backend: */
 export interface PageOfExpanses{
   content: Expanse[],
   pageable?: {
@@ -28,4 +28,7 @@ export interface PageOfExpanses{
   numberOfElements?: number,
   number?: number,
   empty?: boolean
+
+
+
 }
