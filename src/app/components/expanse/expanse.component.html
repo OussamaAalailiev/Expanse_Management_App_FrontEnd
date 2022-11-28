@@ -58,10 +58,10 @@
                 <div *ngIf="expanse.categoryExpanse.categoryExpanseType" >
                   <img [src]="expanseService.handleImageExpense(expanse.categoryExpanse.categoryExpanseType)"
                        [alt]="expanseService.handleAltOfImageExpense(expanse.categoryExpanse.categoryExpanseType)"
-                       width="55" height="55">
-                  <!--<img *ngIf="expanse.categoryExpanse.categoryExpanseType==='Clothes_and_Shoes'"
+                       width="55" height="55">&nbsp;
+                  <img *ngIf="expanse.categoryExpanse.categoryExpanseType==='Clothes_and_Shoes'"
                        src="assets/images/shoes.png" alt="Shoes image"
-                       width="32" height="32">-->
+                       width="35" height="35">
 
                 </div>
               </div>
@@ -101,7 +101,7 @@
                   <span class="text-danger pointer"
                         (click)="
                         handleExpenseDeleteFinalV2(
-                        expanse, state.appData!.number = i,
+                        expanse, state.appData!.number,
                          state.appData!.last = state.appData!.last,
                         state.appData!.totalPages = state.appData!.totalPages,
                         state.appData!.content!.length = state.appData!.content!.length,

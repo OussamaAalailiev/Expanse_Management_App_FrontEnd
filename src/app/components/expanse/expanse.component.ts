@@ -326,7 +326,6 @@ export class ExpanseComponent implements OnInit {
           }
           return ({appState: 'APP_LOADED', appData: this.responseSavedBeforePageNav.value});
         }),
-
         startWith({appState: 'APP_LOADED', appData: this.responseSavedBeforePageNav.value}),
         catchError((errorResponse: HttpErrorResponse) => of({appState: 'APP_ERROR', errorResponse}))
       );

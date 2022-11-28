@@ -503,7 +503,7 @@ export class ExpanseService {
       case 'Clothes_and_Shoes':
         return `Clothes / Shoes`;
       case 'Business_trip':
-        return `Business trip`;
+        return `Business trip`;//Just 27 Category Out of 63!
       default:
         return `Unknown Category`;//EmptyImage isn't saved in 'assets/images' yet!
     }
