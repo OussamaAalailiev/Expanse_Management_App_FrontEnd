@@ -296,7 +296,13 @@ export class ExpanseComponent implements OnInit {
   }
 
   handleExpenseDeleteFinalV2(expense: Expanse, number: number | undefined, last: boolean | undefined,
-                             totalPages: number | undefined, length: number, totalElements: number | undefined) {
+                             totalPages: number | undefined, length: number, totalElements: number | undefined,
+                             first: boolean | undefined, numberOfElements: number | undefined,
+                             empty: boolean | undefined, pageableSortEmpty: boolean,
+                             pageableSortSorted: boolean, pageableSortUnsorted: boolean,
+                             pageableOffset: number, pageablePageNumber: number, pageablePageSize: number,
+                             pageableUnpaged: boolean, pageablePaged: boolean, sortEmpty: boolean,
+                             sortSorted: boolean, sortUnsorted: boolean,) {
     /**Confirmation to user for Delete: */
     let confMessage = confirm(`Are you sure you want to Delete Expanse: "${expense.title}"!`);
     if (!confMessage) return;//If the user cancel the deletion of the expanse we break out of this method,
@@ -316,7 +322,12 @@ export class ExpanseComponent implements OnInit {
           this.responseSavedBeforePageNav.next(
             {...response,
               content: this.responseSavedBeforePageNav.value!.content!.filter((e)=> e.id!==expense.id),
-              number: number, last: last, size: length, totalPages: totalPages, totalElements: totalElements}
+              number: number, last: last, size: length, totalPages: totalPages, totalElements: totalElements,
+              first: first, numberOfElements: numberOfElements, empty: empty,
+              pageable: {sort: {empty: pageableSortEmpty, sorted: pageableSortSorted, unsorted: pageableSortUnsorted},
+                         offset: pageableOffset, pageNumber: pageablePageNumber, pageSize: pageablePageSize,
+                         unpaged: pageableUnpaged, paged: pageablePaged},
+              sort: {empty: sortEmpty, sorted: sortSorted, unsorted: sortUnsorted}}
           );
           if (this.responseSavedBeforePageNav.value!.number != null) {
             this.currentPageSubject.next(this.responseSavedBeforePageNav.value!.number);
