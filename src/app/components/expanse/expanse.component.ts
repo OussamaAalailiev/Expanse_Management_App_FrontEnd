@@ -322,12 +322,12 @@ export class ExpanseComponent implements OnInit {
           this.responseSavedBeforePageNav.next(
             {...response,
               content: this.responseSavedBeforePageNav.value!.content!.filter((e)=> e.id!==expense.id),
-              number: number, last: last, size: length, totalPages: totalPages, totalElements: totalElements,
-              first: first, numberOfElements: numberOfElements, empty: empty,
               pageable: {sort: {empty: pageableSortEmpty, sorted: pageableSortSorted, unsorted: pageableSortUnsorted},
                          offset: pageableOffset, pageNumber: pageablePageNumber, pageSize: pageablePageSize,
                          unpaged: pageableUnpaged, paged: pageablePaged},
-              sort: {empty: sortEmpty, sorted: sortSorted, unsorted: sortUnsorted}}
+              last: last, totalElements: totalElements, totalPages: totalPages, size: length,
+              sort: {empty: sortEmpty, sorted: sortSorted, unsorted: sortUnsorted},
+              first: first, numberOfElements: numberOfElements, number: number, empty: empty}
           );
           if (this.responseSavedBeforePageNav.value!.number != null) {
             this.currentPageSubject.next(this.responseSavedBeforePageNav.value!.number);
