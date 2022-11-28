@@ -59,6 +59,10 @@
                   <img [src]="expanseService.handleImageExpense(expanse.categoryExpanse.categoryExpanseType)"
                        [alt]="expanseService.handleAltOfImageExpense(expanse.categoryExpanse.categoryExpanseType)"
                        width="55" height="55">
+                  <!--<img *ngIf="expanse.categoryExpanse.categoryExpanseType==='Clothes_and_Shoes'"
+                       src="assets/images/shoes.png" alt="Shoes image"
+                       width="32" height="32">-->
+
                 </div>
               </div>
             </div>
@@ -151,7 +155,7 @@
               </nav>
     </div>
     <!-- Bootstrap Alert Message pops up in case No Expanses were found when we click search! -->
-    <div *ngIf="state.appData?.content!.length < 1" class="alert alert-secondary mt-5" role="alert">
+    <div *ngIf="state.appData?.content!.length < 1" class="container alert alert-secondary mt-5" role="alert">
       No Expanses were found!
     </div>
 

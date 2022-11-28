@@ -302,23 +302,15 @@ export class ExpanseComponent implements OnInit {
                              pageableSortSorted: boolean, pageableSortUnsorted: boolean,
                              pageableOffset: number, pageablePageNumber: number, pageablePageSize: number,
                              pageableUnpaged: boolean, pageablePaged: boolean, sortEmpty: boolean,
-                             sortSorted: boolean, sortUnsorted: boolean,) {
+                             sortSorted: boolean, sortUnsorted: boolean) {
     /**Confirmation to user for Delete: */
-    let confMessage = confirm(`Are you sure you want to Delete Expanse: "${expense.title}"!`);
+    let confMessage = confirm(`Are you sure you want to Delete Expanse: "${expense.categoryExpanse.categoryExpanseType}"!`);
     if (!confMessage) return;//If the user cancel the deletion of the expanse we break out of this method,
     this.pageOfExpanses$ = this.expanseService.deleteExpense$(expense.id)
       .pipe(
         map((response) => {
-          // this.responseSavedBeforePageNav.value!.number=number;
-          // this.responseSavedBeforePageNav.value!.last = last;
-          // this.responseSavedBeforePageNav.value!.totalPages = totalPages;
-          // this.responseSavedBeforePageNav.value!.content.length = length;
-          // this.responseSavedBeforePageNav.value!.totalElements = totalElements;
-          console.log('Page Number: '+ number);
-          console.log('Page Last: '+ last);
-          console.log('Page Total: '+ totalPages);
-          console.log('Page TotalElements: '+ totalElements);
-          console.log('Page content length: '+ length);
+          console.log('Page Number: '+ number); console.log('Page Last: '+ last); console.log('Page Total: '+ totalPages);
+          console.log('Page TotalElements: '+ totalElements); console.log('Page content length: '+ length);
           this.responseSavedBeforePageNav.next(
             {...response,
               content: this.responseSavedBeforePageNav.value!.content!.filter((e)=> e.id!==expense.id),

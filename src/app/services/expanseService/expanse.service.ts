@@ -168,6 +168,18 @@ export class ExpanseService {
         return `${imgSamePath}Books_audio_subscriptions${imgEndPath}`;
       case 'Alcohol_tobacco':
         return `${imgSamePath}Alcohol_tobacco${imgEndPath}`;
+      case 'Fuel':
+        return `${imgSamePath}fuel${imgEndPath}`;
+      case 'Phone':
+        return `${imgSamePath}phone${imgEndPath}`;
+      case 'Taxi':
+        return `${imgSamePath}taxi${imgEndPath}`;
+      case 'Business_trip':
+        return `${imgSamePath}Business_trip${imgEndPath}`;
+      case 'Jewels_and_Accessories':
+        return `${imgSamePath}Jewels_and_Accessories${imgEndPath}`;
+      case 'Clothes_and_Shoes':
+        return `${imgSamePath}clothes${imgEndPath}`;
       default:
         return `${imgSamePath}EmptyImage${imgEndPath}`;//EmptyImage isn't saved in 'assets/images' yet!
     }
@@ -445,7 +457,7 @@ export class ExpanseService {
       case 'Gifts':
         return `Gift`;
       case 'Plane_LongDistance':
-        return `Airplane - Long distance Transit`;
+        return `Long distance Transit`;
       case 'Loan':
         return `Loan`;
       case 'Internet':
@@ -469,17 +481,29 @@ export class ExpanseService {
       case 'Pets_Animals':
         return `Pets Animals `;
       case 'Computer_PC':
-        return `Computer PC`;
+        return `Computer / PC`;
       case 'Public_transport':
         return `Train - Tram `;
       case 'Electronics_Accessories':
-        return `Electronics - Accessories`;
+        return `Electronics / Accessories`;
       case 'Sport_Fitness':
         return `Sport Fitness`;
       case 'Books_audio_subscriptions':
         return `Books - audio subscriptions`;
       case 'Alcohol_tobacco':
-        return `Alcohol & tobacco`;
+        return `Alcohol / tobacco`;
+      case 'Fuel':
+        return `Fuel`;
+      case 'Taxi':
+        return `Taxi`;
+      case 'Phone':
+        return `Phone`;
+      case 'Jewels_and_Accessories':
+        return `Jewels and Accessories`;
+      case 'Clothes_and_Shoes':
+        return `Clothes / Shoes`;
+      case 'Business_trip':
+        return `Business trip`;
       default:
         return `Unknown Category`;//EmptyImage isn't saved in 'assets/images' yet!
     }
