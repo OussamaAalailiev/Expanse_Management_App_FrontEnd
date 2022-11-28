@@ -303,11 +303,11 @@ export class ExpanseComponent implements OnInit {
     this.pageOfExpanses$ = this.expanseService.deleteExpense$(expense.id)
       .pipe(
         map((response) => {
-          this.responseSavedBeforePageNav.value!.number=number;
-          this.responseSavedBeforePageNav.value!.last = last;
-          this.responseSavedBeforePageNav.value!.totalPages = totalPages;
-          this.responseSavedBeforePageNav.value!.content.length = length;
-          this.responseSavedBeforePageNav.value!.totalElements = totalElements;
+          // this.responseSavedBeforePageNav.value!.number=number;
+          // this.responseSavedBeforePageNav.value!.last = last;
+          // this.responseSavedBeforePageNav.value!.totalPages = totalPages;
+          // this.responseSavedBeforePageNav.value!.content.length = length;
+          // this.responseSavedBeforePageNav.value!.totalElements = totalElements;
           console.log('Page Number: '+ number);
           console.log('Page Last: '+ last);
           console.log('Page Total: '+ totalPages);
@@ -315,10 +315,11 @@ export class ExpanseComponent implements OnInit {
           console.log('Page content length: '+ length);
           this.responseSavedBeforePageNav.next(
             {...response,
-              content: this.responseSavedBeforePageNav.value!.content!.filter((e)=> e.id!==expense.id)}
+              content: this.responseSavedBeforePageNav.value!.content!.filter((e)=> e.id!==expense.id),
+              number: number, last: last, size: length, totalPages: totalPages, totalElements: totalElements}
           );
-          if (number != null) {
-            this.currentPageSubject.next(number);
+          if (this.responseSavedBeforePageNav.value!.number != null) {
+            this.currentPageSubject.next(this.responseSavedBeforePageNav.value!.number);
           }
           return ({appState: 'APP_LOADED', appData: this.responseSavedBeforePageNav.value});
         }),
