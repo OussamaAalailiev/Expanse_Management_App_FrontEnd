@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import {BehaviorSubject, catchError, map, Observable, of, startWith} from "rxjs";
 import {Goal} from "../../models/goal";
 import {GoalService} from "../../services/goalService/goal.service";
-import {PageOfExpanses} from "../../pageModels/pageOfExpanses";
 import {HttpErrorResponse} from "@angular/common/http";
 import {PageOfGoals} from "../../pageModels/pageOfGoals";
 import {AuthenticationLoginService} from "../../services/authenticationLoginService/authentication-login.service";
 import {IncomeService} from "../../services/incomeService/income.service";
+import {MatDialog} from "@angular/material/dialog";
+import {AddGoalModalPopupComponent} from "../../forms/add-goal-modal-popup/add-goal-modal-popup.component";
 
 @Component({
   selector: 'app-goal',
@@ -27,7 +28,8 @@ export class GoalComponent implements OnInit {
 
   constructor( public goalService: GoalService,
                public incomeService: IncomeService,
-               public authService: AuthenticationLoginService) { }
+               public authService: AuthenticationLoginService,
+               public dialog: MatDialog) { }
 
   ngOnInit(): void {
     // this.goalList = this.goalService.getGoalsService();
@@ -81,25 +83,12 @@ export class GoalComponent implements OnInit {
     alert("'handleUpdateGoalForm' Function Not Working yet!");
   }
 
-  //  getPercentageOfAmountAchievedToCircularBar(amountAchieved: number, amountGoal: number) : number{
-  //   let circularProgress : HTMLDivElement= document.querySelector('circular-progress')!;
-  //   let progressValue = document.querySelector('progress-value');
-  //   let progressStartValue = 0,
-  //     progressEndValue = Math.floor(((amountAchieved)/(amountGoal)) * 100),
-  //     speed = 100;
-  //
-  //   let progress = setInterval(() => {
-  //     progressStartValue++;
-  //
-  //     progressValue!.textContent = `${progressStartValue}%`
-  //     circularProgress!.style.background = `conic-gradient(#7d2ae8 ${progressStartValue * 3.6}deg, #ededed 0deg)`
-  //
-  //     if(progressStartValue == progressEndValue){
-  //       clearInterval(progress);
-  //     }
-  //   }, speed);
-  //   return progressEndValue;
-  //
-  // }
+  openDialogOnAddNewGoal(): void{
+    this.dialog.open(AddGoalModalPopupComponent, {
+      width: '250px',
+      // enterAnimationDuration,
+      // exitAnimationDuration
+    })
+  }
 
 }
