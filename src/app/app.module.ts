@@ -35,6 +35,15 @@ import { IncomesSumDescByCatComponent } from './components/income/incomes-sum-de
 import { GlobalIncomesByCatComponent } from './components/income/global-incomes-by-cat/global-incomes-by-cat.component';
 import { UserTotalBalanceComponent } from './components/users/user-total-balance/user-total-balance.component';
 import { AddGoalModalPopupComponent } from './forms/add-goal-modal-popup/add-goal-modal-popup.component';
+import {MatButtonModule} from "@angular/material/button";
+import {MatInputModule} from "@angular/material/input";
+import {MatSelectModule} from "@angular/material/select";
+import {MatRadioModule} from "@angular/material/radio";
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatCardModule} from "@angular/material/card";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatIconModule} from "@angular/material/icon";
+import {MatNativeDateModule} from "@angular/material/core";
 
 
 
@@ -89,20 +98,45 @@ import { AddGoalModalPopupComponent } from './forms/add-goal-modal-popup/add-goa
       {path: 'login', component: LoginComponent},
       {path: 'totalExpansesByUser', component: TotalExpansesComponent, canActivate: [AuthenticationGuard]},
       // {path: 'expensesByCategoryAndUserId', component: ExpensesSumByCategoryComponent, canActivate: [AuthenticationGuard]},
-      {path: 'global-Expenses-By-Cat/expensesByCategoryAndUserId', component: ExpensesSumByCategoryComponent, canActivate: [AuthenticationGuard]},
-      {path: 'global-Expenses-By-Cat/expensesByCategoryAndUserIdAmountDesc', component: ExpensesSumDescByCatComponent, canActivate: [AuthenticationGuard]},
+      {
+        path: 'global-Expenses-By-Cat/expensesByCategoryAndUserId',
+        component: ExpensesSumByCategoryComponent,
+        canActivate: [AuthenticationGuard]
+      },
+      {
+        path: 'global-Expenses-By-Cat/expensesByCategoryAndUserIdAmountDesc',
+        component: ExpensesSumDescByCatComponent,
+        canActivate: [AuthenticationGuard]
+      },
       //If the user specify a path that does Not exist, we display the component down below:
       {path: 'global-Expenses-By-Cat', component: GlobalExpensesByCatComponent, canActivate: [AuthenticationGuard]},
       {path: 'global-Incomes-By-Cat', component: GlobalIncomesByCatComponent, canActivate: [AuthenticationGuard]},
-      {path: 'global-Incomes-By-Cat/incomesByCategoryAndUserId', component: IncomesSumByCategoryComponent, canActivate: [AuthenticationGuard]},
-      {path: 'global-Incomes-By-Cat/incomesByCategoryAndUserIdAmountDesc', component: IncomesSumDescByCatComponent, canActivate: [AuthenticationGuard]},
+      {
+        path: 'global-Incomes-By-Cat/incomesByCategoryAndUserId',
+        component: IncomesSumByCategoryComponent,
+        canActivate: [AuthenticationGuard]
+      },
+      {
+        path: 'global-Incomes-By-Cat/incomesByCategoryAndUserIdAmountDesc',
+        component: IncomesSumDescByCatComponent,
+        canActivate: [AuthenticationGuard]
+      },
       {path: '**', component: PageNotFoundComponent}
     ]),
     ReactiveFormsModule,
     MatDialogModule,
     BrowserAnimationsModule,
     FormsModule,
-    NgCircleProgressModule.forRoot({})
+    NgCircleProgressModule.forRoot({}),
+    MatButtonModule,
+    MatInputModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatCheckboxModule,
+    MatCardModule,
+    MatDatepickerModule,
+    MatIconModule,
+    MatNativeDateModule
   ],
   providers: [
     DatePipe,

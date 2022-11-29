@@ -1,23 +1,63 @@
-<p mat-dialog-title>add-goal-modal-popup works!</p>
+<mat-card>
+<!--  <mat-card-title mat-dialog-title>add-goal-modal-popup works!</mat-card-title>-->
+<!--  <section >-->
+    <mat-card-title mat-dialog-title style="text-align: center">Add Goal Form</mat-card-title>
+<!--  </section>-->
 
-<form mat-dialog-content>
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1">
-  </div>
-  <div class="mb-3 form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-
-<div mat-dialog-actions>
-  <button mat-button mat-dialog-close>No</button>
-  <button mat-button mat-dialog-close cdkFocusInitial>Ok</button>
-</div>
+  <mat-card-content>
+    <form >
+      <div mat-dialog-content>
+        <div class="myTitleAndAmount-container">
+          <mat-form-field>
+            <!--    <label for="exampleInputEmail1" class="form-label">Email address</label>-->
+            <mat-label>Title</mat-label>
+            <input matInput placeholder="Title">
+          </mat-form-field>
+          <mat-form-field appearance="fill" floatLabel="always" >
+            <mat-label>Amount</mat-label>
+            <span matPrefix>$&nbsp;</span>
+            <input matInput type="number" placeholder="0">
+            <span matSuffix>.00</span>
+          </mat-form-field>
+        </div>
+        <mat-form-field class="myMatFormField">
+          <mat-label for="exampleInputDescription1" >Description</mat-label>
+          <input matInput type="text" id="exampleInputDescription1" placeholder="Description">
+        </mat-form-field>
+        <mat-form-field class="myMatFormField">
+          <mat-label id="exampleSelect1">Category Of Goal</mat-label>
+          <mat-select  for="exampleSelect1">
+            <mat-option *ngFor="let cat of categoryGoalList" [value]="cat.id">
+              {{cat.categoryGoalType}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <section class="myDates-container">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Choose a Debut date</mat-label>
+            <input matInput [matDatepicker]="picker">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker">
+              <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Choose an End date</mat-label>
+            <input matInput [matDatepicker]="picker2">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker2">
+              <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+        </section>
+        <!--  <button type="submit" class="btn btn-primary">Submit</button>-->
+      </div>
+      <div mat-dialog-actions>
+        <button mat-raised-button color="warn" mat-dialog-close>Close</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button mat-raised-button color="primary" cdkFocusInitial type="submit">Submit</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

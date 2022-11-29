@@ -85,9 +85,7 @@ export class GoalComponent implements OnInit {
 
   openDialogOnAddNewGoal(): void{
     this.dialog.open(AddGoalModalPopupComponent, {
-      width: '250px',
-      // enterAnimationDuration,
-      // exitAnimationDuration
+      width: '70%',
     })
   }
 
