@@ -26,11 +26,9 @@ export class CommonValidationMethods {
     if (errors['required']){
       return title + " is required";
     }else if (errors['minlength']){
-      console.log(errors.valueOf())
       return title + " should be at least equal or greater than " + errors['minlength']['requiredLength'] +" Characters.";
       // return title + " should be at least equal or greater than " + ""+" Characters.";
     }else if (errors['maxlength']){
-      console.log(errors.valueOf())
       return title + " should be less than " + errors['maxlength']['requiredLength'] +" Characters.";
     }else {
       return "";

@@ -43,7 +43,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatCardModule} from "@angular/material/card";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatIconModule} from "@angular/material/icon";
-import {MatNativeDateModule} from "@angular/material/core";
+import {ErrorStateMatcher, MatNativeDateModule, ShowOnDirtyErrorStateMatcher} from "@angular/material/core";
 
 
 
@@ -141,6 +141,7 @@ import {MatNativeDateModule} from "@angular/material/core";
   providers: [
     DatePipe,
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},
+    {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher},
     MatDialog
   ],
   bootstrap: [AppComponent]

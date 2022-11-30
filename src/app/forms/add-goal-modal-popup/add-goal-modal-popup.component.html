@@ -5,58 +5,79 @@
 <!--  </section>-->
 
   <mat-card-content>
-    <form >
+    <form [formGroup]="goalFormGroup">
       <div mat-dialog-content>
-        <div class="myTitleAndAmount-container">
-          <mat-form-field>
+<!--        <div class="myTitleAndAmount-container">-->
+          <mat-form-field class="myMatFormField">
             <!--    <label for="exampleInputEmail1" class="form-label">Email address</label>-->
             <mat-label>Title</mat-label>
-            <input matInput placeholder="Title">
+            <input matInput placeholder="Title" formControlName="title">
+            <mat-error *ngIf="goalFormGroup.controls['title'].errors && goalFormGroup.controls['title'].touched ">
+              {{this.commonValidationMethods.getTitleErrorMessage('Title', goalFormGroup.controls['title'].errors)}}
+            </mat-error>
           </mat-form-field>
-          <mat-form-field appearance="fill" floatLabel="always" >
+          <mat-form-field appearance="fill" floatLabel="always" class="myMatFormField">
             <mat-label>Amount</mat-label>
             <span matPrefix>$&nbsp;</span>
-            <input matInput type="number" placeholder="0">
+            <input matInput type="number" placeholder="0" formControlName="amount">
             <span matSuffix>.00</span>
+            <mat-error *ngIf="goalFormGroup.controls['amount'].errors && goalFormGroup.controls['amount'].touched ">
+              {{this.commonValidationMethods.getAmountErrorMessage('Amount', goalFormGroup.controls['amount'].errors)}}
+            </mat-error>
           </mat-form-field>
-        </div>
+<!--        </div>-->
         <mat-form-field class="myMatFormField">
           <mat-label for="exampleInputDescription1" >Description</mat-label>
           <input matInput type="text" id="exampleInputDescription1" placeholder="Description">
         </mat-form-field>
         <mat-form-field class="myMatFormField">
           <mat-label id="exampleSelect1">Category Of Goal</mat-label>
-          <mat-select  for="exampleSelect1">
-            <mat-option *ngFor="let cat of categoryGoalList" [value]="cat.id">
-              {{cat.categoryGoalType}}
+          <mat-select  for="exampleSelect1" formControlName="categoryIncome">
+            <mat-option *ngFor="let cat of categoryIncomeAndGoalList" [value]="cat.id">
+              {{cat.categoryIncomeType}}
             </mat-option>
           </mat-select>
+          <mat-error *ngIf="goalFormGroup.controls['categoryIncome'].touched &&
+                            goalFormGroup.controls['categoryIncome'].hasError('required') ">
+            Category of Income is required!
+          </mat-error>
         </mat-form-field>
-        <section class="myDates-container">
-          <mat-form-field class="example-full-width" appearance="fill">
+<!--        <section class="myDates-container">-->
+          <mat-form-field class="example-full-width myMatFormField" appearance="fill" >
             <mat-label>Choose a Debut date</mat-label>
-            <input matInput [matDatepicker]="picker">
+            <input matInput [matDatepicker]="picker" formControlName="dateDebut">
             <mat-hint>MM/DD/YYYY</mat-hint>
             <mat-datepicker-toggle matIconSuffix [for]="picker">
               <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
             </mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="goalFormGroup.controls['dateDebut'].touched &&
+                                       goalFormGroup.controls['dateDebut'].hasError('required')">
+              Debut Date is required!
+            </mat-error>
           </mat-form-field>
-          <mat-form-field class="example-full-width" appearance="fill">
+          <mat-form-field class="example-full-width myMatFormField" appearance="fill">
             <mat-label>Choose an End date</mat-label>
-            <input matInput [matDatepicker]="picker2">
+            <input matInput [matDatepicker]="picker2" formControlName="endDate">
             <mat-hint>MM/DD/YYYY</mat-hint>
             <mat-datepicker-toggle matIconSuffix [for]="picker2">
               <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
             </mat-datepicker-toggle>
             <mat-datepicker #picker2></mat-datepicker>
+            <mat-error *ngIf="goalFormGroup.controls['endDate'].touched &&
+                                       goalFormGroup.controls['endDate'].hasError('required')">
+              End Date is required!
+            </mat-error>
           </mat-form-field>
-        </section>
+<!--        </section>-->
         <!--  <button type="submit" class="btn btn-primary">Submit</button>-->
       </div>
-      <div mat-dialog-actions>
+      <div mat-dialog-actions >
         <button mat-raised-button color="warn" mat-dialog-close>Close</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <button mat-raised-button color="primary" cdkFocusInitial type="submit">Submit</button>
+<!--        <button style="margin: 0 auto" mat-raised-button color="primary" cdkFocusInitial type="submit">Submit</button>-->
+        <button [disabled]="goalFormGroup.invalid"
+                [ngClass]="goalFormGroup.invalid?'notAllowedButtonSuccess':'btn btn-success'"
+          style="margin: 0 auto" cdkFocusInitial type="submit">Submit</button>
       </div>
     </form>
   </mat-card-content>
