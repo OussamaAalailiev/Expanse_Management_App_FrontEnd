@@ -3,9 +3,9 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {Goal} from "../../models/goal";
 import {Observable} from "rxjs";
-import {PageOfExpanses} from "../../pageModels/pageOfExpanses";
 import {AuthenticationLoginService} from "../authenticationLoginService/authentication-login.service";
 import {PageOfGoals} from "../../pageModels/pageOfGoals";
+import {GoalFormSubmission} from "../../formModels/GoalFormSubmission";
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +33,12 @@ export class GoalService {
 
   getPercentageOfAmountAchieved(amountAchieved: number, amountGoal: number): number{
     return Math.floor(((amountAchieved)/(amountGoal)) * 100);
+  }
+
+
+  postNewGoalService(goalFormData: GoalFormSubmission) {
+    console.log("Service -> Post: "+goalFormData);
+    return this.http.post(environment.backendHost+"/api/expanses/admin", goalFormData);
   }
 
 

@@ -70,19 +70,6 @@ export class GoalComponent implements OnInit {
       pageDirection === 'NextPage' ? this.currentPageSubject.value+1 : this.currentPageSubject.value-1);
   }
 
-  //TODO: Add Form To Add New Goal:
-  handleGoalFormNav() {
-    alert("'Form Page' Not Working yet!");
-  }
-  //TODO: Add Form To Delete Goal:
-  handleGoalDelete(goal: Goal) {
-    alert("'handleGoalDelete' Function Not Working yet!");
-  }
-  //TODO: Add Form To Update Goal:
-  handleUpdateGoalForm(goal: Goal) {
-    alert("'handleUpdateGoalForm' Function Not Working yet!");
-  }
-
   openDialogOnAddNewGoal(): void{
     this.dialog.open(AddGoalModalPopupComponent, {
       width: '65%',

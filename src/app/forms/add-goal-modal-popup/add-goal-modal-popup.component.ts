@@ -9,6 +9,10 @@ import {AuthenticationLoginService} from "../../services/authenticationLoginServ
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {DatePipe} from "@angular/common";
 import {User} from "../../models/user";
+import {Goal} from "../../models/goal";
+import {catchError} from "rxjs";
+import {GoalService} from "../../services/goalService/goal.service";
+import {GoalFormSubmission} from "../../formModels/GoalFormSubmission";
 
 @Component({
   selector: 'app-add-goal-modal-popup',
@@ -54,7 +58,8 @@ export class AddGoalModalPopupComponent implements OnInit {
               public commonValidationMethods : CommonValidationMethods,
               private datePipe: DatePipe,
               private route: Router,
-              public authService: AuthenticationLoginService) { }
+              public authService: AuthenticationLoginService,
+              public goalService: GoalService) { }
 
   ngOnInit(): void {
     this.initializeGoalForm();
@@ -87,5 +92,39 @@ export class AddGoalModalPopupComponent implements OnInit {
     let endDateFormated = this.datePipe.transform
     (this.goalFormGroup.controls['endDate'].value, 'yyyy-MM-dd');
   }
+
+  //TODO: Add Form To Add New Goal:
+  handleGoalFormNav(goalFormData: GoalFormSubmission) {
+    if (this.goalFormGroup.valid){
+      //this.http.post<Expanse>(environment.backendHost+"/expanse/admin", this.expanseFormGroup.value)
+      this.transformDateFormat();
+      this.goalService.postNewGoalService(goalFormData).pipe(
+        catchError((err) => {
+          console.error(err);
+          window.alert("Failed");
+          throw err
+        })
+      ).toPromise();
+      console.log(this.goalFormGroup.value);
+      //this.expanseFormGroup.reset();
+      this.route.navigateByUrl('/expanse');
+    }
+  }
+  //TODO: Add Form To Delete Goal:
+  handleGoalDelete(goal: Goal) {
+    alert("'handleGoalDelete' Function Not Working yet!");
+  }
+  //TODO: Add Form To Update Goal:
+  handleUpdateGoalForm(goal: Goal) {
+    alert("'handleUpdateGoalForm' Function Not Working yet!");
+  }
+
+
+
+
+
+
+
+
 
 }
