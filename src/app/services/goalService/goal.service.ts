@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {Goal} from "../../models/goal";
-import {Observable} from "rxjs";
+import {catchError, Observable, tap, throwError} from "rxjs";
 import {AuthenticationLoginService} from "../authenticationLoginService/authentication-login.service";
 import {PageOfGoals} from "../../pageModels/pageOfGoals";
 import {GoalFormSubmission} from "../../formModels/GoalFormSubmission";
@@ -35,11 +35,33 @@ export class GoalService {
     return Math.floor(((amountAchieved)/(amountGoal)) * 100);
   }
 
-
+  //'<T>' : represents a Response return Type of type 'T'.
   postNewGoalService(goalFormData: GoalFormSubmission) {
     console.log("Service -> Post: "+goalFormData);
-    return this.http.post(environment.backendHost+"/api/expanses/admin", goalFormData);
+    return this.http.post<void>(environment.backendHost+"/api/goals/addGoal", goalFormData);
   }
+
+  deleteGoal$ = (goalId: number) : Observable<PageOfGoals> =>
+    this.http.delete<PageOfGoals>(environment.backendHost+`/api/goals/delete/${goalId}`)
+      .pipe(
+        tap(console.log),
+        catchError(this.handleError)
+      );
+
+  private handleError(errorResponse: HttpErrorResponse){
+    if (errorResponse.status===0){
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error(errorResponse.error);
+    }else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong.
+      console.error(`Backend returned status code: ${errorResponse.status} body was: `, errorResponse.error )
+    }
+    // Return an observable with a user-facing error message.
+    return throwError(()=> new Error('Something bad happened; please try again later.'));
+
+  }
+
 
 
 }

@@ -102,17 +102,6 @@
                       </span>
                   </span>
                 </span>
-
-                <!-- Circular Progress Bar: -->
-                <!--                <div class="myCircularContainer p-1">-->
-                <!--                  <div class="circular-progress">-->
-                <!--                    <span class="progress-value">-->
-                <!--&lt;!&ndash;                      {{getPercentageOfAmountAchievedToCircularBar(goal.amountAchieved, goal.amount)}}%&ndash;&gt;-->
-
-                <!--                    </span>-->
-                <!--                  </div>-->
-                <!--                </div>-->
-
                 <span *ngIf="goalService.getPercentageOfAmountAchieved(goal.amountAchieved, goal.amount) < 30">
                   <circle-progress
                     [percent]="goalService.getPercentageOfAmountAchieved(goal.amountAchieved, goal.amount)"
@@ -171,39 +160,54 @@
                     [subtitle]="'Achieved'"
                   ></circle-progress>
                 </span>
+                <span *ngIf="authService.isAuthenticateUserHasRoleService('USER')">
+                   <a>
+                     <span class="text-success pointer" (click)="handleGoalUpdate(goal)">
+                       <i class="bi bi-pencil-square"></i>
+                     </span>
+                   </a>
+                </span>
               </div>
-              <!--              <section class="card-text">-->
-              <!--                <span>-->
-              <!--                  Limit: <strong>{{goal.amount.toFixed(2)}}</strong>-->
-              <!--                         <strong>&nbsp;{{authService.authenticatedUserLogin!.currency}}</strong>-->
-              <!--                </span>-->
-              <!--              </section>-->
-              <!--              <section class="card-text">-->
-              <!--                <span >Amount Achieved:-->
-              <!--                  <strong>{{goal.amountAchieved.toFixed(2)}}</strong>-->
-              <!--                  <strong>&nbsp;{{authService.authenticatedUserLogin!.currency}}</strong>-->
-              <!--                </span>-->
-              <!--              </section>-->
+
               <br>
               <section class="d-flex justify-content-between">
-                              <span *ngIf="(goal.amountAchieved/goal.amount<0.50)"
+                <span *ngIf="(goal.amountAchieved/goal.amount<0.50)"
                                     class="badge rounded-pill bg-secondary">
                                 Goal Not Achieved yet <i class="bi bi-patch-exclamation-fill" style="color: black"></i>
-                              </span>
-                              <span
+                </span>
+                <span
                                 *ngIf="(goal.amountAchieved/goal.amount>0.50) && (goal.amountAchieved/goal.amount<1)"
                                 class="badge rounded-pill" style="background-color: #73d46a">
-                <!--                Goal's nearly Achieved <i class="bi bi-hand-thumbs-up-fill" style="color: black"></i>-->
                                 Goal is nearly Achieved <i class="bi bi-arrow-up-right-circle-fill"
                                                            style="color: black"></i>
-                              </span>
-                              <span *ngIf="(goal.amountAchieved/goal.amount>=1)" class="badge rounded-pill bg-success">
+                </span>
+                <span *ngIf="(goal.amountAchieved/goal.amount>=1)" class="badge rounded-pill bg-success">
                                 Goal Achieved <i class="bi bi-patch-check-fill" style="color: black"></i>
-                                <!--                <i class="bi bi-award-fill" style="color: black"></i>-->
-                              </span>
-                <!--                <span>-->
-                <!--                  {{goalService.getPercentageOfAmountAchieved(goal.amountAchieved, goal.amount)}}%-->
-                <!--                </span>-->
+                </span>
+                <span class="text-danger pointer"
+                      (click)="
+                        handleGoalDeleteFinalV2(
+                        goal, state.appData!.number,
+                         state.appData!.last = state.appData!.last,
+                        state.appData!.totalPages = state.appData!.totalPages,
+                        state.appData!.content!.length = state.appData!.content!.length,
+                         state.appData!.totalElements = state.appData!.totalElements,
+                         state.appData!.first = state.appData!.first,
+                         state.appData!.numberOfElements = state.appData!.numberOfElements,
+                         state.appData!.empty = state.appData!.empty,
+                         state.appData!.pageable!.sort!.empty,
+                         state.appData!.pageable!.sort!.sorted,
+                         state.appData!.pageable!.sort!.unsorted,
+                          state.appData!.pageable!.offset,
+                          state.appData!.pageable!.pageNumber,
+                          state.appData!.pageable!.pageSize,
+                          state.appData!.pageable!.unpaged,
+                          state.appData!.pageable!.paged,
+                          state.appData!.sort!.empty,
+                          state.appData!.sort!.sorted,
+                          state.appData!.sort!.unsorted)">
+                    <i class="bi bi-trash"></i>
+                  </span>
 
               </section>
               <br>
@@ -212,20 +216,6 @@
                 <span class="card-text">End Date: <small class="text-muted">{{goal.endDate | date}}</small></span>
               </section>
             </div>
-
-              <!--            <section class="container">-->
-              <!--              <section class="progress mb-3">-->
-
-              <!--                <span [ngClass]="(goal.amountAchieved/goal.amount>=0 && goal.amountAchieved/goal.amount<0.50)?'progress-bar-fill bg-secondary' :-->
-              <!--                                           (goal.amountAchieved/goal.amount>=0.50 && goal.amountAchieved/goal.amount<0.99)?'progress-bar-fill bg-info' :-->
-              <!--                                           (goal.amountAchieved/goal.amount>=1)?'progress-bar-fill bg-success':''"-->
-              <!--                      role="progressbar" [ngStyle]="{'width.%':  ((goal.amountAchieved)/(goal.amount)) * 100}"-->
-              <!--                      attr.aria-valuenow="{{((goal.amountAchieved)/(goal.amount)) * 100}}"-->
-              <!--                      aria-valuemin="0" aria-valuemax="100">-->
-
-              <!--                </span>-->
-              <!--              </section>-->
-              <!--            </section>-->
           </span>
           </section>
         </section>
@@ -260,5 +250,3 @@
   </ng-container>
 
 </ng-container>
-
-<!--<script src="./goalscript.js"></script>-->

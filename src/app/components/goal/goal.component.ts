@@ -77,4 +77,48 @@ export class GoalComponent implements OnInit {
     })
   }
 
+  handleGoalDeleteFinalV2(goal: Goal, number: number , last: boolean ,
+                          totalPages: number , length: number, totalElements: number ,
+                          first: boolean , numberOfElements: number ,
+                          empty: boolean , pageableSortEmpty: boolean,
+                          pageableSortSorted: boolean, pageableSortUnsorted: boolean,
+                          pageableOffset: number, pageablePageNumber: number, pageablePageSize: number,
+                          pageableUnpaged: boolean, pageablePaged: boolean, sortEmpty: boolean,
+                          sortSorted: boolean, sortUnsorted: boolean) {
+    let confMessage = confirm(`Are you sure you want to Delete "${goal.categoryIncome.categoryIncomeType}"!`);
+    if (!confMessage) return;//If the user cancel the deletion of the goal we break out of this method,
+
+    this.pageOfGoals$ = this.goalService.deleteGoal$(goal.id)
+      .pipe(
+        map((response) => {
+          console.log('Page Number: '+ number); console.log('Page Last: '+ last); console.log('Page Total: '+ totalPages);
+          console.log('Page TotalElements: '+ totalElements); console.log('Page content length: '+ length);
+          this.responseSavedBeforePageNav.next(
+            {...response,
+              content: this.responseSavedBeforePageNav.value!.content!.filter((e)=> e.id!==goal.id),
+              pageable: {sort: {empty: pageableSortEmpty, sorted: pageableSortSorted, unsorted: pageableSortUnsorted},
+                offset: pageableOffset, pageNumber: pageablePageNumber, pageSize: pageablePageSize,
+                unpaged: pageableUnpaged, paged: pageablePaged},
+              last: last, totalElements: totalElements, totalPages: totalPages, size: length,
+              sort: {empty: sortEmpty, sorted: sortSorted, unsorted: sortUnsorted},
+              first: first, numberOfElements: numberOfElements, number: number, empty: empty}
+          );
+          if (this.responseSavedBeforePageNav.value!.number != null) {
+            this.currentPageSubject.next(this.responseSavedBeforePageNav.value!.number);
+          }
+          return ({appState: 'APP_LOADED', appData: this.responseSavedBeforePageNav.value});
+        }),
+        startWith({appState: 'APP_LOADED', appData: this.responseSavedBeforePageNav.value}),
+        catchError((errorResponse: HttpErrorResponse) => of({appState: 'APP_ERROR', errorResponse}))
+      );
+
+  }
+
+  handleGoalUpdate(goal: Goal) {
+    let confMessage = confirm(`Are you sure you want to Update "${goal.categoryIncome.categoryIncomeType}"!`);
+    if (!confMessage) return;
+
+  }
+
+
 }

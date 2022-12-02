@@ -20,17 +20,8 @@ import {GoalFormSubmission} from "../../formModels/GoalFormSubmission";
   styleUrls: ['./add-goal-modal-popup.component.css']
 })
 export class AddGoalModalPopupComponent implements OnInit {
-  //TODO : I should add the 9 CategoryGoals below to the List of CategoryIncome
-  //        in the Frontend & Backend before use the Form popup:
 
-  /*  NEW_VEHICLE,
-    NEW_HOME,
-    HOLIDAY_TRIP,
-    HEALTH_CARE,
-    PARTY,
-    CHARITY,
-    ZAKAT */
-  categoryIncomeAndGoalList: CategoryIncome [] = [
+  categoryIncomeAndGoalList: CategoryIncome [] = [//TODO: Should be optimized later!
     //"Select Category",
     /** Category Group for > 'Transportation': */
     {id: 1, categoryIncomeType: "CHILD_SUPPORT"}, {id: 2, categoryIncomeType: "RENTAL_INCOME"},
@@ -65,7 +56,7 @@ export class AddGoalModalPopupComponent implements OnInit {
     this.initializeGoalForm();
   }
 
-  onNoClick(): void {
+  onClickCloseModal(): void {
     this.dialogRef.close();
   }
 
@@ -94,9 +85,8 @@ export class AddGoalModalPopupComponent implements OnInit {
   }
 
   //TODO: Add Form To Add New Goal:
-  handleGoalFormNav(goalFormData: GoalFormSubmission) {
+  handleNewGoalForm(goalFormData: GoalFormSubmission) {
     if (this.goalFormGroup.valid){
-      //this.http.post<Expanse>(environment.backendHost+"/expanse/admin", this.expanseFormGroup.value)
       this.transformDateFormat();
       this.goalService.postNewGoalService(goalFormData).pipe(
         catchError((err) => {
@@ -106,8 +96,7 @@ export class AddGoalModalPopupComponent implements OnInit {
         })
       ).toPromise();
       console.log(this.goalFormGroup.value);
-      //this.expanseFormGroup.reset();
-      this.route.navigateByUrl('/expanse');
+      this.route.navigateByUrl('/goal');
     }
   }
   //TODO: Add Form To Delete Goal:
