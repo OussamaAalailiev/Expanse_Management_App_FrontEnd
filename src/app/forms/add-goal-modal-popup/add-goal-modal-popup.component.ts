@@ -94,6 +94,7 @@ export class AddGoalModalPopupComponent implements OnInit {
       console.log(this.goalFormGroup.value);
       this.route.navigateByUrl('/goal');
     }
+
   }
   //TODO: Add Form To Delete Goal:
   handleGoalDelete(goal: Goal) {

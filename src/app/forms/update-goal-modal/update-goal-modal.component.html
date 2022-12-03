@@ -7,6 +7,8 @@
       <div mat-dialog-content>
         <!--        <div class="myTitleAndAmount-container">-->
         <mat-form-field class="myMatFormField">
+          <input id="id" type="number" formControlName="id" class="form-control"
+                 [value]="data.id" [hidden]="data.id">
           <mat-label>Title</mat-label>
           <input matInput placeholder="Title" formControlName="title" [value]="data.title.valueOf()">
           <mat-error *ngIf="goalFormGroup.controls['title'].errors && goalFormGroup.controls['title'].touched ">
@@ -29,7 +31,7 @@
         </mat-form-field>
         <mat-form-field class="myMatFormField">
           <mat-label >Category Of Goal</mat-label>
-          <mat-select  formControlName="categoryIncome" [(value)]="this.categoryIncomeSelected">
+          <mat-select [(value)]="categoryIncomeSelected" formControlName="categoryIncome" >
             <mat-option *ngFor="let cat of categoryIncomeAndGoalList" [value]="cat.id">
               {{cat.categoryIncomeType}}
             </mat-option>

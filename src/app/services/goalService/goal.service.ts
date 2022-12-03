@@ -48,8 +48,9 @@ export class GoalService {
         catchError(this.handleError)
       );
 
-  updateGoal$ = (goal: Goal) : Observable<void> =>
-    this.http.put<void>(environment.backendHost+`/goals/edit/${goal.id}`, goal)
+  updateGoal$ = (goal: Goal, id: string) : Observable<void> =>
+    // this.http.put<void>(environment.backendHost+`/api/goals/edit/${goal.id}`, goal)
+    this.http.put<void>(environment.backendHost+`/api/goals/edit/${id}`, goal)
       .pipe(
         tap(console.log),
         catchError(this.handleError)

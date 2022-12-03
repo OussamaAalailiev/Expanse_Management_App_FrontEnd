@@ -8,6 +8,8 @@ import {DatePipe} from "@angular/common";
 import {AuthenticationLoginService} from "../../services/authenticationLoginService/authentication-login.service";
 import {CategoryIncome} from "../../models/CategoryIncome";
 import {User} from "../../models/user";
+import {catchError, startWith} from "rxjs";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-update-goal-modal',
@@ -39,7 +41,7 @@ export class UpdateGoalModalComponent implements OnInit {
 
   goalFormGroup!: FormGroup;
 
-  categoryIncomeSelected : string = this.data.categoryIncome.categoryIncomeType;
+  public categoryIncomeSelected : string = this.data.categoryIncome.categoryIncomeType;
 
   constructor(public dialogRef: MatDialogRef<UpdateGoalModalComponent>,
               @Inject(MAT_DIALOG_DATA) public data: Goal,
@@ -47,7 +49,8 @@ export class UpdateGoalModalComponent implements OnInit {
               private fb: FormBuilder,
               public commonValidationMethods : CommonValidationMethods,
               private datePipe: DatePipe,
-              public authService: AuthenticationLoginService) { }
+              public authService: AuthenticationLoginService,
+              private route: Router) { }
 
   ngOnInit(): void {
     this.initializeGoalForm();
@@ -55,13 +58,14 @@ export class UpdateGoalModalComponent implements OnInit {
 
   private initializeGoalForm(): void {
     this.goalFormGroup = this.fb.group({
+      id: this.fb.control(this.data.id),
       amount: this.fb.control(this.data.amount, [Validators.required,
         Validators.min(1.0), Validators.max(9000000000000000000.00)]),
       title: this.fb.control(this.data.title, [Validators.required,
         Validators.minLength(3), Validators.maxLength(55)]),
       dateDebut: this.fb.control(this.data.dateDebut, Validators.required),
       endDate: this.fb.control(this.data.endDate, Validators.required),
-      categoryIncome: this.fb.control(this.data.categoryIncome.categoryIncomeType, Validators.required),
+      categoryIncome: this.fb.control(this.data.categoryIncome.id, Validators.required),
       userId: this.user!.id
     })
   }
@@ -70,7 +74,27 @@ export class UpdateGoalModalComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  transformDateFormat(){
+    let dateDebutFormated = this.datePipe.transform
+    (this.goalFormGroup.controls['dateDebut'].value, 'yyyy-MM-dd');
+    let endDateFormated = this.datePipe.transform
+    (this.goalFormGroup.controls['endDate'].value, 'yyyy-MM-dd');
+  }
+
   handleGoalUpdate(goal: Goal) {
+    if (this.goalFormGroup.valid){
+      this.transformDateFormat();
+      let idGoal = this.data.id.toString();
+      this.goalService.updateGoal$(goal, idGoal).pipe(
+        catchError((err) => {
+          console.error(err);
+          window.alert("Failed");
+          throw err
+        })
+      ).toPromise();
+      console.log(this.goalFormGroup.value);
+      this.route.navigateByUrl('/goal');
+    }
 
   }
 
