@@ -48,6 +48,13 @@ export class GoalService {
         catchError(this.handleError)
       );
 
+  updateGoal$ = (goal: Goal) : Observable<void> =>
+    this.http.put<void>(environment.backendHost+`/goals/edit/${goal.id}`, goal)
+      .pipe(
+        tap(console.log),
+        catchError(this.handleError)
+      );
+
   private handleError(errorResponse: HttpErrorResponse){
     if (errorResponse.status===0){
       // A client-side or network error occurred. Handle it accordingly.

@@ -69,11 +69,7 @@ export class AddGoalModalPopupComponent implements OnInit {
       dateDebut: this.fb.control(null, Validators.required),
       endDate: this.fb.control(null, Validators.required),
       categoryIncome: this.fb.control(null, Validators.required),
-      // userId: this.fb.control(null, Validators.required)
       userId: this.user!.id
-      // categoryExpanse: this.fb.control(CategoryExpanse.arguments.categoryExpanseType),
-
-      // user: User
     })
   }
 

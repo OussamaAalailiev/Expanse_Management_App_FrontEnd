@@ -8,6 +8,7 @@ import {AuthenticationLoginService} from "../../services/authenticationLoginServ
 import {IncomeService} from "../../services/incomeService/income.service";
 import {MatDialog} from "@angular/material/dialog";
 import {AddGoalModalPopupComponent} from "../../forms/add-goal-modal-popup/add-goal-modal-popup.component";
+import {UpdateGoalModalComponent} from "../../forms/update-goal-modal/update-goal-modal.component";
 
 @Component({
   selector: 'app-goal',
@@ -114,11 +115,12 @@ export class GoalComponent implements OnInit {
 
   }
 
-  handleGoalUpdate(goal: Goal) {
-    let confMessage = confirm(`Are you sure you want to Update "${goal.categoryIncome.categoryIncomeType}"!`);
-    if (!confMessage) return;
-
+  openDialogOnUpdateGoal(goal: Goal){
+    this.dialog.open(UpdateGoalModalComponent, {
+      width: '65%',
+      minWidth: '60%',
+      data: goal
+    })
   }
-
 
 }
