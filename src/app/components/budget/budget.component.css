@@ -81,6 +81,11 @@ input:focus {
   pointer-events: none;
   opacity: 0.6;
 }
+
+.orangeBadge {
+  background-color: orangered;
+}
+
 /*pointer:hover{*/
 /*  background-color: #DB1F48;*/
 /*}*/
