@@ -5,6 +5,8 @@ import {BehaviorSubject, catchError, map, Observable, of, startWith} from "rxjs"
 import {HttpErrorResponse} from "@angular/common/http";
 import {PageOfIncomes} from "../../pageModels/pageOfIncomes";
 import {AuthenticationLoginService} from "../../services/authenticationLoginService/authentication-login.service";
+import {MatDialog} from "@angular/material/dialog";
+import {AddIncomeModalComponent} from "../../forms/add-income-modal/add-income-modal.component";
 
 @Component({
   selector: 'app-income',
@@ -23,7 +25,8 @@ export class IncomeComponent implements OnInit {
   currentPage$ = this.currentPageSubject.asObservable();//'currentPageSubject' will be observed by 'currentPage$'.
 
   constructor(public incomeService: IncomeService,
-              public authService: AuthenticationLoginService) {
+              public authService: AuthenticationLoginService,
+              public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -65,11 +68,6 @@ export class IncomeComponent implements OnInit {
       pageDirection === 'NextPage' ? this.currentPageSubject.value + 1 : this.currentPageSubject.value - 1);
   }
 
-  //TODO: Add Form To Add New Income:
-  handleIncomeFormNav() {
-    alert("'Form Page' Not Working yet!");
-  }
-
   //TODO: Add Form To Delete Income:
   handleIncomeDelete(income: Income) {
     alert("'handleIncomeDelete' Function Not Working yet!");
@@ -80,5 +78,12 @@ export class IncomeComponent implements OnInit {
     alert("'handleUpdateIncomeForm' Function Not Working yet!");
   }
 
+
+  openDialogOnAddNewIncome() {
+    this.dialog.open(AddIncomeModalComponent, {
+      width: '65%',
+      minWidth: '60%'
+    });
+  }
 
 }

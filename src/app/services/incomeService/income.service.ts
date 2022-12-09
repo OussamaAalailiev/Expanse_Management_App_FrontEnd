@@ -10,6 +10,7 @@ import {TotalExpansePerMonthDTO} from "../../models/TotalExpansePerMonthDTO";
 import {TotalIncomesPerMonthDTO} from "../../models/TotalIncomesPerMonthDTO";
 import {ExpensesByCategory} from "../../models/ExpensesByCategory";
 import {IncomesByCategory} from "../../models/IncomesByCategory";
+import {IncomeFormSubmission} from "../../formModels/IncomeFormSubmission";
 
 @Injectable({
   providedIn: 'root'
@@ -64,6 +65,12 @@ export class IncomeService {
     console.log("Inside Service: ");
     console.log("Url= " + environment.backendHost + `/api/incomes/incomesByCategoryAndUserIdDateDesc/${userId}`);
     return this.http.get<IncomesByCategory[]>(environment.backendHost + `/api/incomes/incomesByCategoryAndUserIdDateDesc/${userId}`);
+  }
+
+  /** Add Income from Backend: */
+  postNewIncomeService(incomeFormSubmission: IncomeFormSubmission): Observable<void>{
+    console.log("Service -> Post: "+ incomeFormSubmission);
+    return this.http.post<void>(environment.backendHost+"/api/incomes/addIncome", incomeFormSubmission);
   }
 
   handleIncomeImage(categoryIncomeType: string): string {

@@ -1,25 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialogRef} from "@angular/material/dialog";
-import {CategoryExpanse} from "../../models/CategoryExpanse";
-import {CategoryIncome} from "../../models/CategoryIncome";
-import {CategoryGoal} from "../../models/CategoryGoal";
+import {FormBuilder, FormGroup} from "@angular/forms";
 import {CommonValidationMethods} from "../../services/validations/commonValidationMethods";
+import {DatePipe} from "@angular/common";
 import {Router} from "@angular/router";
 import {AuthenticationLoginService} from "../../services/authenticationLoginService/authentication-login.service";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {DatePipe} from "@angular/common";
+import {IncomeService} from "../../services/incomeService/income.service";
+import {CategoryIncome} from "../../models/CategoryIncome";
 import {User} from "../../models/user";
-import {Goal} from "../../models/goal";
-import {catchError} from "rxjs";
-import {GoalService} from "../../services/goalService/goal.service";
-import {GoalFormSubmission} from "../../formModels/GoalFormSubmission";
 
 @Component({
-  selector: 'app-add-goal-modal-popup',
-  templateUrl: './add-goal-modal-popup.component.html',
-  styleUrls: ['./add-goal-modal-popup.component.css']
+  selector: 'app-add-income-modal',
+  templateUrl: './add-income-modal.component.html',
+  styleUrls: ['./add-income-modal.component.css']
 })
-export class AddGoalModalPopupComponent implements OnInit {
+export class AddIncomeModalComponent implements OnInit {
 
   categoryIncomeAndGoalList: CategoryIncome [] = [//TODO: Should be optimized later!
     //"Select Category",
@@ -42,60 +37,26 @@ export class AddGoalModalPopupComponent implements OnInit {
 
   user?: User = this.authService!.authenticatedUserLogin;
 
-  goalFormGroup!: FormGroup;
+  incomeFormGroup!: FormGroup;
 
-  constructor(public dialogRef: MatDialogRef<AddGoalModalPopupComponent>,
+  constructor(public dialogRef: MatDialogRef<AddIncomeModalComponent>,
               private fb: FormBuilder,
               public commonValidationMethods : CommonValidationMethods,
               private datePipe: DatePipe,
               private route: Router,
               public authService: AuthenticationLoginService,
-              public goalService: GoalService) { }
+              public incomeService: IncomeService) { }
 
   ngOnInit(): void {
-    this.initializeGoalForm();
   }
 
   onClickCloseModal(): void {
     this.dialogRef.close();
   }
 
-  private initializeGoalForm(): void {
-    this.goalFormGroup = this.fb.group({
-      amount: this.fb.control(null, [Validators.required,
-        Validators.min(1.0), Validators.max(9000000000000000000.00)]),
-      title: this.fb.control(null, [Validators.required,
-        Validators.minLength(3), Validators.maxLength(55)]),
-      dateDebut: this.fb.control(null, Validators.required),
-      endDate: this.fb.control(null, Validators.required),
-      categoryIncome: this.fb.control(null, Validators.required),
-      userId: this.user!.id
-    })
+  //TODO: Add Form To Add New Income:
+  handleIncomeFormNav() {
+    alert("'Form Page' Not Working yet!");
   }
-
-  transformDateFormat(){
-    let dateDebutFormated = this.datePipe.transform
-    (this.goalFormGroup.controls['dateDebut'].value, 'yyyy-MM-dd');
-    let endDateFormated = this.datePipe.transform
-    (this.goalFormGroup.controls['endDate'].value, 'yyyy-MM-dd');
-  }
-
-  //TODO: Add Form To Add New Goal:
-  handleNewGoalForm(goalFormData: GoalFormSubmission) {
-    if (this.goalFormGroup.valid){
-      this.transformDateFormat();
-      this.goalService.postNewGoalService(goalFormData).pipe(
-        catchError((err) => {
-          console.error(err);
-          window.alert("Failed");
-          throw err
-        })
-      ).toPromise();
-      console.log(this.goalFormGroup.value);
-      this.route.navigateByUrl('/goal');
-    }
-
-  }
-
 
 }
