@@ -15,8 +15,12 @@
       <!--    <span style="border-top: 2px solid black; width: 30px; font-weight: bold; margin-top: 1.5rem;" ></span>-->
     <section *ngIf="totalExpensesPerLifeTime && totalIncomesPerLifeTime" style="margin-left: 12rem">
       <strong>{{(totalIncomesPerLifeTime.totalIncomes-totalExpensesPerLifeTime.totalExpanses).toFixed(2)}}</strong>
-      <span *ngIf="(totalIncomesPerLifeTime.totalIncomes-totalExpensesPerLifeTime.totalExpanses)>0">&nbsp;<i class="bi-check-lg"></i></span>
-      <span *ngIf="(totalIncomesPerLifeTime.totalIncomes-totalExpensesPerLifeTime.totalExpanses)<0">&nbsp;<i class="bi-exclamation-triangle"></i></span>
+      <span *ngIf="(totalIncomesPerLifeTime.totalIncomes-totalExpensesPerLifeTime.totalExpanses)>0" class="text-success">
+        &nbsp;<i class="bi-check-lg"></i>
+      </span>
+      <span *ngIf="(totalIncomesPerLifeTime.totalIncomes-totalExpensesPerLifeTime.totalExpanses)<0" class="text-danger">&nbsp;
+        <i class="bi-exclamation-triangle"></i>
+      </span>
     </section>
 <!--    </span>-->
 </span>

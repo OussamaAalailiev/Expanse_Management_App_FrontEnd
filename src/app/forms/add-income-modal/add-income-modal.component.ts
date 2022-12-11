@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialogRef} from "@angular/material/dialog";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {CommonValidationMethods} from "../../services/validations/commonValidationMethods";
 import {DatePipe} from "@angular/common";
 import {Router} from "@angular/router";
@@ -8,6 +8,7 @@ import {AuthenticationLoginService} from "../../services/authenticationLoginServ
 import {IncomeService} from "../../services/incomeService/income.service";
 import {CategoryIncome} from "../../models/CategoryIncome";
 import {User} from "../../models/user";
+import {Income} from "../../models/income";
 
 @Component({
   selector: 'app-add-income-modal',
@@ -48,15 +49,33 @@ export class AddIncomeModalComponent implements OnInit {
               public incomeService: IncomeService) { }
 
   ngOnInit(): void {
+    this.initializeIncomeForm();
   }
 
   onClickCloseModal(): void {
     this.dialogRef.close();
   }
 
+  private initializeIncomeForm(): void {
+    this.incomeFormGroup = this.fb.group({
+      amount: this.fb.control(null, [Validators.required,
+        Validators.min(1.0), Validators.max(9000000000000000000.00)]),
+      title: this.fb.control(null, [Validators.required,
+        Validators.minLength(3), Validators.maxLength(55)]),
+      createdDate: this.fb.control(null, Validators.required),
+      categoryIncome: this.fb.control(null, Validators.required),
+      userId: this.user!.id
+    })
+  }
+
+  transformDateFormat(){
+    let createdDateFormatted = this.datePipe.transform
+    (this.incomeFormGroup.controls['createdDate'].value, 'yyyy-MM-dd');
+  }
+
   //TODO: Add Form To Add New Income:
-  handleIncomeFormNav() {
-    alert("'Form Page' Not Working yet!");
+  handleNewIncomeForm(income: Income) {
+
   }
 
 }
