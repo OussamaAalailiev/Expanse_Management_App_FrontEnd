@@ -9,6 +9,8 @@ import {IncomeService} from "../../services/incomeService/income.service";
 import {CategoryIncome} from "../../models/CategoryIncome";
 import {User} from "../../models/user";
 import {Income} from "../../models/income";
+import {IncomeFormSubmission} from "../../formModels/IncomeFormSubmission";
+import {catchError} from "rxjs";
 
 @Component({
   selector: 'app-add-income-modal',
@@ -74,8 +76,19 @@ export class AddIncomeModalComponent implements OnInit {
   }
 
   //TODO: Add Form To Add New Income:
-  handleNewIncomeForm(income: Income) {
-
+  handleNewIncomeForm(incomeFormSubmission: IncomeFormSubmission) {
+    if (this.incomeFormGroup.valid){
+      this.transformDateFormat();
+      this.incomeService.postNewIncomeService(incomeFormSubmission).pipe(
+        catchError((err) => {
+          console.error(err); window.alert("Failed Request!")
+          throw err
+          }
+        )
+      ).toPromise();
+      console.log(this.incomeFormGroup.value);
+      this.route.navigateByUrl('/income');
+    }
   }
 
 }

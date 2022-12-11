@@ -28,7 +28,7 @@
           <input matInput type="text" placeholder="Description">
         </mat-form-field>
         <mat-form-field class="myMatFormField">
-          <mat-label >Category Of Goal</mat-label>
+          <mat-label >Category Of Income</mat-label>
           <mat-select  formControlName="categoryIncome">
             <mat-option *ngFor="let cat of categoryIncomeAndGoalList" [value]="cat.id">
               {{cat.categoryIncomeType}}
@@ -60,7 +60,7 @@
         <button mat-raised-button color="warn" mat-dialog-close>Close</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <!--        <button style="margin: 0 auto" mat-raised-button color="primary" cdkFocusInitial type="submit">Submit</button>-->
         <button [disabled]="incomeFormGroup.invalid"
-                [ngClass]="incomeFormGroup.invalid?'notAllowedButtonSuccess':'btn btn-success'"
+                [ngClass]="incomeFormGroup.invalid?'notAllowedButtonSuccess2':'btn btn-success'"
                 style="margin: 0 auto" cdkFocusInitial type="submit" (click)="onClickCloseModal()">Submit</button>
       </div>
     </form>
