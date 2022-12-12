@@ -76,7 +76,7 @@
               <span >
                   <span *ngIf="authService.isAuthenticateUserHasRoleService('USER')"><!--'expanse/updateExpanse/:expanseId' -->
                    <a>
-                     <span class="text-success pointer" (click)="handleUpdateIncomeForm(income)">
+                     <span class="text-success pointer" (click)="openDialogOnUpdateIncome(income)">
                        <i class="bi bi-pencil-square"></i>
                      </span>
                    </a>
@@ -91,7 +91,27 @@
               <section >
                 <span class="d-flex justify-content-end" *ngIf="authService.isAuthenticateUserHasRoleService('USER')">
                 <a>
-                  <span class="text-danger pointer" (click)="handleIncomeDelete(income)">
+                  <span class="text-danger pointer" (click)="handleIncomeDelete(
+                  income, state.appData!.number,
+                         state.appData!.last = state.appData!.last,
+                        state.appData!.totalPages = state.appData!.totalPages,
+                        state.appData!.content!.length = state.appData!.content!.length,
+                         state.appData!.totalElements = state.appData!.totalElements,
+                         state.appData!.first = state.appData!.first,
+                         state.appData!.numberOfElements = state.appData!.numberOfElements,
+                         state.appData!.empty = state.appData!.empty,
+                         state.appData!.pageable!.sort!.empty,
+                         state.appData!.pageable!.sort!.sorted,
+                         state.appData!.pageable!.sort!.unsorted,
+                          state.appData!.pageable!.offset,
+                          state.appData!.pageable!.pageNumber,
+                          state.appData!.pageable!.pageSize,
+                          state.appData!.pageable!.unpaged,
+                          state.appData!.pageable!.paged,
+                          state.appData!.sort!.empty,
+                          state.appData!.sort!.sorted,
+                          state.appData!.sort!.unsorted
+                  )">
                     <i class="bi bi-trash"></i>
                   </span>
                 </a>

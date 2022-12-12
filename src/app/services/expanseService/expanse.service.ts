@@ -81,8 +81,8 @@ export class ExpanseService {
   //   return this.http.delete<void>(environment.backendHost+`/api/expanses/admin/delete/${expanseId}`);
   // }
 
-  updateExpanseService(expanse: Expanse): Observable<Expanse>{
-    return this.http.put<Expanse>(environment.backendHost+`/api/expanses/admin/${expanse.id}`, expanse);
+  updateExpanseService(expanse: Expanse): Observable<void>{
+    return this.http.put<void>(environment.backendHost+`/api/expanses/admin/${expanse.id}`, expanse);
   }
 
   getOneExpanseByIdService(expanseId: number): Observable<Expanse>{

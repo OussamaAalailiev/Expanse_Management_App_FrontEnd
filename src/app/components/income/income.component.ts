@@ -7,6 +7,7 @@ import {PageOfIncomes} from "../../pageModels/pageOfIncomes";
 import {AuthenticationLoginService} from "../../services/authenticationLoginService/authentication-login.service";
 import {MatDialog} from "@angular/material/dialog";
 import {AddIncomeModalComponent} from "../../forms/add-income-modal/add-income-modal.component";
+import {UpdateIncomeModalComponent} from "../../forms/update-income-modal/update-income-modal.component";
 
 @Component({
   selector: 'app-income',
@@ -69,8 +70,40 @@ export class IncomeComponent implements OnInit {
   }
 
   //TODO: Add Form To Delete Income:
-  handleIncomeDelete(income: Income) {
-    alert("'handleIncomeDelete' Function Not Working yet!");
+  handleIncomeDelete(income: Income, number: number, last: boolean,
+                     totalPages: number, length: number, totalElements: number,
+                     first: boolean, numberOfElements: number,
+                     empty: boolean, pageableSortEmpty: boolean,
+                     pageableSortSorted: boolean, pageableSortUnsorted: boolean,
+                     pageableOffset: number, pageablePageNumber: number, pageablePageSize: number,
+                     pageableUnpaged: boolean, pageablePaged: boolean, sortEmpty: boolean,
+                     sortSorted: boolean, sortUnsorted: boolean) {
+    /**Confirmation to user for Delete: */
+    let confMessage = confirm(`Are you sure you want to Delete Expanse: "${income.categoryIncome.categoryIncomeType}"!`);
+    if (!confMessage) return;//If the user cancel the deletion of the expanse we break out of this method,
+    this.pageOfIncomes$ = this.incomeService.deleteIncome$(income.id)
+      .pipe(
+        map((response) => {
+          console.log('Page Number: '+ number); console.log('Page Last: '+ last); console.log('Page Total: '+ totalPages);
+          console.log('Page TotalElements: '+ totalElements); console.log('Page content length: '+ length);
+          this.responseSavedBeforePageNav.next(
+            {...response,
+              content: this.responseSavedBeforePageNav.value!.content!.filter((e)=> e.id!==income.id),
+              pageable: {sort: {empty: pageableSortEmpty, sorted: pageableSortSorted, unsorted: pageableSortUnsorted},
+                offset: pageableOffset, pageNumber: pageablePageNumber, pageSize: pageablePageSize,
+                unpaged: pageableUnpaged, paged: pageablePaged},
+              last: last, totalElements: totalElements, totalPages: totalPages, size: length,
+              sort: {empty: sortEmpty, sorted: sortSorted, unsorted: sortUnsorted},
+              first: first, numberOfElements: numberOfElements, number: number, empty: empty}
+          );
+          if (this.responseSavedBeforePageNav.value!.number != null) {
+            this.currentPageSubject.next(this.responseSavedBeforePageNav.value!.number);
+          }
+          return ({appState: 'APP_LOADED', appData: this.responseSavedBeforePageNav.value});
+        }),
+        startWith({appState: 'APP_LOADED', appData: this.responseSavedBeforePageNav.value}),
+        catchError((errorResponse: HttpErrorResponse) => of({appState: 'APP_ERROR', errorResponse}))
+      );
   }
 
   //TODO: Add Form To Update Income:
@@ -85,5 +118,14 @@ export class IncomeComponent implements OnInit {
       minWidth: '60%'
     });
   }
+
+  openDialogOnUpdateIncome(income: Income) {
+    this.dialog.open(UpdateIncomeModalComponent, {
+      width: '65%',
+      minWidth: '60%',
+      data: income
+    })
+  }
+
 
 }

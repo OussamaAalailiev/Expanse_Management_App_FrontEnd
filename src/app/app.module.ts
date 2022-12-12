@@ -46,6 +46,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {ErrorStateMatcher, MatNativeDateModule, ShowOnDirtyErrorStateMatcher} from "@angular/material/core";
 import { UpdateGoalModalComponent } from './forms/update-goal-modal/update-goal-modal.component';
 import { AddIncomeModalComponent } from './forms/add-income-modal/add-income-modal.component';
+import { UpdateIncomeModalComponent } from './forms/update-income-modal/update-income-modal.component';
 
 
 
@@ -76,7 +77,8 @@ import { AddIncomeModalComponent } from './forms/add-income-modal/add-income-mod
     UserTotalBalanceComponent,
     AddGoalModalPopupComponent,
     UpdateGoalModalComponent,
-    AddIncomeModalComponent
+    AddIncomeModalComponent,
+    UpdateIncomeModalComponent
   ],
   imports: [
     BrowserModule,

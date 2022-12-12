@@ -1,14 +1,11 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
-import {Observable} from "rxjs";
+import {catchError, Observable, tap, throwError} from "rxjs";
 import {Income} from "../../models/income";
 import {AuthenticationLoginService} from "../authenticationLoginService/authentication-login.service";
-import {PageOfGoals} from "../../pageModels/pageOfGoals";
 import {PageOfIncomes} from "../../pageModels/pageOfIncomes";
-import {TotalExpansePerMonthDTO} from "../../models/TotalExpansePerMonthDTO";
 import {TotalIncomesPerMonthDTO} from "../../models/TotalIncomesPerMonthDTO";
-import {ExpensesByCategory} from "../../models/ExpensesByCategory";
 import {IncomesByCategory} from "../../models/IncomesByCategory";
 import {IncomeFormSubmission} from "../../formModels/IncomeFormSubmission";
 
@@ -71,6 +68,36 @@ export class IncomeService {
   postNewIncomeService(incomeFormSubmission: IncomeFormSubmission): Observable<void>{
     console.log("Service -> Post: "+ incomeFormSubmission);
     return this.http.post<void>(environment.backendHost+"/api/incomes/addIncome", incomeFormSubmission);
+  }
+
+  /** Delete Income: */
+  deleteIncome$ = (incomeId: number) : Observable<PageOfIncomes> =>
+    this.http.delete<PageOfIncomes>(environment.backendHost+`/api/incomes/delete/${incomeId}`)
+      .pipe(
+        tap(console.log),
+        catchError(this.handleError)
+      );
+
+  /** Update Income: */
+  updateIncome$ = (income: IncomeFormSubmission, id: string) : Observable<void> =>
+    this.http.put<void>(environment.backendHost+`/api/incomes/edit/${id}`, income)
+      .pipe(
+        tap(console.log),
+        catchError(this.handleError)
+      );
+
+  private handleError(errorResponse: HttpErrorResponse){
+    if (errorResponse.status===0){
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error(errorResponse.error);
+    }else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong.
+      console.error(`Backend returned status code: ${errorResponse.status} body was: `, errorResponse.error )
+    }
+    // Return an observable with a user-facing error message.
+    return throwError(()=> new Error('Something bad happened; please try again later.'));
+
   }
 
   handleIncomeImage(categoryIncomeType: string): string {

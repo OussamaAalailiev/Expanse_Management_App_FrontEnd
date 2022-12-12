@@ -1,22 +1,23 @@
-import { Component, OnInit } from '@angular/core';
-import {MatDialogRef} from "@angular/material/dialog";
+import {Component, Inject, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {CommonValidationMethods} from "../../services/validations/commonValidationMethods";
 import {DatePipe} from "@angular/common";
-import {Router} from "@angular/router";
 import {AuthenticationLoginService} from "../../services/authenticationLoginService/authentication-login.service";
+import {Router} from "@angular/router";
 import {IncomeService} from "../../services/incomeService/income.service";
 import {CategoryIncome} from "../../models/CategoryIncome";
 import {User} from "../../models/user";
-import {IncomeFormSubmission} from "../../formModels/IncomeFormSubmission";
+import {Income} from "../../models/income";
 import {catchError} from "rxjs";
+import {IncomeFormSubmission} from "../../formModels/IncomeFormSubmission";
 
 @Component({
-  selector: 'app-add-income-modal',
-  templateUrl: './add-income-modal.component.html',
-  styleUrls: ['./add-income-modal.component.css']
+  selector: 'app-update-income-modal',
+  templateUrl: './update-income-modal.component.html',
+  styleUrls: ['./update-income-modal.component.css']
 })
-export class AddIncomeModalComponent implements OnInit {
+export class UpdateIncomeModalComponent implements OnInit {
 
   categoryIncomeAndGoalList: CategoryIncome [] = [//TODO: Should be optimized later!
     //"Select Category",
@@ -39,55 +40,62 @@ export class AddIncomeModalComponent implements OnInit {
 
   user?: User = this.authService!.authenticatedUserLogin;
 
-  incomeFormGroup!: FormGroup;
+  incomeUpdateFormGroup!: FormGroup;
 
-  constructor(public dialogRef: MatDialogRef<AddIncomeModalComponent>,
+  constructor(public dialogRef: MatDialogRef<UpdateIncomeModalComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: Income,
+              public incomeService: IncomeService,
               private fb: FormBuilder,
               public commonValidationMethods : CommonValidationMethods,
               private datePipe: DatePipe,
-              private route: Router,
               public authService: AuthenticationLoginService,
-              public incomeService: IncomeService) { }
+              private route: Router) { }
 
   ngOnInit(): void {
-    this.initializeIncomeForm();
+    this.initializeIncomeToUpdateForm();
+  }
+
+  private initializeIncomeToUpdateForm(): void {
+    this.incomeUpdateFormGroup = this.fb.group({
+      id: this.fb.control(this.data.id),
+      amount: this.fb.control(this.data.amount, [Validators.required,
+        Validators.min(1.0), Validators.max(9000000000000000000.00)]),
+      title: this.fb.control(this.data.title, [Validators.required,
+        Validators.minLength(3), Validators.maxLength(55)]),
+      createdDate: this.fb.control(this.data.createdDate, Validators.required),
+      categoryIncome: this.fb.control(this.data.categoryIncome.id, Validators.required),
+      userId: this.user!.id
+    })
   }
 
   onClickCloseModal(): void {
     this.dialogRef.close();
   }
 
-  private initializeIncomeForm(): void {
-    this.incomeFormGroup = this.fb.group({
-      amount: this.fb.control(null, [Validators.required,
-        Validators.min(1.0), Validators.max(9000000000000000000.00)]),
-      title: this.fb.control(null, [Validators.required,
-        Validators.minLength(3), Validators.maxLength(55)]),
-      createdDate: this.fb.control(null, Validators.required),
-      categoryIncome: this.fb.control(null, Validators.required),
-      userId: this.user!.id
-    })
-  }
-
   transformDateFormat(){
     let createdDateFormatted = this.datePipe.transform
-    (this.incomeFormGroup.controls['createdDate'].value, 'yyyy-MM-dd');
+    (this.incomeUpdateFormGroup.controls['createdDate'].value, 'yyyy-MM-dd');
   }
 
-  //TODO: Add Form To Add New Income:
-  handleNewIncomeForm(incomeFormSubmission: IncomeFormSubmission) {
-    if (this.incomeFormGroup.valid){
+  handleIncomeUpdate(incomeFormSubmission: IncomeFormSubmission) {
+    if (this.incomeUpdateFormGroup.valid){
       this.transformDateFormat();
-      this.incomeService.postNewIncomeService(incomeFormSubmission).pipe(
+      let idIncome = this.data.id.toString();
+      this.incomeService.updateIncome$(incomeFormSubmission, idIncome).pipe(
         catchError((err) => {
-          console.error(err); window.alert("Failed Add of Income!");
+          console.error(err);
+          window.alert(`Failed Update Of income`);
           throw err
-          }
-        )
+        })
       ).toPromise();
-      console.log(this.incomeFormGroup.value);
+      console.log(this.incomeUpdateFormGroup.value);
       this.route.navigateByUrl('/income');
     }
   }
+
+
+
+
+
 
 }
