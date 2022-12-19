@@ -14,6 +14,10 @@
             <img [src]="expanseService.handleImageExpenseById(expensesByCat.category_expanse_id)"
                  [alt]="expanseService.handleAltOfImagesExpenseById(expensesByCat.category_expanse_id)"
                  width="55" height="55">
+            &nbsp;
+            <img *ngIf="expensesByCat.category_expanse_id===5"
+                 src="assets/images/shoes.png" alt="Shoes image"
+                 width="35" height="35">
           </div>
 
         </div>
