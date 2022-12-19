@@ -391,6 +391,14 @@ export class ExpanseService {
         return `Books - audio subscriptions`;
       case 43:
         return `Alcohol & tobacco`;
+      case 12:
+        return `Jewels \ Accessories`;
+      case 5:
+        return `Clothes`;
+      case 11:
+        return `Home Garden`;
+      case 8:
+        return `Free time`;
       default:
         return `Unknown Category`;//EmptyImage isn't saved in 'assets/images' yet!
     }
@@ -521,66 +529,6 @@ export class ExpanseService {
     }
   }
 
-  handleCatExpNameByCategoryID(categoryExpanseID: number) : string{
-    switch (categoryExpanseType) {
-      case 'Groceries':
-        return `Groceries`;
-      case 'Drinks':
-        return `Drinks`;
-      case 'Gifts':
-        return `Gift`;
-      case 'Plane_LongDistance':
-        return `Long distance Transit`;
-      case 'Loan':
-        return `Loan`;
-      case 'Internet':
-        return `internet`;
-      case 'Cell_Phone':
-        return `Cell Phone`;
-      case 'Cafe':
-        return `Cafe`;
-      case 'Fast_Food':
-        return `Fast Food`;
-      case 'Restaurant':
-        return `Restaurant`;
-      case 'Homemade_Food':
-        return `Homemade Food `;
-      case 'Charges_Fees':
-        return `Charges Fees `;
-      case 'Drug_store_Chemist':
-        return `Pharmacy `;
-      case 'Games':
-        return `Games`;
-      case 'Pets_Animals':
-        return `Pets Animals `;
-      case 'Computer_PC':
-        return `Computer / PC`;
-      case 'Public_transport':
-        return `Train - Tram `;
-      case 'Electronics_Accessories':
-        return `Electronics / Accessories`;
-      case 'Sport_Fitness':
-        return `Sport Fitness`;
-      case 'Books_audio_subscriptions':
-        return `Books - audio subscriptions`;
-      case 'Alcohol_tobacco':
-        return `Alcohol / tobacco`;
-      case 'Fuel':
-        return `Fuel`;
-      case 'Taxi':
-        return `Taxi`;
-      case 'Phone':
-        return `Phone`;
-      case 'Jewels_and_Accessories':
-        return `Jewels and Accessories`;
-      case 'Clothes_and_Shoes':
-        return `Clothes / Shoes`;
-      case 'Business_trip':
-        return `Business trip`;//Just 27 Category Out of 63!
-      default:
-        return `Unknown Category`;//EmptyImage isn't saved in 'assets/images' yet!
-    }
-  }
 
 
 }

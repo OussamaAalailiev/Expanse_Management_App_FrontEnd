@@ -83,9 +83,9 @@
                  </span>
                 </span>
               </div>
-              <section class="card-text">
-                <strong>{{income.amount.toFixed(2)}}</strong>
-                <strong>&nbsp;{{authService.authenticatedUserLogin!.currency}}</strong>
+              <section class="card-text">Earned:&nbsp;
+                <strong class="text-success">{{income.amount.toFixed(2)}}</strong>
+                <strong class="text-success">&nbsp;{{authService.authenticatedUserLogin!.currency}}</strong>
               </section>
               <section class="card-text"><SMALL class="text-muted">{{income.createdDate | date}}</SMALL></section>
               <section >

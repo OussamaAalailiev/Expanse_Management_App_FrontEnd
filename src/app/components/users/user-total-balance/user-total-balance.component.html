@@ -1,7 +1,7 @@
 <span>
-  <span><i class="bi-bank"></i>&nbsp;</span>
-  Total Balance:&nbsp;
-<!--    <span>-->
+  <span><i class="bi-bank"></i>&nbsp;Total Balance:&nbsp;</span>
+
+    <span>
 <!--      <section>-->
       <span *ngIf="totalIncomesPerLifeTime" class="text-success">
         <strong>{{(totalIncomesPerLifeTime.totalIncomes).toFixed(2)}}</strong>
@@ -11,9 +11,14 @@
         <strong>{{(totalExpensesPerLifeTime.totalExpanses).toFixed(2)}}</strong>
       </span>
 <!--    </section>-->
-          <span class="hrLineInterval" ></span>
+<!--          <hr class="hrLineInterval" >-->
+  <section >
+    <hr class="hrLineInterval" >
+  </section>
+<!--          <span class="hrLineInterval" ></span>-->
       <!--    <span style="border-top: 2px solid black; width: 30px; font-weight: bold; margin-top: 1.5rem;" ></span>-->
     <section *ngIf="totalExpensesPerLifeTime && totalIncomesPerLifeTime" style="margin-left: 12rem">
+<!--      <hr class="hrLineInterval" >-->
       <strong>{{(totalIncomesPerLifeTime.totalIncomes-totalExpensesPerLifeTime.totalExpanses).toFixed(2)}}</strong>
       <span *ngIf="(totalIncomesPerLifeTime.totalIncomes-totalExpensesPerLifeTime.totalExpanses)>0" class="text-success">
         &nbsp;<i class="bi-check-lg"></i>
@@ -22,5 +27,5 @@
         <i class="bi-exclamation-triangle"></i>
       </span>
     </section>
-<!--    </span>-->
-</span>
+  </span>
+ </span>

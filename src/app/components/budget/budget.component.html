@@ -86,14 +86,14 @@
               </section>
               <section class="card-text">
                 <span >Spent: &nbsp;
-                  <strong>{{budget.amountSpent.toFixed(2)}}</strong>
-                  <strong>&nbsp;{{authService.authenticatedUserLogin!.currency}}</strong>
+                  <strong class="text-danger">{{budget.amountSpent.toFixed(2)}}</strong>
+                  <strong class="text-danger">&nbsp;{{authService.authenticatedUserLogin!.currency}}</strong>
                 </span>
               </section>
               <section class="card-text">
                 <span >
-                  Remaining: &nbsp;<strong>{{budget.amountRemains.toFixed(2)}}</strong>
-                             &nbsp;<strong>{{authService.authenticatedUserLogin!.currency}}</strong>
+                  Remaining: &nbsp;<strong class="text-success">{{budget.amountRemains.toFixed(2)}}</strong>
+                             &nbsp;<strong class="text-success">{{authService.authenticatedUserLogin!.currency}}</strong>
                 </span>
               </section>
               <section class="d-flex justify-content-center">

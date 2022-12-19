@@ -86,18 +86,13 @@
                 </span>
               </div>
               <section class="card-text">Spent:&nbsp;
-                <strong >{{expanse.amount.toFixed(2)}}</strong>
-                <strong>&nbsp;{{authService.authenticatedUserLogin!.currency}}</strong>
+                <strong class="text-danger">{{expanse.amount.toFixed(2)}}</strong>
+                <strong class="text-danger">&nbsp;{{authService.authenticatedUserLogin!.currency}}</strong>
               </section>
               <section class="card-text"><SMALL class="text-muted">{{expanse.createdDate | date}}</SMALL></section>
               <section >
                 <span class="d-flex justify-content-end" *ngIf="authService.isAuthenticateUserHasRoleService('USER')">
                 <a>
-<!--                  <span class="text-danger pointer" (click)="handleExpanseDelete(expanse)">-->
-<!--                  <span class="text-danger pointer" (click)="handleExpanseDelete2(expanse)">-->
-<!--                  <span class="text-danger pointer" (click)="handleExpanseDelete3(expanse)">-->
-<!--                  <span class="text-danger pointer" (click)="handleExpanseDelete4(expanse)">-->
-<!--                  <span class="text-danger pointer" (click)="handleExpenseDeleteFinal(expanse)">-->
                   <span class="text-danger pointer"
                         (click)="
                         handleExpenseDeleteFinalV2(
